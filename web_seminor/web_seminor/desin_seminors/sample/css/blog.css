@@ -1,0 +1,164 @@
+@charset "Shift_JIS";
+
+@import "type_icon.css";
+
+body {
+	background-image:url("img/main_back.gif");
+}
+
+div#BlogSection {
+	background-color:#d4deda;
+	background-repeat:no-repeat;
+	background-position:2px 2px;
+}
+
+div.blog {
+	border-color:#b1c0ad;
+}
+
+h3.title {
+	color:#a3b59f;
+	background-color:#1e534d;
+	background-image:url("img/h3_insite_back.gif");
+}
+
+h3.title > a {
+	color:#a3b59f;
+}
+
+h3.link-title:before {
+	color:#a3b59f;
+}
+
+menu-bar,
+a.info-source {
+	color:#184c2d;
+}
+
+a.id-link {
+	position:absolute;
+	text-decoration:none;
+	right:0.2em;
+	top:0.2em;
+}
+
+a.article-link:visited,
+a.info-source:visited {
+	color:#577C66;
+}
+
+a.article-link:hover,
+a.info-source:hover {
+	color:#0a2b17;
+}
+
+blockquote {
+	background-image:url("img/blockquote_back.gif");
+	border-color:#184c2d;
+}
+
+div#content {
+	margin:0;
+	padding:0;
+}
+
+div#BlogSection {
+	border-width:0.15em;
+	border-style:solid none solid solid;
+	margin:0.5em 0 1.5em;
+	padding:0.2em 0.6em 0.4em;
+	position:relative;
+}
+
+div.blog {
+	position:relative;
+	clear:both;
+	line-height:1.3;
+	border-style:solid none none;
+	border-width:2px;
+	margin:0.6em 0.3em;
+	padding:0.5em 1.3em 0.5em 0.5em;
+}
+
+div.blog {
+	position:relative;
+	z-index:+2;
+}
+
+h2.day:before {
+	content:"Å£";
+}
+
+h2.day:after {
+	content:"Å•";
+}
+
+h3.title {
+	font-size:1.0em;
+	border-style:solid;
+	border-width:1px;
+	margin:0.3em 0;
+	padding:0.15em;
+}
+
+h3.title:before {
+	content:"Åû";
+}
+
+h3.link-title {
+	font-size:1.0em;
+	font-weight:normal;
+	font-family:sans-serif;
+	display:inline;
+	padding:0;
+}
+
+h3.link-title:before {
+	content:url("img/blog_info_before.png");
+}
+
+a.article-link {
+	padding:0.2em;
+}
+
+a.info-source {
+	padding:0.2em 0.5em;
+}
+
+a.article-link:hover,
+a.info-source:hover {
+	border-style:solid;
+	text-decoration:none;
+}
+
+a.info-source:before {
+	content: "[";
+}
+a.info-source:after{
+	content: "]";
+}
+
+div.blogbody {
+}
+
+div.blog p {
+	margin:0.1em;
+	line-height:1.3;
+}
+
+div.blogbody blockquote {
+	border-style:dashed;
+}
+
+div.blogbody dl {
+	border-left-style:solid;
+	border-width:medium;
+}
+
+div.blogbody  dt {
+	border-style:solid none;
+}
+
+div.blogbody  dt:before {
+	content:"áô"
+}

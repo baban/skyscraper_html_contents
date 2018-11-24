@@ -1,0 +1,79 @@
+@charset "Shift_JIS";
+
+/*
+ブラウザ間の表示差を埋めるための、デフォルトスタイルシート。ちょっと設定しすぎ…
+xhtml1.0, 1.1あたりでDeprecatedのタグ入れない方向で作成
+適用範囲:サイト全体
+CSS2限定設定
+*/
+/* ============================
+block elements
+============================ */
+q:before {
+	content:open-quote;
+}
+q:after {
+	content:close-quote;
+}
+
+h1:before, h1:after,
+h2:before, h2:after,
+h3:before, h3:after,
+h4:before, h4:after,
+h5:before, h5:after,
+h6:before, h6:after {
+	margin:0.2em;
+}
+
+pre > code {
+	display:block;
+	border-style:dotted;
+	overflow:scroll;
+}
+
+blockquote > p {
+	margin:0;
+	padding:0;
+}
+
+ol {
+	list-style-type:decimal;
+}
+
+li {
+	list-style-position:outside;
+}
+
+li:before, 
+dt:before {
+	margin-right:0.2em;
+}
+
+table {
+	border-collapse:separate;
+	border-spacing:1px;
+}
+
+/* 汎用テキスト要素 */
+
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"] {
+	border-style:none;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	border-style:outset;
+	border-width:0.15em;
+	padding:0 0.2em;
+}
+
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+	border-style:inset;
+}

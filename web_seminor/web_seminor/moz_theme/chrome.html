@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Tips／Mozilla／userChromeの設定</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">Tips／Mozilla／userChromeの設定</h1>
+
+<div id="content" class="section">
+	<h2 id='h2-1'>タブ関係</h2>
+	
+	<div class="section">
+		
+		<h3>tab</h3>
+		
+		<div class="section">
+			<h4>commentary</h4>
+			<p>タブ。設定ダイアログのタブも含む。属性セレクタと疑似クラスによって状態を細かく設定できる。tab→tab:hoverなど、上位の要素は下位の要素に承継される。</p>
+<pre><code>
+/* 赤背景 */
+tab {
+  background-color: #ff0000 !important;
+}
+/* 現在のタブの文字をboldにする */
+tab[selected="true"],
+tab:hover:active[selected="true"] {
+  font-weight: bold !important;
+}
+</code></pre>
+			<img src='img/tab.png' alt='Tab Sample' />
+		</div>
+		
+		<h3>tabpanels</h3>
+		
+		<div class="section">
+			<h4>commentary</h4>
+			<p>各タブの中身の部分。サイト表示部分としては分かりづらいが、marginやpaddingを広くとってみるとどの部分か分かる。「画像マネージャ」など、設定ダイアログのタブも含み、こちらを見た方が分かりやすいと思われる。</p>
+<pre><code>
+tabpanels {
+    background-color: #ff0000 !important;
+    padding: 4px !important;
+}</code></pre>
+			<img src='img/tabpanels.png' alt='Tabpanel Sample' />
+		</div>
+		
+		<h3><code>.tabbrowser-tabs</code>, <code>.tabbrowser-strip</code></h3>
+		
+		<div class="section">
+			<h4>commentary</h4>
+			<p>タブバーの背景部分。<code>.tabbrowser-strip</code>は<code>.tabbrowser-tabs</code>の背面になる。</p>
+			<p>対応xml：toolkit.jar/content/global/bindings/tabbrowser.xml</p>
+<pre><code>
+/* 青背景 */
+.tabbrowser-strip {
+  margin: 3px !important;
+  background-color: #0000ff !important;
+}
+/* 赤背景 */
+.tabbrowser-tabs {
+  margin: 4px !important;
+  background-color: #ff0000 !important;
+}
+</code></pre>
+			<img src='img/tabbrowser-strip.png' alt='tabbrowse-tab sample' />
+		</div>
+		
+		<h3><code>.tab-icon</code></h3>
+		
+		<div class="section">
+			<h4>commentary</h4>
+			<p>タブに表示されるアイコン。「読み込み中」アイコンやfaviconもここに表示される。</p>
+<pre><code>
+.tab-icon {
+	background-color: #ff0000 !important;
+}
+</code></pre>
+			<img src='img/tab-icon.png' alt='tab-icon sample' />
+		</div>
+		
+		<h3><code>.tabs-closebutton</code></h3>
+		
+		<div class="section">
+			<h4>commentary</h4>
+			<p>タブバー右端に表示される、「タブを閉じる」ボタン。</p>
+			<h4>for example...</h4>
+<pre><code>
+.tabs-closebutton {
+	background-color: #ff0000 !important;
+}
+</code></pre>
+			<img src="img/tabs-closebutton.png" alt="close-button sample" />
+		</div>
+		
+		<h3><code>.tabs-left</code>, <code>.tabs-right</code></h3>
+		<div class="section">
+			<h4>commentary</h4>
+			<p>　タブの左右のスペース部分。設定ダイアログのタブも含む。</p>
+			<h4>for example...</h4>
+<pre><code>
+/* 赤背景 */
+.tabs-left {
+padding: 5px !important;
+  background-color: #ff0000 !important;
+}
+/* 青背景 */
+.tabs-right {
+  background-color: #0000ff !important;
+}</code></pre>
+			<img src="img/tabs-left.png" alt="tab-left sample" />
+		</div>
+		
+		<h3><code>.tabs-newbutton</code></h3>
+		
+		<div class="section">
+			<h4>commentary</h4>
+			<p>タブバー左端に表示される、「新しいタブを開く」ボタン。</p>
+			<h4>for example...</h4>
+<pre><code>
+.tabs-newbutton {
+  margin: 3px !important;
+  background-color: #ff0000 !important;
+}
+</code></pre>
+			<img src="img/tabs-newbutton.png" alt="newbottom sample" />
+			</div>
+		</div>
+	
+	<h2 id='h2-2'>ツールバー関係</h2>
+	
+	<div class="section">
+		<h3><code>.toolbarbutton-text</code></h3>
+		
+		<div class="section">
+			<h4>commentary</h4>
+			<p>ツールバーに表示されるアイコンの文字。入れ子を使うことで以下のように限定できる。</p>
+			<dl class="data">
+				<dt><code>.toolbarbutton-1 > .toolbarbutton-text</code></dt>
+				<dd>ナビゲーションツールバーのアイコンのテキスト。「進む」「戻る」など、履歴メニューが付いているものは除く。</dd>
+				<dt><code>.toolbarbutton-1 > .toolbarbutton-menubutton-button > .toolbarbutton-text</code></dt>
+				<dd>ナビゲーションツールバーの中の、「進む」「戻る」など、履歴メニューが付いているボタンのテキスト。</dd>
+			</dl>
+			
+			<h4>for example...</h4>
+<pre><code>
+/* 太字＋イタリック＋黄背景 */
+.toolbarbutton-text {
+  font-weight: bold !important;
+  font-style: italic !important;
+  background-color: #ffff00 !important;
+}
+</code></pre>
+			<img src="img/toolbarbutton-text.png" alt="toobar-button sample" />
+		</div>
+	</div>
+</div>
+
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

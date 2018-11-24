@@ -1,0 +1,222 @@
+@charset "UTF-8";
+
+/** 入り口に当たるホームページのデザイン */
+
+@import url("def/html5-default-css.css");
+@import url("def/html-color-base.css");
+@import "base-style.css";
+@import "blog-design.css";
+
+h1#site-title{
+	min-height:83px;
+	height:83px;
+	background-image:url("img/site-title-back.png");
+	background-repeat:no-repeat;
+}
+
+h1#site-title > a > img{
+	border-style:none;
+}
+
+span#site-title-title{}
+span#site-title-title a:hover{
+	border-style:none none solid none;
+}
+
+/* サイトの紹介文 */
+#introduction-container {
+	color:#715C3F;
+	font-weight:bold;
+	margin-bottom:1em;
+	margin-right:245px;
+}
+
+/* blog部分 */
+
+div#conteiner-main {
+	position:relative;
+	min-width:500px;
+}
+
+h1#entry-title{
+	background-image:url("img/entry-title-back.png");
+	min-height:57px;
+	height:57px;
+	min-width:242px;
+	width:242px;
+	margin:0.5em 0.5em;
+}
+
+span#entry-title-title {
+	display:none;
+}
+
+#entry-section > * {
+	margin-right:250px;
+}
+
+/** イベント表示ブロック */
+h1#event-title{
+	background-image:url("img/event-title.png");
+	min-height:22px;
+	background-repeat:no-repeat;
+	background-position:14px 0;
+}
+span#event-title-title{
+	display:none;
+}
+#event-conteiner li{
+	list-style-type:none;
+}
+#event-conteiner li img{
+	background-image:url("img/img-back-blank.png");
+	border-style:solid;
+	border-color:#aaa;
+}
+
+h1#information-title-round-cource{
+	display:none;
+}
+div#site-infomation{
+	position:absolute;
+	min-width:250px;
+	width:250px;
+	top:-60px;
+	right:-10px;
+	background-image:url("img/site-infomation-back.png");
+	background-repeat:repeat;
+	color:#fff;
+}
+div#site-infomation a{
+	color:#fff;
+}
+
+/* 巡回コース部分 */
+#round-cource h2 {
+	padding-left:0.8em;
+}
+#round-cource ul.snav{
+	padding-left:18px;
+}
+#round-cource ul.snav li{
+	list-style-image:url("img/list-circle.png");
+	list-style-type:none;
+}
+#round-cource ul.snav li a{
+	vertical-align:middle;
+	text-decoration:none;
+	font-weight:bold;
+	opacity:0.7;
+}
+#round-cource ul.snav li a:hover{
+	background-color:transparent;
+}
+#site-infomation h2.module-header{
+	padding-left:0.8em;
+}
+#site-infomation div.module-content {
+	margin:0.4em;
+	padding:0.4em;
+}
+#site-infomation li.module-list-item{
+	margin-left:0.5em;
+	list-style-type:disc;
+}
+#site-infomation li.module-list-item a{
+	text-decoration:none;
+}
+#site-infomation li.module-list-item a:hover{
+	background-color:transparent;
+	text-decoration:underline;
+}
+div#serch-form-container{
+	border:dashed 1px #fff;
+	max-width:220px;
+	margin:auto;
+	margin-bottom:1em;
+}
+h2#serch-title{
+	display:none;
+}
+form#serach-form {
+	max-width:170px;
+	border-style:none;
+	background-color:transparent;
+}
+form#serach-form:after {
+	content:" ";
+	display:block;
+	clear:both;
+}
+#search{
+	background-color:#eee;
+	border-style:solid;
+	border-color:#8D7C65;
+	border-width:0.1em;
+}
+#search:focus{
+	background-color:#fff;
+}
+p#serch-button-box{
+	float:right;
+}
+#serch-button{
+	display:block;
+	margin-top:1em;
+	height:20px;
+	width:60px;
+}
+
+/* ここからナビゲーションバー */
+div#counter{
+	min-height:50px;
+	border:solid 0.1em #fff;
+	margin:0 0.9em;
+	padding:0.5em auto;
+}
+div#counter > span#counter-description{
+	font-size:6px;
+}
+#counter-list > li{
+	font-size:0.8em;
+	display:block;
+}
+#counter-list > li:after{
+	content:"  ";
+}
+#counter-list > li#counter-listitem-total{
+	font-size:1.1em;
+}
+
+address,
+ul#rss,
+div.module-powered {
+	font-size:10px;
+	font-weight:bold;
+	font-family:"Times New Roman", "New York", "ＤＦ平成明朝体W3", "ＭＳ 明朝", serif;
+	margin:0.2em 0.9em;
+	border-width:1px;
+}
+address > span{
+	line-height:1.0;
+}
+address a,
+ul#rss a,
+div.module-powered a{
+	color:white !important;
+}
+address a:hover,
+ul#rss a:hover,
+div.module-powered a:hover{
+	background-color:transparent !important;
+}
+ul#rss{
+	padding-left:3em;
+}
+ul#rss > li{
+	list-style-type:disc;
+	line-height:1.4;
+}
+h2#navigation-made-title{
+	display:none;
+}

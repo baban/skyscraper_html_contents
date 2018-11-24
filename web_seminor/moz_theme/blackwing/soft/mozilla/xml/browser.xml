@@ -1,0 +1,18 @@
+  <hbox flex="1">
+    <vbox id="sidebar-box" class="chromeclass-extrachrome"/>
+    <splitter id="sidebar-splitter" class="chromeclass-extrachrome" />
+  
+    <!-- we only need to handle |ondragdrop| because everything else is
+          taken care of by the builtin behavior inside the tabbrowser -->
+    <vbox id="appcontent" flex="1"
+         ondragdrop="nsDragAndDrop.drop(event, contentAreaDNDObserver);">
+
+      <!-- this box is temporary, pending XBLified <browser> -->
+      <hbox id="browser" flex="1">
+        <tabbrowser id="content"
+                 flex="1" contenttooltip="aHTMLTooltip"
+                 contentcontextmenu="contentAreaContextMenu"
+                 onclick="return contentAreaClick(event);"/>
+      </hbox>
+    </vbox>  
+  </hbox>

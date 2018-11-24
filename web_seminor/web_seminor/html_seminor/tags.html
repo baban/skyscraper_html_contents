@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='ja' xml:lang='ja' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content='text/html;charset=UTF-8' http-equiv='Content-Type'/>
+	<meta content='text/css' http-equiv='Content-Style-Type'/>
+	<meta content='text/javascript;charset=UTF-8' http-equiv='Content-Script-Type'/>
+	<meta content='ja' http-equiv='Content-Language'/>
+	
+	<meta name='author' content='babanba-n'/>
+	<meta name='generator' content='Alcadia'/>
+	<meta name='Copyright' content='Creative Commons Japan'/>
+	<meta name='description' content='初心者に送るHTML講座'/>
+	
+	<link href='/index.html' rel='home' type='text/css'/>
+	<link href='http://creativecommons.org/licenses/by-sa/2.0/jp/' title='Creative Commons Japan' rel='copyright' id='meta-licence'/>
+	<link href='/texts/readme.html' rel='help' type='text/css'/>
+	<link href='mailto:baban@nergal.clubbbq.com' rev='Reply-to'/>
+	<link href='/img/favicon.ico' rel='shortcut icon' type='image/png'/>
+	<link href='/css/seminor.css' rel='stylesheet' type='text/css'/>
+	
+	<title>正しく始めるHTML:多機能追加タグ</title>
+	<script src="/src/seminor.js" type="text/javascript"> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>正しく始めるHTML:多機能追加タグ</h1>
+
+<div class='section' id='content'>
+	<h2 id="abstruct">Abstruct</h2>
+	
+	<div class="section">
+		<p>今回使うタグまでで、やりたいことが、大体全部出来るようになります</p>
+	</div>
+	
+	<h2>題名を付けるタグ</h2>
+	
+	<div class="section">
+		<p>どんな文章でも、必ず、その文章には題名という物がある物です</p>
+		<p>そういうタイトルに対して使うタグもあらかじめ用意されています</p>
+		<p>それが<code>h1</code>タグ</p>
+<div class="example">
+<pre><code>
+&lt;h1&gt;タイトル&lt;/h1&gt;
+(以降文章)
+</code></pre>
+</div>
+		<p>ちなみに、h1タグのhは(heading)の頭の文字です</p>
+		<p>1があるのだから2、3と続いているのか？　まぁ、そういうことです(ちなみにh6まである)</p>
+		<p>ちなみに、規格のルールの問題でh1タグの次は必ずh2タグ次はh3タグを使わなければなりません、番号を飛び飛びに使うのは御法度</p>
+	</div>
+	
+	<h2>リスト系タグ</h2>
+	<div class="section">
+		<p>今回は箇条書きする際等によく使う、リストのを作成するタグulタグとolタグを解説しましょう</p>
+		<p>この２つのタグの違いは、名前から予想が出来ます、ulとはUnordered List（並列列挙リスト）の略、olとはOrdered List（順序付きリスト）の略です</p>
+		<p>実際に表示される際には、ulが順序無しリスト、olは順序付きリストとして処理されます</p>
+		<p>実際に書いてみた場合</p>
+<pre>
+<code>
+&lt;ul&gt;
+	&lt;li&gt;ルナサ・プリズムリバー&lt;/li&gt;
+	&lt;li&gt;メルラン・プリズムリバー&lt;/li&gt;
+	&lt;li&gt;リリカ・プリズムリバー&lt;/li&gt;
+&lt;/ul&gt;
+</code>
+</pre>
+		<div class="sample-view">
+			<a href="tags_samp01.html"><img src="tags_samp01.png" alt="ulタグサンプル" /></a>
+		</div>
+<pre>
+<code>
+&lt;ol&gt;
+	&lt;li&gt;????&lt;/li&gt;
+	&lt;li&gt;雛苺&lt;/li&gt;
+	&lt;li&gt;翠星石&lt;/li&gt;
+	&lt;li&gt;蒼星石&lt;/li&gt;
+	&lt;li&gt;真紅&lt;/li&gt;
+	&lt;li&gt;金糸雀&lt;/li&gt;
+	&lt;li&gt;水銀灯(未完成)&lt;/li&gt;
+&lt;/ol&gt;
+</code>
+</pre>
+		<div class="sample-view">
+			<a href="tags_samp02.html"><img src="tags_samp02.png" alt="olタグサンプル" /></a>
+		</div>
+		<p>こんな感じに表示されます</p>
+		<p>サンプルを見れば分かりますが、li はList Item（リストの項目）の略、欲しい内容は、ul、olタグの中に直接入れて良いタグはliタグだけです</p>
+		<p>(ただし、liタグの中にはaだろうがpだろうが、好きなタグ入れて良いですけどね)</p>
+		<p>ちなみに、リストって言う概念は一般に、よく使うアイテムで、サイトのメニューなんかも、このul、olタグを使って表します</p>
+	</div>
+	
+	<h2>dtタグ</h2>
+	
+	<div class="section">
+		<p>HTMLの使用上は、主に、辞書などを作成する際に、言葉の定義と説明、として使いますが</p>
+		<p>書式は、ul、olタグに近い物で</p>
+<pre>
+<code>
+&lt;dt&gt;
+	&lt;dt&gt;あなたが好きなの&lt;/dt&gt;
+	&lt;dd&gt;ここまで盛り上げておいてキスの一つもしないなんて・・・。&lt;/dd&gt;
+	&lt;dt&gt;アミバ&lt;/dt&gt;
+	&lt;dd&gt;無くても困らないが、あると「あー、やっぱり辞典なんだなぁ」としみじみ実感できる(笑)。&lt;/dd&gt;
+	&lt;dt&gt;ウサ・ギガンティア&lt;/dt&gt;
+	&lt;dd&gt;同人誌では、すでにウサ耳は白薔薇のパーツの一つ、となりつつあります(F^^')。&lt;/dd&gt;
+&lt;/dt&gt;
+</code>
+</pre>
+		<p>とdlタグの中にdt、ddタグをセットにして書くことになります、各タグは</p>
+		<table class="data">
+			<tr><td>dt</td><td>新しく出てきた用語</td></tr>
+			<tr><td>dd</td><td>その説明文</td></tr>
+		</table>
+		<p>となっています</p>
+		<p>他にも、リンク先とその説明、等で使います。というか、その場合の方が使い道多いのではないでしょうかね…</p>
+	</div>
+	
+	<h2>tableタグ</h2>
+	
+	<div class="section">
+		<p>表を作成する際に、主に使います</p>
+		<p>書式はこんな感じ</p>
+<pre>
+<code>
+&lt;table&gt;
+	&lt;tr&gt;&lt;th&gt;表タイトル&lt;/th&gt;&lt;th&gt;表タイトル&lt;/th&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;内容&lt;/td&gt;&lt;td&gt;内容&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;内容&lt;/td&gt;&lt;td&gt;内容&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code>
+</pre>
+		<p>表示はこんな感じ</p>
+		<div class="sample-view">
+			<a href="tags_samp04.html"><img src="tags_samp04.png" alt="tableタグサンプル" /></a>
+		</div>
+		<p>普通は<a href="tags_samp05.html">スタイルシートでボーダーを指定</a>しますけど、ここらへんの解説は後回しに</p>
+		<p>ちなみに、tableタグの中に入るものを解説しておくと、こんな感じ</p>
+		<table class="data">
+			<tr><td>tr</td><td>表の区切り</td></tr>
+			<tr><td>th</td><td>表のタイトル</td></tr>
+			<tr><td>td</td><td>表の内容</td></tr>
+		</table>
+		<p>他にも"テーブルデザイン"なんて言葉があるくらい、デザインを行う時に利用することのあるタグですが</p>
+		<p>デザインをするときに様々な理由により、使うことはお勧めされません、特に初心者さんだと</p>
+	</div>
+	
+	<h2>brタグ</h2>
+	
+	<div class="section">
+		<p>brはBreak Line(改行)の略、そもそもは改行のために用意されたタグです</p>
+		<p>ただ、現在の規格では、改行は主にpタグで行う物になっていて、brタグを使うのは、お勧め出来ません</p>
+		<p>それでも、なんでコレを付け加えたかというと、brでの改行が望ましい場合もあるから、そしてデザインを行う上で必要になる場面があるから</p>
+		<p>このタグについては、複数の用途を持っている上に、テクニカルな使い方が多ので、語り出すと終わらないのです</p>
+		<p>名前だけ覚えておいてください</p>
+	</div>
+	
+</div>
+
+<div title='Creative Commons Japan by' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/by-sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/by-sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+	<p>Author:<span class='rights'>babanba-n</span>, Licence:<span class='cc-licence'>by-sa</span></p>
+</div>
+
+</body>
+</html>

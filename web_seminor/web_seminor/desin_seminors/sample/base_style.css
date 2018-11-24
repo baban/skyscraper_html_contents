@@ -1,0 +1,6 @@
+@charset "Shift_JIS";
+
+/* 基本設定の読み込み、十分な知識のないうちにこれらを弄らない事を推奨 */
+@import url("css/def/html_default_css1.css");
+@import "css/def/html_default_css2.css" all;
+@import url("css/def/html_color_base.css");

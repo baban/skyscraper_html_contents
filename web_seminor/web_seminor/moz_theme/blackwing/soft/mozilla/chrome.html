@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML Lang="ja">
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<META Http-Equiv="Content-Type" Content="text/html;charset=shift_jis">
+	<TITLE>Tips／Mozilla／userChromeの設定</TITLE>
+	<META Http-Equiv="Content-Style-Type" Content="text/css">
+	<LINK Rev="made" Href="mailto:h-sakai@mbox.kyoto-inet.or.jp">
+	<LINK Rel="stylesheet" Href="../../style.css" Type="text/css" Title="標準">
+  <script src="/src/ga.js"></script>
+</head>
+<BODY ID="tips">
+
+<A Name="top"></A>
+
+<DIV ID="title">
+	<H1><A Href="index.html">Mozilla</A></H1>
+	<H2>userChrome Reference</H2>
+</DIV>
+
+<HR>
+
+<DIV ID="contents">
+	<H2 Class="now">userChrome</H2>
+	<ul class='data'>
+		<LI><A Href="#syntax">Syntax</A>
+		<ul class='data'>
+			<LI><A Href="#attribute">属性セレクタ</A></LI>
+			<LI><A Href="#pseudo">疑似クラス</A></LI>
+		</UL></LI>
+		<LI><A Href="#reference">Reference</A>
+		<ul class='data'>
+			<LI><A Href="#browsertab">タブ</A></LI>
+			<LI><A Href="#toolbar">ツールバー</A></LI>
+		</UL></LI>
+	</UL>
+</DIV>
+
+<DIV ID="box">
+	<DIV Class="item">
+		<H2><A Name="syntax">Syntax</A></H2>
+		<P>　基本的にはCSSと同じなので、CSS2とMozilla独自の部分だけ解説します。</P>
+		<H3><A Name="attribute">属性セレクタ（The Attribute Selector）</A></H3>
+		<P>　特定の属性を持つ要素へのスタイルを定義します。重ねて指定することができ、その場合は指定された属性すべてを満たす要素が定義されます。<BR>
+			　属性セレクタには以下の４種類があります。なお、要素と属性の間にスペースを入れてはいけません。</P>
+		<H4>属性値に関わらず、指定された属性を持つ要素</H4>
+		<DIV Class="form">
+			<H5>書式</H5>
+			<PRE>要素[属性] {スタイル}</PRE>
+		</DIV>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>tab[disabled]
+/* &lt;tab disabled="true"&gt;、&lt;TAB disabled="false"&gt;など */</PRE>
+		</DIV>
+		<H4>指定した属性と値を持つ要素</H4>
+		<P>　指定した属性が指定した値を持つ場合を定義します。</P>
+		<DIV Class="form">
+			<H5>書式</H5>
+			<PRE>要素[属性=値] {スタイル}</PRE>
+		</DIV>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>tab[disabled="true"]
+/* &lt;tab disabled="true"&gt; */</PRE>
+		</DIV>
+		<H4>指定した属性の値がスペース区切りの単語リストになっている場合</H4>
+		<P>　複数の属性値に対応したセレクタです。属性値が半角スペースで区切られたリストになっていて、その属性値の中に指定した文字列が含まれている場合を定義します。</P>
+		<DIV Class="form">
+			<H5>書式</H5>
+			<PRE>要素[属性~=値] {スタイル}</PRE>
+		</DIV>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>button[class~="button-toolbar"]
+/* &lt;button class="button-toolbar chromeclass-location"&gt; */</PRE>
+		</DIV>
+		<H4>指定した属性の値がハイフン区切りの単語リストになっている場合</H4>
+		<P>　複数の属性値に対応したセレクタです。属性値がハイフンで区切られた単語のリストになっていて、そのリストの先頭単語が指定した値と同じである場合を定義します。主に<CODE>lang</CODE>属性を意識したもので、それ以外にはあまり使われません。</P>
+		<DIV Class="form">
+			<H5>書式</H5>
+			<PRE>要素[属性|=値] {スタイル}</PRE>
+		</DIV>
+		<H4>Mozillaの場合</H4>
+		<DL>
+			<DT><CODE>[disabled="true"]</CODE></DT>
+				<DD>現在利用することができないもの。<BR>
+					<CODE>menuitem[disabled="true"]</CODE>は、現在選択できないメニュー（文字列を選択していない状態での「コピー」など）を定義します。</DD>
+			<DT><CODE>[busy="true"]</CODE></DT>
+				<DD>現在読み込み中のもの。<BR>
+					<CODE>tab[busy="true"]</CODE>は、現在読み込み中のタブを定義します。</DD>
+			<DT><CODE>[selected="true"]</CODE></DT>
+				<DD>現在アクティブになっているもの。<BR>
+					<CODE>tab[selected="true"]</CODE>は、現在アクティブになっているタブを定義します。</DD>
+			<DT><CODE>[container="true"]</CODE></DT>
+				<DD>下位にアイテムを保有するもの。<BR>
+					<CODE>.bookmark-item[container="true"]</CODE>は、ブックマークメニューのうち中にアイテムを持つもの（フォルダ、ブックマークグループ）を定義します。ただし、<CODE>menuitem</CODE>などにこの属性を付けても変化はありませんでした。</DD>
+			<DT><CODE>[offline="true"]</CODE></DT>
+				<DD>オフラインモードになっている場合。</DD>
+		</DL>
+		<H3><A Name="pseudo">疑似クラス（Pseudo-classes）</A></H3>
+		<P>　要素の名称・属性・内容以外の特徴に基づいて要素を分類します。HTMLでは<CODE>A:link</CODE>などが有名ですが、Mozillaの場合（というかXMLを修飾する場合）はCSS2とはまた別の疑似クラスがあります。<BR>
+			　疑似クラスは重ねて指定することができます。その場合、指定した疑似クラスすべてを満たす要素が定義されます。<BR>
+			　また、<A Href="#attribute">属性セレクタ</A>とも併用できますが、その場合、疑似クラスを先に書きます。</P>
+		<DIV Class="form">
+			<H4>書式</H4>
+			<PRE>要素:疑似クラス {スタイル}
+要素:疑似クラス１:疑似クラス２... {スタイル}
+要素:疑似クラス[属性=値]</PRE>
+		</DIV>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>tab:hover:active
+/* 現在アクティブになっていて、かつマウスカーソルが上にあるタブ */</PRE>
+		</DIV>
+		<P>　主なものは以下の通りです。</P>
+		<DL>
+			<DT><CODE>hover</CODE></DT>
+				<DD>現在マウスカーソルが上にあるもの</DD>
+			<DT><CODE>active</CODE></DT>
+				<DD>現在アクティブなもの（クリックされている状態など）</DD>
+			<DT><CODE></CODE></DT>
+				<DD></DD>
+			<DT><CODE></CODE></DT>
+				<DD></DD>
+		</DL>
+		<!-- Selector : 「Parent-Child」（入れ子）
+Syntax: 「parent > child { attribute: value;}」
+Example : 「 menu#file > menuitem { font-weight: bold; }」 -->
+		<H2><A Name="reference">Element Reference</A></H2>
+		<H3><A Name="browsertab">タブ関係</A></H3>
+		<H4><CODE>tab</CODE></H4>
+		<H5>commentary</H5>
+		<P>　タブ。設定ダイアログのタブも含む。<A Href="#attribute">属性セレクタ</A>と<A Href="#pseudo">疑似クラス</A>によって状態を細かく設定できる。tab→tab:hoverなど、上位の要素は下位の要素に承継される。</P>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>/* 赤背景 */
+tab {
+    background-color: #ff0000 !important;
+}
+/* 現在のタブの文字をboldにする */
+tab[selected="true"],
+tab:hover:active[selected="true"] {
+    font-weight: bold !important;
+}</PRE>
+			<IMG Src="img/tab.png" Width="215" Height="26" Alt="" Class="sample">
+		</DIV>
+		<H4><CODE>tabpanels</CODE></H4>
+		<H5>commentary</H5>
+		<P>　各タブの中身の部分。サイト表示部分としては分かりづらいが、marginやpaddingを広くとってみるとどの部分か分かる。「画像マネージャ」など、設定ダイアログのタブも含み、こちらを見た方が分かりやすいと思われる。</P>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>tabpanels {
+    background-color: #ff0000 !important;
+    padding: 4px !important;
+}</PRE>
+			<IMG Src="img/tabpanels.png" Width="300" Height="185" Alt="">
+		</DIV>
+		<H4><CODE>.tabbrowser-tabs</CODE>, <CODE>.tabbrowser-strip</CODE></H4>
+		<H5>commentary</H5>
+		<P>　タブバーの背景部分。<CODE>.tabbrowser-strip</CODE>は<CODE>.tabbrowser-tabs</CODE>の背面になる。<BR>
+		　対応xml：toolkit.jar/content/global/bindings/tabbrowser.xml</P>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>/* 青背景 */
+.tabbrowser-strip {
+    margin: 3px !important;
+    background-color: #0000ff !important;
+}
+/* 赤背景 */
+.tabbrowser-tabs {
+    margin: 4px !important;;
+    background-color: #ff0000 !important;
+}</PRE>
+			<IMG Src="img/tabbrowser-strip.png" Width="500" Height="50" Alt="">
+		</DIV>
+		<H4><CODE>.tab-icon</CODE></H4>
+		<H5>commentary</H5>
+		<P>　タブに表示されるアイコン。「読み込み中」アイコンやfaviconもここに表示される。</P>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>.tab-icon {
+	background-color: #ff0000 !important;
+}</PRE>
+			<IMG Src="img/tab-icon.png" Width="100" Height="33" Alt="">
+		</DIV>
+		<H4><CODE>.tabs-closebutton</CODE></H4>
+		<H5>commentary</H5>
+		<P>　タブバー右端に表示される、「タブを閉じる」ボタン。</P>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>.tabs-closebutton {
+	background-color: #ff0000 !important;
+}</PRE>
+			<IMG Src="img/tabs-closebutton.png" Width="250" Height="39" Alt="">
+		</DIV>
+		<H4><CODE>.tabs-left</CODE>, <CODE>.tabs-right</CODE></H4>
+		<H5>commentary</H5>
+		<P>　タブの左右のスペース部分。設定ダイアログのタブも含む。</P>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>/* 赤背景 */
+.tabs-left {
+	padding: 5px !important;
+	background-color: #ff0000 !important;
+}
+/* 青背景 */
+.tabs-right {
+	background-color: #0000ff !important;
+}</PRE>
+			<IMG Src="img/tabs-left.png" Width="400" Height="29" Alt="">
+		</DIV>
+		<H4><CODE>.tabs-newbutton</CODE></H4>
+		<H5>commentary</H5>
+		<P>　タブバー左端に表示される、「新しいタブを開く」ボタン。</P>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>.tabs-newbutton {
+	margin: 3px !important;
+	background-color: #ff0000 !important;
+}</PRE>
+			<IMG Src="img/tabs-newbutton.png" Width="78" Height="39" Alt="">
+		</DIV>
+	</DIV>
+	<DIV Class="navi">
+		<A Href="#top">▲　page top</A>
+	</DIV>
+	<DIV Class="item">
+		<H3><A Name="toolbar">ツールバー関係</A></H3>
+		<H4><CODE>.toolbarbutton-text</CODE></H4>
+		<H5>commentary</H5>
+		<P>　ツールバーに表示されるアイコンの文字。入れ子を使うことで以下のように限定できる。</P>
+		<DL>
+			<DT><CODE>.toolbarbutton-1 > .toolbarbutton-text</CODE></DT>
+				<DD>ナビゲーションツールバーのアイコンのテキスト。「進む」「戻る」など、履歴メニューが付いているものは除く。</DD>
+			<DT><CODE>.toolbarbutton-1 > .toolbarbutton-menubutton-button > .toolbarbutton-text</CODE></DT>
+				<DD>ナビゲーションツールバーの中の、「進む」「戻る」など、履歴メニューが付いているボタンのテキスト。</DD>
+		</DL>
+		<DIV Class="example">
+			<H5>for example...</H5>
+			<PRE>/* 太字＋イタリック＋黄背景 */
+.toolbarbutton-text {
+	font-weight: bold !important;
+	font-style: italic !important;
+	background-color: #ffff00 !important;
+}</PRE>
+			<IMG Src="img/toolbarbutton-text.png" Width="240" Height="51" Alt="">
+		</DIV>
+	</DIV>
+	<DIV Class="navi">
+		<A Href="#top">▲　page top</A>
+	</DIV>
+	<HR>
+	<DIV ID="gotop">
+		<A Href="../../index.html" AccessKey="t">▲トップページに戻る<KBD>T</KBD>▲</A>
+	</DIV>
+</DIV>
+
+</BODY>
+</HTML>

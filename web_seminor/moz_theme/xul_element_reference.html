@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法 : XULエレメントリファレンス' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozillaのテーマの作成法 : XULエレメントリファレンス</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>XULエレメントリファレンス</h1>
+
+<div class="section" id="content">
+	<p>XULに関しての資料は<a href="http://xul-app.hp.infoseek.co.jp/xultu-janit/">XULチュートリアル</a>や<a href="http://xulplanet.com/references/elemref/">XUL Element Reference</a>等幾つか資料があるのですが、英語資料だったり書き遅れがあって現状と必ずしもあっていなかったりするので、自分なりにテーマを作成するときに困ったところなどを中心に書いてしまおうという企画です…</p>
+	<p>というより、あるべき所に投稿できるような邦訳なんて私の英語力では到底出来ないので自分勝手に書いてしまえ！　というダメな人間のあがきなんですが…</p>
+	<dl class="data">
+		<dt>action</dt>
+		<dt>arrowscrollbox</dt>
+		<dt>bbox</dt>
+		<dt>binding</dt>
+		<dt>bindings</dt>
+		<dt>box</dt>
+		<dt>broadcaster</dt>
+		<dt>broadcasterset</dt>
+		<dt>button</dt>
+		<dd>
+			<p>名前の通り過ぎてなんだか泣けてしまうタグなんですが。…基本的に使いどころは見れば分かります</p>
+			<p>たいていの場合、global/button.cssを書き換えれば基本的にそれだけで問題なく動きます。</p>
+			<p>ただ、ナビゲーションツールバーにある、検索バー。検索エンジンの選択ボタンがtoolbarbuttonではなくてbuttonタグです。</p>
+			<p>あとメニューバーの一番右にある読み込み中かを表す箇所。これも実はbuttonタグです。</p>
+		</dd>
+		<dt>browser</dt>
+		<dt>checkbox</dt>
+		<dt>caption</dt>
+		<dt>colorpicker</dt>
+		<dt>column</dt>
+		<dt>columns</dt>
+		<dt>command</dt>
+		<dt>commandset</dt>
+		<dt>conditions</dt>
+		<dt>content</dt>
+		<dt>deck</dt>
+		<dt>description</dt>
+		<dt>dialog</dt>
+		<dt>dialogheader</dt>
+		<dt>editor</dt>
+		<dt>grid</dt>
+		<dt>grippy</dt>
+		<dt>groupbox</dt>
+		<dt>hbox</dt>
+		<dt>iframe</dt>
+		<dt>image</dt>
+		<dt>key</dt>
+		<dt>keyset</dt>
+		<dt>label</dt>
+		<dt>listbox</dt>
+		<dt>listcell</dt>
+		<dt>listcol</dt>
+		<dt>listcols</dt>
+		<dt>listhead</dt>
+		<dt>listheader</dt>
+		<dt>listitem</dt>
+		<dt>member</dt>
+		<dt>menu</dt>
+		<dt>menubar</dt>
+		<dt>menuitem</dt>
+		<dt>menulist</dt>
+		<dt>menupopup</dt>
+		<dt>menuseparator</dt>
+		<dt>observes</dt>
+		<dt>overlay</dt>
+		<dt>page</dt>
+		<dt>popup</dt>
+		<dt>popupset</dt>
+		<dt>preference</dt>
+		<dt>preferences</dt>
+		<dt>prefpane</dt>
+		<dt>prefwindow</dt>
+		<dt>progressmeter</dt>
+		<dt>radio</dt>
+		<dt>radiogroup</dt>
+		<dt>resizer</dt>
+		<dt>richlistbox</dt>
+		<dt>richlistitem</dt>
+		<dt>row</dt>
+		<dt>rows</dt>
+		<dt>rule</dt>
+		<dt>script</dt>
+		<dt>scrollbar</dt>
+		<dt>scrollbox</dt>
+		<dt>scrollcorner</dt>
+		<dt>separator</dt>
+		<dt>spacer</dt>
+		<dt>splitter</dt>
+		<dt>stack</dt>
+		<dt>statusbar</dt>
+		<dt>statusbarpanel</dt>
+		<dt>stringbundle</dt>
+		<dt>stringbundleset</dt>
+		<dt>tab</dt>
+		<dt>tabbrowser</dt>
+		<dt>tabbox</dt>
+		<dt>tabpanel</dt>
+		<dt>tabpanels</dt>
+		<dt>tabs</dt>
+		<dt>template</dt>
+		<dt>textnode</dt>
+		<dt>textbox</dt>
+		<dt>titlebar</dt>
+		<dt>toolbar</dt>
+		<dt>toolbarbutton</dt>
+		<dt>toolbargrippy</dt>
+		<dt>toolbaritem</dt>
+		<dt>toolbarpalette</dt>
+		<dt>toolbarseparator</dt>
+		<dt>toolbarset</dt>
+		<dt>toolbarspacer</dt>
+		<dt>toolbarspring</dt>
+		<dt>toolbox</dt>
+		<dt>tooltip</dt>
+		<dt>tree</dt>
+		<dt>treecell</dt>
+		<dt>treechildren</dt>
+		<dt>treecol</dt>
+		<dt>treecols</dt>
+		<dt>treeitem</dt>
+		<dt>treerow</dt>
+		<dt>treeseparator</dt>
+		<dt>triple</dt>
+		<dt>vbox</dt>
+		<dt>window</dt>
+		<dt>wizard</dt>
+		<dt>wizardpage</dt>
+	</dl>
+</div>
+
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+[MEMO] example setting to use old images
+
+---------------------------------------------------------
+   ArekorePopup.js : 
+---------------------------------------------------------
+
+this.richStyleEdgeWidth = 10;
+
+this.richStyleImages = {
+	body               : 'old_images/back.png',
+	rect_top           : 'old_images/back.png',
+	rect_left          : 'old_images/back.png',
+	rect_right         : 'old_images/back.png',
+	rect_bottom        : 'old_images/back.png',
+	angle_top_left     : 'old_images/top-left.png',
+	angle_top_right    : 'old_images/top-right.png',
+	angle_bottom_left  : 'old_images/bottom-left.png',
+	angle_bottom_right : 'old_images/bottom-right.png',
+	simple_background  : 'old_images/back.png'
+};
+
+
+---------------------------------------------------------
+   ArekorePopup.css : 
+---------------------------------------------------------
+
+ins#AP-popup-parent.AP-richStyle
+	{
+	padding: 10px !important;
+	}
+

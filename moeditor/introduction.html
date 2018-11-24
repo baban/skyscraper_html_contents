@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='萌ディタのヘルプ:入り口' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>萌ディタのhelpなの（非公式</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">萌ディタのhelpなの（非公式</h1>
+
+<div id="content" class="section">
+
+	<h2 id='h2-1'>出会いとか</h2>
+	
+	<div class="section">
+		<p>HTML手書き人間の自分としては、エディターとオハナシしている時間は馬鹿にならない分量あるわけで、便利なモノはないかと、細かく入れ替えて楽しんでいたのですが</p>
+		<p>そんな事をやっているウチに「結局、機能を増やすと重くなるし、軽くすると役に立たないわけだから、プログラムで自由に機能を追加、削除出来るようなエディターとか出来ないかな。」</p>
+		<p>「結局、そうなると言語はJavaScriptかなぁ、PhtotoShopからWindowsまでサポートしている、唯一まともに標準ができていると言えるスクリプト言語だし…」</p>
+		<p>みたいなことを考えていたのですが、いたんですよね。同じ事考えていた馬鹿みたいな人。そういう訳で、見つけて以降すっかり惚れ込んでしまって、嗚呼、早くコレが自由に使える日が来ないかなぁと心待ちにしていたわけですよ</p>
+		<p>正直、バージョン0.5あたりで色分けを実装して以降の萌ディタは、機能的には他のエディタに全く劣らない性能を出し初めています。</p>
+		<p>目の前ですごいソフトがゆっくりと育っていくのは観察しているだけでも楽しいもんですよ</p>
+	</div>
+	
+	<h2 id='h2-2'>萌ディタの凄いところ</h2>
+	
+	<div class="section">
+		<p>萌ディタの凄いところを上げるなら、その基礎の完成度。大きくは次の２つですね</p>
+		<ul class="data">
+			<li>内部的にUTF-16に対応</li>
+			<li>全ての行動がJavaScriptで記述されている</li>
+		</ul>
+		<p>この２点に繋がって、他のエディターにはない多くの利点があります。順に上げて行くなら</p>
+		<h3>利点</h3>
+		<ul>
+			<li>Javascriptで自由に機能が拡張できる</li>
+			<li>Windowsエディタ中、最強クラスの色分け機能がある</li>
+			<li>UTF-16の範囲で、様々な他言語を入力できる</li>
+			<li>その機能と拡張性に比べてみて、以外に軽い</li>
+		</ul>
+		<h3>欠点</h3>
+		<ul>
+			<li>逆にマニアックな設定は、JavaScriptを覚えないとなかなか増やせない</li>
+			<li>所詮はα版程度の安定性</li>
+			<li>軽量高速なエディターには速度面では叶わない</li>
+		</ul>
+		<p>とかになります。正直、安定性を除けば萌ディタは強豪ひしめくエディター界でも選ばれる価値のあるエディターになっています。</p>
+		<p>もし興味があるなら触ってみてください。</p>
+	</div>
+	
+	<h2 id='h2-3'>色分けとか</h2>
+	
+	<div class="section">
+		<p>ここで一つ、萌ディタの大きなウリの一つである色分け機能のサンプルを表示してみましょう</p>
+		<p><img src="color_sample.png" alt="色分け表示されているエディタ画面" /></p>
+		<p>こんなカンジで、現在の萌ディタでは<code>&lt;style&gt;～&lt;/style&gt;</code>で囲まれた範囲ではモードが切り替わって、スタイルシートを強調表示、&lt;script&gt;～&lt;/script&gt;の範囲内ではJavaScriptを強調表示してみせます（ちなみに現段階でPHPも対応していますし、スクリプトを書き足していけば無限に拡張可能です</p>
+		<p>正直、自分はこれができるエディタを他に知りません。これだけでも萌ディタに切り替える価値があるとは思いませんか？</p>
+	</div>
+	
+	<h2 id='h2-4'>多言語対応</h2>
+	
+	<div class="section">
+		<p>MOEditorは、ソフトの基本部分からUTF-16対応なので、かなり色々な言語が使えます、例えば簡体中国語、たとえばルーン文字</p>
+		<img src="chinese.png" alt="中国語テキスト" />
+		<img src="rune.png" alt="ルーン文字テキスト" />
+		<p>一応、フォントがＯＳに入っていることが条件なんですけどね</p>
+	</div>
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href='http://www.gnu.org/copyleft/fdl.html' rel='license'>GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

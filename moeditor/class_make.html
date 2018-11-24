@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='はじめてのクラスオブジェクト' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>はじめての拡張子クラス＆色分け機能</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">はじめての拡張子クラス＆色分け機能</h1>
+
+<div id="content" class="section">
+	<p>今回しているのは、本家さんの<a href="http://www.geocities.co.jp/SiliconValley-Oakland/3617/extclass.html" >拡張子クラスとは？</a>の補足みたいなものです</p>
+	<p>分かる人には釈迦に説法なんですが、正直、自分でソース書いて試してみないとなかなか理解できなかったので、そのときの方法の要約みたいなものです</p>
+	<p>一応、コレを読む人の程度としては、「何か一つ言語が打てる、有る程度」と言う人となっています。(できれば、オブジェクト指向のある言語がいいな）</p>
+	
+	<h2 id='h2-1'>とりあえず作る</h2>
+	
+	<div class="section">
+		<p>今回は実験と言うことで、拡張子(*.foo)というテキストを拡張する、fooクラスオブジェクトを作成してみましょう</p>
+		<p>まずは、foo拡張子クラスの最低限記述すべきところはたったこれだけ</p>
+		<br />
+<pre><code>
+<span class='b-comment'>/** 拡張子クラス説明用プロトタイプクラス。 */</span>
+
+<span class='b-comment'>/** foo拡張子クラス。見た目は何のことはない関数ですが、萌ディタに登録されることで拡張子クラスの親となります */</span>
+<dfn>function</dfn> class_foo<em>(</em><em>)</em> <em>{</em>
+  <dfn>this</dfn>.name <em>=</em> <span class='literal'>'foo'</span>;  <span class='i-comment'>// この拡張子クラスの名前</span>
+  <dfn>this</dfn>.parent <em>=</em> <span class='literal'>'srcfile'</span>;  <span class='i-comment'>// 親クラスの名前</span>
+  <dfn>this</dfn>.ext <em>=</em> <span class='literal'>'\\.<em>(</em>foo<em>)</em>$'</span>;  <span class='i-comment'>// 対応する拡張子の正規表現</span>
+<em>}</em>
+
+addClass<em>(</em> <dfn>new</dfn> class_foo<em>(</em><em>)</em> <em>)</em>;  <span class='i-comment'>// addClassは萌ディタ本体が持っている関数。関数を拡張子クラスとして登録します。</span>
+</code></pre>
+		<br />
+		<p>これで、他の拡張子クラスと同じで</p>
+		<p><em><span class="menu">メニュー＞書式＞スクリプトを有効</span></em></p>
+		<p>で登録してやればいっちょあがりです</p>
+		<br />
+		<p>実はこの項目に関しては本家の方がきちんとしているので、あまり説明すべき所というのが無かったりします</p>
+		<p>というわけで、さっさと飛ばして次の色分け部分の解説に移りましょう</p>
+	</div>
+	
+	<h2 id='h2-2'>色分け</h2>
+	
+	<div class="section">
+		<p>というわけで、萌ディタの特徴の一つとなっている強力な色分け機能ですが、若干解説しておかないといけない単語があるので、追記</p>
+		<dl class="data">
+			<dt>Lexerって何？</dt>
+			<dd>
+				<p>日本語に訳すと字句解析機。非決定有限オートマトンで出来ている言語処理プログラムです</p>
+				<p>正直な話、一般的なプログラムでお世話になる事って少ないんですが、コンパイラ作成ツールのコンパイラ-コンパイラなんかを使うときにお世話になります</p>
+				<p>基本的にプログラミング言語等の、機械に合わせた規則の厳しい文法を扱うときに効果を発揮しており、ここからLexerを色分け用の文法解析に使用しています</p>
+			</dd>
+			<dt>非決定有限オートマトン</dt>
+			<dd>
+				<p>オートマトン(自動人形)の名前の通り、順序よくデータを読み出しては。処理していくプログラムの事を指しています。	あ、非決定とか有限とかは無視して良いです。ココでは余り意味がありませんから。ちなみに基本の理論はチューリングマシンそのものです。</p>
+				<p>これを利用して「文字を読み出す＞処理していく＞処理したデータを基にさらに進んでいく」を繰り返していけば言語処理が出来るじゃないか、という事で非決定有限オートマトンはもっぱら応用の言語解析分野のお話で使われます。</p>
+				<p>と言っても、そんな順序良い方法で自然言語が解析できるわけが無く、コンピューターで解析しやすい文法ということで、正規表現やプログラム言語の文法の分野の基礎技術となっています</p>
+			</dd>
+		</dl>
+	</div>
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href='http://www.gnu.org/copyleft/fdl.html' rel='license'>GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

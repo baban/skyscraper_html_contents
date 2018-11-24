@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozillaのテーマの作成法:XBLによるテーマの拡張</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>XBLによるテーマの拡張</h1>
+
+<div class="section" id="content">
+	
+	<h2>要約</h2>
+	
+	<div class="section" id="abstruct">
+		<p>XULには、<a href="http://developer.mozilla.org/ja/docs/XBL:XBL_1.0_Reference" class="external">XBL Binding</a>という、タグの拡張手法が存在します</p>
+		<p>これは、新たに使えるタグを増やすという役割もありますが、Firefoxのテーマ側もcssからの呼び出しによりこの恩恵を受けることが出来ます。</p>
+		<p>これを利用することにより、テーマの側でも拡張の様に追加のボタン等を追加したり、JavaScriptのプログラムを埋め込んだりすることが出来ます。</p>
+		<p>正直な話、このトピックはテーマ作成の中でも、比較的高度なトピックです。その代わり理解できれば、cssのカスタマイズだけでもかなりの変更が出来るテーマを、本当に自由自在に拡張出来てしまいます。</p>
+		<ul class="data">
+			<li><a href="http://xul-app.hp.infoseek.co.jp/xultu-janit/introxbl.html" class="external">XBLチュートリアル</a></li>
+		</ul>
+	</div>
+	
+	<h2>基礎</h2>
+	<div class="section">
+		<p>まずXBLファイルを作成します。現在使われているタグから変更したい箇所を特定して、そこにあわせたXBLファイルを作成します</p>
+		<p>css側からは-moz-bindingプロパティを使う事で</p>
+<pre><code type="text/css">
+	-moz-bindings:url("位置") !important;
+</code></pre>
+		<p>経験的には、必ず使えるようにするために!importantを付けておく事をお勧めします。</p>
+		<p>ここからが面白いのが、XBLファイルの中にはJavaScriptを含めることが出来る。つまりはテーマの中にプログラムを含めることが出来ます。</p>
+		<p>ここまで出来ると、ほとんどFirefoxの拡張と一緒、というよりそもそもFirefox内部ではテーマと拡張の扱いの違いはあまりありません。ただ、テーマを変更するとその機能が失われるだけです。</p>
+		<p>正直、ここまで何でも出来ると、いろいろとアイデアも浮かんできますが、実際にはユーザビリティのバランスを取りながらやって行って下さい</p>
+		<p>それだけではなく、xulでは、htmlやSVG等の他のXML要素の埋め込みが出来るという特徴があるため、その装飾能力の高さは特筆に価します</p>
+	</div>
+	
+	<h2>実践</h2>
+	<div class="section">
+		<p>今回はウィンドウ下のステータスバーにボタンを追加して、そこに簡単なプログラムを埋め込みます</p>
+<pre><code>
+</code></pre>
+		
+	</div>
+	
+</div>
+	
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+@charset "UTF-8";
+@namespace "http://www.w3.org/1999/xhtml/";
+
+
+/* 基本構成の定義 */
+/* 適用範囲:サイト全体 */
+
+h1, h2, h3, h5, h6 {
+	font-family:"Times New Roman", "New York", "ＤＦ平成明朝体W3", "細明朝体" , "ＭＳ 明朝", serif;
+}
+
+p {
+	padding:0;
+	margin:0;
+	line-height:1.2;
+}
+
+
+img {
+	font-size:1.0em;
+	font-family:"Impact", "Chicago", fantasy;
+}
+
+body {
+	padding:0.6em 1em;
+	margin:0;
+}
+
+div#licence {
+	border-style:dotted;
+	border-width:2px;
+	margin:0.4em;
+	padding:0.5em;
+}
+
+div#debug-message{
+	min-width:10em;
+	min-height:6em;
+	border-style:solid;
+}

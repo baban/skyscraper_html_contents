@@ -1,0 +1,21 @@
+body {
+	color:#000;
+	background-color:#fff;
+	margin:15px 10px;
+	padding:0;
+}
+
+ol, ul {
+	margin-left:40px;
+	paddng-left:0;
+}
+
+li {
+	margin:0;
+	padding:0;
+}
+
+abbr, acronym{
+	border-bottom:1px dotted;
+	corsor:help;
+}

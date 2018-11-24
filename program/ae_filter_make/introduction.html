@@ -1,0 +1,88 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<meta name="author" content="babanba-n" />
+	<meta name="Targeted Geographic Area" content="Japan" /> 
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="AfterEffectsのフィルタ製作法" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" >
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	
+	<title>Skyscaper;AfterEffectsのフィルタ製作法</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>環境の準備</h1>
+
+<div class="section">
+	
+	<h2>Introduction</h2>
+	
+	<div class="section">
+		<p>今回は、環境がいささか古いですが、開発環境はVisualC++6.0、SDKのバージョンを5.0のものとします。</p>
+		<p>これは古い環境の方が古いバージョンのAEでの動作保証のあるプラグインが多いためと、私がVisualStudioを開発しているPCにブチこむのが面倒くさいからです（ぉぃ</p>
+		<p>ただし、ココでかかれている内容は現在の最新バーージョンであるAfterEffectsCS3と、そのSDKでも全く同じ要領で通用する事を確認済みですので、環境の違いは全く気にしないでかまいません。</p>
+		<p>それでは、次の項目から実際にAfterEffectsのPlug-inの作成法の解説になります。</p>
+	</div>
+	
+	<h2>設定の変更</h2>
+	
+	<div class="section">
+		<p>今回は、エフェクトの開発に「SDK_Noise」を使用します。他にもエフェクトはたくさんありますが実際に見てみると、やはりこれが一番分かりやすいコードをしていると思いますので…</p>
+		<p>まずは、AfterEffectsのプラグインの名前等の設定項目の変更です。</p>
+		<p>「SDK_NoisePiPL.r」の中の項目を弄れば簡単です。</p>
+<pre><code>
+resource 'PiPL' (16000) {
+	{	/* array properties: 12 elements */
+		/* [1] */
+		Kind {
+			AEEffect
+		},
+		/* [2] */
+		Name {
+			<span class="refact">"SDK_Noise"</span>
+		},
+		/* [3] */
+		Category {
+			<span class="refact">"Sample Plug-ins"</span>
+		},
+</code></pre>
+		<p>また、次の所を必ず変更しておいてください。ここはエフェクトのIDに当たるところで、ここを変更しないままでおくと作成するエフェクトをAfterEffectsが内部的に管理できないため警告ダイアログが出ます</p>
+<pre><code>
+		/* [11] */
+		AE_Effect_Match_Name {
+			<span class="refact">"ADBE SDK_Noise"</span>
+		},
+</code></pre>
+	</div>
+	
+</div>
+
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+	<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

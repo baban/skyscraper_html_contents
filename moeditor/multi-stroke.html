@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='マルチストロークモードの解説' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>マルチストロークモードの解説</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">マルチストロークモードの解説</h1>
+<div id="content" class="section">
+	<div class="section">
+		<p>と言うわけで、機能として存在はしているのだけれども、実際には何の仕事も当てられていないマルチストロークモード</p>
+		<p>これって、ヘルプだけ読んでも実際何の機能があるのか全然分からないところがあるので、何か機能を継ぎ足して、開発者側は何の意図でこれを積み込んだのかとかを考えてみましょう</p>
+		<p>まずは、scriptフォルダのstd.javascript.txtを参照</p>
+<pre><code>
+f.onKeyQ <em>=</em> <dfn>function</dfn> <em>(</em>arg, classname, methodname<em>)</em> <em>{</em>
+  <dfn>if</dfn> <em>(</em>App.Prop<em>(</em><span class='literal'>'plaintext'</span>, <span class='literal'>'$multi-stroke'</span><em>)</em> <em>=</em>= <span class='literal'>''</span><em>)</em> <em>{</em>
+    App.Prop<em>(</em><span class='literal'>'plaintext'</span>, <span class='literal'>'$multi-stroke'</span><em>)</em> <em>=</em> <span class='literal'>'Ctrl+Q'</span>;
+    App.Prop<em>(</em><span class='literal'>'plaintext'</span>, <span class='literal'>'$multi-stroke-count'</span><em>)</em> <em>=</em> 1;
+  <em>}</em>
+<em>}</em>;
+</code></pre>
+		<p>基本的に、マルチストロークモードを呼び出しているのはココだけです。</p>
+		<p>つまりは、呼び出しだけで、その後の機能の追加は現在何も行っていないのですが、自分なりに追加することは出来ます</p>
+		<p>試しに、こう言うことを行うと</p>
+<pre><code>
+f.onMultiStroke <em>=</em> <dfn>function</dfn> <em>(</em>arg, classname, methodname<em>)</em> <em>{</em>
+  App.Alert<em>(</em> arg <em>)</em>;
+<em>}</em>;
+</code></pre>
+		<p>ショートカット<kbd>Ctrl+Q</kbd>を押してマルチストロークモードに移行してから、何かキーを押してみましょう</p>
+		<p>ダイアログが出てきて、押した文字列を表示します</p>
+		<p>このように、ショートカットの親戚のように機能を追加できるマルチストロークモードですが、ショートカットと違うところは、複数の文字列の入力を待てること</p>
+		<br />
+		<p>またマルチストロークモードは、複数の文字をスタックしてコマンド受付を行うこともできるので、以下のようなこともできます</p>
+<pre><code>
+f.onMultiStroke <em>=</em> <dfn>function</dfn> <em>(</em>arg, classname, methodname<em>)</em> <em>{</em>
+  App.Prop<em>(</em><span class='literal'>'plaintext'</span>, <span class='literal'>'$multi-stroke'</span> <em>)</em> <em>+=</em> arg;
+  <dfn>var</dfn> stroke <em>=</em> App.Prop<em>(</em><span class='literal'>'plaintext'</span>, <span class='literal'>'$multi-stroke'</span> <em>)</em>;
+  <span class='i-comment'>// 10文字以内の命令なら受け付けます</span>
+  <dfn>switch</dfn><em>(</em> stroke <em>)</em><em>{</em>
+  <dfn>case</dfn> <span class='literal'>'-quit'</span>:
+    App.Quit<em>(</em><em>)</em>;  <span class='i-comment'>// 萌ディタの終了</span>
+    <dfn>break</dfn>;
+  <dfn>case</dfn> <span class='literal'>'-save'</span>:
+    App.Buffer.Save<em>(</em><em>)</em>;  <span class='i-comment'>// ファイルの保存</span>
+    <dfn>break</dfn>;
+  <dfn>default</dfn>:
+  <em>}</em>
+<em>}</em>;
+
+f.onKeyQ <em>=</em> <dfn>function</dfn> <em>(</em>arg, classname, methodname<em>)</em> <em>{</em>
+  <dfn>if</dfn> <em>(</em>App.Prop<em>(</em><span class='literal'>'plaintext'</span>, <span class='literal'>'$multi-stroke'</span><em>)</em> <em>=</em>= <span class='literal'>''</span><em>)</em> <em>{</em>
+    App.Prop<em>(</em><span class='literal'>'plaintext'</span>, <span class='literal'>'$multi-stroke'</span><em>)</em> <em>=</em> <span class='literal'>'-'</span>;
+    App.Prop<em>(</em><span class='literal'>'plaintext'</span>, <span class='literal'>'$multi-stroke-count'</span><em>)</em> <em>=</em> 10;  <span class='i-comment'>// ここで受け付ける命令の限界文字数を指定します</span>
+  <em>}</em>
+<em>}</em>;
+</code></pre>
+		<p>ただ、これだと画面上の１行入力バッファにコマンドを入れるようにしても効果は同じなわけで…、マルチストロークモードをわざわざ作った意味を感じません</p>
+		<p>で、まぁ総括として、マルチストロークモードは、何のためにあるのかイマイチ掴みかねているというのが実状です。一度作者さんに答えていただきたいところ…</p>
+	</div>
+</div>
+
+</body>
+</html>

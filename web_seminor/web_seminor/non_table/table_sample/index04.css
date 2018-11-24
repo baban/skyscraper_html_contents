@@ -1,0 +1,76 @@
+@charset "Shift_JIS";
+
+/* 基本設定の読み込み、十分な知識のないうちにこれらを弄らない事を推奨 */
+@import url("css/html_default.css");
+
+body {
+	background-color:#3C100E;
+	color:#D0C6B7;
+	
+	/* コンテンツを中心に持っていく、IE対策 */
+	text-align:center;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+	color:#D0C6B7;
+}
+
+a img {
+	border-style:solid;
+	border-width:1px;
+	border-color:#D0C6B7;
+}
+
+div#nav {
+	border-style:none solid none none;
+	border-width:1px;
+	border-color:#8B5754;
+}
+
+ul.toc {
+	font-size:1.8em;
+	font-family:"Verdana","MS UI Gothic", monospace;
+}
+
+ul.toc a {
+	text-decoration:none;
+}
+
+div#alliance li{
+	display:inline;
+}
+
+div#content {
+	margin:auto;
+	border-style:none;
+	width:600px;
+	
+	/* IE様text-alignをキャンセルしています */
+	text-align:left;
+}
+
+div#header {
+	background-image:url("top_banner.jpg");
+	background-color:#8B5754;
+	border-style:none;
+	margin-bottom:0.5em;
+}
+
+h1 {
+	display:none;
+}
+
+div#header {
+	width:600px;
+	height:115px;
+}
+
+div#conteiner2 {
+	border-style:solid;
+	border-width:2px;
+	border-color:#8B5754;
+	padding:0.4em;
+}

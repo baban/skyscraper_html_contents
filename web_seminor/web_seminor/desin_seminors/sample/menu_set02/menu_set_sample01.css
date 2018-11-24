@@ -1,0 +1,69 @@
+@charset "Shift_JIS";
+
+@import "../base_style.css";
+
+body {
+	font-size:12px;
+	background-color:#b3cebd;
+	padding:0;
+}
+
+div#site-menu {
+	width:170px;
+	height:480px;
+	background-image:url("menu_back.gif");
+	background-repeat:no-repeat;
+	margin:0;
+}
+
+dl#menu {
+	color:#fff;
+	width:155px;
+	font-family:"Impact", fantasy;
+}
+
+dt {
+	text-align:right;
+	padding:0 0 18px 0;
+}
+
+dl#menu  dt  a {
+	color:#fff;
+	font-size:1.5em;
+	font-weight:bold;
+	text-decoration:none;
+	background-color:transparent;
+	display:block;
+	height:1.5em;
+}
+
+dl#menu  dt  a:first-letter {
+	color:#fff;
+	font-size:1.4em;
+}
+
+dt:hover {
+	background-image:url("back-arrow.png");
+	background-position:100% 100%;
+	background-repeat:no-repeat;
+}
+
+dt.num-1{
+	margin-right:70px;
+}
+
+dt.num-2 {
+	margin-right:55px;
+}
+
+dt.num-3 {
+	margin-right:47px;
+}
+
+dt.num-4 {
+	margin-right:43px;
+}
+
+dt.num-5 {
+	margin-right:48px;
+}

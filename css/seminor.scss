@@ -1,0 +1,171 @@
+@import "def/html-default-css1";
+@import "def/html-default-css2";
+@import "def/html-color-base";
+@import "base-style";
+@import "pattern/banner-title";
+@import "document-app";
+
+body {
+  background-color: #EFE3D2;
+}
+
+dl.toc > {
+  dt {
+    font-size: 1.1em;
+    &:before {
+      content: "◇";
+    }
+  }
+  dd {
+    margin-left: 2em;
+  }
+}
+
+ol.toc, ul.toc {
+	li {
+		font-weight: bold;
+		line-height: 1.5;
+		a {
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+ul.data {
+  list-style-type: disc;
+}
+
+ol.data {
+  list-style-type: disc;
+}
+
+ul.data li, ol.data li {
+  line-height: 1.3;
+}
+
+dl.data {
+  padding: 0;
+  dt {
+    border-style: solid none double none;
+    border-width: 1px 0 3px 0;
+    padding: 0.2em 0.3em;
+  }
+  dd {
+    margin-bottom: 0.4em;
+  }
+}
+
+span.refact {
+  color: #a66;
+  font-weight: bold;
+}
+
+div.refact {
+  color: #a66;
+  font-weight: bold;
+  border-style: solid;
+  background-color: #fff;
+}
+
+pre {
+  > code {
+    background-color: #FADFC2;
+    border-style: solid;
+    padding: 0.5em;
+    font-size: 1.0em;
+  }
+  code {
+    &[type] {
+      position: relative;
+      &:before {
+        content: attr(title);
+        text-align: center;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #aaa;
+        background-color: #ddd;
+        color: #aaa;
+        padding: 1px 4px;
+      }
+    }
+    &[type="text/javascript"]:before {
+      content: "javascript";
+    }
+    &[type="text/css"]:before {
+      content: "css";
+    }
+    &[type="text/html"]:before {
+      content: "html";
+    }
+  }
+}
+
+div.figure {
+  margin: 0.4em;
+  border-style: solid;
+  padding: 0.4em;
+}
+
+blockquote > pre > code {
+  border-style: none;
+  overflow: auto;
+}
+
+dfn {
+  font-weight: bold;
+  font-style: normal;
+}
+
+span {
+  &.i-comment {
+    color: #800080;
+  }
+  &.literal {
+    color: #1a0c9a;
+  }
+  &.b-comment, &.comment {
+    color: #ae3596;
+  }
+}
+
+div.figure {
+  border-style: solid;
+}
+
+ul {
+  &.data {
+    padding-left: 2em;
+  }
+  &.related {
+    list-style-image: url("img/doc-list-icon.png");
+  }
+}
+
+div.figure > h2.preview-title {
+  font-size: 1.2em;
+}
+
+ul#sample_div_1 {
+  position: relative;
+  border-style: solid;
+  width: 80%;
+  li {
+    border-style: dotted;
+    display: block;
+    width: 20%;
+  }
+}
+
+
+div.preview-image-box {
+  border-style: solid;
+  width: 17em;
+  min-width: 200px;
+}
+
+span.refact {
+  font-weight: bold;
+}

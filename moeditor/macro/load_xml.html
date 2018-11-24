@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	<meta http-equiv="Content-Language" content="ja" />
+	
+	<meta name="author" content="" />
+	<meta name="generator" content="" />
+	<meta name="Copyright" content="" />
+	<meta name="description" content="" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link href='' title='' rel='copyright' id='meta-licence' />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	
+	<title>XMLの呼び出し</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">XMLの呼び出し</h1>
+
+<div id="content" class="section">
+<pre><code type="text/javascript">
+<span class='i-comment'>// %desc  XMLをJavaScriptから呼び出すサンプル</span>
+<span class='i-comment'>// %menu  xml呼び出し</span>
+
+<span class='b-comment'>/* 外部xmlファイルを読み出すためのDOMオブジェクトを作成します */</span>
+<dfn>function</dfn> MakeDOM<em>(</em><em>)</em><em>{</em>
+  <span class='i-comment'>// Instantiate a DOM object.</span>
+  <dfn>try</dfn><em>{</em>
+    <dfn>var</dfn> doc <em>=</em> <dfn>new</dfn> ActiveXObject<em>(</em><span class='literal'>"Microsoft.XMLDOM"</span><em>)</em>;  <span class='i-comment'>// MSXMLへのアクセスを出来るようにする</span>
+    doc.asyn <em>=</em> <dfn>false</dfn>;
+    doc.resolveExternal <em>=</em> <dfn>false</dfn>;
+    doc.validateOnPars <em>=</em> <dfn>false</dfn>;
+  <em>}</em> <dfn>catch</dfn> <em>(</em> e <em>)</em><em>{</em>
+    App.Alert<em>(</em> <span class='literal'>"Error MakeDOM<em>(</em><em>)</em>:"</span>+e.description <em>)</em>;
+  <em>}</em>
+  <dfn>return</dfn> doc;
+<em>}</em>
+
+<dfn>var</dfn> ctx <em>=</em> App.Caret.BeginUpdate<em>(</em><em>)</em>;
+<dfn>try</dfn> <em>{</em>
+  App.Caret.BeginOperateGroup<em>(</em><span class='literal'>'マクロ：XMLデータの読み出し'</span><em>)</em>;
+  <dfn>try</dfn> <em>{</em>
+    <span class='i-comment'>// ここでエディタへの操作を行います</span>
+    <dfn>var</dfn> local <em>=</em> <span class='literal'>"http://weather.goo.ne.jp/area/8110.rdf"</span>;  <span class='i-comment'>// gooのやっている天気予報サービス（東京版</span>
+    <dfn>var</dfn> doc <em>=</em> MakeDOM<em>(</em><em>)</em>;  <span class='i-comment'>// この関数で、xmlを扱うためのActiveXコンポーネントを呼び出します</span>
+    doc.load<em>(</em> local <em>)</em>; <span class='i-comment'>// xml文書を読み出し</span>
+    App.Caret.Send<em>(</em> doc.xml <em>)</em>
+  <em>}</em>
+  <dfn>finally</dfn> <em>{</em>
+    App.Caret.EndOperateGroup<em>(</em><em>)</em>;
+  <em>}</em>
+<em>}</em>
+<dfn>finally</dfn> <em>{</em>
+  App.Caret.EndUpdate<em>(</em>ctx<em>)</em>;
+<em>}</em>
+</code></pre>
+	<p>このプログラムに関しては、その基本を<a href="http://www.hawk.34sp.com/">Hawk's W3 Laboratory</a>の<a href="http://www.hawk.34sp.com/stdpls/xml/js_xml.html">JavaScriptでXMLを扱う方法</a>を基礎においています</p>
+	<p>最近のWindowsでは入っているのが当たり前ですが、一応<a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=3144b72b-b4f2-46da-b4b6-c5d7485f2b42&displaylang=ja">MSXML</a>配布元へのリンクを張っておきます</p>
+	<p>付属のドキュメント（多分英語のやつになるとおもう）に各言語でのMSXMLの扱い方があるので、ソレを参考にするのも良いかも知れません</p>
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href='http://www.gnu.org/copyleft/fdl.html' rel='license'>GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

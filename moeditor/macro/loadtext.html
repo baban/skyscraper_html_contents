@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	<meta http-equiv="Content-Language" content="ja" />
+	
+	<meta name="description" content="" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	
+	<title>テキストファイルの読み出し</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">テキストファイルの読み出し</h1>
+
+<div id="content" class="section">
+<p>ActiveXからWindows Scripting Hostの機能を使えばこんなことも出来てしまうとい」う一例。</p>
+<p>コレ単体ではあまり使い道がないですが、組み合わせると強力な効果を発揮しますね。</p>
+<pre><code type="text/javascript">
+/** 指定されたパスのテキストを読みだします。 */
+function loadtext( filename ){
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	if( !fso.FileExists(filename) ) return null;	// ファイルが存在しないとき
+	var f = fso.OpenTextFile(filename, 1);
+	return f.readAll();
+}
+</code></pre>
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href="http://www.gnu.org/copyleft/fdl.html" rel="license">GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

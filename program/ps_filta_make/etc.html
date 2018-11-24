@@ -1,0 +1,106 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<meta name="author" content="babanba-n" />
+	<meta name="Targeted Geographic Area" content="Japan" /> 
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="PhotoShopのフィルタ製作法" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" >
+	<link rel="stylesheet" href="/css/document.css" type="text/css" />
+	
+	<title>サルでも出来る、PhotoShopフィルタ製作法:設定ダイアログの調整</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>その他</h1>
+
+<div class="section">
+	<h2>実制作</h2>
+	
+	<div class="section">
+		<p>ちなみにPremiere5.0に付いていたアレとは、大分感じが違います。同じ様な書き方で作りたい方は<a href="http://thepluginsite.com/products/picopro/index.htm">Plug-in Commander</a>とかどうぞ。</p>
+		<p>同じ言葉ですが、<a href="http://www.petitboys.com/design/plugins/sub/plugin_cre.htm">PETITBOYS pres. STYLE OF DESIGN</a>での<a href="http://www.petitboys.com/design/plugins/sub/plugin_cre.htm">解説</a>にある<q cite="http://www.petitboys.com/design/plugins/sub/plugin_cre.htm">本格コースとお手軽コース</q>って言葉は上手いと思いました。</p>
+		<p><acronym title="Software Developer Kit">SDK</acronym>に付いてるpdfドキュメント(英語)は結構ページ数有りますが、画像に効果を与えるような物を作る場合、<a href="http://www.symphonyinc.co.jp/macintosh/psfilter/">その一部の日本語</a>で訳されている範囲を読めば、十分だと思います。(というか管理人の英語力ではとてもあんなたくさんの文書を読みこんだりできません)</p>
+		<p>探しているうちに、<a href="http://www.filtermeister.com/">Filter Meister</a>とかいうGNUライセンスのライブラリ集を発見しました。管理人はいじっていないので内容に関しては言及できませんが、これで制作されたフィルタは底々あったりします。</p>
+	</div>
+	
+	<h2>PremiereとかAfterEffectとか</h2>
+	
+	<div class="section">
+		<p>PremiereSDKとかAdobeが配っていないのか調べてみたのですが…、ありました。</p>
+		<ul>
+			<li><a href="http://partners.adobe.com/asn/premiere/premiere65sdk.jsp">Premiere6.5 SDK</a></li>
+			<li><a href="http://partners.adobe.com/asn/premiere/index.jsp">PremierePro SDK</a></li>
+			<li><a href="http://partners.adobe.com/asn/aftereffects/aftereffectssdk55.jsp">AfterEffect5.5 SDK</a></li>
+			<li><a href="http://partners.adobe.com/asn/aftereffects/index.jsp">AfterEffect6.0 SDK</a></li>
+		</ul>
+		<p>当分触る気有りませんが…。</p>
+	</div>
+</div>
+
+<div id="licence">
+
+<!-- クリエイティブ・コモンズ・ライセンス -->
+<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+	<img alt="クリエイティブ・コモンズ・ライセンス" src="http://creativecommons.org/images/public/somerights2.gif" />
+</a>
+<br />
+	<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+<!-- /クリエイティブ・コモンズ・ライセンス -->
+
+<!--
+
+<rdf:RDF
+	xmlns="http://web.resource.org/cc/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+<Work rdf:about="">
+	<dc:title>PhotoShopフィルタ製作のメモ</dc:title>
+	<dc:date>２００４</dc:date>
+	<dc:creator>
+		<Agent>
+			<dc:title>ばばんばーん</dc:title>
+		</Agent>
+	</dc:creator>
+	<dc:rights>
+		<Agent>
+			<dc:title>ばばんばーん</dc:title>
+		</Agent>
+	</dc:rights>
+	<dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+	<license rdf:resource="http://creativecommons.org/licenses/sa/2.0/jp/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/sa/2.0/jp/">
+	<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+	<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+	<requires rdf:resource="http://web.resource.org/cc/Notice" />
+	<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+	<requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+</div>
+
+</body>
+</html>

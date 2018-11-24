@@ -1,0 +1,8 @@
+@charset "Shift_JIS";
+
+@import url("pattern/banner_title.css");
+
+body > h1 {
+	border-color:#517867;
+	background:url("img/h1_back.png") repeat-x #90d6b8;
+}

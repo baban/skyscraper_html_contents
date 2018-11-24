@@ -1,0 +1,57 @@
+/* ========== トップページ ================================================= */
+#top #title H1 {
+			font-size: 250%;
+			font-weight: bold;
+			letter-spacing: 10px;
+			border-bottom: 1px solid #333333;
+			padding: 0 0.5em 0em 1em;
+			margin-bottom: 1em;
+			}
+
+#top UL#latest LI {
+			font-weight: bold;
+			}
+
+#top #auther {
+			text-align: right;
+			border-top: 1px solid #333333;
+			margin-top: 1em;
+			padding-top: 0.5em;
+			}
+
+
+/* ========== 目次 ========================================================= */
+#topcontents	{
+			padding: 0 2em;
+			line-height: 130%;
+			}
+
+#topcontents H2 {
+			font-size: 120%;
+			font-style: normal;
+			font-weight: bold;
+			margin: 0.5em 0;
+			border-top: 1px solid;
+			border-right: 1px solid;
+			border-bottom: 1px solid;
+			border-left: 15px solid;
+			padding-left: 1em;
+			}
+
+#topcontents H3 {
+			font-size: 100%;
+			font-weight: bold;
+			margin: 0.5em 0 0.5em 1em;
+			border-bottom: 1px solid;
+			padding-left: 0.5em;
+			}
+
+#topcontents UL {
+			margin: 0 0 0 3em;
+			line-height: 130%;
+			}
+
+#topcontents P	{
+			margin-left: 2em;
+			}
+

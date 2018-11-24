@@ -1,0 +1,16 @@
+@charset "Shift_JIS";
+
+@import url("site_default.css");
+@import url("../css/banner_title.css");
+@import url("../css/link_bar.css");
+@import url("../css/blog.css");
+
+div.blogRoot {
+	margin-left:13em;
+}
+
+div.link_bar {
+	position:absolute;
+	top:4em;
+	left:0.3em;
+}

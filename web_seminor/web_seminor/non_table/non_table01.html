@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='テーブルデザイン不要論' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>テーブルデザイン不要論:第１回</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>第１回:テーブルを作ってみよう</h1>
+
+<div class="section" id="content">
+
+	<h2 id='h2-1'>Abstruct</h2>
+	
+	<div class="section">
+		<p>まずは、参考として、テーブルタグと同じ事なんかいくらでも出来るというということで、例を一つ出させて頂きます</p>
+		<p>見て頂きたいのは<a href="non_table01_sample01.html">サンプル１</a>のテーブル、これをHTMLで作成いたします</p>
+		<div id="sample1-preview" class="figure">
+			<h3>サンプル１</h3>
+			<a href="non_table01_sample01.html"><img src="img/table01_site_preview01.png" alt="テーブル表示のプレビュー" /></a>
+		</div>
+		<p>このテーブルのHTMLソースは、次の様な感じになりますよね</p>
+<pre>
+<code>
+&lt;table id="sample1"&gt;
+    &lt;tr&gt;&lt;td&gt;要素１&lt;/td&gt;&lt;td&gt;要素２&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;要素３&lt;/td&gt;&lt;td&gt;要素４&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code>
+</pre>
+	<p>で、設定したスタイルシートは下の様な感じ、基本的にはボーダーと、width、heightを指定して、見やすくしている感じですね</p>
+<pre>
+<code>
+table {
+    border:solid 4px #aaa;
+}
+td {
+    border:solid 2px #aaa;
+    width:100px;
+    height:75px;
+}
+table {
+    border-spacing:2px;
+}
+td {
+    text-align:center;
+    vertical-align:top;
+}</code></pre>
+
+	<p>それではここからが本題なのですが、下の様なHTMLソースを書いたとして、ディスプレイでの表示はどのように行われるでしょうか？</p>
+<pre>
+<code>
+&lt;!-- クラスの名前に注目して下さい --&gt;
+&lt;div class="<span class="refact">table</span>" id="sample2"&gt;
+    &lt;div class="<span class="refact">tr</span>"&gt;
+        &lt;div class="<span class="refact">td</span>"&gt;要素１&lt;/div&gt;
+        &lt;div class="<span class="refact">td</span>"&gt;要素２&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="<span class="refact">tr</span>"&gt;
+        &lt;div class="<span class="refact">td</span>"&gt;要素３&lt;/div&gt;
+        &lt;div class="<span class="refact">td</span>"&gt;要素４&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code>
+</pre>
+	<p>制作した例では、答えは<a href="non_table01_sample02.html">サンプル２</a>の様に表示されます</p>
+	<div id="sample2-preview" class="figure">
+		<h3>サンプル２</h3>
+		<a href="non_table01_sample02.html"><img src="img/table01_site_preview02.png" alt="スタイルシート表示のプレビュー" /></a>
+	</div>
+	<p>ほぼ同じ様な表示になっているのが分かっていただけるでしょうか？</p>
+	<p>今回の例で書いた、スタイルシートはこんな感じ。</p>
+
+<pre>
+<code>
+div.table {
+    border:solid 4px #aaa;
+}
+div.td {
+    width:100px;
+    height:75px;
+    border:solid 2px #aaa;
+}
+div.table {
+    width:214px;
+    height:164px;
+}
+div.tr {
+    margin:1px;
+    clear:both;
+}
+div.td {
+    margin:1px;
+    float:left;
+}
+div.td {
+    text-align:center;
+}
+</code>
+</pre>
+
+		<p>どのブラウザでも同じように映るように、結局汎用性のない方法を取ってしまいましたが、とりあえずスタイルシートでテーブルの代わりが出来るんだ、と実感していただくために擬似的にテーブルを作成してみました</p>
+		<p>width、heightでの指定箇所が多くて、正直、これはあまり実用的な方法ではないのですが</p>
+		<p>「無理にテーブルタグ使わなくても良いんじゃ無いか？」って思ってきませんでしたか？</p>
+		<p>今回はサンプル例、次回からは、実践編です。よく使われるデザインをスタイルシートで表していきましょう</p>
+	</div>
+</div>
+
+</body>
+</html>

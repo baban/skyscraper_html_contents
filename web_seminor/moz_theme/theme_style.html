@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozillaのテーマの作成法</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>スタイルシートの書き換え</h1>
+
+<div class="section" id="content">
+	<h2 id='h2-1'>abstract</h2>
+	
+	<div class="section">
+		<p>前のコンテンツでrdfを書き換えれば、テーマをFirefox内部で自分の管理下に置くことが出来ました</p>
+		<p>そしてここからがFirefoxのデザインを本格的に変更するための作業になるのですが、ここからが大変です</p>
+		<p>Firefoxテーマ内部にある膨大なcssファイルから、自分の書き換えたい箇所を探し出して、書き換えていかなければなりません</p>
+		<p>テーマのデザインを書き換えるにも、何処のどれを書き換えたら、欲しいデザインが出来るのか。コレに関しては、Mozillaの変化し続ける仕様と、十分に整備できていない文書の関連から。ある程度、ファイルの中身を解析しながら何処を書き換えたらいいのかを探さないといけません</p>
+		<p>つまり、テーマの作り替えに大事なことは、<em>何処のフォルダの何のファイルで設定されているかを覚えること、そして知らないモノは探し出してしまう技能です</em>。</p>
+	</div>
+	
+	<h2 id='h2-2'>そもそもXULってなんですか？</h2>
+	
+	<div class="section">
+		<p>XULとはXMLフォーマットのデータ形式の一つで、HTMLがbodyとかdivとかのタグでWebページを書くのに対して、XULでは<em>windowとかbuttonとtabとかいうタグ名を並べることでインターフェイスを作成することが出来ます</em></p>
+		<p>Mozillaの作成時に、OSに依存しないで拡張プログラム等を使って、なおかつカスタマイズ性を上げており、mozillaの強力な武器の一つになっています（こんなややこしい仕組みのせいで、他のブラウザより重くなりがちなんですが…）</p>
+		<p>あ、ちなみに読みは<em class="kwd">ズール</em>と言います</p>
+	</div>
+	
+	<h2 id='h2-3'>テーマの役割</h2>
+	
+	<div class="section">
+		<p>XULは、windowsやbuttonというタグ名を組み合わせることでFirefoxのインターフェースを作成して、そこからJavaScriptを使って機能を呼び出すことが出来ますが、それだけではテーマのデザインが当てられません。そのためスタイルシートを当ててこれを装飾するのですが、そのために存在するのがテーマになります。</p>
+		<p>そのため、テーマの中身は多くのスタイルシートファイル(CSS)で構成されています</p>
+		<p>テーマはFirefoxのデフォルトのデザインをオーバーライド（上書き）する事でこれらのデザインを変えていきますが、その周辺には数多くの技術か関わっており、場合によっては修正を加えるのが困難だったり、かなり良く分析しないといけない場合もあるので知っておきましょう</p>
+	</div>
+	
+	<h2 id='h2-4'>中身を覗いてみよう</h2>
+	
+	<div class="section">
+		<p>それではここから書き換えを始めます、まずは解凍したjarファイルのglobalフォルダに移動してください</p>
+		<img src="img/global_folder.png" alt="globalフォルダの中のファイル" />
+		<p>CSSファイルがたくさんありますが、冷静に見て着るとdialog.cssやtree.css等なんだか名前で何処に対応しているのか推測できるファイルがあるのが分かっていただけるでしょうか？</p>
+		<p>ここにあるCSSファイルの中身を書き換えればMozillaのテーマのデザインを変更していくことが出来ます</p>
+	</div>
+	
+	<h2 id='h2-5'>とりあえず書き換えてみよう</h2>
+	
+	<div class="section">
+		<p>それではここから書き換えを始めます。最初の最初ですから、効果が分かりやすい所が良いでしょう。</p>
+		<p>というわけで、toolbar.cssを開いてみてください</p>
+		<p>そして、最初の所にある</p>
+<pre><code type="text/css">
+/* color_settings */
+toolbox, toolbar, menubar {
+	border-color:#ddd;
+	background-color:#ddd;
+}
+</code>
+</pre>
+		<p>ここを一部書き換えて、背景色を変更します</p>
+<pre><code type="text/css">
+/* color_settings */
+toolbox, toolbar, menubar {
+	border-color:#ddd;
+	background-color:<span class="refact">#d99</span>;
+}
+</code></pre>
+		<p>ここまでやったら、再びファイルを圧縮して、拡張子をjarに変更、そしてインストールをしなおします</p>
+		<img src="sample_refact.png" alt="色変更後" />
+		<p>指定した色に背景色が変更されました。大体、終始こんな感じでテーマのスタイルシートを書き換えていきます</p>
+	</div>
+	
+	<h2 id='h2-6'>globalフォルダの意味</h2>
+	
+	<div class="section">
+		<p>Mozillaのテーマ内部の各フォルダは、それぞれ次の様な区分になっています</p>
+		<table class="data">
+			<tr><td>browzer</td><td>Firefoxブラウザの細かい設定</td></tr>
+			<tr><td>communicator</td><td>Nexscape時代の名残、もしテーマ内部にあってもFirefoxでは触る必要なし</td></tr>
+			<tr><td>global</td><td>大まかな設定は、全てココで済ませてください</td></tr>
+			<tr><td>mozapps</td><td>基本的には、別Windowで表示される拡張機能に当てます、Mozillaの拡張等もココで設定</td></tr>
+			<tr><td>help</td><td>名前の通りヘルプの装飾を行います。テーマによって、あったり無かったり。</td></tr>
+		</table>
+		<p>この中で、主にglobalフォルダに、背景色などの基本的な設定が集まっています</p>
+		<p>これは、Mozilla Thunderbird等のその他のGecko系のブラウザでテーマを作成するときに楽をするため、またid等をふって個別にデザインしない所にもスタイルが行き渡るためにXULの各要素の共通の設定に関してはまとめて指定できる所を作成しておく必要があるからです。</p>
+		<br />
+		<p>そのため、テーマ改造の順番としては</p>
+		<ol class="data">
+			<li>globalフォルダを開いて、基礎的な設定を書き換える</li>
+			<li>その後、各部分の細かいところをbrowserフォルダを開いて変更する</li>
+		</ol>
+		<p>と言う順番になっています</p>
+		<p>結局は、<em>細かいこと言わずこれはルールですので</em>そう言うことでまずはフォルダを開いてみてください、と私は言いますけどね</p>
+		<br />
+		<p>一応、最初はglobal/global.cssを書き換えるのが流儀になっていますので、慣れてくれば、そちらから順次書き換えていくようにしましょう</p>
+		<p>たくさんのスタイルシートの中から、何処を書き換えればいいのかは、XULのリファレンスを見たり、Firefox内部のXULファイルを解読したりしていく必要があるのですが、そこらへんは慣れながら進んでいけば良いと思います</p>
+		<p>まずは、windowや、button等のタグの名前から、当て推量をして、トライ &amp; エラー。そして、<a href="http://developer.mozilla.org/ja/docs/XUL_Tutorial" class="external">XULチュートリアル</a>を柱にして必要なXUL要素を覚えていきましょう</p>
+	</div>
+	
+</div>
+	
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+	<!-- /クリエイティブ・コモンズ・ライセンス -->
+</div>
+
+</body>
+</html>

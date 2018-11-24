@@ -1,0 +1,227 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<meta name="author" content="babanba-n" />
+	<meta name="Targeted Geographic Area" content="Japan" /> 
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="PhotoShopのフィルタ製作法" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" >
+	<link rel="stylesheet" href="/css/document.css" type="text/css" />
+	
+	<title>サルでも出来る、PhotoShopフィルタ製作法</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>サルでも出来る、PhotoShopフィルタ製作法</h1>
+
+<div class="section">
+	<h2>DoFilterRect関数を書き換えよう！</h2>
+	
+	<div class="section">
+		<p>実際ココまでは単なる準備段階。これでサンプルが作成できる様になりました。</p>
+		<p>それで、ここからが実際に解説するところの多いものなのですが、まず知っておくべきなのは<em>画像処理のすべてはDoFilterRect関数の中で記述されている</em>と言うことです。(ちなみに「DissolveWith.c」の内部で記述されています)</p>
+		<p>必要なメモリの確保等の処理はたいだいすべて他の関数で行われていて、普通やりたい範囲のことはこのDoFilterRect関数内部で記述することで解決が出来ます。</p>
+		<p>ここからは実際のコードを確認しながら作業を行っていきましょう。</p>
+		<p>PhotoShop内部でフィルタを適応するときは、元画像の他に転写先の画像の領域を作成してそちらに画像のデータを移しこんでいく方法をとります。これはPhotoShop独自の考えと言うよりは２次元画像処理全般に言える悟りの様なものです。</p>
+		<img src='transcription.gif' alt='' />
+		<p>PhtoShop内部では画像の左上から横方向に順繰りに画像を操作していってそこのピクセルを取り出していきます</p>
+		<p>実際のコードでは</p>
+<pre><code>
+srcPtr = (unsigned8 *) gStuff->inData + (i * gStuff->inRowBytes);
+dstPtr = (unsigned8 *) gStuff->outData + (i * gStuff->outRowBytes);
+mskPtr = (unsigned8 *) gStuff->maskData + (i * gStuff->maskRowBytes);	
+</code></pre>
+		<p>の所で、一行ごとにアクセスを行って、</p>
+<pre><code>
+srcPtr += gStuff->inHiPlane - gStuff->inLoPlane + 1;
+dstPtr += gStuff->planes;
+mskPtr++;
+</code></pre>
+		<p>の所で左隣のピクセルにそれぞれ移動しています。</p>
+		<p>ここまで分かった上で、何も仕事をしない、ただ画像を転写先へ移動させるフィルタを書きたい場合はDoFilterRect関数は次の様になります</p>
+<pre><code>
+/** フィルタの画像処理部分の本体 */
+void DoFilterRect(GPtr globals, const Boolean doProgress){
+	short i, j;
+	short plane;
+	const short columns = gStuff-&gt;outRect.right - gStuff-&gt;outRect.left;	// 横幅を整数で取得
+	const short rows = gStuff-&gt;outRect.bottom - gStuff-&gt;outRect.top;	// 縦幅を整数で取得
+	const short total = gStuff-&gt;filterRect.bottom - gStuff-&gt;filterRect.top;	// 全ピクセル数を取得
+	
+	unsigned8 *srcPtr = (unsigned8 *) gStuff-&gt;inData;
+	unsigned8 *dstPtr = (unsigned8 *) gStuff-&gt;outData;
+	unsigned8 *mskPtr = (unsigned8 *) gStuff-&gt;maskData;
+
+	// 縦軸を移動する
+	for (i=0; i &lt; rows; i++){
+		srcPtr = (unsigned8 *) gStuff-&gt;inData + (i * gStuff-&gt;inRowBytes);
+		dstPtr = (unsigned8 *) gStuff-&gt;outData + (i * gStuff-&gt;outRowBytes);
+		mskPtr = (unsigned8 *) gStuff-&gt;maskData + (i * gStuff-&gt;maskRowBytes);	
+		// 横軸を移動する
+		for (j=0; j &lt; columns; j++){
+			if (TestAbort ()){	// 必要に応じてフィルタを停止
+				gResult = userCanceledErr;
+				return;
+			}
+			// プログレスバーの進行具合を変化させる
+			if (doProgress)
+				UpdateProgress( (long)(gStuff-&gt;outRect.top + i)-gStuff-&gt;filterRect.top, ((long)total) );
+
+			// ここで画像をコピー
+			for (plane = 0; plane &lt; gStuff-&gt;planes; plane++)
+				dstPtr[plane] = srcPtr[plane];
+
+			// それぞれのポインタを進行させる
+			srcPtr += gStuff-&gt;inHiPlane - gStuff-&gt;inLoPlane + 1;
+			dstPtr += gStuff-&gt;planes;
+			++mskPtr;
+		}	
+	}
+}
+</code></pre>
+		<p>ここまでやるとシンプルにしすぎている気もしますが、分かりやすいのでまぁ良かったことにします。</p>
+	</div>
+	
+	<h2>ラプラシアンフィルタの作成</h2>
+	
+	<div class="section">
+		<p>実際に目に見える効果がほしいと思う人も多いと思いますので、何か効果を出してみます。</p>
+		<p>今回は画像処理の教科書でも比較的代表的で、しかも最初の方に載せられるという事でラプラシアンフィルタ(線抽出フィルタ)を書いてみましょう。</p>
+<pre><code>
+/** フィルタの画像処理部分の本体 */
+void DoFilterRect(GPtr globals, const Boolean doProgress){
+	short i, j, k, l;
+	short plane;
+	const short columns = gStuff-&gt;outRect.right - gStuff-&gt;outRect.left;	// 横幅を整数で取得
+	const short rows = gStuff-&gt;outRect.bottom - gStuff-&gt;outRect.top;	// 縦幅を整数で取得
+	const short total = gStuff-&gt;filterRect.bottom - gStuff-&gt;filterRect.top;	// 全ピクセル数を取得
+	
+	unsigned8 *srcPtr = (unsigned8 *) gStuff-&gt;inData;	// 原画像への参照
+	unsigned8 *dstPtr = (unsigned8 *) gStuff-&gt;outData;	// 転写先への参照
+	unsigned8 *mskPtr = (unsigned8 *) gStuff-&gt;maskData;	// マスクへの参照
+
+	unsigned8 *tPtr;	// 上下左右のピクセルを参照するときに使う一時変数
+	int tmp[3];	// 上下左右のピクセルのRGBの値
+	// フィルタの変数
+	short f[3][3]={
+		{ -1, -1, -1},
+		{ -1,  8, -1},
+		{ -1, -1, -1}
+	};
+
+	// 縦軸を移動する
+	for (i=0; i &lt; rows; i++){
+		srcPtr = (unsigned8 *) gStuff-&gt;inData + (i * gStuff-&gt;inRowBytes);
+		dstPtr = (unsigned8 *) gStuff-&gt;outData + (i * gStuff-&gt;outRowBytes);
+		mskPtr = (unsigned8 *) gStuff-&gt;maskData + (i * gStuff-&gt;maskRowBytes);	
+		// 横軸を移動する
+		for (j=0; j &lt; columns; j++){
+			if (TestAbort ()){	// 必要に応じてフィルタを停止
+				gResult = userCanceledErr;
+				return;
+			}
+			// プログレスバーの進行具合を変化させる
+			if (doProgress)
+				UpdateProgress( (long)(gStuff-&gt;outRect.top + i)-gStuff-&gt;filterRect.top, ((long)total) );
+			// 上下左右の端の部分は処理をスキップ
+			if( 1 &lt; i &amp;& i &lt; rows-1 && 1 &lt; j && j &lt; columns-1 ){
+				tmp[0]=tmp[1]=tmp[2]=0;	// 値をまず0でリセット
+				for( k=-1; k&lt;2; k++ ){
+					for( l=-1; l&lt;2; l++ ){
+						tPtr = srcPtr + (gStuff-&gt;inHiPlane - gStuff-&gt;inLoPlane + 1)*(columns*k+l);
+						for (plane = 0; plane &lt; 3; plane++)
+							tmp[plane] += f[k+1][l+1]*tPtr[plane];
+					}
+				}
+				for (plane = 0; plane &lt; 3; plane++){
+					// 値を0～255の範囲に押さえる
+					tmp[plane] = (tmp[plane]&gt;255)?255 : tmp[plane];
+					tmp[plane] = (tmp[plane]&lt;0)  ?  0 : tmp[plane];
+					// ここで値を代入
+					dstPtr[plane] = tmp[plane];
+				}
+				for (plane = 3; plane &lt; gStuff-&gt;planes; plane++)
+					dstPtr[plane] = srcPtr[plane];
+			} else {
+				// ここで画像をコピー
+				for (plane = 0; plane &lt; gStuff-&gt;planes; plane++)
+					dstPtr[plane] = srcPtr[plane];
+			}
+			// それぞれのポインタを進行させる
+			srcPtr += gStuff-&gt;inHiPlane - gStuff-&gt;inLoPlane + 1;
+			dstPtr += gStuff-&gt;planes;
+			++mskPtr;
+		}	
+	}
+}
+</code></pre>
+	</div>
+	
+</div>
+
+<div id="licence">
+
+<!-- クリエイティブ・コモンズ・ライセンス -->
+<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+	<img alt="クリエイティブ・コモンズ・ライセンス" src="http://creativecommons.org/images/public/somerights2.gif" />
+</a>
+<br />
+	<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+<!-- /クリエイティブ・コモンズ・ライセンス -->
+
+<!--
+
+<rdf:RDF
+	xmlns="http://web.resource.org/cc/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+<Work rdf:about="">
+	<dc:title>PhotoShopフィルタ製作のメモ</dc:title>
+	<dc:date>２００４</dc:date>
+	<dc:creator>
+		<Agent>
+			<dc:title>ばばんばーん</dc:title>
+		</Agent>
+	</dc:creator>
+	<dc:rights>
+		<Agent>
+			<dc:title>ばばんばーん</dc:title>
+		</Agent>
+	</dc:rights>
+	<dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+	<license rdf:resource="http://creativecommons.org/licenses/sa/2.0/jp/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/sa/2.0/jp/">
+	<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+	<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+	<requires rdf:resource="http://web.resource.org/cc/Notice" />
+	<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+	<requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+</div>
+
+</body>
+</html>

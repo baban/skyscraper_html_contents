@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+		 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<meta name="author" content="babanba-n" />
+	<meta name="generator" content="萌ディタ" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="MAPタグ作例再現" />
+	
+	<title>MAPタグと同じ作例を完全再現</title>
+	<style type="text/css">
+	body{
+		background-color:#CCB790;
+		margin:0;
+		padding:0;
+	}
+	ul.nav{
+		position:relative;
+		float:right;
+		background-position:right top;
+		background-image:url("ballimage.gif");
+		background-repeat:no-repeat;
+		width:640px;
+		height:512px;
+	}
+	ul.nav li{
+		list-style-type:none;
+	}
+	ul.nav li a{
+		position:absolute;
+		display:block;
+		height:23px;
+		text-decoration:none;
+	}
+	ul.nav li a:hover{
+		border:dashed 1px #AB905F;
+	}
+	ul.nav li a span{
+		display:block;
+		visibility:hidden;
+		height:23px;
+		border:dashed 1px #000;
+	}
+	#link-menu-1{
+		left:130px;
+		top:22px;
+		width:94px;
+	}
+	#link-menu-2{
+		left:187px;
+		top:152px;
+		width:123px;
+	}
+	#link-menu-3{
+		left:373px;
+		top:284px;
+		width:145px;
+	}
+	#link-menu-4{
+		left:567px;
+		top:346px;
+		width:104px;
+	}
+	#content{
+		font-size:1.2em;
+	}
+	</style>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<ul class="nav">
+	<li><a href="" id="link-menu-1"><span>TOP</span></a></li>
+	<li><a href="" id="link-menu-2"><span>BLOG</span></a></li>
+	<li><a href="" id="link-menu-3"><span>P-BBS</span></a></li>
+	<li><a href="" id="link-menu-4"><span>LINK</span></a></li>
+</ul>
+
+<div class="section" id="content">
+	<p>右側のメニュー項目をクリックすると他のページへジャンプできます</p>
+	<p>ですがその中身のタグは全部ulタグとliタグで、MAPタグ等の特殊なタグはいっさい使っていません。Web標準のきれいな構造を保っています。</p>
+	<p>このようにもともとのタグの構成が特殊でも、結構何とかなるモノという一例ですね。</p>
+</div>
+
+</body>
+</html>

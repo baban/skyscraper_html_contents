@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法 : これさえ見ておけばＯＫ、格要素ごとの指定箇所一覧' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozillaのテーマの作成法 : これさえ見ておけばＯＫ、格要素ごとの指定箇所一覧</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>Mozillaのテーマの作成法 : これさえ見ておけばＯＫ、格要素ごとの指定箇所一覧</h1>
+
+<div class="section" id="content">
+	
+	<h2>概要</h2>
+	
+	<div class="section">
+		Firefox内部と言っても、何処をどう変えたらいいのか分からない。実際私も最初はそうでしたので、普通テーマを作成したい人が最初に変更したい様な、表に出てくる様な所は何処を返れば変更できるのか表にしてみました。
+		基本的に、目立つ部分だけを書くつもりなので、ここは「ほぼ完成」と言うことで拡張される予定はありません。
+	</div>
+	
+	<h2>メニュー</h2>
+	<div class="section">
+		<p>基本的にglobal/menu.cssとglobal/popup.cssが仕事として支配的です。</p>
+<pre><code type="text/css">
+/** これがバーそのものを定義しています */
+menubar
+/** メニューバー上のメニュー項目 */
+menubar > menu
+/** メニュー項目の上にマウスがあるときの項目 */
+menubar > menu[_moz-menuactive="true"]
+/** メニュー項目を開いて以降のメニュー項目 */
+menubar > menu[_moz-menuactive="true"][open="true"]
+/** メニュー右端の読み込み中かどうかを表す画像。実はbutton要素ですので知っておくべきでしょう */
+#navigator-throbber
+</code></pre>
+<pre><code>
+menubar
+	menu
+</code></pre>
+		<p>ポップアップメニューはglobal/popup.css内部を展開</p>
+		<p>menupopup内部を弄れば出来上がりです。</p>
+		<p>ちなみにpopup要素は右クリックから呼べるコンテキストメニューを装飾しますが、これも共通設定でついでに当ててしまうと楽です</p>
+<pre><code>
+menupopup
+	menuitem
+</code></pre>
+<pre><code type="text/css">
+/** これが一番親の要素(popup.css) */
+menupopup
+/** メニューの中のアイテム */
+menuitem
+/** マウスが上のある状態でのメニュー項目 */
+menupopup > menuitem[_moz-menuactive="true"]
+/** マウスが上のある状態でのメニュー項目(フォルダ)。上のmenuitemと共通にするべし */
+menupopup > menu[_moz-menuactive="true"]
+/* メニューの区切り線 */
+menuseparator
+/** ブックマークメニューなどのポップアップに表示されるスクロールボタン */
+autorepeatbutton 
+</code></pre>
+	</div>
+	
+	<h2>ナビゲーションツールバー</h2>
+	<div class="section">
+		<p>ナビゲーションツールバーは大きく分けて戻る、進むのボタンの類、アドレスバー、検索バーに3分割されます</p>
+<pre><code>
+toolbar
+	toolbarbutton
+</code></pre>
+		<p>タグの構成はtoolbar要素がバーそのものを作っており、その中にtoolbarbutton要素でボタンが定義されています</p>
+		<p>戻る、進むのボタンの類はすべてbrowser/browser.cssで設定されており、基本的にはToolbar.pngの画像をそのまま読み込んで設定していくのが吉だと思います</p>
+		<p>進むボタンの右についている履歴用のドロップダウンリストのボタンは、globbal/toolbarbutton.cssの.toolbarbutton-menu-dropmarkerを書き換えることで変更出来ます</p>
+		<p>urlバー周りは、はglobal/autocomplete.cssを基本に据えて改造していきましょう</p>
+<pre><code type="text/css">
+/** urlバー右側の履歴のポップアップを取り出すボタン。定義場所はglobal/autocomplete.css */
+.autocomplete-history-dropmarker
+/** アドレスバー右側のサイトにジャンプするボタン。定義場所はbrowser/browser.css */
+#go-button
+</code></pre>
+		<p>検索ボタンの周りはbrowser/serchbar.cssに書いてあります</p>
+<pre><code type="text/css">
+/** 検索バー右側の検索エンジン選択ボタン。要素はtoolbarbuttonではなくて実はbutton要素ですので注意 */
+.searchbar-engine-button
+/** 検索エンジンを選択するドロップボタン */
+.searchbar-dropmarker-image
+/** 入力テキストボックス */
+.searchbar-textbox
+/**　検索バー右の検索実行ボタン要素名はtoolbarbutton　*/
+.search-go-button
+</code></pre>
+	</div>
+	
+	<h2></h2>
+	<div class="section">
+		bookmarksPanel.xul
+<pre><code type="text/css">
+/** ブックマークツールバーのボタン類を調整 */
+toolbarbutton.bookmark-item
+</code></pre>
+	</div>
+	
+	<h2>タブパネル</h2>
+	<div class="section">
+		<p>基本的にはglobal/tabbox.cssの中を改造するのですが、tabの使い道は、Webページを表示しているところだけではなくて</p>
+		<p>コンテキストメニュー＞このページの情報を表示　で表示されるタブとタブパネル等も設定しているので、それらにも共通するデザインのみを書いて、さらにglobal/browzer.cssで追加の設定を書き加える必要があります</p>
+<pre><code type="text/css">
+/** ここにタブのデザインを格納(tab.cssとbrowzer.css両方にあります) */
+tab
+/** 現在表示されているページのタブ */
+tab[selected="true"]
+/** 読み込み中のタブ（アクティブならそっちが優先） */
+tab[busy] {}
+/** ブラウザのタブパネル親要素はtabpanels(browser.css) */
+.tabbrowser-tabs
+/* ブラウザの表示部分（タブバーの下）あるいはタブバーの下辺(browser.css) */
+.tabbrowser-strip
+/** タブ右の閉じるための×ボタン。親要素はtoolbarbutton(browser.css) */
+.tab-close-button
+</code></pre>
+	</div>
+	
+	<h2>ブックマーク</h2>
+	<div class="section">
+		<p>悲しいかな。サイドのブックマークバーは、globalフォルダ内部しか読み込んでいないので、独立に設定を行えるところが限られています。</p>
+		<p>global/tree.cssを読み込んでそこに設定を書き込んでいきましょう。</p>
+<pre><code type="text/css">
+/** ブックマークツールバー上の閉じるボタンがある所(gobal/global.css) */
+sidebarheader
+/** ツリーの存在する本体。背景色とかはここに設定 */
+tree
+/** 非アクティブ状態で、選択状態のアイテム */
+treechildren::-moz-tree-row(selected)
+/** ツリーの中にあるセパレータ */
+treechildren::-moz-tree-separator
+</code></pre>
+	</div>
+	
+	<h2>ステータスバー</h2>
+	<div class="section">
+		<p>ほとんどがglobal/global.cssで設定できます</p>
+		<p>statusbar要素はステータスバー自体を現し、その下のstatusbarpanel要素に各コンテンツが格納されています</p>
+<pre><code type="text/css">
+/* Window下のステータスバー関係。 */
+statusbar
+/** ステータスバーの中のコンテンツ */
+statusbarpanel
+/** resizerが入っているstatusbarpanel。ステータスバーの右端にある。要素名はstatusbar */
+.statusbar-resizerpanel
+/** Windowの大きさを変更するための場所 */
+resizer
+</code></pre>
+	</div>
+</div>
+
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

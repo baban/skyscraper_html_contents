@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta charset="ja" />
+	<meta name='author' content='babanba-n'/>
+	<meta name='description' content='アスキーアート使用のガイドライン'/>
+	
+	<link href='http://creativecommons.org/licenses/by/2.0/jp/' title='Creative Commons' rel='copyright' id='meta-licence'/>
+	<link href='/licence.rdf' rel='meta' type='text/xml+rdf'/>
+	<link href='/css/seminor.css' rel='stylesheet' type='text/css'/>
+	
+	<title>RUBYでのデザインパターンの実践</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>Rubyでのデザインパターンの実践</h1>
+
+<section id="content">
+	<h2>概要</h2>
+	<section>
+		<p>主にRuby on Railsを使いながら、モデルやライブラリ等を実装してきた過程で感じた疑問として「Javaにはデザインパターンというのがあるし、PHP界隈でもこれを使いこなせることが、設計者としてのスキルの指標として見られる所があるけどRubyでは、デザインパターンの半分くらいはいらないのではないのかな？」と思ってきました</p>
+		<p>実際にRubyには、次の様な利点があります</p>
+		<ol class="data">
+			<li>他のLLと同じく型の制約が非常に緩い</li>
+			<li>HashやArrayがJavaよりも柔軟に記述できる</li>
+			<li>lamdaやproc等の、関数型言語に近い振る舞いのオブジェクトがある</li>
+			<li>define_methodやmethod_missing等のメタプラグラミングの技法を使える</li>
+		</ol>
+		<p>Ruby周辺でデザインパターンがありがたくないということは、<a href="http://www.amazon.co.jp/%E5%AE%9F%E8%B7%B5-Rails-%E2%80%95%E5%BC%B7%E5%8A%9B%E3%81%AAWeb%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E3%81%99%E3%81%B0%E3%82%84%E3%81%8F%E6%A7%8B%E7%AF%89%E3%81%99%E3%82%8B%E3%83%86%E3%82%AF%E3%83%8B%E3%83%83%E3%82%AF-Brad-Ediger/dp/4873113865">実践Rails</a>等の書籍でも言及されてたりしますが、具体的な形で示された文書というのを(ワタシは)見かけたことがないので、個人研究ということで、書き換えを行ってみました</p>
+		<p>また、実際にメタプログラミングの技法を使って各種のデザインパターンを書き換えていくと</p>
+		<p>デザインパターンでしたかったことは、本当は何だったのかをより本質に近い形で記述できるのではないか？と思い出しました</p>
+		<p>ゆっくりと、追記や変更を加えていくこともあるでしょうが、そこは私の未熟と思って気長に見えていただけると幸いです</p>
+		<h3>デザインパターン一覧</h3>
+		<ol class="data">
+			<li>Abstract Factory パターン</li>
+			<li>Builder パターン</li>
+			<li>Factory Method パターン</li>
+			<li>Prototype パターン</li>
+			<li>Singleton パターン</li>
+			<li><a href="adapter.html">Adapter パターン</a></li>
+			<li>Bridge パターン</li>
+			<li>Composite パターン</li>
+			<li>Decorator パターン</li>
+			<li>Facade パターン</li>
+			<li>Flyweight パターン</li>
+			<li>Proxy パターン</li>
+			<li>Chain of Responsibility パターン</li>
+			<li>Command パターン</li>
+			<li>Interpreter パターン</li>
+			<li>Iterator パターン</li>
+			<li>Mediator パターン</li>
+			<li>Memento パターン</li>
+			<li>Observer パターン</li>
+			<li>State パターン</li>
+			<li>Strategy パターン</li>
+			<li>Template Method パターン</li>
+			<li>Visitor パターン</li>
+		</ol>
+	</section>
+</section>
+
+</body>
+</html>

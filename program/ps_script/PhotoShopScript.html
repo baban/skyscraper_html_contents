@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+		 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+
+	<meta name="author" content="babanba-n" />
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="PhotoShopで使うJavaScript解説" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rev="made" href="mailto:baban@nergal.clubbbq.com" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/document.css" type="text/css" />
+	
+	<title>PhotoShopで使う!JavaScript要約解説</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>PhotoShopで使う!JavaScript要約解説</h1>
+
+<div class="section">
+	
+	<h2>Abstruct</h2>
+	
+	<div class="section">
+		<p>PhotoShop7でJavaScriptによって動作を拡張出来るようになりましたが</p>
+		<p>ってゆーかAbobeのhelpはPDFで読みづらいし、さらに英語の上に、はぬけの情報多すぎ、ということで作成を開始したのは良かったものの、PhotoShopCSでは日本語化完了されていると言うことを後日知って、<strong>この計画は中止されました…</strong></p>
+	</div>
+	
+	<h2>デバック方法</h2>
+	
+	<div class="section">
+		<p>統合開発環境とか有りますが、最強はalert文を仕込みまくってしまうことだとおもいます</p>
+	</div>
+	
+	<ul>
+		<li>ActionDescripter</li>
+		<li>ActionList</li>
+		<li>ActionReference</li>
+		<li><a href="application.html">Application</a></li>
+		<li><a href="ArtLayer.html">ArtLayer</a></li>
+		<li>ArtLayers</li>
+		<li><a href="ArtLayerFilta.html">フィルタを実行する</a></li>
+		<li>Channel</li>
+		<li>Channels</li>
+		<li><a href="document.html">Document</a></li>
+		<li>DocumentInfo</li>
+		<li>Documents</li>
+		<li>HistoryState</li>
+		<li>HistoryStates</li>
+		<li>LayerSet</li>
+		<li>LayerSets</li>
+		<li><a href="Layers.html">Layers</a></li>
+		<li>Preference</li>
+		<li>RGBColor</li>
+		<li>SolidColor</li>
+		<li>TextItem</li>
+		<li><a href="File.html">File</a></li>
+		<li><a href="Folder.html">Folder</a></li>
+	</ul>
+	
+	<ul>
+		<li>IndexedConvertOptions</li>
+		<li>ExportOptionsIllustrator</li>
+	</ul>
+	
+	<ul>
+		<li>GrayColor</li>
+		<li>HSBColor</li>
+		<li>LabColor</li>
+		<li>CYMKColor</li>
+	</ul>
+	
+	<h2>ファイル展開、保存オプション</h2>
+	
+	<ul>
+		<li>BMPSaveOptions</li>
+		<li>DCS1_SaveOptions</li>
+		<li>DCS2_SaveOptions</li>
+		<li>EPSOpenOptions</li>
+		<li>EPSSaveOptions</li>
+		<li>GIFSaveOptions</li>
+		<li>JPEGSaveOptions</li>
+		<li>PDFOpenOptions</li>
+		<li>PDFSaveOptions</li>
+		<li>PICTFileSaveOptions</li>
+		<li>PICTResourceSaveOptions</li>
+		<li>PNGSaveOptions</li>
+		<li>PhotoCDOptions</li>
+		<li>PhotoShopSaveOptions</li>
+		<li>PixerSaveOptions</li>
+		<li>RawFormatOpenOptions</li>
+		<li>RawSaveOptions</li>
+		<li>TargaSaveOptions</li>
+		<li>TiffSaveOptions</li>
+	</ul>
+		
+		<h2>関連リンク</h2>
+		<ul>
+			<li><a href="http://www.parkcity.ne.jp/~chaichan/src/2ndthema.htm">Chaichan-World !:オブジェクトなJSの基礎講座</a></li>
+			<li><a href="http://www.adobe.com/support/downloads/main.html">米国Adobe:Downloads - Adobe CustomerFirst Support</a></li>
+			<li><a href="http://www.openspc2.org/reibun/Photoshop7/">Adobe Photoshop 7.0日本語版例文辞典</a></li>
+			<li><a href="http://www.os.rim.or.jp/~furu/script/">そらかぜ工房:Photoshop Scripting 覚書き</a></li>
+		</ul>
+</div>
+
+<div id="CC_Licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img alt="クリエイティブ・コモンズ・ライセンス" src="http://creativecommons.org/images/public/somerights2.gif" />
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+	<!-- /クリエイティブ・コモンズ・ライセンス -->
+	
+	<!--
+	
+	<rdf:RDF
+		xmlns="http://web.resource.org/cc/"
+		xmlns:dc="http://purl.org/dc/elements/1.1/"
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	>
+	<Work rdf:about="">
+		<dc:title>我流:スタイルシートの設計技法</dc:title>
+		<dc:date>２００４</dc:date>
+		<dc:creator>
+			<Agent>
+				<dc:title>ばばんばーん</dc:title>
+			</Agent>
+		</dc:creator>
+		<dc:rights>
+			<Agent>
+				<dc:title>ばばんばーん</dc:title>
+			</Agent>
+		</dc:rights>
+		<dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+		<license rdf:resource="http://creativecommons.org/licenses/sa/2.0/jp/" />
+	</Work>
+	
+	<License rdf:about="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+		<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+		<requires rdf:resource="http://web.resource.org/cc/Notice" />
+		<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+		<requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+	</License>
+	
+	</rdf:RDF>
+	
+	-->
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+lycos 新語辞典
+http://dic.lycos.co.jp/pal/list.html?encoding=shift-jis&query=
+
+毎日新聞
+http://search.mainichi.co.jp/cgi-bin/news/search.cgi?keyword=
+
+朝日新聞
+！Query=の後に検索語。
+http://asahisearch.cab.infoweb.ne.jp/cgi-bin/common.cgi?Search_Type=NEW&Search_Object=ASAHI&CONFFILENAME=common.conf&TEMPLATE=results_asahi.html&Search_StartNo=1&Search_Page=page_asahidetail&RelWord_Key=&RelWord_Req_Num=10&RelWord_Host_0=asahi01&RelWord_Port_0=20007&Search_Ope=A&Search_QueryRule=%28+@MIDASHI%3A%3D%24Search_Query%5B%24Search_Ope%5D+%7C+@HONBUN%3A%3D%24Search_Query%5B%24Search_Ope%5D+%29+%26+@DATE%3E%3D%23SDATE+%26+@DATE%3C%3D%23EDATE&Search_Max=100&Search_Sort=DATEDISP&Search_SortNum=1&Search_Query=
+&Search_SYear=&Search_SMonth=&Search_SDay=&Search_EYear=&Search_EMonth=&Search_EDay=
+
+Googleイメージ検索
+http://images.google.co.jp/images?hl=ja&q=
+
+MapFan
+http://www2.mapfan.com/index.cgi?SbmtPB=MAP&MapSize=1&SRCHKIND=SRCH_ADR&PARAM=
+
+Yahoo路線
+http://transit.yahoo.co.jp/bin/exp?val_htmb=horizon2&val_to=

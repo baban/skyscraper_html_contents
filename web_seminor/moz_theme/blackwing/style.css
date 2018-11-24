@@ -1,0 +1,87 @@
+/* 共通設定 */
+@import url("css/common.css");
+
+/* トップページ */
+@import url("css/top.css");
+
+/* 目次 */
+@import url("css/contents.css");
+
+/* 本文 各マージン等 */
+@import url("css/base.css");
+
+/* ギルティ専用 */
+@import url("css/guilty.css");
+
+/* tips */
+@import url("css/tips.css");
+@import url("css/xyzzy.css");
+
+/* ========== 本文 ========================================================= */
+.item TH	{
+			font-weight: bold;
+			text-align: center;
+			vertical-align: top;
+			padding: 0 0.5em;
+			}
+
+.item DT	{
+			font-weight: bold;
+			}
+
+.item EM	{
+			font-weight: normal;
+			font-style: normal;
+			color: red;
+			}
+
+.item TABLE.liststyle TH {
+			text-align: left;
+			}
+
+.item TH.guard {
+			background-color: #ffcccc;
+			}
+
+
+/* みんなのうた専用 */
+#vampiresong PRE {
+			border: 1px solid;
+			padding: 0.5em 1em;
+			margin-left: 5em;
+			}
+
+/* 大文字使用 */
+#vampirebig P.emphasis,
+#diary P.emphasis	{
+			font-size: 2.2em;
+			color: red;
+			text-align: center;
+			margin-left: 1em;
+			}
+
+#vampirebig EM.l2,
+#diary EM.l2 {
+			font-size: 1.8em;
+			color: red;
+			line-height: 140%;
+			}
+
+
+/* ========== 本文ここまで ================================================= */
+
+/* ========== ナビ ========================================================= */
+.navi		{
+			text-align: right;
+			border-top: 1px solid;
+			padding-top: 0.5em;
+			margin-top: 2em;
+			}
+
+#gotop		{
+			text-align: center;
+			border-top: 1px solid;
+			padding-top: 0.5em;
+			margin-top: 2em;
+			}
+/* ========== ナビここまで ================================================= */

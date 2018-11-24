@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='萌ディタのヘルプ:入り口' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>色分けの方法</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">色分けの方法</h1>
+
+<div id="content" class="section">
+
+	<h2 id='h2-1'>色分けの方法</h2>
+	
+	<div class="section">
+		<p>標準の状態での萌ディタは、正直な所、MDIであることを除けばなんの変哲もないエディタでしかありません。</p>
+		<p>ここにJavaScriptで機能を追加していくことで出来ることを増やしていくのです</p>
+		<p><span class="menu">メニュー＞書式(O)＞むずかしい設定(C)</span>を呼び出してください</p>
+		<img src="config_dialog.png" alt="難しい設定のダイアログ" />
+		<p>ダイアログ右側メニューの<span class="menu">「スクリプト」</span>を選択して、さらに<span class="menu">「追加」</span>を選択します</p>
+		<img src="file_dialog.png" alt="追加するスクリプトを設定" />
+		<p>あとは、ファイルを全部選択して登録して下さい。少々の依存関係とかもあるので、最初は、全部、登録するのを徹底して下さい</p>
+		<ul class="data">
+			<li>core.javascript.txt</li>
+			<li>std.javascript.txt</li>
+		</ul>
+		<p>は既に読み込まれていると、ダイアログで出てくると思いますが、残りが一覧に登録されると思います</p>
+		<p>ココまで来れば、あともう一歩</p>
+		<p><em><span class="menu">メニュー＞書式＞スクリプトを有効</span></em></p>
+		<p>をチェックして下さい。これで色分け機能が有効になります</p>
+	</div>
+	
+	<h2 id='h2-2'>色分け機能の強化</h2>
+	
+	<div class="section">
+		<p>現在標準で着いているのだけでも、C言語、JavaScript、VBScriptの色分けをきちんとこなしますが、ほかにもスクリプトを組み込んでいくことで、様々な種類のファイルに対応可能です</p>
+		<ul class="data">
+			<li><a href="http://members.at.infoseek.co.jp/babanba_n/xml.javascript2.zip">XML用拡張子クラス</a></li>
+			<li><a href="http://members.at.infoseek.co.jp/babanba_n/ruby-rd.javascript.zip">Ruby用拡張子クラス(RubyDoc対応版)</a></li>
+			<li><a href="http://members.at.infoseek.co.jp/babanba_n/python.javascript.zip">Python用拡張子クラス</a></li>
+			<li><a href="http://members.at.infoseek.co.jp/babanba_n/jscript.javascript.zip">JScript（若干デバッグ有</a></li>
+			<li><a href="http://miau.s9.xrea.com/blog/index.php?itemid=500&amp;catid=4" class="external">Perl用拡張子クラス(外部リンク)</a></li>
+		</ul>
+	</div>
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href='http://www.gnu.org/copyleft/fdl.html' rel='license'>GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

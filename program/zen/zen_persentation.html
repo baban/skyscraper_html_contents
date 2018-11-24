@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<link rel="home" href="/index.html" type="text/html" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	
+	<link rel="stylesheet" href="/css/style.css" type="text/css" />
+	
+	<script type="text/javascript" src="yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>  
+	<script type="text/javascript" src="yui/build/logger/logger-min.js"></script>  
+	<script type="text/javascript" src="yui/build/yuitest/yuitest-min.js"></script>  
+	<script type="text/javascript" src="zen.js"></script>  
+	<title>PreZentation</title>
+	<script type="text/javascript">
+	window.onload=function(){
+		function form_setting( i, inner ){
+			// Enterキー
+			document.getElementById( 'text-form-'+i ).onkeydown=function( e ){
+				if( 13==e.keyCode )
+					document.getElementById( 'zen-result-'+i ).value = document.getElementById('text-form-'+i).value.toZen( inner );
+			}
+			// ボタンクリック
+			document.getElementById( 'text-button-'+i ).onclick=function(){
+				document.getElementById( 'zen-result-'+i ).value = document.getElementById('text-form-'+i).value.toZen( inner );
+			}
+		}
+		
+		form_setting( 0, '' );
+		form_setting( 1, '' );
+		form_setting( 2, '' );
+		form_setting( 3, '' );
+		form_setting( 4, '' );
+		form_setting( 5, '' );
+		form_setting( 6, document.getElementById('zen-result-6').value );
+	}
+	</script>
+	<style>
+	#text-form-0,
+	#text-form-1,
+	#text-form-2,
+	#text-form-3,
+	#text-form-4,
+	#text-form-5,
+	#text-form-6,
+	#text-form-7 {
+		width:70%;
+		font-size:1.2em;
+		margin-bottom:0.4em;
+	}
+	#zen-result-0,
+	#zen-result-1,
+	#zen-result-2,
+	#zen-result-3,
+	#zen-result-4,
+	#zen-result-5,
+	#zen-result-6,
+	#zen-result-7 {
+		width:80%;
+		height:15em;
+	}
+	</style>
+  <script src="/src/ga.js"></script>
+</head>
+<body id="main-page">
+
+<h1 id="site-title">Let's Zen!!</h1>
+
+<div id="content">
+	<div class="section">
+		<h2>Try Zen Coding!</h2>
+		<p>試しに好きなタグ名を入力して、Zen Codingを実践してみてください</p>
+		<input type="text" value="" id="text-form-0" />
+		<input type="button" value="Zen!" id="text-button-0"  />
+		<textarea id="zen-result-0">Zen!</textarea>
+	</div>
+	
+	<div class="section">
+		<h2>id、class、要素名、属性名の指定</h2>
+		<p>「#」でIDの指定</p>
+		<p>「.」でクラスの指定</p>
+		<p>その他は、[属性名]か 属性名=値　の書式で指定できます</p>
+		<input type="text" value='form#test-form.form[action][method="POST"] accept-charset=UTF-8' id="text-form-1" />
+		<input type="button" value="Zen!" id="text-button-1"  />
+		<textarea id="zen-result-1">Zen!</textarea>
+	</div>
+	
+	<div class="section">
+		<h2>リストの作成</h2>
+		<p>「>」で子要素の指定</p>
+		<p>「*」で複数のタグを同時に挿入します</p>
+		<p>スニペット機能があるので、Aタグなどの一部のタグは良く使う要素が自動で補完されます</p>
+		<input type="text" value="ul.data>li*5>a" id="text-form-2" />
+		<input type="button" value="Zen!" id="text-button-2"  />
+		<textarea id="zen-result-2">Zen!</textarea>
+	</div>
+
+	<div>
+		<h2>dt+ddのリスト作成</h2>
+		<p>通常の書式で、必要なタグ構成を表現しきれない場合は、括弧「()」で囲うことで範囲を決めることが出来ます</p>
+		<input type="text" value="dl>(dt+dd)*3" id="text-form-3" />
+		<input type="button" value="Zen!" id="text-button-3"  />
+		<textarea id="zen-result-3">Zen!</textarea>
+	</div>
+	
+	<div class="section">
+		<h2>テーブルの瞬間作成</h2>
+		<p>「$」を指定すると、その箇所に連番の数字を指定できます</p>
+		<p>「$$」の様に桁数を指定すると01,02,03などの用に文字列長を自動で整形します</p>
+		<input type="text" value="table.data>tr*3>td.itm-$*3" id="text-form-4" />
+		<input type="button" value="Zen!" id="text-button-4"  />
+		<textarea id="zen-result-4">Zen!</textarea>
+	</div>
+
+	<div class="section">
+		<h2>HTML定義文の作成</h2>
+		<p>ID、クラス名を要素名なしで指定すると、が自動で補完されます。</p>
+		<input type="text" value="html>head+body>(h1+#content.section>h2+.section)" id="text-form-5" />
+		<input type="button" value="Zen!" id="text-button-5"  />
+		<textarea id="zen-result-5">Zen!</textarea>
+	</div>
+
+	<div class="section">
+		<h2>選択範囲テキストの自動挿入</h2>
+		<p>テキストを、ZenCodingのメソッドに食わせれば、テキストを自動で挿入します</p>
+		<p>(今回は擬似的にテキストをZenCodingのパーサーに送っています)</p>
+		<input type="text" value="ul>li*3" id="text-form-6" />
+		<input type="button" value="Zen!" id="text-button-6"  />
+		<textarea id="zen-result-6">Zen!
+Zen!!
+Zen!!!</textarea>
+	</div>
+	
+</div><!-- div#content -->
+
+</body>
+</html>
+

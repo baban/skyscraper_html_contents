@@ -1,0 +1,361 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+		 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+
+	<meta name="author" content="babanba-n" />
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="PhotoShopで使うJavaScript解説" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rev="made" href="mailto:baban@nergal.clubbbq.com" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/document.css" type="text/css" />
+	
+	<title>PhotoShopで使う!JavaScript要約解説</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>PhotoShopで使う!JavaScript要約解説</h1>
+
+<div class="section">
+	<h2>プロパティ</h2>
+	<dl class="explain">
+		<dt class="define">allLocked</dt>
+		<dd>
+			型:boolean
+			レイヤーをロックします、trueで編集不可能の状態に、falseで編集可能に指定できます
+		</dd>
+		<dt class="define">blendMode</dt>
+		<dd>
+			型:BlendMode
+			<p>画像の合成方法を指定できます</p>
+			<p>値は次のいずれかを代入します</p>
+			<table class="data">
+				<tr><td>通常</td><td>BlendMode.NORMAL</td></tr>
+				<tr><td>ディザ合成</td><td>BlendMode.DISSOLVE</td></tr>
+				<tr><td>比較(暗)</td><td>BlendMode.DARKEN</td></tr>
+				<tr><td>乗算</td><td>BlendMode.MULTIPLY</td></tr>
+				<tr><td>焼き込みカラー</td><td>BlendMode.COLORBURN</td></tr>
+				<tr><td>焼き込み(リニア)</td><td>BlendMode.LINEARBURN</td></tr>
+				<tr><td>比較(明)</td><td>BlendMode.LIGHTEN</td></tr>
+				<tr><td>スクリーン</td><td>BlendMode.SCREEN</td></tr>
+				<tr><td>覆い焼きカラー</td><td>BlendMode.COLORDODGE</td></tr>
+				<tr><td>覆い焼き(リニア)</td><td>BlendMode.LINEARDODGE</td></tr>
+				<tr><td>オーバーレイ</td><td>BlendMode.OVERLAY</td></tr>
+				<tr><td>ソフトライト</td><td>BlendMode.SOFTLIGHT</td></tr>
+				<tr><td>ハードライト</td><td>BlendMode.HARDLIGHT</td></tr>
+				<tr><td>ビビッドライト</td><td>BlendMode.VIVIDLIGHT</td></tr>
+				<tr><td>リニアライト</td><td>BlendMode.LINEARLIGHT</td></tr>
+				<tr><td>ピンライト</td><td>BlendMode.PINLIGHT</td></tr>
+				<tr><td>差の絶対値</td><td>BlendMode.DIFFERENCE</td></tr>
+				<tr><td>除外</td><td>BlendMode.EXCLUSION</td></tr>
+				<tr><td>色相</td><td>BlendMode.HUE</td></tr>
+				<tr><td>彩度</td><td>BlendMode.SATURATION</td></tr>
+				<tr><td>カラー</td><td>BlendMode.COLORBLEND</td></tr>
+				<tr><td>輝度</td><td> BlendMode.LUMINOSITY</td></tr>
+			</table>
+			<p>BlendMode.PASSTHROUGH、ってパラメーターがヘルプにあるけどこれ何でしょう？ 情報お持ちの方お知恵を…</p>
+		</dd>
+		<dt class="define">fillOpacity</dt>
+		<dd>
+			型:double
+			<p>「塗り」パラメータの調整を行います(通常0〜100)</p>
+		</dd>
+		<dt class="define">grouped</dt>
+		<dd>
+			型:Boolean
+			「グループ化」コマンドを実行します、trueで実行してfalseで元に戻します
+		</dd>
+		<dt class="define">isBackGroundLayer</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">kind</dt>
+		<dd>
+			<p>レイヤーの種類を指定できます</p>
+				LayerKind.BRIGHTNESSCONTRAST
+				LayerKind.CHANNELMIXED
+				LayerKind.COLORBALANCE
+				LayerKind.CURVES
+				LayerKind.GRADIENTFULL
+				LayerKind.GADIENTMAP
+				LayerKind.HUESATURATION
+				LayerKind.INVERSION
+				LayerKind.LEVENLS
+				LayerKind.PATTERNFILL
+				LayerKind.POSTERIZE
+				LayerKind.SELECTIVECOLOR
+				LayerKind.SOLIDFILL
+				LayerKind.TEXT
+				LayerKind.THRESHOLD
+		</dd>
+		<dt class="define">name</dt>
+		<dd>
+			型:String
+			レイヤーの名前を返します、代入すればレイヤーの名前を変更できます
+		</dd>
+		<dt class="define">opacity</dt>
+		<dd>
+			型:double
+			透明度をパーセント(0〜100)で返します
+		</dd>
+		<dt class="define">parent</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">pixelLocked</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">positionLocked</dt>
+		<dd>
+			型:Boolean
+			「位置をロック」を実行します、trueでロック状態に、falseで解除を行います
+		</dd>
+		<dt class="define">transparentPixelsLocked</dt>
+		<dd>
+			型:boolean
+			透明部分を保護するかどうかを返します、trueで保護、falseで保護しない方にチェックが付きます
+		</dd>
+		<dt class="define">typename</dt>
+		<dd>
+			型:String
+			型の名前を返します(この場合はArtLayerですね)代入は出来ません
+		</dd>
+		<dt class="define">visible</dt>
+		<dd>
+			型:boolean
+			レイヤー可視、不可視の状態を返します、trueで可視、falseで不可視です
+		</dd>
+	</dl>
+	
+	<h2>メソッド</h2>
+	
+	<dl class="explain">
+		<dt class="define">adjustBrightnessContrast( long Brightness, long Contrast )</dt>
+		<dd>
+			
+		</dd>
+		<dd>
+			
+		</dd>
+		<dt class="define">adjustColorBalance( [ long Shadouws, long Midnes, long Highlightes, Boolean PreserveLuminosity ] )</dt>
+		<dd>
+			
+		</dd>
+		<dd>
+			
+		</dd>
+		<dt class="define">adjustCurves</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">adjustLevels</dt>
+		<dd>
+			
+		</dd>
+	</dl>
+	
+	<dl class="explain">
+		<dt class="define">autoContrast</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">autoLevels</dt>
+		<dd>
+			
+		</dd>
+	</dl>
+	
+	<dl class="explain">
+		<dt class="define">copy( Boolean Merge )</dt>
+		<dd>
+			<p>クリップボードにレイヤーの内容をコピーします、引数ではtrueを指定すると画像の統合を行います</p>
+		</dd>
+		<dt class="define">cut()</dt>
+		<dd>
+			<p>レイヤーの内容を切り取って、クリップボードに送ります</p>
+		</dd>
+	</dl>
+	
+	<dl class="explain">
+		<dt class="define">clear()</dt>
+		<dd>
+			レイヤーの中身を綺麗さっぱり消してしまいます
+		</dd>
+		<dt class="define">desaturate()</dt>
+		<dd>
+			<p>画像の彩度を下げます</p>
+		</dd>
+		<dt class="define">duplicate()</dt>
+		<dd>
+			<p>レイヤーを複製を作成して、そのレイヤーへの参照を返します</p>
+			<p>返り値:ArtLayer</p>
+		</dd>
+		<dt class="define">equalize()</dt>
+		<dd>
+			<p>「平均化(イコライズ)」コマンドを実行します</p>
+		</dd>
+		<dt class="define">invert()</dt>
+		<dd>
+			<p>「階調の反転」コマンドを実行して、色を反転します</p>
+		</dd>
+		<dt class="define">link( Layer With )</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">unlink()</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">remove()</dt>
+		<dd>
+			<p>指定されたレイヤーを削除します</p>
+		</dd>
+		<dt class="define">merge()</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">mixChannels( Boolean Monochrome, Object OutputChannels )</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">moveAfter( Object destination )</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">moveBefore( Object destination )</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">moveToBeginning( Object destination )</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">moveToEnd( Object destination )</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">posterize( long Levels )</dt>
+		<dd>
+			<p>「ポスタリゼーション」コマンドを実行します</p>
+			<p>引数には色の階調を指定してください</p>
+		</dd>
+		<dt class="define">rasterize( RasterizeType Target )</dt>
+		<dd>
+			<p>引数には次のいずれかを指定します</p>
+			<ul>
+				<li>RasterizeType.ENTIRELAYER</li>
+				<li>RasterizeType.FILLCONTENT</li>
+				<li>RasterizeType.LAYERCLIPPINGPATH</li>
+				<li>RasterizeType.LINKEDLAYERS</li>
+				<li>RasterizeType.SHAPE</li>
+				<li>RasterizeType.TEXTCONTENTS</li>
+			</ul>
+		</dd>
+		<dt class="define">resize( double Horizontal, double Vertical, AnchorPosition Anchor )</dt>
+		<dd>
+			<p>レイヤーを回転させます</p>
+			<p>第１引数では水平方向の拡大率を指定します</p>
+			<p>第２引数では垂直方向の拡大率を指定します</p>
+			<p>第３引数では次のいずれかで拡大、縮小の基準位置を指定します</p>
+			<table class="data">
+				<tr><td>AnchorPosition.TOPLEFT</td><td>AnchorPosition.TOPCENTER</td><td>AnchorPosition.TOPRIGHT</td></tr>
+				<tr><td>AnchorPosition.MIDDLELEFT</td><td>AnchorPosition.MIDDLECENTER</td><td>AnchorPosition.MIDDLERIGHT</td></tr>
+				<tr><td>AnchorPosition.BOTTOMLEFT</td><td>AnchorPosition.BOTTOMCENTER</td><td>AnchorPosition.BOTTOMRIGHT</td></tr>
+			</table>
+		</dd>
+		<dt class="define">rotate( double Angle, AnchorPosition Anchor )</dt>
+		<dd>
+			<p>レイヤーを回転させます</p>
+			<p>第１引数では回転角度を度数で指定します</p>
+			<p>第２引数では次のいずれかで、回転の基準位置を指定します</p>
+			<table class="data">
+				<tr><td>AnchorPosition.TOPLEFT</td><td>AnchorPosition.TOPCENTER</td><td>AnchorPosition.TOPRIGHT</td></tr>
+				<tr><td>AnchorPosition.MIDDLELEFT</td><td>AnchorPosition.MIDDLECENTER</td><td>AnchorPosition.MIDDLERIGHT</td></tr>
+				<tr><td>AnchorPosition.BOTTOMLEFT</td><td>AnchorPosition.BOTTOMCENTER</td><td>AnchorPosition.BOTTOMRIGHT</td></tr>
+			</table>
+		</dd>
+		<dt class="define">selectiveColor( AdjustmentReference SelectionMethod, Object Array of Numbers )</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">threshold( long Level )</dt>
+		<dd>
+			<p>「２階調化」を実行します</p>
+			<p>引数には境界のしきい値を指定します</p>
+		</dd>
+		<dt class="define">toString()</dt>
+		<dd>
+			
+		</dd>
+		<dt class="define">translate( double DeltaX, double DeltaY )</dt>
+		<dd>
+			<p>現在の位置からレイヤーを移動させます</p>
+			<p>第１引数ではx座標の移動量を</p>
+			<p>第２引数ではy座標の移動量を指定します</p>
+		</dd>
+	</dl>
+</div>
+
+<div id="CC_Licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img alt="クリエイティブ・コモンズ・ライセンス" src="http://creativecommons.org/images/public/somerights2.gif" />
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+	<!-- /クリエイティブ・コモンズ・ライセンス -->
+	
+	<!--
+	
+	<rdf:RDF
+		xmlns="http://web.resource.org/cc/"
+		xmlns:dc="http://purl.org/dc/elements/1.1/"
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	>
+	<Work rdf:about="">
+		<dc:title>我流:スタイルシートの設計技法</dc:title>
+		<dc:date>２００４</dc:date>
+		<dc:creator>
+			<Agent>
+				<dc:title>ばばんばーん</dc:title>
+			</Agent>
+		</dc:creator>
+		<dc:rights>
+			<Agent>
+				<dc:title>ばばんばーん</dc:title>
+			</Agent>
+		</dc:rights>
+		<dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+		<license rdf:resource="http://creativecommons.org/licenses/sa/2.0/jp/" />
+	</Work>
+	
+	<License rdf:about="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+		<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+		<requires rdf:resource="http://web.resource.org/cc/Notice" />
+		<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+		<requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+	</License>
+	
+	</rdf:RDF>
+	
+	-->
+</div>
+
+</body>
+</html>

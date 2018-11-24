@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozilla Firefoxのテーマの作成法</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>MozillaFirefoxのテーマの作り方</h1>
+
+<div class="section" id="content">
+	<h2 id='h2-1'>abstract</h2>
+	
+	<div id="abstract" class="section">
+		<p>これは面倒臭いことは全てリンクで解決してる、いいかげん&amp;我流なMozillaFirebirdのテーマ作成法です。</p>
+		<p>一応Firefox3.0を基準に解説を加えていますが、ThunderbirdやMozilla等のおおかたのGeckoエンジン使用のアプリケーションで応用が利くと思います</p>
+		<p>あと、時々暇を見て更新作業を繰り返しているうちに、過去の技術を使っているのに文書の内容が追いついていない場合などが良くあります。</p>
+	</div>
+	
+	<h2 id='h2-2'>作成前に</h2>
+	<div class="section">
+		<p>正直、テーマを一から作るのは結構な労力を要しますので、<em>他人の作ったテーマを改造するのが現実的</em>だと思います。</p>
+		<p>どのテーマを弄れば良いのかって聞かれたら難しいのですが、あまりアクのないと言う意味でブラウザのデフォルトのテーマに近いものが万人向けかな…と思います。</p>
+		<p>Firefoxのテーマを作成するためには、Webサイト作成に使われるXHTML+CSSでサイトを作成するときの知識と、若干のXML(読める程度でよいと思います)の知識が必要になります。</p>
+		<p>正直、Firefox内部に関しては、CSSのマニアックなセレクタの当て方を中心に、CSS2のプロパティの使用、-moz-の頭文字で始まる、Gecko系ブラウザの独自拡張等、込み入った部分が多々あるので、やりながら勉強する気がないと混乱して頓挫するところが多々あります</p>
+		<p>正直、CSS周りに十分な知識が知識がある自信のない場合は、根性入れる覚悟をしてください、それで乗り越えられる程度の難易度ですので</p>
+		<br />
+		<p>制作の作業自体は</p>
+		<ol>
+			<li>テーマのxpiファイル(正体はzip圧縮)を解凍する</li>
+			<li>テーマの情報が書いてあるrdfファイルを書き換える</li>
+			<li>詳しい情報が書いてあるCSSファイルを書き換えていく</li>
+		</ol>
+		<p>という簡単な順序になります。詳しいことはこれからお話ししますので、読みながらご理解下さい</p>
+	</div>
+	
+	<h2 id='h2-3'>目次</h2>
+	
+	<div class="section">
+		<ol class="toc">
+			<li><a href="theme_introduction.html">テーマの正体を知ろう</a></li>
+			<li><a href="rdf_write.html">構成情報ファイルの書き換え</a></li>
+			<li><a href="theme_style.html">ここからが本番、スタイルシートの書き換え</a></li>
+			<li><a href="tips.html">テーマの基盤の知識</a></li>
+			<li><a href="etc.html">その他色々解説</a></li>
+		</ol>
+	</div>
+	
+	<h2>比較的高度なトピック</h2>
+	
+	<div class="section">
+		<ol class="toc">
+			<li><a href="extentions_theme.html">拡張へのテーマの適応（作成中</a></li>
+			<li><a href="update_rdf.html">テーマの自動アップデートへの対応法(作成中</a></li>
+			<li><a href="subversion.html">Subversionを利用したテーマ管理(作成中</a></li>
+			<li><a href="filelist.html">各cssファイルの設定情報一覧(作成中</a></li>
+			<li><a href='viewlist.html'>これさえ見ておけばＯＫ、格要素ごとの指定箇所一覧（暫定版</a></li>
+			<li><a href="xbl_write.html">XBL Bindingを利用したテーマの拡張法(準備中</a></li>
+			<li><del><a href="ext_decoration.html">Mozillaの独自装飾要素を利用したテーマの装飾(準備中</a></del></li>
+			<li><del><a href="xul_element_reference.html">XULエレメントリファレンス(XULplanet内に日本語訳があるため未完成のまま放棄)</a></del></li>
+		</ol>
+	</div>
+</div>
+
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

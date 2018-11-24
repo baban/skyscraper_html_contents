@@ -1,0 +1,71 @@
+@charset "Shift_JIS";
+
+div#content{
+	margin-left:15.5em;
+}
+
+ul.content-nav:before{
+	content:"<<";
+}
+ul.content-nav:after{
+	content:">>";
+}
+ul.content-nav > li{
+	display:inline;
+}
+ul.content-nav > li:after{
+	content:" | ";
+}
+ul.content-nav > li:last-child:after {
+	content:"";
+}
+
+/** blog部分 */
+h1#entry-title{}
+span#entry-title-title {}
+
+div#conteiner-entry{
+	position:relative;
+	min-width:350px;
+	background-image:url("img/conteiner-main-back.png");
+	padding:0.5em;
+}
+
+/** ナビゲーションバー部分 */
+div#navigation {}
+
+h1#navigation-title{}
+
+div#navigation h2{}
+
+div#navigation ul{
+	margin:0;
+}
+div#serch-form-container{
+}
+form#serach-form{
+	border-style:dashed;
+	border-width:1px;
+	border-color:#fff;
+	background-color:transparent;
+	margin:0.5em 10px;
+}
+#serch-button{
+	display:block;
+	margin-top:1em;
+	height:20px;
+	width:60px;
+}
+#serch-button {
+	opacity:0.7;
+	background-color:#aaa;
+}
+#serch-button:hover {
+	opacity:1.0;
+}
+
+label[for="comment-bake-cookie-label"]{
+	display:block;
+	width:30em;
+}
+

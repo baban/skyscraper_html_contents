@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='スタイルシートの設計法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>スタイルシートの設計技法:ページは部品に分けられる</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>ページは部品に分けられる</h1>
+
+<div class="section">
+	
+	<h2 id='h2-1'>Abstruct</h2>
+	
+	<div class="section">
+		<p>先ほどまでで、ページっていうのは、ブログに使う場合や、セミナーを使う場合、リンクの羅列として使う場合などで、種類が限られると言うこと、それにページには同じような設定を書いている場合が多いことを書きました</p>
+		<p>ここからは、それをふまえた上での次の理論を紹介しましょう</p>
+	</div>
+	
+	<h2 id='h2-2'>ページを分解してみよう</h2>
+	
+	<div class="section">
+		<p>さて、これから、ある３つのサイトのtopページを、役目ごとに分解してみます、軽く流す程度で良いので、ご覧下さい</p>
+		<table class="data">
+			<tr><th>CGサイトの実例１</th></tr>
+			<tr><td><img src="desin_example01.gif" alt="デザイン例１" /></td></tr>
+			<tr><th>CGサイトの実例２</th></tr>
+			<tr><td><img src="desin_example02.gif" alt="デザイン例２" /></td></tr>
+			<tr><th>CGサイトの実例３</th></tr>
+			<tr><td><img src="desin_example03.gif" alt="デザイン例３" /></td></tr>
+		</table>
+		<p>今回はCGサイトですが、すべてのサイトは<em class="kwd">与えられた役目ごとに、すべて四角形の範囲に収まっている</em>事が分かると思います</p>
+		<p>しかも、その役目ごとにある四角形は、基本的に重なることがない。こうすることが使いやすいページの作り方でもあり、技術的にも無理なく使いやすい方法でもあるから当然の様にこうなるのですが、こういう法則があるのならば、これを上手く使う方法はないでしょうか？</p>
+		<p>これから解説する方法がそれに当たるものです</p>
+	</div>
+	
+	<h2 id='h2-3'>メニューに関する研究</h2>
+	<div class="section">
+		<h3>メニューの置き場所</h3>
+		
+		<div class="section">
+			<p>さて、貴方がサイトのTOPページを作成するとして、メニューというのはサイトの何処に置きますか？</p>
+			<p>世界中に無数のWebサイトがありますが、実はほとんど例外なく、その置き場所は決まっています、サイトの上下左右のいずれかです</p>
+			<img src="menu_position.gif" alt="メニューの代表的な置き場所" />
+			<p>細かいことを言うなら、メニューは左上に近いほど、置かれる確率が高くなる事、CG系サイトの場合は例外として、TOP絵に対して上下左右のいずれか置かれる場合がある事等が言えますが、今回着目する点は少し違います</p>
+		</div>
+		
+		<h3>メニューデザイン</h3>
+		
+		<div class="section">
+			<p>先ほどの図で、メニューは上下左右のいずれかに置かれることを説明しましたが、今回は、ここに注目しましょう、さて、もう一度、先ほどの図を見てください</p>
+			<p>上下方向に置かれるメニューってどうなっていますか？ 横方向のリストですよね？</p>
+			<p>左右方向に置かれるリストってどうなっていますか？ 縦方向のリストですよね？</p>
+			<p>そう、スペースの制約上、当たり前の事ですよね、当たり前の事ですが、ほぼ例外の無い法則ですよね？</p>
+			<p>言い直しましょう、メニューっていうのは、コンテンツへのリンクを表したリストですから、縦方向のリストか横方向のリストにしかならないんです</p>
+			<p>ここで、話を<a href="desien_pattern.html">スタイルシートのデザインパターン</a>に戻す事になるのですが、例えばこんなHTMLソースがあったとします</p>
+<pre>
+<code>
+&lt;ul id="menu" class="menu"&gt;
+	&lt;li&gt;TOP&lt;/li&gt;
+	&lt;li&gt;Gallary&lt;/li&gt;
+	&lt;li&gt;Diary&lt;/li&gt;
+	&lt;li&gt;BBS&lt;/li&gt;
+	&lt;li&gt;mail&lt;/li&gt;
+	&lt;li&gt;Link&lt;/li&gt;
+&lt;/ul&gt;
+</code>
+</pre>
+			<p>メニューとして使われる事を考えたソースですが、これを横方向のリストにしたい場合、最低５，６行程度の設定をスタイルシートに書き込まないといけません</p>
+			<p>しかし、<code>@import</code>文を使用して、デザインパターンを読み込んでみましょう、これでメニューは１行の追加で横方向リストに変わりました</p>
+			<p>横方向の場合でも<a href="pattern/float_list.html">float型横リスト</a>と<a href="pattern/lnline_list.html">inline型横リスト</a>でもこの作業は同じです、さらに<a href="pattern/link_bar.html">縦方向リンク柱</a>でも例外なくこうなります</p>
+			<p>つまりサイトは、その役割ごとに分割可能ですが、分割した部品のデザインは大体パターン化して分類できるんですよね</p>
+			<p>そういうデザイン部品をあらかじめ制作しておいて、必要なときに読み込ませるようにすれば、欲しいデザインを早く作ることが可能だったりするんですよね</p>
+			<p><a href="pattern/banner_title.html">banner title型</a>等がそうですが、サイト名にデザインを当てる場合なんかも一定の法則があることを発見しています。他のページ部品も一定のパターンが存在する事が予想できますので、上手く使えば欲しいデザインに、短い時間で近づける事が出来るようになりますよ</p>
+			<img src="template_construct.gif" alt="テンプレート当ての例" />
+		</div>
+		
+	</div>
+</div>
+
+<div title='CreativeCommonsJapan' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

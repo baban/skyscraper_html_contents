@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozillaのテーマの作成法</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>MozillaFirefoxのテーマの作り方</h1>
+
+<div class="section" id="content">
+	
+	<h2 id='h2-1'>XULのタグ一覧</h2>
+	
+	<div class="section">
+		<p>HTMLと同じようにXULにも多くのタグが存在しますが、XULは今でもバージョンアップが行われており、その仕様が安定しておりません。</p>
+		<p>そのため、Geckoエンジンのバージョンアップに合わせて知らない間にXULのタグが増えていたりします</p>
+		<p>頻繁に出会うモノに関しては<a href="http://developer.mozilla.org/ja/docs/XUL_Tutorial" class="external">XULチュートリアル</a>で知ることが出来ますが、その他すべてのタグに関しては、現在日本語資料がありませんので<a href="http://xulplanet.com/">XUL Planet</a>内に、<a href="http://developer.mozilla.org/ja/docs/XUL_Reference" class="external">XULのリファレンス</a>で追ってください</p>
+		<p>まぁ、実際は殆どのタグが名前だけで予想の付くものなんですけどね</p>
+		<br />
+		<p>実際のCSSファイルとXULチュートリアルを読んで予想の付かない所に関してはFirefox(またはMozilla)の内部のXULファイルを実際に読んで、さらに運が悪いとそれが使っているJavaScriptまで潜ることになりますが、やってみた経験としてそこまでやるとなんというか…気力か何かが尽きます</p>
+		<p>全容は、慣れながら把握していくのが良い方法かな…と自分では思っています</p>
+	</div>
+	
+	<h2 id='h2-2'>基礎知識の復習</h2>
+	
+	<div class="section">
+		<p>Mozillaテーマ内部では、CSS2でのプロパティやセレクタがごく当たり前のように使われていますので、今までWebページのデザインのためのCSSを編集してきた人から見ると、知らない書式がかなりたくさん出てくることになると思います(IE6は全くと言っていい程CSS2に対応していないので)</p>
+		<p>また、Moziila等のGecko系ブラウザは-moz-で始まる独自拡張のプロパティやちょっと特殊なセレクタ等もあります。</p>
+		<p>プロパティに関しては<a class="external" href="http://xulplanet.com/references/elemref/ref_StyleProperties.html"　xml:lang="en">XUL Planet:Style Propaties(英語)</a>に、その一覧があります。また、<a class="external" href="http://is.vis.ne.jp/start.xhtml">CSS研究所</a>の<a class="external" href="http://is.vis.ne.jp/notes/index.xhtml">独自拡張 XUL関連CSS</a>も参考になります。</p>
+		
+		<h3>Mozilla独自拡張関連</h3>
+		
+		<div class="section">
+			<p>Mozillaには、WWWCで策定中のプロパティの実験的な先行実装や、XULでの表示のために必要なプロパティとして、規格外のプロパティが多く存在します</p>
+			<p>そのすべては、最初が-moz-で始まるため、一目でそれと分かるのですが。役割に関しては分からないものも多数あるので、良く見かけるものに関しては解説を付けておきます。</p>
+			<dl class="data">
+				<dt><code>-moz-border-radius</code></dt>
+				<dd>
+					<p>少し有名なものですが、<code>-moz-border-radius:○px;</code>と書くことで、縁の部分を丸くします</p>
+					<ul class="data">
+						<li><a class="external" href="http://www5e.biglobe.ne.jp/~access_r/hp/css/css_moz_002.html">ACSESS R : -moz-border-radius</a></li>
+					</ul>
+				</dd>
+				<dt><code>-moz-border-colors</code></dt>
+				<dd>
+<pre>
+<code type="text/css">
+border-width:3px;
+-moz-border-top-colors:色1 色2 色3;
+</code>
+</pre>
+					<p>と書くことで、ボーダーに２色以上の色をグラデーションの様に付けることが出来ます。</p>
+				</dd>
+				<dt>-moz-binding</dt>
+				<dd>
+					<p>XULに対する拡張機能として付いている、<a class="external" href="http://www.mozilla-japan.org/projects/xbl/xbl.html">XBL (Extensible Binding Language：伸長性のある紐付け言語) </a>でタグと表示を結び付けています。</p>
+					<p>XBLについて話し出すと、明らかにテーマ作成についてを脱線するかなりの分量になりますので、対処療法にまりますが、<em>迷わずこのプロパティを消してしまって、スタイルを書き直す</em>のが一番楽な方法です</p>
+				</dd>
+				<dt>-moz-image-region</dt>
+				<dd>
+<pre>
+<code type="text/css">
+-moz-image-region(上 右 下 左);
+</code>
+</pre>
+					<p>と書くことで、画像を切り抜きます</p>
+					<p>メニューに使われている画像はそれなりに適切に設定されているので、画像のサイズ自体を変更したい場合はそんなに多くないと思うのですが、使うときは使いますから</p>
+				</dd>
+				<dt><del><code>-moz-opacity</code></del></dt>
+				<dd>
+					<p>イメージの透明度を指定します、<code>-moz-opacity:0.5;</code>と指定すると半透明になる感じですね</p>
+					<p>現在のバージョン（Firefox1.5以降?）ではCSS3のOpacityプロパティが正常に動くのでこちらに入れ替えられています</p>
+				</dd>
+			</dl>
+		</div>
+		
+		<h3>CSS2関連</h3>
+		
+		<div class="section">
+			<p>CSSのセレクタですがCSS2で規定されているものに関しては知らない人もいると思うので紹介しておきましょう、見かけることになるのは次の二つです</p>
+			
+			<h5><code>treecol[insertafter="true"]</code></h5>
+			
+			<dl>
+				<dt>E[foo="warning"]</dt>
+				<dd>foo属性値が「warning」であるE要素にマッチする。</dd>
+			</dl>
+			
+			<h5><code>treechildren::-moz-tree-row(selected) </code></h5>
+			
+			<div class="section">
+				<p>これは基本的には次のセレクタの応用になりますね</p>
+				<dl>
+					<dt><code>E:lang(c)</code></dt>
+					<dd>内容がcという言語で書かれているE要素にマッチする。（言語情報の指定方法は構造化言語によって異なる。）</dd>
+				</dl>
+				<p>先頭に<code>-moz</code>が付いているように、Mozillaの独自拡張になります、意味は今理解する必要はないので、見つけたときは軽く無視しておきましょう</p>
+			</div>
+			<p>その他に関しては、他のサイトでCSS2を実際に学んで頂くのが良いと思います</p>
+		</div>
+	</div>
+	
+	<h2 id='h2-3'>フォルダ構成から</h2>
+	
+	<div class="section">
+		<p>テーマの各フォルダは大体こんな構成になっています</p>
+		<table class="data">
+			<tr><td>browser</td><td>Firefoxブラウザの細かい設定</td></tr>
+			<tr><td>communicator</td><td>触る必要なし、無視すべし(というかもう最初から無いテーマとか多いかも)</td></tr>
+			<tr><td>global</td><td>大まかな設定は、全てここで済ませてください</td></tr>
+			<tr><td>mozapps</td><td>基本的には、別Windowで表示される拡張機能に当てます、Mozillaの拡張等もココで設定</td></tr>
+			<tr><td>help</td><td>名前の通りヘルプの装飾を行います</td></tr>
+		</table>
+		
+		<p>普通、デザインを弄るときには</p>
+		
+		<ol>
+			<li>globalフォルダ</li>
+			<li>borwzerフォルダ</li>
+			<li>mozappsやhelpフォルダ</li>
+		</ol>
+		
+		<p>という順番に触っていくのが順当ですので、まずはglobalフォルダから順当に弄っていきましょう</p>
+		<br />
+		<p>また、各フォルダ内部には、さらにフォルダがありますが、これらも各々装飾する部分が決まっています。特に必要な箇所はこの辺りでしょうか。</p>
+		
+		<h3>browserフォルダの詳細</h3>
+		
+		<dl class="data">
+			<dt>browser/bookmarks</dt>
+			<dd><span class="command">ブックマーク＞このページをブックマーク</span>、<span class="command">ブックマーク＞ブックマークの管理</span>等ブックマーク関連のデザインが集まっています</dd>
+			<dt>browser/preferences</dt>
+			<dd><span class="command">ツール＞オプション</span>から呼び出すFirefoxの設定画面の装飾を行います</dd>
+		</dl>
+		
+		<h3>mozappフォルダの詳細</h3>
+		
+		<dl class="data">
+			<dt>mozapps/downloads</dt>
+			<dd><span class="command">ツール＞ダウンロード</span>から呼び出せる、ダウンロードマネージャーの装飾を行います</dd>
+			<dt>mozapps/extensions</dt>
+			<dd><span class="command">ツール＞アドオン</span>から呼び出せる、アドオンの装飾を行います</dd>
+		</dl>
+		
+	</div>
+	
+	<h2>Firefox内部のclass、idの特定法</h2>
+	
+	<div class="section">
+		<p>テーマの変更を行っているとき、classやidを特定できない場合が多々あります。</p>
+		<p>CSSを書き換えながらトライ&amp;エラーである程度分かる所もあるのですが、最終的にはFirefox内部を覗かないといけません。</p>
+		<p>まずはMozillaFirefoxの実行ファイルのあるフォルダの下(Windowsなら<span class="file">c:\Program Files\Firefox</span>が一般的)。そこの<span class="file">chrome</span>フォルダを開いてください、その中に</p>
+		<table class="data">
+			<tr><th>browze.jar</th><td>ブラウザのデフォルトのXULファイル</td></tr>
+			<tr><th>toolkit.jar</th><td>デフォルトで搭載されている、拡張機能等のxulファイル</td></tr>
+			<tr><th>classic.jar</th><td>ブラウザのデフォルトのテーマ</td></tr>
+		</table>
+		<p>というファイルがあるので、zip形式で解凍すれば、Fireox内部を構成しているファイルがあります。</p>
+		<p>ここから、XULファイルを解読しながら、classやidを特定して行って下さい。</p>
+		<br />
+		<p>ただし、XULも必ずしも単純に出来ているわけではなく、ときには内部のJavaScriptを読んでidを特定したり、XBL Bindingを読んで、造りを解読したりしながら苦労しながら知る場面が多々あります</p>
+		<p>これは経験論なのですが、悩んでも特定が難しい箇所へのデザインは、<em class="kwd">ダメなときはダメ</em>として諦めてしまうのも一つの手ではないかな…、と思っていたりします。</p>
+		<br />
+		<p>正直な話、firefoxはバージョンが上がる度に、微妙にタグの構成などが変わるので、完全な対応表というのは期待できないというのが現状です(globalフォルダ内部でも毎回と言っていいほど変更がある)</p>
+		<p>というわけで、テーマ内部のcssファイルを開いて探したり、実際のXULファイルを読んだりして変更したい箇所の対応するタグは何なのかを探していく必要があります</p>
+		<p>ですが、バージョンが移っても変更がかからない部分も結構あるので、幾つか人が探したのを表にしてあります</p>
+		<ul class="data">
+			<li><a href="chrome.html">XULタグ対応表（作成中</a></li>
+		</ul>
+		<ul class="data">
+			<li><a href="theme_table.html">2chで拾った対応表</a></li>
+			<li><a href="blackwing/soft/mozilla/index.html">HTML版</a></li>
+		</ul>
+		<p>(この表は黒い羽のshiroさんより頂きました、ありがとうございます)</p>
+		<br />
+		<p>一応、xul解析ではなかなか分からないと言う場合の解決策として、画像から探すという方法がありますね</p>
+		<ol>
+			<li>変更したい場所に使われている画像が何処のフォルダに入っているか探す</li>
+			<li>画像のファイル名を取得してgrep系のツールで検索する</li>
+		</ol>
+		<p>そういう意味ではgrep系ツールは、現段階では必携ツールの一つといえるかもしれません</p>
+	</div>
+</div>
+	
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

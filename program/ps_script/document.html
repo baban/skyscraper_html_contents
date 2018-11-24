@@ -1,0 +1,343 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+		 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+
+	<meta name="author" content="babanba-n" />
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="PhotoShopで使うJavaScript解説" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rev="made" href="mailto:baban@nergal.clubbbq.com" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/document.css" type="text/css" />
+	
+	<title>PhotoShopで使う!JavaScript要約解説</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>PhotoShopで使う!JavaScript要約解説</h1>
+
+<div class="section">
+		<h2>Document</h2>
+		<div class="section">
+		
+			<h3>プロパティ</h3>
+			
+			<dl class="explain">
+				<dt class="define">activeChannels</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">activeHistoryBrushSource</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">activeHistoryState</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">activeLayer</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">artLayer</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">backgroundLayer</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">bitsPerChannel</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">colorProfileType</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">componentChannels</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">fullName</dt>
+				<dd>
+					型:File
+				</dd>
+				<dt class="define">height</dt>
+				<dd>
+					ドキュメントの高さをピクセルで取得します
+				</dd>
+				<dt class="define">histogram</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">historyStates</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">info</dt>
+				<dd>
+					型:DocumentInfo
+					ドキュメントの情報を返します
+				</dd>
+				<dt class="define">layerSets</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">layers</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">managed</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">mode</dt>
+				<dd>
+					型:DocumentMode
+					enum型変数の次の値を取得します
+					<table class="data">
+						<tr><td>1</td><td>グレースケール</td></tr>
+						<tr><td>2</td><td>RGBカラー</td></tr>
+						<tr><td>3</td><td>CYMKカラー</td></tr>
+						<tr><td>4</td><td>Labカラー</td></tr>
+						<tr><td>5</td><td>モノクロ2階調</td></tr>
+						<tr><td>6</td><td>インデックスカラー</td></tr>
+						<tr><td>7</td><td>マルチチャンネル</td></tr>
+						<tr><td>8</td><td>ダブルトーン</td></tr>
+					</table>
+				</dd>
+				<dt class="define">modified</dt>
+				<dd>
+					型:Boolean
+					セーブされてから、文書が変更されたかどうかを取得します
+				</dd>
+				<dt class="define">name</dt>
+				<dd>
+					型:String
+					ファイル名を返します
+				</dd>
+				<dt class="define">parent</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">path</dt>
+				<dd>
+					型:File
+				</dd>
+				<dt class="define">quickMaskMode</dt>
+				<dd>
+					型:boolean
+					trueならクイックマスクモードに、falseなら通常になります
+				</dd>
+				<dt class="define">resolution</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">saved</dt>
+				<dd>
+					型:Boolean
+					ドキュメントの現在の状態が保存されているかどうかを返しますtrueなら、保存されており、falseなら保存されていません
+				</dd>
+				<dt class="define">selection</dt>
+				<dd>
+					型:Selection
+				</dd>
+				<dt class="define">typename</dt>
+				<dd>
+					型:String
+					オブジェクトの型の種類を入れています
+				</dd>
+				<dt class="define">width</dt>
+				<dd>
+					ドキュメントの幅をピクセルで取得します
+				</dd>
+			</dl>
+			
+			<h3>メソッド</h3>
+			
+			<dl class="explain">
+				<dt class="define">changeMode( DisplayMode ChangeMode[, Object] )</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">close()</dt>
+				<dd>
+					指定されたドキュメントを閉じます
+				</dd>
+				<dt class="define">convertProfile()</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">crop( bounds, height, width )</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">exportDocument()</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">flatten()</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">flipCanvas( Direction Direction )</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">importAnnotations( File File )</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">mergeVisibleLayers()</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">paste( Boolean InfoSelection )</dt>
+				<dd>
+					返り値:ArtLayer
+				</dd>
+				<dt class="define">print( [ PrintEncoding PostScriptEncoding, SourceSpaceType SourceSpace, String PrintSpace, Intent Intent, Boolean BlockPointCompensation ] )</dt>
+				<dd>
+					ドキュメントを印刷します。なんか謎のenum型が多いので後回し…
+				</dd>
+				<dt class="define">rasterizeAllLayers()</dt>
+				<dd>
+					ドキュメント内の全てのレイヤーをラスタライズします
+				</dd>
+				<dt class="define">resizeCanvas( [double Width, double Height, AnchorPoint Anchor] )</dt>
+				<dd>
+					<p>中心を基準位置に、キャンバスの幅と高さを変更します</p>
+					<p>第１引数ではキャンバスの幅を指定します</p>
+					<p>第２引数ではキャンバスの高さを指定します</p>
+					<p>第３引数では、次のいずれかで基準位置を変更します</p>
+					<table class="data">
+						<tr><td>AnchorPosition.TOPLEFT</td><td>AnchorPosition.TOPCENTER</td><td>AnchorPosition.TOPRIGHT</td></tr>
+						<tr><td>AnchorPosition.MIDDLELEFT</td><td>AnchorPosition.MIDDLECENTER</td><td>AnchorPosition.MIDDLERIGHT</td></tr>
+						<tr><td>AnchorPosition.BOTTOMLEFT</td><td>AnchorPosition.BOTTOMCENTER</td><td>AnchorPosition.BOTTOMRIGHT</td></tr>
+					</table>
+				</dd>
+				<dt class="define">resizeImage( [double Width, double Height, double Resolution, ResampleMethod ResampleMethod] )</dt>
+				<dd>
+					<p>画像の幅と高さを変更します</p>
+					<p>第１引数には画像の幅をピクセルで指定します</p>
+					<p>第２引数には画像の高さをピクセルで指定します</p>
+					<p>第３引数は、何指定してるんだ？</p>
+					<p>第４引数には次のいずれかで、画像の再サンプルの方法を指定します</p>
+					<table class="data">
+						<tr><td>バイキュービック法</td><td>ResampleMethod.BICUBIC</td></tr>
+						<tr><td>バイリニア法</td><td>ResampleMethod.BILINER</td></tr>
+						<tr><td>ニアレストネイバー法</td><td>ResampleMethod.NEARESTNEIBOR</td></tr>
+						<tr><td>-</td><td>ResampleMethod.NONE</td></tr>
+					</table>
+				</dd>
+				<dt class="define">revealAll()</dt>
+				<dd>
+					「すべてのレイヤーを表示」を実行します
+				</dd>
+				<dt class="define">rotateCanvas( double Angle )</dt>
+				<dd>
+					画像を中心から回転します、ドキュメントの幅と高さは画像を納めるのに必要なだけリサイズされます
+				</dd>
+				<dt class="define">save()</dt>
+				<dd>
+					<p>ドキュメントの「保存」を実行します</p>
+				</dd>
+				<dt class="define">saveAs( File SaveIn, Object Options, Boolean AsCopy, Extension ExtensionType )</dt>
+				<dd>
+					<ul>
+						<li>Extension.LOWERCASE</li>
+						<li>Extension.NONE</li>
+						<li>Extension.UPPERCASE</li>
+					</ul>
+				</dd>
+				<dt class="define">splitCanvas()</dt>
+				<dd>
+					返り値:Object
+				</dd>
+				<dt class="define">toString()</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">trap()</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">trim([ TrimType Type, Boolean Top, Boolean Left, Boolean Bottom, Boolean Right ])</dt>
+				<dd>
+					<p>「トリミング」コマンドを実行します</p>
+					<p>第１引数には次のいずれかを指定してトリミング対象カラーを指定します</p>
+					<table class="data">
+						<tr><td>透明ピクセル</td><td>TrimType.TRANSPARENT</td></tr>
+						<tr><td>左上のピクセルカラー</td><td>TrimType.TOPLEFT</td></tr>
+						<tr><td>右下のピクセルカラー</td><td>TrimType.BOTTOMRIGHT</td></tr>
+					</table>
+					<p>第２から第４引数ではトリミングする部分を指定します</p>
+				</dd>
+			</dl>
+		</div>
+</div>
+
+<div id="CC_Licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img alt="クリエイティブ・コモンズ・ライセンス" src="http://creativecommons.org/images/public/somerights2.gif" />
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+	<!-- /クリエイティブ・コモンズ・ライセンス -->
+	
+	<!--
+	
+	<rdf:RDF
+		xmlns="http://web.resource.org/cc/"
+		xmlns:dc="http://purl.org/dc/elements/1.1/"
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	>
+	<Work rdf:about="">
+		<dc:title>我流:スタイルシートの設計技法</dc:title>
+		<dc:date>２００４</dc:date>
+		<dc:creator>
+			<Agent>
+				<dc:title>ばばんばーん</dc:title>
+			</Agent>
+		</dc:creator>
+		<dc:rights>
+			<Agent>
+				<dc:title>ばばんばーん</dc:title>
+			</Agent>
+		</dc:rights>
+		<dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+		<license rdf:resource="http://creativecommons.org/licenses/sa/2.0/jp/" />
+	</Work>
+	
+	<License rdf:about="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+		<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+		<requires rdf:resource="http://web.resource.org/cc/Notice" />
+		<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+		<requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+	</License>
+	
+	</rdf:RDF>
+	
+	-->
+</div>
+
+
+</body>
+</html>

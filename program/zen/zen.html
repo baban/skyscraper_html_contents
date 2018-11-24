@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8N" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8N" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<link rel="home" href="/index.html" type="text/html" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	
+	<link rel="stylesheet" href="/css/style.css" type="text/css" />
+	
+	<script type="text/javascript" src="yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>  
+	<script type="text/javascript" src="yui/build/logger/logger-min.js"></script>  
+	<script type="text/javascript" src="yui/build/yuitest/yuitest-min.js"></script>  
+	<script type="text/javascript" src="zen.js"></script>  
+	<title></title>
+	<script>
+
+window.onload=function(){
+	// Enterキー
+	document.getElementById('text-form').onkeydown=function( e ){
+		if( 13==e.keyCode )
+			document.getElementById('zen-result').value=document.getElementById('text-form').value.toZen();
+	}
+	// ボタンクリック
+	document.getElementById('text-button').onclick=function(){
+		document.getElementById('zen-result').value=document.getElementById('text-form').value.toZen();
+	}
+}
+	</script>
+	<style>
+	#text-form{
+		width:70%;
+	}
+	#zen-result{
+		width:80%;
+		height:15em;
+	}
+	</style>
+  <script src="/src/ga.js"></script>
+</head>
+<body id="main-page">
+
+<script>
+(function() {
+var oTestCase = new YAHOO.tool.TestCase({  
+	name: "normal syntax1 Test",  
+	testnormal_syntax1: function() {  
+		var Assert = YAHOO.util.Assert;
+		Assert.areEqual('<b></b>', 'b'.toZen() );  
+		Assert.areEqual('<b id="a"></b>', 'b#a'.toZen() );
+		Assert.areEqual('<b id="いえるかな"></b>', 'b#いえるかな'.toZen() );
+		Assert.areEqual('<b class="a"></b>', 'b.a'.toZen() );
+		Assert.areEqual('<b class="a b d"></b>', 'b.a.b.d'.toZen() );
+		Assert.areEqual('<b class="aaa b-d d"></b>', 'b.aaa.b-d.d'.toZen() );
+		Assert.areEqual('<b id="aaa" class="aaa b-d d"></b>', 'b#aaa.aaa.b-d.d'.toZen() );
+		Assert.areEqual('<b class="aaa b-d d" id="aaa"></b>', 'b.aaa.b-d.d#aaa'.toZen() );
+		//Assert.areEqual('<div class="a"></div>', '.a'.toZen() );
+	},
+	name: "normal syntax2 Test",  
+	testnormal_syntax2: function() {  
+		var Assert = YAHOO.util.Assert;
+		Assert.areEqual('<b x="a"></b>', 'b x="a"'.toZen() );
+		Assert.areEqual('<b id="a" x="a"></b>', 'b#a x="a"'.toZen() );
+		Assert.areEqual("<b x='a'></b>", "b x='a'".toZen() );
+		Assert.areEqual("<b x='a' y=\"z\"></b>", "b x='a' y=\"z\"".toZen() );
+		Assert.areEqual( '<b y="zxx"></b>', 'b y="zxx"'.toZen() );
+	},
+	name: "complex syntax1 Test",  
+	testcomplex_syntax1: function() {  
+		var Assert = YAHOO.util.Assert;
+		/*
+		Assert.areEqual('<b><c></c></b>', 'b>c'.toZen() );
+		Assert.areEqual('<b></b><c></c>', 'b+c'.toZen() );
+		Assert.areEqual('<b></b><b></b><b></b>', 'b*3'.toZen() );
+		*/
+	},
+	name: "complex syntax2 Test",  
+	testcomplex_syntax2: function() {  
+		var Assert = YAHOO.util.Assert;
+		/*
+		Assert.areEqual('<b><c><d></d></c></b>', 'b>c>d'.toZen() );
+		Assert.areEqual('<b></b><c></c><d></d>', 'b+c+d'.toZen() );
+		Assert.areEqual('<b></b><b></b><b></b><d></d>', '(b*3)+d'.toZen() );
+		*/
+	}
+});  
+  
+var TestRunner = YAHOO.tool.TestRunner;  
+TestRunner.subscribe(TestRunner.TEST_PASS_EVENT, function(data) {  
+	console.log(data.testName + " passed.");  
+});  
+TestRunner.subscribe(TestRunner.TEST_FAIL_EVENT, function(data) {  
+	console.error(data.testName + " failed with message: " + data.error.getMessage());  
+});  
+TestRunner.add(oTestCase);  
+TestRunner.run();  
+  
+})();
+</script>
+
+<h1 id="site-title"></h1>
+
+<div id="content">
+<input type="text" value="" id="text-form" />
+<input type="button" value="Zen!" id="text-button"  />
+<textarea id="zen-result"></textarea>
+</div><!-- div#content -->
+
+</body>
+</html>
+

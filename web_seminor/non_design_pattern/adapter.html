@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta charset="ja" />
+	<meta name='author' content='babanba-n'/>
+	<meta name='description' content='アスキーアート使用のガイドライン'/>
+	
+	<link href='http://creativecommons.org/licenses/by/2.0/jp/' title='Creative Commons' rel='copyright' id='meta-licence'/>
+	<link href='/licence.rdf' rel='meta' type='text/xml+rdf'/>
+	<link href='/css/seminor.css' rel='stylesheet' type='text/css'/>
+	
+	<title>RUBYでのデザインパターンの実践</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>Rubyでのデザインパターンの実践</h1>
+
+<section id="content">
+	<pre><code>
+class Banner
+  def initialize(name)
+    @name = name
+  end
+  
+  def printWeak
+  end
+  
+  def printStrong
+  end
+  
+  alias :showWithParen :printWeak
+  alias :showWithAster :printStrong
+end
+	</code></pre>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+		 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+
+	<meta name="author" content="babanba-n" />
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="タイル画像をボーダーに指定する" />
+	
+
+
+	
+	<title>タイル画像をボーダーに指定する</title>
+	<style type="text/css">
+		body {
+			background-color:#fff;
+		}
+		
+		div.outbox {
+			background-color:#a88;
+			border-style:solid;
+			border-width:14px;
+			border-color:#a88;
+			
+			width:60%;
+			margin:auto;
+			text-align:center;
+			position:relative;
+			padding:1em;
+		}
+		
+		div.outbox p {
+			margin:0;
+		}
+		table.sample,
+		table.sample td {
+			margin:auto;
+			padding:0;
+			border-style:solid;
+			border-color:#744;
+		}
+		
+		img.decoration {
+			position:absolute;
+			margin:0;
+			padding:0;
+		}
+		img#fuki1 {
+			top:-14px;
+			left:-14px;
+		}
+		img#fuki2 {
+			top:-14px;
+			right:-14px;
+		
+		}
+		img#fuki3 {
+			bottom:-14px;
+			left:-14px;
+		}
+		img#fuki4 {
+			bottom:-14px;
+			right:-14px;
+		}
+		img#fuki5 {
+			bottom:0px;
+			right:-34px;
+		}
+		
+	</style>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<div class="outbox">
+	<p>今回は吹き出しの再現、14pxのボーダーを作ってその上に画像をかぶせる事で再現しています</p>
+	<p>作った画像はこの５枚</p>
+	<table class="sample">
+		<tr>
+			<td><img src="border_tiling_img/fuki1.gif" title="" /></td>
+			<td><img src="border_tiling_img/fuki2.gif" title="" /></td>
+			<td><img src="border_tiling_img/fuki3.gif" title="" /></td>
+			<td><img src="border_tiling_img/fuki4.gif" title="" /></td>
+			<td><img src="border_tiling_img/fuki5.gif" title="" /></td>
+		</tr>
+	</table>
+	<p>あとはpositionプロパティを上手いこと使って位置を指定しています</p>
+	<p>あとは適当に吹き出しの位置に合うようにキャラでも置いてください</p>
+	<p><code>-moz-border-radius</code>が独自拡張なので使いたくない人間さん等がこの方法の需要かもしれません</p>
+	
+	<img class="decoration" id="fuki1" src="border_tiling_img/fuki1.gif" title="" />
+	<img class="decoration" id="fuki2" src="border_tiling_img/fuki2.gif" title="" />
+	<img class="decoration" id="fuki3" src="border_tiling_img/fuki3.gif" title="" />
+	<img class="decoration" id="fuki4" src="border_tiling_img/fuki4.gif" title="" />
+	<img class="decoration" id="fuki5" src="border_tiling_img/fuki5.gif" title="" />
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+@charset "Shift_JIS";
+
+@import url("../base_style.css");
+@import url("pattern/banner_title.css");
+
+body {
+	background-image:url("../css/img/link_back.gif");
+}
+
+h2 {
+	padding-top:0.5em;
+	border-bottom-style:double;
+	border-width:3px;
+}
+
+h2:before {
+	content:"Бе";
+}
+
+dt > a {
+	font-weight:600;
+	text-decoration:none;
+	line-height:1.0;
+}
+
+span.dead_reason {
+	font:700 1.0em monospace;
+}
+
+span.dead_reason:before { content:"("; }
+span.dead_reason:after { content:")"; }
+

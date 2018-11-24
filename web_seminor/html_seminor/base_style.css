@@ -1,0 +1,23 @@
+@charset "Shift_JIS";
+
+@import url("../web_seminor.css");
+
+em.pick-up {
+	font-weight:normal;
+	border-bottom:solid 1px #f00;
+}
+
+div.sample-view {
+	border-style:solid;
+	background-color:#f4fff4;
+	padding:0.4em;
+	margin:0.4em;
+}
+
+div.tips {
+	border-style:solid;
+	background-color:#f4fff4;
+	padding:0.4em;
+	margin:0.4em;
+}
+

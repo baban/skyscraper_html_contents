@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	<meta http-equiv="Content-Language" content="ja" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link href='' title='' rel='copyright' id='meta-licence' />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	
+	<title>色取得ダイアログを出す</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">色取得ダイアログを出す</h1>
+
+<div id="content" class="section">
+	<p>css設定なんかを行っているとき、色選択ダイアログとかで色を選択できないかなぁとか思ったことありませんか？</p>
+	<p><a href="http://members.at.ifoseek.co.jp/archangel_seraphy/">SeraphyWare</a>で配布している<a href="http://www.vector.co.jp/soft/win95/prog/se177026.html">SeraphyScriptTools</a>を使えばそれも可能だったりします</p>
+<pre><code type="text/javascript">
+<span class='i-comment'>// %desc 色選択ダイアログを出して、指定色を抜き出します</span>
+<span class='i-comment'>// %menu 色取得ダイアログ</span>
+
+<span class='b-comment'>/** 整数値を16進数表記の文字列にして返します */</span>
+<dfn>function</dfn> hexstr<em>(</em> _num <em>)</em><em>{</em>
+  <dfn>var</dfn> hex <em>=</em> [ <span class='literal'>"0"</span>,<span class='literal'>"1"</span>,<span class='literal'>"2"</span>,<span class='literal'>"3"</span>,<span class='literal'>"4"</span>,<span class='literal'>"5"</span>,<span class='literal'>"6"</span>,<span class='literal'>"7"</span>,<span class='literal'>"8"</span>,<span class='literal'>"9"</span>,<span class='literal'>"a"</span>,<span class='literal'>"b"</span>,<span class='literal'>"c"</span>,<span class='literal'>"d"</span>,<span class='literal'>"e"</span>,<span class='literal'>"f"</span> ], hstr<em>=</em><span class='literal'>""</span>;
+  <dfn>for</dfn><em>(</em> <dfn>var</dfn> i<em>=</em>1; i&lt;<em>=</em>8; i++ <em>)</em><em>{</em>
+    hstr <em>=</em> hex[_num & 0xf] + hstr;  <span class='i-comment'>// 後ろ4ビットのデータを取りだして頭に継ぎ足し</span>
+    _num &gt;&gt;<em>=</em> 4;  <span class='i-comment'>// 取り出し終わったデータを、ビットシフト使ってダルマ落とし的に消去</span>
+  <em>}</em>
+  <dfn>return</dfn> hstr;
+<em>}</em>
+
+<span class='b-comment'>/** 色のビット配列がBGRだったのでRGBに変換(原因はBMPの仕様がBGRで決まっているから…みたい) */</span>
+<dfn>function</dfn> ABGRtoARGB<em>(</em> _num <em>)</em><em>{</em>
+  <dfn>var</dfn> tnum <em>=</em> 0;
+  tnum <em>|=</em> <em>(</em>_num & 0xff<em>)</em>&lt;&lt;16;  <span class='i-comment'>// 赤色変換</span>
+  tnum <em>|=</em> <em>(</em>_num & 0xff00<em>)</em>; <span class='i-comment'>// 緑変換</span>
+  tnum <em>|=</em> <em>(</em>_num & 0xff0000<em>)</em>&gt;&gt;16;  <span class='i-comment'>//青色変換</span>
+  tnum <em>|=</em> <em>(</em>_num & 0xff000000<em>)</em>;  <span class='i-comment'>//透明度追加</span>
+  <dfn>return</dfn> tnum;
+<em>}</em>
+
+<dfn>var</dfn> ctx <em>=</em> App.Caret.BeginUpdate<em>(</em><em>)</em>;
+<dfn>try</dfn> <em>{</em>
+  App.Caret.BeginOperateGroup<em>(</em><span class='literal'>'マクロ:色取得'</span><em>)</em>;
+  <dfn>try</dfn> <em>{</em>
+    <dfn>var</dfn> color <em>=</em> <dfn>new</dfn> ActiveXObject<em>(</em><span class='literal'>"SeraphyScriptTools.CommDialog"</span> <em>)</em>.ColorDialog<em>(</em><em>)</em>;
+    color <em>=</em> ABGRtoARGB<em>(</em> color <em>)</em>;  <span class='i-comment'>// 色の配置がABGR配置でおかしかったのでちょっと位置変換</span>
+    color <em>=</em> hexstr<em>(</em> color <em>)</em>.substring<em>(</em> 2, 8 <em>)</em>;
+    App.Caret.Send<em>(</em> color <em>)</em>;
+  <em>}</em>  <dfn>finally</dfn> <em>{</em> App.Caret.EndOperateGroup<em>(</em><em>)</em>; <em>}</em>
+<em>}</em> <dfn>finally</dfn> <em>{</em>  App.Caret.EndUpdate<em>(</em>ctx<em>)</em>; <em>}</em>
+</code></pre>
+	<p>このツール、他にもファイル選択ダイアログを出したり、自分でウィンドウ自作できたりと、GUI関連のツライことは大体全部できたりします</p>
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href='http://www.gnu.org/copyleft/fdl.html' rel='license'>GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

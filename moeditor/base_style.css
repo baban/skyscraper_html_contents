@@ -1,0 +1,5 @@
+@charset "Shift_JIS";
+
+/* 基本設定の読み込み、十分な知識のないうちにこれらを弄らない事を推奨 */
+@import url("../base_style.css");
+@import url("../css/seminor.css");

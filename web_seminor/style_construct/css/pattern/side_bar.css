@@ -1,0 +1,29 @@
+@charset "Shift_JIS";
+
+div.link_bar {
+	position:absolute;
+	width:11em;
+	text-align:center;
+	padding:0;
+}
+
+div.link_bar ul{
+	border-style:none;
+	text-decoration:none;
+	margin:0.2em;
+	padding:0;
+}
+
+div.link_bar a {
+	text-decoration:none;
+}
+
+div.link_bar h2{
+	font-size:1.1em;
+	font-weight:bold;
+	text-align:left;
+	border-style:none none solid;
+	border-width:0.15em;
+	margin:0.8em 0.2em 0;
+	padding:0.1em;
+}

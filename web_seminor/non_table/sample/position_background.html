@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+		 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+
+	<meta name="author" content="babanba-n" />
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="position背景の作成" />
+	
+
+
+	
+	<title>position背景のサンプル</title>
+	<style type="text/css">
+		div.blog{
+			width:30em;
+			background-color:#7aa788;
+			border:solid 2px #8283a0;
+			position:relative;
+			padding:0.2em;
+			color:#fff;
+		}
+		div.blog{
+			position:relative;
+		}
+		div.blog *{
+			position:relative;
+			z-index:2;
+		}
+		div.blog h2.day{
+			position:absolute;
+			top:0.3em;
+			right:0.2em;
+			z-index:1;
+			font-size:2.5em;
+			margin:0;
+		}
+		h2.day a{
+			color:#b9d8b5;
+		}
+		h3 {
+			border:solid 2px #8283a0;
+			border-style:none none solid solid;
+			padding:0.2em 0.4em;
+			margin:0 0.4em;
+		}
+	</style>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<div class="blogRoot">
+	<div class="blog">
+		<h2 class="day"><a href="../non_table05.html">2003/12/28</a></h2>
+		<h3>positonを利用した、文字の背景</h3>
+		<div class="blogBody">
+			<p>背景として、薄い色で日付が表示されているのが分かるでしょうか？</p>
+			<p>実はこれ、画像ではなくテキストデータなんですよね、リンクなのでクリックもできます(上の階層に戻りますが)これだけpositon:absolute;を利用して絶対配置しています</p>
+			<p>本当は、第４回の時に紹介しても良かったのですが、ちょっと特殊な感じがしましたので、サンプルとしてここで紹介させて頂きます</p>
+			<p>ポイントはz-indexの指定法ですね</p>
+			<p>div.blog *の所ですが、あらぬ被害が及ばないようにするためと、処理速度の高速化のために、Mozilla、Operaではdiv.blog &gt; *として、直接の子要素にのみ動くようにすることを、おくことをお勧めいたします</p>
+			<p>あとは、仕様とか実験中ですのでそのうちナイスなアイデアが浮かべば紹介いたします</p>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

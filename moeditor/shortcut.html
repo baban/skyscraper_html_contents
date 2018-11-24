@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTFR-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='ショートカットの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>ショートカット一覧</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">ショートカット一覧</h1>
+
+<div id="content" class="section">
+	<p>ショートカット追加するときに、既存の機能とキーが衝突しないようにショートカットの一覧を調べてみました</p>
+	
+	<table class="data">
+		<tr><td>Ctrl+A</td><td>テキストの全選択</td></tr>
+		<tr><td>Ctrl+C</td><td>選択範囲のコピー</td></tr>
+		<tr><td>Ctrl+D</td><td>選択範囲テキストを、IMEで再変換</td></tr>
+		<tr><td>Ctrl+E</td><td>1行入力パネルを、スクリプトの補完にモードチェンジします</td></tr>
+		<tr><td>Ctrl+F</td><td>テキストの検索</td></tr>
+		<tr><td>Ctrl+F(２回)</td><td>詳細検索ダイアログの呼び出し</td></tr>
+		<tr><td>Ctrl+G</td><td>指定した行にジャンプ</td></tr>
+		<tr><td>Ctrl+H</td><td>置換</td></tr>
+		<tr><td>Ctrl+H(２回)</td><td>詳細置換ダイアログの呼び出し</td></tr>
+		<tr><td>Ctrl+N</td><td>ファイルの新規作成</td></tr>
+		<tr><td>Ctrl+O</td><td>ファイルを開く</td></tr>
+		<tr><td>Ctrl+P</td><td>テキストの印刷</td></tr>
+		<tr><td>Ctrl+Q</td><td>(現在特に機能はない、将来のために予約?)</td></tr>
+		<tr><td>Ctrl+S</td><td>ファイルの保存</td></tr>
+		<tr><td>Ctrl+U</td><td>マクロのリストを呼び出して使う</td></tr>
+		<tr><td>Ctrl+V</td><td>クリップボードから貼り付け</td></tr>
+		<tr><td>Ctrl+Shift+V</td><td>形式を選択して張り付け</td></tr>
+		<tr><td>Ctrl+W</td><td>ファイルを閉じる</td></tr>
+		<tr><td>Ctrl+X</td><td>テキストの切り取り</td></tr>
+		<tr><td>Ctrl+Y</td><td>リドゥ</td></tr>
+		<tr><td>Ctrl+Z</td><td>アンドゥ</td></tr>
+		<tr><td>Ctrl+Shift+Z</td><td>一括アンドゥ</td></tr>
+		<tr><td>Ctrl+Shift+;</td><td>キーボードマクロの記録開始</td></tr>
+	</table>
+	
+	<table class="data">
+		<tr><td>Shift+F1</td><td>環境設定の呼び出し</td></tr>
+		<tr><td>F2</td><td>編集するバッファの選択</td></tr>
+		<tr><td>Shift+F2</td><td>マクロの管理</td></tr>
+		<tr><td>F3</td><td>文字列の検索(後の文字列を検索)</td></tr>
+		<tr><td>Shift+F3</td><td>検索(前の文字列を検索)</td></tr>
+		<tr><td>F4</td><td>置換(後の文字列を置換)</td></tr>
+		<tr><td>Shift+F4</td><td>置換(前の文字列を置換)</td></tr>
+		<tr><td>F5</td><td>現在の日時を入力(YYYY/MM/DD tt:mm:ss 形式)</td></tr>
+		<tr><td>F6</td><td>編集画面を移動(+)</td></tr>
+		<tr><td>Shift+F6</td><td>編集画面の移動(-)</td></tr>
+		<tr><td>F7</td><td>行選択モードのON/OFF</td></tr>
+		<tr><td>F8</td><td>矩形選択モードへのON/OFF</td></tr>
+		<tr><td>F12</td><td>キャレット行の内容をコピー</td></tr>
+		<tr><td>Ctrl+Shift+Home</td><td>キャレットのある位置より前のテキストを全選択</td></tr>
+		<tr><td>Ctrl+Shift+End</td><td>キャレットのある位置より後のテキストを全選択</td></tr>
+	</table>
+	
+	<table class="data">
+		<tr><td>Ctrl+1～9</td><td>キャレットのある位置にマークを行う</td></tr>
+		<tr><td>ESC(２回)</td><td>メニュー(ファイル)の呼び出し</td></tr>
+	</table>
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href='http://www.gnu.org/copyleft/fdl.html' rel='license'>GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

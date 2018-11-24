@@ -1,0 +1,88 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<meta name="author" content="babanba-n" />
+	<meta name="Targeted Geographic Area" content="Japan" /> 
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="AfterEffectsのフィルタ製作法" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" >
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	
+	<title>Skyscaper;AfterEffectsのフィルタ製作法</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>プロパティの指定</h1>
+
+<div class="section">
+	
+	<h2>Abstruct</h2>
+	
+	<div class="section">
+		<p>AfterEffectsの場合、フィルタに対するパラメーターと、その指定の方法は基本的に統一されており、そのためAfterEffects側で十分なライブラリの整理がされています。</p>
+		<p>詳しい説明は、PDFで書かれたhelp(英語)の３章にもあるのですが、実際にコードを読んだ方が分かりやすいです。</p>
+	</div>
+	
+	<div class="section">
+	<p>パラメーターの指定を出来る様にしたい場合は、SDK_Noiseサンプル内部では、ParamsSetup関数内部を覗いて貰うのが一番です。</p>
+<pre><code>
+PF_ADD_SLIDER(	"Noise variation", 
+				FILTER_NOISE_MIN, 
+				FILTER_NOISE_MAX, 
+				SLIDER_MIN, 
+				SLIDER_MAX, 
+				FILTER_NOISE_DFLT,
+				SLIDER_DISK_ID);
+</code></pre>
+		<p>この様に、PF_ADD_SLIDERマクロを利用して、数値指定のスライダーを作成します。</p>
+		<p>あと忘れては行けないのは。</p>
+<pre><code>
+out_data->num_params = FILTER_NUM_PARAMS;
+</code></pre>
+		<p>の所の数値を書き換えておくところ(FILTER_NUM_PARAMSは、2が定義されています。)何もスライダを作成しない場合は「1」、一つスライダがある場合は「2」、２つある場合は「3」と「スライダの数+1」を指定します。</p>
+		<p>整数を指定したい場合は、PF_ADD_SLIDERマクロを利用しますが、他の機能を利用したい場合も様々なマクロが定義されています。</p>
+		<table class="data">
+			<tr><td>PF_ADD_SLIDER</td><td>整数を指定するスライダを作成</td></tr>
+			<tr><td>PF_ADD_FLOAT_SLIDER</td><td>小数を指定するスライダを作成</td></tr>
+			<tr><td>PF_ADD_COLOR</td><td>色を指定するボックスを指定</td></tr>
+			<tr><td>PF_ADD_ANGLE</td><td>角度を指定するスライダを指定</td></tr>
+			<tr><td>PF_ADD_POPUP</td><td>選択メニューを作成</td></tr>
+			<tr><td>PF_ADD_POINT</td><td>座標を指定する事が出来ます</td></tr>
+		</table>
+		<p>定義を覗いて利用してみて下さい。</p>
+		
+		PF_ADD_SLIDER( "移動量", 0,  100,  0,  100,  10, SLIDER_DISK_ID );
+		PF_ADD_FLOAT_SLIDER("移動量縦横比", (float)0, (float)1000, (float)0, (float)1000, 0, 100, 1, 1, 0, SLIDER_DISK_ID2);
+		PF_ADD_POPUP(NAME, CHOICES, DFLT, STRING, ID);
+		PF_ADD_POPUP("移動種類", 0, 0, "完全ランダム|移動ランダム", SLIDER_POPUP3);
+	</div>
+</div>
+
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+	<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

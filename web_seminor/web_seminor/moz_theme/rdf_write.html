@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozillaのテーマの作成法:RDFファイルの書き換え</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>RDFファイルの書き換え</h1>
+
+<div class="section" id="content">
+	
+	<h2 id='h2-1'>概要</h2>
+	
+	<div class="section">
+		<p>Firefoxのテーマのinstall.rdfとcontent.rdfは、作成したテーマのインストールに関する一連の設定を記述しています。</p>
+		<p>これらは作成したテーマを、Firefox内部で扱うために必要な事ですが、2chのスレッドなどで話を聞く限り、<em>案外難しくってハマり込んで頓挫しがちです</em></p>
+		<p>なのでこの章で行う作業は、<em>一旦飛ばして公開する直前に行ってしまうのも一つの手</em>ですが、逆に公開をするまでには、キチんと設定を変更しておかないと、他のテーマと競合を起こして他人に迷惑を掛けることになる事を覚えておきましょう</p>
+	</div>
+	
+	<h2 id='h2-2'>content.rdfの書き換え</h2>
+	
+	<div class="section">
+		<p>content.rdfはRDFというXML形式のファイルです。はっきり言って、Mozillaのテーマを作成する上では特に詳しく知る必要は無いと思いますので、何処を書き換えればいいのかだけここで理解して下さい</p>
+		<p>一応、今回は例として、fooという名前のテーマを作成する場合を考えてみましょう、あなたが書き換え無ければいけないところを色違いで表示しておきましたのでサッと見てみてください</p>
+<pre>
+<code type='text/css'>
+&lt;?xml version="1.0"?&gt;
+&lt;RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:em="http://www.mozilla.org/2004/em-rdf#"&gt;
+
+  &lt;Description about="urn:mozilla:install-manifest"&gt;
+    &lt;em:name&gt;<span class="refact">テーマの表示名(今回は"Foo Theme"とします)</span>&lt;/em:name&gt;
+    &lt;em:id&gt;自分のテーマのGUID、なんかのツールで生成してください&lt;/em:id&gt;
+    &lt;em:internalName&gt;テーマのファイル名&lt;/em:internalName&gt;
+    &lt;em:version&gt;<span class="refact">テーマのバージョン(こっちの都合でスイマセンが、1.0以上推奨です)</span>&lt;/em:version&gt;
+    &lt;em:description&gt;<span class="refact">テーマの説明文</span>&lt;/em:description&gt;
+    &lt;em:creator&gt;<span class="refact">作者名(今回はno-nameとします)</span>&lt;/em:creator&gt;
+    &lt;em:homepageURL&gt;<span class="refact">テーマを公開しているページへのURL</span>&lt;/em:homepageURL&gt;
+
+    &lt;em:targetApplication&gt;
+      &lt;Description&gt;
+        &lt;!-- MozillaFirefoxのGUID、弄ってはいけません --&gt;
+        &lt;em:id&gt;{ec8030f7-c20a-464f-9b0e-13a3a9e97384}&lt;/em:id&gt;
+        &lt;em:minVersion&gt;2.0&lt;/em:minVersion&gt;
+        &lt;em:maxVersion&gt;2.5&lt;/em:maxVersion&gt;
+      &lt;/Description&gt;
+    &lt;/em:targetApplication&gt;
+  &lt;/Description&gt;    
+&lt;/RDF&gt;
+</code>
+</pre>
+		<p>まずは簡単なところから書き換えていくのが定石なので上に上げたところを書き換えて、再びzip圧縮して拡張子をjarに変換、そしてインストールを行ってください</p>
+		<p>それで、テーマの名前や作者名を変更出来ていたなら成功です</p>
+	</div>
+	
+	<h2 id='h2-3'>GUIDって何？</h2>
+	
+	<div class="section">
+		<p>Global Unique IDの略で、元々はMicrosoftがWindowsNT系のOSで使っているCOMという技術で使っている物です</p>
+		<p>簡単に説明すると、プログラムやDLLをOSが管理するために、ダブりの出ないID(というかIDにダブりなんで出ないよね)を振ってしまうための技術なんですが、今回はその応用、Mozillaのテーマも、そのIDを振って管理しています</p>
+		<p>IDの生成方法は基本的にはVisualStudioとかを使う事になるのですが、他にもフリーでツールは結構そろっているので、検索エンジン等を辿って見て下さい(Windowsなら<a href="http://tkm.s31.xrea.com/xul/guidgen.shtml">GUIDGen</a>等)</p>
+	</div>
+	
+	<h2 id='h2-4'>RDFって何？</h2>
+	
+	<div class="section">
+		<p>人間よりも、コンピューターが主に読み込むような情報を扱うためのXMLフォーマットす。Webサイトの更新情報を書き込むRSSなんかが、これを拡張して作られた物の代表としてあげられますね。</p>
+		<p>ただ、結論から言うと、テーマの変更に必要な箇所以外は全く知る必要がないので、調べて詳しくなっても意味がありません。一応、<a href="http://www.kanzaki.com/docs/sw/rdf-model.html" title="WEB KANZAKI:RDF -- リソース表現のフレームワーク">日本語解説サイト</a>もあるのですが、無視しておいて結構です</p>
+	</div>
+	
+	<h2 id='h2-5'>さらにcontent.rdfの書き換え</h2>
+	
+	<div class="section">
+		<p>ここまでで、作者名等の書き換えを行ってきましたが、他に書き換え無ければいけないところの一覧を少し解説</p>
+		<table class="data">
+			<tr><th>em:id</th><td>テーマに与えたGlobal Unique IDを入れます、なんらかの生成ツールで取得してください</td></tr>
+			<tr><th>em:internalName</th><td>テーマの内部名（詳しくは後述しますのでここはパス）</td></tr>
+			<tr><th>em:minVersion</th><td>このテーマの動く一番低いバージョンを表します</td></tr>
+			<tr><th>em:maxVersion</th><td>このテーマの動く一番高いバージョンを表します</td></tr>
+		</table>
+		<p>ここらへんは、間違うとインストールできなくなることが多々あるので注意、慣れるまでは一カ所変更しては動作を確認した方が良いですね(<code>em:inertnalName</code>は別、次に解説するinstall.rdfと一緒に書き換えてください)</p>
+		<p>ここらへんも書き換えてしまうと、結果は次のようになりますね</p>
+<pre>
+<code type='text/css'>
+&lt;?xml version="1.0"?&gt;
+&lt;RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:em="http://www.mozilla.org/2004/em-rdf#"&gt;
+
+  &lt;Description about="urn:mozilla:install-manifest"&gt;
+    &lt;em:name&gt;<span class="refact">Foo Theme</span>&lt;/em:name&gt;
+    &lt;em:id&gt;自分のテーマのGUID、なんかのツールで生成してください&lt;/em:id&gt;
+    
+    &lt;em:internalName&gt;テーマのファイル名&lt;/em:internalName&gt;
+    &lt;em:version&gt;<span class="refact">1.0</span>&lt;/em:version&gt;
+    &lt;em:description&gt;<span class="refact">テーマ作成解説用に、sample themeを書き換えています</span>&lt;/em:description&gt;
+    &lt;em:creator&gt;<span class="refact">no-name</span>&lt;/em:creator&gt;
+    &lt;em:homepageURL&gt;<span class="refact">http://(以下略</span>&lt;/em:homepageURL&gt;
+
+    &lt;em:targetApplication&gt;
+      &lt;Description&gt;
+        &lt;em:id&gt;{ec8030f7-c20a-464f-9b0e-13a3a9e97384}&lt;/em:id&gt;
+        &lt;em:minVersion&gt;<span class="refact">2.0</span>&lt;/em:minVersion&gt;
+        &lt;em:maxVersion&gt;<span class="refact">2.5</span>&lt;/em:maxVersion&gt;
+      &lt;/Description&gt;
+    &lt;/em:targetApplication&gt;
+  &lt;/Description&gt;    
+&lt;/RDF&gt;
+</code>
+</pre>
+	</div>
+	
+	<h2 id='h2-6'>内部を変更</h2>
+	<div class="section">
+		<p>最後にはハマりがちなのが、Firefox内部でのテーマの内部名</p>
+		<p>これが変更を間違うと困るのに一番間違いやすい箇所なので、慎重に作業をしていきましょう</p>
+		<p>まずは、テーマの内部名を変更します。変更箇所は<code>em:inertnalName</code>タグ内部のみです</p>
+<pre>
+<code type='text/css'>
+&lt;?xml version="1.0"?&gt;
+&lt;RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:em="http://www.mozilla.org/2004/em-rdf#"&gt;
+
+  &lt;Description about="urn:mozilla:install-manifest"&gt;
+    &lt;em:name&gt;Foo Theme&lt;/em:name&gt;
+    &lt;em:id&gt;自分のテーマのGUID、なんかのツールで生成してください&lt;/em:id&gt;
+    
+    &lt;em:internalName&gt;<span class="refact">foo</span>&lt;/em:internalName&gt;
+    &lt;em:version&gt;1.0&lt;/em:version&gt;
+    &lt;em:description&gt;テーマ作成解説用に、sample themeを書き換えています&lt;/em:description&gt;
+    &lt;em:creator&gt;no-name&lt;/em:creator&gt;
+    &lt;em:homepageURL&gt;http://(以下略&lt;/em:homepageURL&gt;
+
+    &lt;em:targetApplication&gt;
+      &lt;Description&gt;
+        &lt;em:id&gt;{ec8030f7-c20a-464f-9b0e-13a3a9e97384}&lt;/em:id&gt;
+        &lt;em:minVersion&gt;2.0&lt;/em:minVersion&gt;
+        &lt;em:maxVersion&gt;2.5&lt;/em:maxVersion&gt;
+      &lt;/Description&gt;
+    &lt;/em:targetApplication&gt;
+  &lt;/Description&gt;    
+&lt;/RDF&gt;
+</code>
+</pre>
+		<p>そしてテーマの内部名に合わせてcontent.rdfの該当箇所を変更していきます</p>
+<pre>
+<code type='text/css'>
+&lt;?xml version="1.0"?&gt;
+
+&lt;RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:chrome="http://www.mozilla.org/rdf/chrome#"&gt;
+
+&lt;RDF:Seq about="urn:mozilla:skin:root"&gt;
+  &lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>"/&gt;
+&lt;/RDF:Seq&gt;
+
+&lt;RDF:Description about="urn:mozilla:skin:<span class="refact">foo</span>"
+    chrome:name="<span class="refact">foo</span>"&gt;
+  &lt;chrome:packages&gt;
+    &lt;RDF:Seq about="urn:mozilla:skin:<span class="refact">foo</span>:packages"&gt;
+      &lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>:communicator"/&gt;
+      &lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>:global"/&gt;
+      &lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>:browser"/&gt;
+      &lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>:mozapps"/&gt;
+    &lt;/RDF:Seq&gt;
+  &lt;/chrome:packages&gt;
+&lt;/RDF:Description&gt;
+
+  &lt;RDF:Description about="urn:mozilla:skin:<span class="refact">foo</span>:communicator" chrome:skinVersion="1.5" /&gt;
+  &lt;RDF:Description about="urn:mozilla:skin:<span class="refact">foo</span>:global" chrome:skinVersion="1.5" /&gt;
+  &lt;RDF:Description about="urn:mozilla:skin:<span class="refact">foo</span>:browser" chrome:skinVersion="1.5" /&gt;
+  &lt;RDF:Description about="urn:mozilla:skin:<span class="refact">foo</span>:mozapps" chrome:skinVersion="1.5" /&gt;
+&lt;/RDF:RDF&gt;
+</code>
+</pre>
+		<p>ここまでの部分を書き換えたら、圧縮し直してから、インストールしてみてください。これでfooというテーマとして、ベースにしたテーマとMozilla内で別扱いになります。</p>
+		<p>あ、ちなみに、文字コード宣言を省いているので、XMLの仕様上、文字の保存形式はUTF-8か、UTF-16必須です、RDFの場合はUTF-8が推奨されているので、こちらで保存しておくことをお勧めいたします</p>
+		<p>(というか文字コードを変えてcharsetをXML宣言に加えても動かなくなるだけなんだよね…)</p>
+	</div>
+</div>
+	
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

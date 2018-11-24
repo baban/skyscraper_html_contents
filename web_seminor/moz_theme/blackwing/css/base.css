@@ -1,0 +1,109 @@
+#box		{
+			position: absolute;
+				top: 8em; left: 10em;
+			border-style: ridge none none ridge;
+			border-width: 1px;
+			border-color: #000000;
+			padding: 1em 0.5em 0.5em 1em;
+			}
+
+#cg			{
+			padding: 1em 0.5em 0.5em 1em;
+			}
+
+/* 見出し */
+.item H2,
+.item H3,
+.item H4,
+.item H5	{
+			margin: 0.5em 0.5em 0.5em 0em;
+			font-weight: bold;
+			font-size: 100%;
+			}
+
+.item H2	{
+			font-style: normal;
+			border-top: 1px solid;
+			border-right: 1px solid;
+			border-bottom: 1px solid;
+			border-left: 15px solid;
+			padding-left: 1em;
+			}
+
+.item H3	{
+			border: 1px solid;
+			padding-left: 0.5em;
+			padding-top: 0.2em;
+			}
+
+.item H4	{
+			text-decoration: underline;
+			}
+
+
+/* リンク */
+.item A:LINK, 
+.item A:VISITED {
+			color: #900000;
+			text-decoration: none;
+			}
+
+/* 各マージン */
+.header		{
+			margin-left: 1em;
+			}
+
+.item P		{
+			margin-left: 1.5em;
+			}
+
+.item DL,
+.item TABLE {
+			margin-left: 2em;
+			}
+
+.item UL,
+.item OL	{
+			margin-left: 3em;
+			}
+
+.item UL UL,
+.item OL OL,
+.item UL OL,
+.item OL UL {
+			margin-left: 2em;
+			}
+
+
+.item BLOCKQUOTE {
+			background-color: #f4f4fd;
+			margin: 0.5em 1em 1em 5em;
+			border: 2px dotted #000000;
+			padding: 0.5em 1em;
+			}
+
+.item P Q		{
+			color: #880088;
+			}
+
+.item DD	{
+			margin-left: 2em;
+			}
+
+.item TD	{
+			padding: 0 0.5em;
+			}
+
+.item TD P,
+.item LI P,
+.item DD P {
+			margin-left: 0.5em;
+			}
+
+.item DD DL {
+			margin-left: 1em;
+			}
+
+.item .command {
+			margin-left: 6em;
+			}

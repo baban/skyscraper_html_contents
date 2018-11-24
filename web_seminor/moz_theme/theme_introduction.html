@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozillaのテーマの作成法</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>MozillaFirefoxのテーマの作り方</h1>
+
+<div class="section" id="content">
+	<h2 id='h2-1'>まずはファイルを覗いてみよう</h2>
+	
+	<div class="section">
+		<p>まずは、サンプルとして<a href="/creation/theme/suzuri.html">サイトのテーマ</a>を転がしてありますのでダウンロードしてください。</p>
+		<p>その後、ファイルの拡張子をxpiからzipに変更して、解凍すると</p>
+		<ul class='data'>
+			<p>chrome/suzuri.jar</p>
+			<p>chrome.manifest</p>
+			<p>icon.png</p>
+			<p>install.rdf</p>
+			<p>preview.png</p>
+		</ul>
+		<p>というファイルが出てきます</p>
+		<p>この中の拡張子がjarのファイルがテーマの実体です。これも実は正体はzipファイルだったりするので、拡張子をjarからzipに変更して解凍します</p>
+	</div>
+	
+	<h2 id='h2-2'>そもそもJARファイルって何？</h2>
+	
+	<div class="section">
+		<p>JAVA Archiveの略でJAVAプログラムをWEB上で配布するときにzip圧縮してまとめることで、回線の無駄を無くすための形式です。</p>
+		<p>同じzip圧縮なので、便利だと思って流用したのでしょう、おそらく…</p>
+	</div>
+
+	<h2>そもそもXPIファイルって何？</h2>
+	<div class="section">
+		<p>Cross-Platform Installの略語で、JARファイルの様にファイルをひとつにまとめて配布するために使われているMozillaでのファイル圧縮形式です。実際にこのファイルの正体もzip圧縮されただけのファイル郡です。</p>
+		<ul class="data">
+			<li><a href="http://ja.wikipedia.org/wiki/XPInstall">Wikipedia XPInstall</a></li>
+		</ul>
+	</div>
+	
+	<h2 id='h2-3'>XPIファイルを開こう</h2>
+	
+	<div class="section">
+		<p>sample.jarの拡張子を変更してsample.zipにしてしまいます、その後に何でもいいので解凍ツールを使ってファイルを開いてみましょう</p>
+		<img src="jar_in_files.png" alt="解凍したファイル一覧" />
+		<p>こんな感じのファイルが出てくるでしょうか？　これがFirefoxのデザインを決定しているファイル達の正体です、これを書き換えて行けば、自分好みのテーマを作成することが出来るんですね</p>
+	</div>
+</div>
+	
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

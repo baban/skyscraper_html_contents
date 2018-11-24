@@ -1,0 +1,95 @@
+@charset "Shift_JIS";
+
+@import url("../css/pattern/banner_title.css");
+
+/* base */
+h2 {
+	background-color:#1c3428;
+	border-color:#1c3428;
+	color:#f6f4ff;
+}
+
+h2 + div.section {
+	border-color:#1c3428;
+}
+
+h3:before{
+	content:"¥";
+}
+
+h2 {
+	border-style:solid;
+	border-width:0.05em;
+	margin-bottom:0;
+	padding-left:0.2em;
+}
+
+h2:before {
+	content:"£";
+}
+
+h2 + div.section {
+	border-style:solid;
+	border-width:0.2em;
+	margin:0 0 0.4em 0;
+	padding:0.5em;
+}
+
+h3 {
+	border-style:solid none solid solid;
+	padding-left:0.4em;
+}
+
+h3:before{
+ 	margin-right:0.2em;
+}
+
+blockquote {
+	border-style:solid;
+}
+
+blockquote[cite]:after,
+blockquote[title]:after {
+	content:attr(title);
+	display:block;
+	text-align:right;
+	color:#bbb;
+}
+
+/* table,list */
+table {
+	border-style:solid;
+	border-width:0.3em;
+	margin:0.5em 1em;
+}
+
+th {
+	font-style:normal;
+}
+
+ul {
+	border-style:none;
+	margin-left:0.4em;
+}
+
+ul > li:before {
+	content:"ž";
+	padding:0.2em;
+}
+
+dl.explain {
+	border-style:none none none solid;
+	border-width:0.3em;
+}
+
+dl.explain > dt.define {
+	border-style:solid none;
+}
+
+span.refact {
+	color:#a66;
+}
+
+pre code {
+	background-color:#fffaff;
+}

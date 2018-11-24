@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	<meta http-equiv="Content-Language" content="ja" />
+	
+	<meta name="author" content="" />
+	<meta name="generator" content="" />
+	<meta name="Copyright" content="" />
+	<meta name="description" content="" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link href='' title='' rel='copyright' id='meta-licence' />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	
+	<title>クリップボードテキストの取得</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">クリップボードテキストの取得</h1>
+
+<div id="content" class="section">
+	<p>なんだか現在の萌ディタでは、クリップボードのデータを変数として取り出すことが出来ないようなので、クリップボードのデータを取り出すために<a href="http://www.hiddensoft.com/autoit3/">AutoIt</a>というツールをインストールしてもらうことになります</p>
+	<p>このツールはクリップボードの取得以外にも、テキストファイルの読み込み、マウス操作など、Windowsでは標準で組み込まれていない様々な操作を拡張出来ますので</p>
+	<p>すこし凝ったことをやりたいと思ったときには必携のツールになろとおもいますよ</p>
+	<br />
+<pre><code type="text/javascript">
+<span class='i-comment'>// %desc  クリップボードのテキストを張り付ける際にチェック。URL文字列の場合"&"を"&amp;amp;"に変更してしまいます</span>
+<span class='i-comment'>// %menu  ChangeXML amp</span>
+
+<span class='i-comment'>// 再描画を抑制します</span>
+<dfn>var</dfn> ctx <em>=</em> App.Caret.BeginUpdate<em>(</em><em>)</em>;
+<dfn>try</dfn> <em>{</em>
+  <span class='i-comment'>// 操作グループを開始します</span>
+  App.Caret.BeginOperateGroup<em>(</em><span class='literal'>'マクロ:XML対応でURLのペースト'</span><em>)</em>;
+  <dfn>try</dfn> <em>{</em>
+    <span class='i-comment'>// ここでエディタへの操作を行います</span>
+    <dfn>var</dfn> autoit <em>=</em> <dfn>new</dfn> ActiveXObject<em>(</em><span class='literal'>"AutoItX.Control"</span><em>)</em>;  <span class='i-comment'>// AutoItのオブジェクトを取得</span>
+    <dfn>var</dfn> str <em>=</em> autoit.ClipGet<em>(</em><em>)</em>;  <span class='i-comment'>// クリップボードのテキストを取得</span>
+    str<em>=</em> str.replace<em>(</em> <span class='literal'>"&amp;"</span>, <span class='literal'>"&amp;amp;"</span> <em>)</em>;  <span class='i-comment'>//  "&amp;"を"&amp;amp;"</span>に変換</span>
+    App.Caret.Send<em>(</em> str <em>)</em>;  <span class='i-comment'>// 萌ディタに文字列を送る</span>
+  <em>}</em>
+  <dfn>finally</dfn> <em>{</em>
+    <span class='i-comment'>// 操作グループを終了します</span>
+    App.Caret.EndOperateGroup<em>(</em><em>)</em>;
+  <em>}</em>
+<em>}</em>
+<dfn>finally</dfn> <em>{</em>
+  <span class='i-comment'>// 再描画を許可します</span>
+  App.Caret.EndUpdate<em>(</em>ctx<em>)</em>;
+<em>}</em>
+</code></pre>
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href='http://www.gnu.org/copyleft/fdl.html' rel='license'>GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

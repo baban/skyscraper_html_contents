@@ -1,0 +1,37 @@
+@charset "Shift_JIS";
+
+/* FOAF‚ÌƒXƒ^ƒCƒ‹İ’è */
+
+@import url("def/html-default-css1.css");
+@import "def/html-default-css2.css" all;
+@import url("def/html-color-base.css");
+@import url("base-style.css");
+@import url("pattern/banner-title.css");
+
+div#online-account {
+	width:20em;
+}
+
+div.service {
+	border-style:solid;
+}
+
+table.interest {
+	width:50em;
+	border-width:1px;
+}
+
+td.interest-desc {
+	border-style:none;
+	padding-left:0.7em;
+}
+
+th.interest-title {
+	width:10em;
+	border-style:none solid none none;
+}
+
+th.interest-title,
+th.interest-title a {
+	color:#000000;
+}

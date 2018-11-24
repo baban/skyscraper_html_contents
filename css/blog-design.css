@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+@import "decoration-text.css";
+@import "special-id.css";
+@import "type-icon.css";
+@import "blog-app.css";
+
+/* index.html、archive.htmlの共通デザイン部分を部品化 */
+
+body {
+	background-color:#EFE3D2;
+	background-image:url("img/index-back.gif");
+	background-repeat:no-repeat;
+	background-position:right bottom;
+	background-attachment:fixed;
+	padding:0 1em 0 14.0em;
+}
+
+h1#site-title{}
+h1#site-title a img{
+	border-style:none;
+}
+
+span#site-title-title{}
+span#site-title-title a:hover{
+	border-style:none none solid none;
+}
+
+section#content{
+	padding:0;
+}
+
+div#conteiner-main {
+	position:relative;
+	min-width:500px;
+}
+
+div#conteiner-entry{
+	border-style:solid;
+	border-color:#916930;
+	border-width:1px;
+	background-color:#fff;
+	color:#5E3A1F;
+	padding:0.3em 0em 1em 0.5em;
+}
+
+h1#entry-title{
+	background-repeat:no-repeat;
+	min-height:18px;
+}
+
+/** 一番下の著作権表示 */
+div#under-right{
+	border-style:solid;
+	border-width:0.5em 1px 1px 1px;
+	min-height:10px;
+	border-color:#FFC470 #916930 #916930 #916930;
+	background-color:#634822;
+	color:#FEE8C8;
+	margin:0;
+	padding:0.3em;
+}
+
+/** ナビゲーションバー部分 */
+nav#navigation {
+	position:absolute;
+	top:0;
+	left:0;
+	width:13.0em;
+	margin:0;
+	padding:0 0 1em 0;
+	color:white;
+	background-color:#9E8F79;
+	border-style:none solid solid none;
+	border-color:#614D31;
+	background-attachment:fixed;
+	background-image:url("img/navigation-back.png");
+}
+
+div#site-menu{
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+	background-position:left bottom;
+	background-image:url("img/site-menu-back.png");
+}
+
+h1#navigation-title{
+	display:none;
+}
+
+nav#navigation h2{
+	font-family:Verdana, sans-serif !important;
+	font-size:18px;
+	padding-left:1em;
+}
+
+div#navigation h2:first-letter{
+	font-size:1.25em;
+}
+
+div#site-menu{}
+
+nav#navigation ul.nav{
+	list-style-position:outside;
+	padding:0 !important;
+	margin:0 !important;
+}
+
+nav#navigation ul.nav > li{
+	margin:0 !important;
+	padding:0 !important;
+}
+
+nav#navigation a{
+	color:white;
+}
+
+dl.navigation-menu{
+	position:relative;
+	display:block;
+	padding:0;
+	margin:0;
+}
+
+dl.navigation-menu > dt{
+	min-height:30px;
+	padding-right:8px;
+	border-style:none none dashed none;
+	border-width:1px;
+	border-color:transparent;
+	margin:0;
+}
+
+dl.navigation-menu > dt:hover{
+	background-color:#322A1E;
+	background-image:url("img/navigation-dt-back.png");
+	background-repeat:no-repeat;
+	background-position:right center;
+	border-color:#FCAF2A;
+	
+	-webkit-transition-property: background-color;
+	-webkit-transition-duration: .3s;
+	-webkit-transition-timing-function: ease-in;
+
+	-moz-transition-property: background-color;
+	-moz-transition-duration: .3s;
+	-moz-transition-timing-function: ease-in;
+	
+	-o-transition-property: background-color;
+	-o-transition-duration: .3s;
+	-o-transition-timing-function: ease-in;
+}
+
+dl.navigation-menu > dd {
+	position:absolute;
+	display:block;
+	opacity:0;
+	top:2em;
+	left:3em;
+}
+
+dl.navigation-menu > dd {
+	display:none;
+}
+
+dl.navigation-menu:hover > dd{
+	top:3.5em;
+	left:4.5em;
+	z-index:+2;
+	width:11em;
+	min-height:5em;
+	background-color:#322A1E;
+	border:solid 2px #fff;
+	margin:0;
+	padding:0.7em;
+	opacity:1.0;
+	display:block;
+
+	-webkit-transition-property: top, left, opacity;
+	-webkit-transition-duration: .3s;
+	-webkit-transition-timing-function: ease-in;
+
+	-moz-transition-property: opacity;
+	-moz-transition-duration: .3s;
+	-moz-transition-timing-function: ease-in;
+	
+	-o-transition-property: opacity;
+	-o-transition-duration: .3s;
+	-o-transition-timing-function: ease-in;
+}
+
+dl.navigation-menu > dt > a{
+	font-weight:bold;
+	font-size:1.2em;
+	text-decoration:none;
+	background-color:transparent !important;
+	font-family:Verdana, monospace !important;
+	display:block;
+	padding:0.3em 0.4em 0.3em 0.5em;
+	margin:0;
+	text-align:right;
+}
+
+dl.navigation-menu > dt > a:hover {
+	color:#8C6F2B;
+	text-decoration:underline;
+}
+
+nav#navigation ul.module-list {
+	list-style-type:disc;
+	margin-left:1em;
+}
+nav#navigation ul.module-list > li {
+	line-height:1.3;
+}
+
+nav#navigation div.module-content {
+	margin:0.5em;
+}
+
+div.module-powered {
+	border-style:dashed;
+	border-color:white;
+	padding:0.1em;
+	margin-top:1.4em;
+}
+

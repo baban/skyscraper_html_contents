@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='１行入力バッファの使い方' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>１行入力バッファの使い方</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+	<body>
+		<h1 id="page-title">１行入力バッファの使い方</h1>
+		<div id="content" class="section">
+			<img src='line-buffer.gif' alt='一行入力バッファ' />
+			<p>萌ディタの画面上にある１行入力ダイアログの使い方の解説</p>
+			
+			<h2 id='h2-1'>基本、呼び出し方</h2>
+			
+			<div class="section">
+				<p>通常は検索<kbd>Ctrl+F</kbd>	や置換<kbd>Ctrl+H</kbd>を行う画面上の入力画面の、もう一つの機能</p>
+				<p>呼び出し方は入力バッファの前にあるアイコンをクリックすると出てきます</p>
+				<img src='buffer-call.gif' alt='入力バッファの呼び出しボタン' />
+				<p>ショートカットでは<kbd>Ctrl+E</kbd>です。</p>
+				<p>しかしまぁ、これが呼び出せたからと言ってなかなか使い方を見るのが難しいのがこの機能。今回はデフォルトで付いている機能をちょっと紹介してみようと思います</p>
+			</div>
+			
+			<h2 id='h2-2'>式の実行</h2>
+			
+			<div class="section">
+				<p>ぶっちゃけ本サイトの方でぜんぜん解説加えていないのがそもそもの問題の発端なんですが、機能自体はstd.javascript.txtを読んでみれば以外に簡単に見つかりました</p>
+				<p>該当部分のコードは最後に挟んでおきますので、それを読んでおいて下さい</p>
+				<br />
+				<p>萌ディタが標準で積んでいる書式は次の４通り</p>
+				<p>最初の書式は非プログラマ向けの機能ですが、その他の３書式は、おおよそJavaScriptが打てる人向けの機能です</p>
+				<br />
+				<dl class="data">
+					<dt>書式１:文字列の複数回挿入</dt>
+					<dd>
+						<p><pre><code>数字(10進数) '(挿入したい文字列)</code></pre></p>
+						<p>と言う書式で指定した回数だけ文字列をバッファに送ります。具体的には</p>
+						<p><pre><code>40 '=</code></pre></p>
+						<p>とやると。「=」がバッファに40回送られて</p>
+						<p><pre>========================================</pre></p>
+						<p>と表示されます</p>
+					</dd>
+					<dt>書式２:JavaScript関数の呼び出し</dt>
+					<dd>
+						<p>萌ディタが使える関数を呼び出せます</p>
+						<pre><code>App.Buffer.Save('')	//保存する</code></pre>
+					</dd>
+					<dt>書式３:JavaScriptコードの実行</dt>
+					<dd>
+						<p>バッファの最初に「?」を入れておく事で実行できます</p>
+						<p><pre><code>? JavaScriptコード</code></pre></p>
+						<p>例えば</p>
+						<p><pre><code>? 99*99</code></pre></p>
+						<p>と入れれば、実行結果である「<em>9801</em>」がキャレットのある位置に入力されます</p>
+						<br />
+						<p>今回は数式を入れましたが</p>
+						<p><pre><code>? "abcabc".replace( /b/, "$1".toUpperCase() ) // 小文字のbをすべて大文字に変換</code></pre></p>
+						<p>で「<code><em>aBcaBc</em></code>」と表示したり等、JavaScriptのコードなら何でも実行可能です</p>
+						<p>個人的感想としては、バグが入るかも知れないコードを、その場で書いていられないよねってカンジしないこともありませんけど…（マテ</p>
+					</dd>
+					<dt>書式４:JavaScriptコードの複数回実行</dt>
+					<dd>
+						<p><pre><code>数字(10進数) JavaScriptコード</code></pre></p>
+						<p>上の書式で、複数回のJavaScriptのコードを実行します</p>
+						<p>基本的には、書式１と書式３の融合型ですね</p>
+					</dd>
+				</dl>
+			</div>
+			
+			<h2 id='h2-3'>機能の追加</h2>
+			
+			<div class="section">
+				<p>とまぁ、標準でついている機能をちょっと説明させていただきましたが、実際の所作者のほうで意図しているのは</p>
+				<p>「こっちでつけているのは参考程度の機能なので、ユーザーさんで好きな機能を追加してね」</p>
+				<p>という事だと思うのです。</p>
+				<br />
+				<p>以前スレの方で拾ったのが次の拡張です</p>
+				<dl class="data">
+					<dt><a href="http://members.at.infoseek.co.jp/babanba_n/evalrun(addin).javascript.zip">evalrun</a></dt>
+					<dd>
+						<p>１行ダイアログで色々出来るようになる拡張です。無駄に完成度高い</p>
+					</dd>
+				</dl>
+				<p>後は自分なりに拡張して楽しんでみてください</p>
+			</div>
+			
+			<h2 id='h2-4'>コードの掲載</h2>
+			
+			<div class="section">
+				<p>最後、1行入力ダイアログは、その入力が確定した瞬間にonEvaluate関数が実行されます(本家のイベントリファレンス参照のこと)。</p>
+				<p>と言うことはstd.javascript.txtの該当部分のコードに機能が載せられているわけですから、そこから読んでしまえば基本的には機能の推測が出来るわけです</p>
+				<p>一応、ブチ抜いたモノをココに載せておきます。以降バージョンアップのときにオリジナルの方が書き換えられていても恨まないで下さい</p>
+				<br />
+<pre><code>
+f.onEvaluate<em>=</em> <dfn>function</dfn> <em>(</em>arg, classname, methodname<em>)</em> <em>{</em>
+  <span class='i-comment'>//ウィンドウの １ 行バッファにスクリプトが入力されたときに呼ばれる</span>
+  <dfn>var</dfn> match_array;
+  <dfn>var</dfn> eval_func;
+
+  <span class='i-comment'>// \2 を文字列とみなして、\1 回 Send() する</span>
+  <span class='i-comment'>// ex) "80 '-" -&gt; 80 個の '-' を Send()</span>
+  match_array<em>=</em> arg.match<em>(</em>/^ *<em>(</em>[0-9]+<em>)</em> +[<span class='literal'>'"</span>]/<em>)</em>;
+  <dfn>if</dfn> <em>(</em>match_array<em>)</em> <em>{</em>
+    <dfn>var</dfn> original<em>=</em> eval<em>(</em><span class='literal'>'\'</span><span class='literal'>' + arg.substring<em>(</em>match_array.lastIndex<em>)</em>.replace<em>(</em>/\'</span>/g, <span class='literal'>'\\\'</span><span class='literal'>'<em>)</em> + '</span>\<span class='literal'>''</span><em>)</em>;
+    <dfn>if</dfn> <em>(</em>original <em>=</em> <span class='literal'>''</span><em>)</em> <em>{</em>
+      <dfn>var</dfn> result<em>=</em> original;
+      <dfn>var</dfn> whole_length<em>=</em> original.length * parseInt<em>(</em>match_array[1]<em>)</em>;
+      <dfn>while</dfn> <em>(</em>result.length * 2 &lt<em>=</em> whole_length<em>)</em> result <em>=</em> result;
+      <dfn>while</dfn> <em>(</em>result.length &lt; whole_length<em>)</em> result <em>=</em> original;
+      App.Caret.Send<em>(</em>result<em>)</em>;
+    <em>}</em>
+    <dfn>return</dfn>;
+  <em>}</em>
+
+  <span class='i-comment'>// \2 を関数本体とみなして、\1 回評価する</span>
+  <span class='i-comment'>// ex) "10 App.Caret.MoveNext(1)" -&gt; キャレットを 10 行下へ移動</span>
+  match_array<em>=</em> arg.match<em>(</em>/^ *<em>(</em>[0-9]+<em>)</em> +/<em>)</em>;
+  <dfn>if</dfn> <em>(</em>match_array<em>)</em> <em>{</em>
+    eval_func<em>=</em> <dfn>new</dfn> Function<em>(</em>arg.substring<em>(</em>match_array.lastIndex<em>)</em><em>)</em>;
+    <dfn>for</dfn> <em>(</em><dfn>var</dfn> j<em>=</em> 0; j &lt; parseInt<em>(</em>match_array[1]<em>)</em>; j++<em>)</em>
+      eval_func<em>(</em><em>)</em>;
+    <dfn>return</dfn>;
+  <em>}</em>
+
+  <span class='i-comment'>// \2 を関数内の式とみなして評価し、結果を Send() する</span>
+  <span class='i-comment'>// ex) "? 99*99" -&gt; 99*99 の結果である 9801 を Send()</span>
+  match_array<em>=</em> arg.match<em>(</em>/^ *\? */<em>)</em>;
+  <dfn>if</dfn> <em>(</em>match_array<em>)</em> <em>{</em>
+    eval_func<em>=</em> <dfn>new</dfn> Function<em>(</em><span class='literal'>'<dfn>return</dfn> '</span> + arg.substring<em>(</em>match_array.lastIndex<em>)</em> + <span class='literal'>';'</span><em>)</em>;
+    App.Caret.Send<em>(</em>eval_func<em>(</em><em>)</em>.toString<em>(</em><em>)</em> + <span class='literal'>'\n'</span><em>)</em>;
+    <dfn>return</dfn>;
+  <em>}</em>
+
+  <span class='i-comment'>// arg 全体を関数本体とみなして評価する</span>
+  <span class='i-comment'>// ex) "App.Buffer.Save('')" -&gt; 保存する</span>
+  eval_func<em>=</em> <dfn>new</dfn> Function<em>(</em>arg<em>)</em>;
+  eval_func<em>(</em><em>)</em>;
+<em>}</em>;
+</code></pre>
+			</div>
+		</div>
+	</body>
+</html>
+
+

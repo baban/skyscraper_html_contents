@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='ja' xml:lang='ja' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content='text/html;charset=UTF-8' http-equiv='Content-Type'/>
+	<meta content='text/css' http-equiv='Content-Style-Type'/>
+	<meta content='text/javascript;charset=UTF-8' http-equiv='Content-Script-Type'/>
+	<meta content='ja' http-equiv='Content-Language'/>
+	
+	<meta name='author' content='babanba-n'/>
+	<meta name='generator' content='Alcadia'/>
+	<meta name='Copyright' content='Creative Commons Japan'/>
+	<meta name='description' content='初心者に送るHTML講座'/>
+	
+	<link href='/index.html' rel='home' type='text/css'/>
+	<link href='http://creativecommons.org/licenses/by-sa/2.0/jp/' title='Creative Commons Japan' rel='copyright' id='meta-licence'/>
+	<link href='/texts/readme.html' rel='help' type='text/css'/>
+	<link href='mailto:baban@nergal.clubbbq.com' rev='Reply-to'/>
+	<link href='/img/favicon.ico' rel='shortcut icon' type='image/png'/>
+	<link href='/css/seminor.css' rel='stylesheet' type='text/css'/>
+	
+	<title>正しく始めるHTML:知っておくべき基本タグ一覧</title>
+	<script src="/src/seminor.js" type="text/javascript"> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>正しく始めるHTML:知っておくべき基本タグ一覧</h1>
+
+<div class='section' id='content'>
+	
+	<h2 id='abstruct'>Abstruct</h2>
+	
+	<div class="section" id="abstruct">
+		<p>と言うわけで、今回はよく使われる重要なタグを解説します、どれも重要なタグで、本当に最低限で良いならこれで何とかなる物の一覧です</p>
+	</div>
+	
+	<h2 id='h2-1'>知っておくべき基本タグ</h2>
+	
+	<div class="section">
+		<h3>リンクを張る</h3>
+		
+		<div class="section">
+			<p>Webページ作るんだったら、他のページへリンク貼れるのが当たり前ですよね</p>
+			<p>他のページへリンクを張る方法はこんな感じに書きます</p>
+<pre>
+<code>
+&lt;a href="<span class="refact">行きたいページのパス</span>"&gt;テキスト&lt;/a&gt;
+</code>
+</pre>
+			<p>「パスって何？」とか言われたかも知れません。これだけでは分かりませんので、実際に動く物を書いてみましょう</p>
+<pre>
+<code>
+&lt;a href="<span class="refact">index.html</span>"&gt;最初のページへ戻る&lt;/a&gt;
+&lt;a href="<span class="refact">http://google.com/</span>"&gt;Googleへのリンク&lt;/a&gt;
+</code>
+</pre>
+			<p>それぞれの実行結果は<a href="major_tag_samp01.html">こんな感じ</a>。あ、ちなみにAはAnchorの略です。</p>
+			<div class="sample-view">
+				<a href="major_tag_samp01.html"><img src="major_tag_samp01.png" alt="実行結果" /></a>
+			</div>
+			<p>ここで注目するのが、<code>href</code>に続いている行きたい場所を示した文字列</p>
+			<p>最初に書いた様に、ファイル名だけを書いている物は、自分のある場所を基準としてファイルを探す相対パス、googleへリンクしたときの様にhttp://...と続く様な書き方を、絶対パスと言います</p>
+			<div class="note">
+				<p>パスの指定方法は、この絶対パスと相対パスとの２つに分けられます</p>
+				<p>一応、この程度知っていれば最初は問題無いと思いますが、さらに詳しいことは<a href="path.html">最後に説明</a>させていただきましょう</p>
+				<ul class='data'>
+					<li><a href="major_tag_tips.html">Aタグについてモット詳しく知る</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<h3>画像の読み込み</h3>
+		
+		<div class="section">
+			<p>画像を読み込むには次のように書きます</p>
+<pre>
+<code>
+&lt;img src="<span class="refact">画像のパス</span>" alt="<span class="refact">簡単な説明</span>" /&gt;
+</code>
+</pre>
+			<p>実際に動くサンプルを作成すると</p>
+<pre>
+<code>
+&lt;img src="sample.jpg" alt="サンプル画像" /&gt;
+</code>
+</pre>
+			<p>実行結果は<a href="major_tag_samp02.html" title="画像表示のサンプル">こんな感じ</a></p>
+			<div class="sample-view">
+				<img src="sample.jpg" alt="サンプル画像" />
+			</div>
+			
+			<div class="note">
+				<p>ちなみに<code>alt</code>に続く、画像の説明は<em>必ず書かないといけない</em>ルールになっています(ちなみにaltは代替え:alternativeの略)</p>
+				<p>alt属性にはほんの短い説明程度しか書いてはいけないことになっているので、長い説明が必要な場合には、title属性を書いて、そこに説明を書くようになっています</p>
+			</div>
+		</div>
+		
+		<h3>行を変える</h3>
+		
+		<div class="section">
+			<p>行を変えるのは簡単、pタグを使用します</p>
+<pre>
+<code>
+&lt;p&gt;改行を行います&lt;/p&gt;
+</code>
+</pre>
+			<p><a href="major_tag_samp03.html">サンプル</a>ではこんな感じ</p>
+			<div class="sample-view">
+				<a href="major_tag_samp03.html"><img src="major_tag_samp03.png" alt="pタグ表示サンプル" /></a>
+			</div>
+<pre>
+<code>
+&lt;p&gt;嗚呼、運命ってモノは何で存在するのだろう…&lt;/p&gt;
+&lt;p&gt;いいや、ただそういうことを単なる偶然、そう、偶然に出来てしまうには、私はあまりにも乙女であり過ぎただけだった&lt;/p&gt;
+&lt;p&gt;桜が咲き、春が来て、ついにお気に入りだった前の学校の制服も着替えてしまった頃だった&lt;/p&gt;
+</code>
+</pre>
+			<div class="note">
+				<p>ちなみにpはparagraph、段落の略です。段落と言っても、意味としては<em>最小の段落</em>というイメージですけどね(日本人の感覚で使う長い段落はsectionを当てるようです、良くは知りませんが)</p>
+				<p>大体感覚としては、句読点『。』を使うまでの一文くらいで捉えてもらえれば良いみたいです</p>
+			</div>
+		</div>
+		
+	</div>
+	
+	<h2 id='h2-2'>タグの基本</h2>
+	
+	<div class="section">
+		<p>タグの基本は説明する必要はないのかもしれませんが、今回は新しい仕様であるXHTML1.0を使用しています</p>
+		<p>この規格は、それまでのHTMLと規格が少し違って、口うるさい部分があるので、気を付けて使いましょう</p>
+		<p>巷の、HTML講座とは特に違う点は、次の２点</p>
+		<ol>
+			<li>タグの名前は全部小文字</li>
+			<li>タグの書き方は<code>&lt;タグ名&gt;～&lt;/タグ名&gt;</code>か、<code>&lt;タグ名 /&gt;</code>で統一</li>
+		</ol>
+		<p>つまりは、xmlの文法に照らし合わせると</p>
+		<table class="data">
+			<tr><td>×</td><td><code>&lt;IMG src="major_tag_samp01.png" alt="実行結果"&gt;</code></td></tr>
+			<tr><td>×</td><td><code>&lt;img src="major_tag_samp01.png" alt="実行結果"&gt;</code></td></tr>
+			<tr><td>×</td><td><code>&lt;IMG src="major_tag_samp01.png" alt="実行結果" /&gt;</code></td></tr>
+			<tr><td>○</td><td><code>&lt;img src="major_tag_samp01.png" alt="実行結果" /&gt;</code></td></tr>
+		</table>
+		<p>HTMLでは全て解析されますが、XMLでは一番最後の例しか通らないわけです</p>
+		<p>先ほど説明したimgタグが<code>&lt;img .../&gt;</code>と最後にスラッシュを付けて終わらせていたのはコレが理由になっているんですね</p>
+	</div>
+</div>
+
+<div title='Creative Commons Japan by' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/by-sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/by-sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+	<p>Author:<span class='rights'>babanba-n</span>, Licence:<span class='cc-licence'>by-sa</span></p>
+</div>
+
+</body>
+</html>

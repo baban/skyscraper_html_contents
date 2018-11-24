@@ -1,0 +1,138 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<meta name="author" content="babanba-n" />
+	<meta name="Targeted Geographic Area" content="Japan" /> 
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="AfterEffectsのフィルタ製作法" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" >
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	
+	<title>Skyscaper;AfterEffectsのフィルタ製作法</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>レンダリングの設定</h1>
+
+<div class="section">
+
+	<h2>Abstruct</h2>
+	
+	<div class="section">
+		<p>全体的な話を見るとC言語ながら出来るだけオブジェクトとして分割がされていて、PhotoShopのフィルタのSDKと比べてみても、かなりスマートな構造になっています。</p>
+		<p>なので、どれを使えばよいかと言うところさえ理解すれば、特に処理が複雑になることなく全体を完結に記述出来る性質があります</p>
+		<p>個人的には、「C言語分かるなら、黙ってRender関数とFilterImag関数を見ろ」と言う感じです。だいたいそれで大事なことは分かります。分かるのであれば、あとは細かい動作の補足になります。</p>
+	</div>
+	
+	<h2>基本事項</h2>
+	
+	<div class="section">
+		<p>(先ほども言いましたが…)SDK_Noseフィルタのコード中では、この処理はRender関数とRender関数から呼び出されているFilterImage関数の内部で行われています。</p>
+<pre><code>
+PF_Err Render ( PF_InData		*in_data,
+				PF_OutData		*out_data,
+				PF_ParamDef		*params[],
+				PF_LayerDef		*output )
+{
+		…(以下略）
+			err = isP->iterate(	in_data,
+								0,								// progress base
+								lines,							// progress final
+								&params[FILTER_INPUT]->u.ld,	// src 
+								NULL,							// area - null for all pixels
+								<span class="refact">(long)&fi</span>,						// refcon - your custom data pointer
+								<span class="refact">FilterImage</span>,					// pixel function pointer
+								output);						// dest
+		…(以下略）
+}
+</code></pre>
+		<p>ここのiterateメソッドが処理を行うFilterImage関数への参照を送っています。ここで大事なのは、主に第５引数「(long)&fi」と第６引数「FilterImage」です。</p>
+		<p>第５引数は送りたいデータを構造体にして、その中に一纏めにして送っています。そして第６引数はFilterImage関数で実際に処理を行っている事を示しています。</p>
+		<p>iterateメソッド、C++プログラマなら心当たりがあるでしょうが、一応解説しておくとiterate(数え上げる)の名の通り画像中のデータを1px毎に取り出して処理を行います。</p>
+		<p>実際にFilterImage関数の引数を見ると</p>
+<pre><code>
+PF_Err FilterImage (long refcon, long x, long y, PF_Pixel *in, PF_Pixel *out)
+</code></pre>
+		<p>となっています。引数の一覧を見ると。次の様になっています。</p>
+		<table class="data">
+			<tr><th>型</th><th>変数名</th><th>意味</th></tr>
+			<tr><td>long</td><td>refcon</td><td>パラメーターのデータへの参照。ここにオリジナルなデータを入れます。難しいので後回し</td></tr>
+			<tr><td>long</td><td>x</td><td>現在処理しているpxのx座標</td></tr>
+			<tr><td>long</td><td>y</td><td>現在処理しているpxのy座標</td></tr>
+			<tr><td>PF_Pixel</td><td>*in</td><td>現在処理しているpxの入力データ</td></tr>
+			<tr><td>PF_Pixel</td><td>*out</td><td>現在処理しているpxの出力データ</td></tr>
+		</table>
+		<p>この様に、1pxごとに、入力側画像、出力側画像へのピクセルへの参照。それにそこへのx,y座標がきちんとあります。そして、そのピクセルへのノイズを加えるかどうかを判断して、最後に出力画像の *outにその結果を代入すればよいと言うことになっています</p>
+	</div>
+	
+	<h2>補足事項</h2>
+	
+	<div class="section">
+		<p>iterateメソッドですが、基本的にはx,y座標しか受け取っていませんが、他にも細かいデータを送ることが出来ます。</p>
+		<p>第1引数のrefconを利用します。これは、他に送りたいデータがあった場合に、そのデータへの参照が代入されているので。2つ以上データを送りたい場合には代入を利用します。</p>
+		<p>例えば、送りたいデータがあった場合FilterParamsという構造体を作成して</p>
+<pre><code>
+typedef struct {
+	int width;
+	int height;
+} FilterParams;
+</code></pre>
+		<p>これをRender関数内部のiterateメソッドで送ります</p>
+<pre><code>
+FilterParams prm;
+prm->width=100;
+prm->height=100;
+err = isP->iterate(	in_data, 0, lines, &params[FILTER_INPUT]->u.ld, NULL, (long)&prm, MakeBlankImage, output );
+</code></pre>
+		<p>この様にしてFilterImageメソッドにデータを送って、最後にFilterImage関数内部で取り出します</p>
+<pre><code>
+PF_Err FilterImage(long refcon, long x, long y, PF_Pixel *in, PF_Pixel *out){
+	FilterParams *prm = (FilterParams *)refcon;
+</code></pre>
+		<p>元々何処にデータがあるかというアドレスを受け取っているので、この様に変換を行って、データを取り出します。ポインタってそんなもんです。</p>
+		<br />
+		<p>画像の移動を行いたい場合はポインタの加算、減算を利用します。</p>
+		右に10px移動したい場合は、*in変数を加算して
+<pre><code>
+in += 10;
+</code></pre>
+		<p>とします。これで10px右に移動します。またポインタを利用しているので、画像の外に処理が飛び出ない様に</p>
+<pre><code>
+if( 10 &lt; x ){
+	// ここから移動処理を書きます
+}
+</code></pre>
+		<p>の様に、現在位置が大丈夫な位置かどうかのチェックを加えておくことを忘れないでください。</p>
+		<p>この様な方法を取ると当然、右端10pxが見切れて消滅しますのでそれが嫌な場合はサンプルのMFC_Shifter等で上下左右の端を広げるためのサンプルがありますので、そちらを見てあげて下さい</p>
+	</div>
+	
+</div>
+
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+	<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

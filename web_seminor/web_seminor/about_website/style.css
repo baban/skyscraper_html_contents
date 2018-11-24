@@ -1,0 +1,16 @@
+@charset "Shift_JIS";
+
+code.plural_line {
+	display:block;
+	margin:0.3em; padding:0.3em;
+}
+
+em.red { color:#f00 }
+em.angry { color:#f00 }
+
+.red{ color:#f00 }
+.orange { color:#ff9900 }
+.yellow { color:#ff0 }
+.green { color:#008000 }
+.blue { color:#00f }
+.purple { color:800080 }

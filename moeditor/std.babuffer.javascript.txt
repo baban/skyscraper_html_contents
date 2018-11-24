@@ -1,0 +1,795 @@
+/**
+ * 1行選択ボックスで、テキストを一括処理するためのライブラリ集
+ * 
+ * // 選択範囲のテキストを後方参照付き置換で一括変換。Unixのsedコマンドのパクり
+ * sed( '<td>(.*?)</td>', '<th>$1</th>' );
+ * // 選択範囲の各行に行番号を付加する
+ * $.each( function(s,i){ return i+'\t'+s; } ).send();
+ * // 選択範囲の的タグを消去する
+ * $.deltag().send();
+ * 
+ */
+
+/**
+ * 指定されたパスのテキストを読みだします。
+ * @param {String} filename ファイル名
+ * @return {String} 読み出したテキスト
+ */
+function loadtext( filename ){
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	if( !fso.FileExists(filename) ) return null;	// ファイルが存在しないとき
+	var f = fso.OpenTextFile(filename, 1);
+	return f.readAll();
+}
+
+/**
+ * 指定されたJavaScriptのファイルを自分の中に取り込みます
+ * @param {String} filename ファイルのパス
+ * @return {Object} インクルードしたオブジェクト
+ */
+function include( filename ){
+	var s = loadtext(filename), o;
+	if( null==s ) return null;
+	try{ o=eval( '('+s+')' ); }catch(e){ return null; }
+	return o;
+}
+
+/**
+ * 外部xmlファイルを読み出すためのDOMオブジェクトを作成します 
+ * @param {String} 外部XMLファイルのファイル名
+ * @return {DOMDocument} XMLドキュメント
+ */
+function loadxml( fname ){
+	// Instantiate a DOM object.
+	var doc;
+	try{
+		doc = new ActiveXObject("Microsoft.XMLDOM");  // MSXMLへのアクセスを出来るようにする
+		doc.async = false;
+	} catch ( e ){
+		App.Alert( "Error MakeDOM():"+e.description );
+	}
+	doc.load( fname ); // xml文書を読み出し
+	return doc;
+}
+
+/**
+ * 選択範囲を第１引数で与えられた正規表現で置換します
+ * 萌ディタの置換機能だと後方参照が何故か使えない、というかバグって止まるので変わりに作成
+ * @param {RegExp|String} re 置き換え位置を探す正規表現
+ * @param {String} rs 置き換える文字列
+ * @example
+ * // 選択部分だけ、tdタグをthタグに変更する
+ * sed( '<td>(.*?)</td>', '<th>$1</th>' );
+ */
+function sed( re, rs ){
+	var c = App.Caret, slct = App.Caret.Selection;
+	if( !slct.Mode ) return App.Alert('選択範囲がありません！');
+	if( 'string'==typeof re ) re = new RegExp( re, 'g' );	// 文字列を正規表現オブジェクト化
+	
+	UpdateGroup(
+		function(){
+			var s = slct.Text, scal={ col:c.Col, row:c.Row };	// 加工前のキャレット位置を保存
+			c.Delete( s.length );
+			if( 'string'==typeof re ) re=new RegExp( re, 'g' );
+			c.Send( s.replace( re, rs ) );
+			// キャレット位置を元に戻す
+			c.Col = scal.col;
+			c.Row = scal.row;
+		},
+		'正規表現による一括置換'
+	);
+	App.Alert( '置換完了！' );
+}
+
+var f = classes['srcfile'];
+
+f.onEvaluate = function(arg, classname, methodname){
+	//ウィンドウの １ 行バッファにスクリプトが入力されたときに呼ばれる
+	var match_array, eval_func;
+	// \2 を文字列とみなして、\1 回 Send() する
+	// ex) "80 '-" -> 80 個の '-' を Send()
+	match_array = arg.match(/^ *([0-9]+) +['"]/);
+	if(match_array){
+		var original = eval('\'' + arg.substring(match_array.lastIndex).replace(/\'/g, '\\\'') + '\'');
+		if(original != '') {
+			var ret = original;
+			var whole_length = original.length * parseInt(match_array[1]);
+			while(ret.length * 2 <= whole_length) ret += ret;
+			while(ret.length < whole_length) ret += original;
+			App.Caret.Send(ret);
+		}
+		return;
+	}
+	// \2 を関数本体とみなして、\1 回評価する
+	// ex) "10 App.Caret.MoveNext(1)" -> キャレットを 10 行下へ移動
+	match_array = arg.match(/^ *([0-9]+) +/);
+	if(match_array) {
+		eval_func = new Function(arg.substring(match_array.lastIndex));
+		for(var j = 0; j < parseInt(match_array[1]); j++)
+			eval_func();
+		return;
+	}
+	// \2 を関数内の式とみなして評価し、結果を Send() する
+	// ex) "? 99*99" -> 99*99 の結果である 9801 を Send()
+	match_array = arg.match(/^ *\? */);
+	if(match_array) {
+		eval_func = new Function('return ' + arg.substring(match_array.lastIndex) + ';');
+		App.Caret.Send(eval_func().toString() + '\n');
+		return;
+	}
+	// arg 全体を関数本体とみなして評価する
+	// ex) "App.Buffer.Save('')" -> 保存する
+	var c = App.Caret, slct = App.Caret.Selection;
+	var $ = st = sxt = (function(){ return (slct.Mode)?slct.Text:''; })();	// 選択範囲テキスト
+	var alert = function(mes){ App.Alert(mes); }	// alertダイアログ
+	
+	eval('function eval_func(){'+arg.replace(/'/g,"\'")+'};');
+	eval_func.call(this);
+}
+
+/**
+ * よく使うので、操作グループの登録、削除を関数化
+ * @param {Function} f 内部で行う操作
+ * @param {String} desc 操作グループの説明
+ */
+function UpdateGroup( f, label ){
+	var desc = label ? label : f.toString().substring( 0, 10 );
+	var arg = (arguments.length>3) ? arguments.slice( 2, undefined ) : undefined;	// 関数fに与える引数
+	var c=App.Caret, ctx = c.BeginUpdate();
+	try {
+		c.BeginOperateGroup('操作：'+desc);
+		try { (undefined==arg) ? f() : f(arg); } finally { c.EndOperateGroup(); }
+	} finally { c.EndUpdate(ctx); }
+}
+
+/**
+ *  汎用の URI に対する色づけ。本体のcore.javascript.txtにバグがあるので、こちらで上書き
+ */
+function addURIRule(lex, state) {
+	lex.Add( 'uri', (state?state:'') + '/\\<h?ttps?:\\/\\/[-;?:@&=+$,.\\\\/_!~()%#a-zA-Z0-9]+/', 'exstyle:URI');
+}
+
+/**
+ * 指定された範囲の数字を持つ配列を作成する
+ * @param {Number} max 作成する数値の範囲
+ * @return {Array} 作成された数字列
+ * @example 
+ * var a;
+ * // 0～5までの配列を作成する
+ * a = Math.range( 5 );
+ * // 5～10までの配列を作成する
+ * a = Math.rabge( 5,10 );
+ * // 萌ディタの遷移状態の識別に沿ってパース
+ * a = Math.range( '2,7,9' ); // [2,7,9]
+ * a = Math.range( '10..15' ); // [10,11,12,13,14,15]
+ * a = Math.range( '3,10..12,18' ); // [3,10,11,12,18]
+ */
+Math.range = $R = function( max ){
+	// 配列作成
+	function crtarr( min, max ){
+		var a=[];
+		for( var i=Math.min(min,max); i<=Math.max(min,max); i++ ) a.push(i);
+		if( min>max ) a.reverse();
+		return a;
+	}
+	var arg=arguments;
+	// 最大値のみ指定
+	if( 1==arg.length && 'number'==typeof max ) return crtarr( 0, max );
+	// 最小値、最大値を指定
+	if( 2==arg.length && 'number'==typeof arg[0] && 'number'==typeof arg[1] ) return crtarr( arg[0], arg[1] );
+	// 文字列で指定
+	var arr=[];
+	if( 'string'!=typeof max ) return arr;
+	var sp = max.split(','), m;
+	for( i=0; i<sp.length; i++ ){
+		if( m=sp[i].match( /([\+\-]?\d+)\.\.([\+\-]?\d+)/ ) ){ arr.push( crtarr( parseInt(m[1]), parseInt(m[2]) ) ); continue; }	// 10..20 等の書式があれば処理
+		arr.push( parseInt(sp[i]) );
+	}
+	return arr;
+}
+
+/**
+ * toStringのエイリアス
+ */
+Object.prototype.to_s = 
+Object.prototype._s=function(){
+	return this.toString();
+}
+
+/**
+ * hasOwnPropertyのエイリアス。
+ * 指定したキーの要素をそのオブジェクトが持っているかどうかを返します
+ * @param {String} o 
+ * @return {Boolean} 持っているならtrue、そうでないならfalse
+ */
+Object.prototype.has = function( o ){
+	return this.hasOwnProperty(o);
+}
+
+/**
+ * バッファに、処理した文字列を送ります。
+ * @param {Boolean} recover キャレット位置を復元するか。デフォルトでは復元する。falsを指定すると文字を送り終わった位置。
+ */
+Object.prototype.send = function( recover ){
+	if( undefined==recover ) recover=true;
+	var c = App.Caret;
+	var scal={ col:c.Col, row:c.Row };	// 加工前のキャレット位置を保存
+	c.Send(this.toString());
+	// キャレット位置を元に戻す
+	if( false!=recover ){
+		c.Col = scal.col;
+		c.Row = scal.row;
+	}
+}
+
+/**
+ * 処理した文字列を、ダイアログに送ります。
+ */
+Object.prototype.alert = function(){
+	App.Alert(this.toString());
+}
+
+/**
+ * htmlタグの消去
+ * @return {String} タグを消去した文字列
+ */
+String.prototype.deltag = function(){
+	return this.replace( /<.*?>/g, '' );
+}
+
+/**
+ * 文字列の長さを、指定した長さで調整する。
+ * 長さに足りない場合は、空白スペースで埋め合わせする
+ * @param {Integer} n 長さマッチ条件
+ * @param {String} [fill=' '] 埋め合わせ文字列
+ * @return {String} 置換処理後の文字列
+ * @example
+ * "abra".pad(10,'*');	// 「abra******」が返る
+ * "abcd".pad(10,'efg');	// 「abcdefgefg」が返る
+ * "abcdefghj".pad(5);	// 長さが足りている場合はそのまま
+ */
+String.prototype.pad = function( n, fill ){
+	if( !fill ) fill = ' ';
+	var s = this;
+	s = s.substring( 0, n );
+	while( n>s.toString().length ) s+=fill;
+	return s;
+}
+
+/**
+ * マッチ条件に合致する部分が見つかったら
+ * 与えられた関数で処理を行った結果で置換を行います
+ * @param {RegExp} m マッチ条件
+ * @param {Function|String} fn 処理を行う関数
+ * @return {String} 置換処理後の文字列
+ */
+String.prototype.gsub = function( rx, fn ){
+	var s = this;
+	if( 'string'==typeof rx ) rx = new RegExp( rx );
+	var cnt=0, i=0, rs='';	// 置き換え後の文字を代入
+	while( -1 != (i=s.search(rx)) ){
+		if( cnt++>100 ) break;	// 無限ループ回避
+		rs += s.substring( 0, i );
+		// 置き換え処理実行
+		s = s.substring( i-1, s.length );	// 直前まで回避
+		var r = s.match(rx)[0];
+		s = s.substring( r.length+1, s.length );
+		rs += ('function'==typeof fn)?fn(r):fn.toString();
+	}
+	rs += s;
+	
+	return rs;
+}
+
+/**
+ * String.prototype.splitの簡略表記系
+ * 引数を指定しない場合、改行で区切ります
+ * @param {String} splitter  分割文字
+ * @param {Number} [limit] 分割数の制限
+ */
+String.prototype.toArray = 
+String.prototype.to_a = 
+String.prototype._a  = function( splitter, limit ){
+	var arr=[];
+	for( var i=0; i<arguments.length; i++ )
+		arr.push(arguments[i]);
+	if( !arr.length ) arr[0]='\n'; 
+	return this.split.apply( this, arr );
+}
+
+/**
+ * 行ごとに指定された処理を行います
+ * @param {Function|String} fn 各行に行う処理
+ * @return {String} 処理後の文字列
+ */
+String.prototype.each = function( fn ){
+	if( undefined==fn ) return;
+	return this.split('\n').map(fn).join('\n');
+}
+
+/**
+ * タブをスペースに変換します
+ * タブ幅を指定しない場合、エディタのデフォルトで自動的に変換されます
+ * @param {Number} [n] タブ幅
+ * @return {String} 変換後の文字列
+ */
+String.prototype.expand = function( n ){
+	if(!n) n=parseInt(App.Prop(App.Buffer.ExtClass, 'tab-width'));	// デフォルトのタブ幅の取得
+	var s = this, space='';
+	for( var i=0; i<n; i++ ) space += ' ';	// 空白スペースの量産
+	return s.replace(/(:?^|\n)\t+/g, function($0){
+		return $0.replace( /'\t'/g, space );
+	} );
+}
+
+/**
+ * スペースをタブに変換します
+ * タブ幅を指定しない場合、エディタのデフォルトで自動的に変換されます
+ * @param {Number} [n] タブ幅
+ * @return {String} 変換後の文字列
+ */
+String.prototype.unexpand = function( n ){
+	if(!n) n=App.Prop(App.Buffer.ExtClass, 'tab-width');	// デフォルトのタブ幅の取得
+	var s = this, space='';
+	for( var i=0; i<n; i++ ) space += ' ';
+	return s.replace( /(:?^|\n) +/g, function($0){
+		return $0.replace( new RegExp( space, 'g' ), '\t' );
+	} );
+}
+
+/**
+ * TSV形式のファイル等を各列の位置を整えて見やすい形に整形する
+ * 例:
+ * aaa   [タブ文字]00000[タブ文字]floating
+ * bbbbbb[タブ文字]99   [タブ文字]split   
+ * @return {String} 整形された文字列
+ */
+String.prototype.normalize = function(){
+	var s = this;
+	// 文字を2次元配列に変換
+	var a = s.split('\n').collect(function(a){ return a.split('\t') });
+	
+	// 一番項目数が多い行の項目数を求める
+	var m=(function(){
+		var m=0;
+		for(var i=0; i<a.length; i++ ) m = Math.max( a[i].length, m );
+		return m;
+	})();
+	
+	// 配列の正規化
+	for(var i=0; i<a.length; i++ )
+		for(var j=0; j<m; j++ )
+			a[i][j] = a[i].hasOwnProperty(j)?a[i][j]:'';
+	
+	// 一番幅の大きい文字に合わせる
+	var maxs=[];
+	for(var j=0; j<m; j++ ){
+		// 各列の最大文字数
+		var max=0;
+		for(var i=0; i<a.length; i++ )
+			max = Math.max( a[i][j].toString().length, max );
+		maxs.push(max);
+		// 埋め合わせ
+		for(var i=0; i<a.length; i++ )
+			a[i][j] = a[i][j].toString().pad( max );
+	}
+	
+	// 最後に全部連結して文字列に戻す
+	return a.collect(function(a){ return a.join('\t'); }).join('\n');
+}
+
+/**
+ * 文字を切り分けます
+ * @param {Number} start 切り分け開始文字数
+ * @param {Number} end 終了文字数
+ * @return {String} 切り分け後の文字列
+ * 
+ * @example
+ * "abcdefghijklmn".cut(10); // 「abcdefghij」が返る
+ * "abcdefghijklmn".cut(5,8); // 「fgh」が返る
+ */
+String.prototype.cut = function( start, end ){
+	if( undefined==end ){
+		end = start;
+		start = 0;
+	}
+	
+	return this.substring( start, end );
+}
+
+/**
+ * 改行文字を取り除きます
+ * @return {String} 改行を取り除いた文字列
+ */
+String.prototype.chop = function(){
+	return this.replace( /\n/g, '' );
+}
+
+/**
+ * 同一の文字列の並びをひとつにまとめます
+ * @example
+ * "aaabbb".squeeze(); // 「ab」が返る
+ */
+String.prototype.squeeze = function(){
+	var s='', comp='';
+	for( var i=0; i<this.length; i++ ){
+		var cs = this.charAt(i);
+		if( comp===cs ) continue;
+		s+=cs;
+		comp = cs;
+	}
+	return s;
+}
+
+/**
+ * 引数で指定した文字列が何回出てくるかをカウントします。
+ * 正規表現を渡した場合は、マッチした回数を
+ * 関数オブジェクトを指定すれば、評価して真になる文字回数を返します
+ * @param {String} word 検索文字列
+ * @return {Number} 登場回数
+ */
+String.prototype.count = function( word ){
+	var n=0;
+	this.replace( new RegExp( word, 'g' ), function( $0 ){ ++n; } );
+	return n;
+}
+
+/**
+ * nth 番目の文字の直前に文字列 other を挿入します。
+ * @param {Number} nth 挿入位置
+ * @param {String} other 挿入文字列
+ * @param 挿入後の文字列
+ * @exsample 
+ * "abracadabra".insert( 5, '***' ); //「abrac***adabra」が返る
+ */
+String.prototype.insert = function( nth, other ){
+	var s=this;
+	return s.substring( 0, nth ) + other + s.substring( nth, s.length );
+}
+
+/**
+ * toStringのエイリアス
+ * @return {String} 文字列
+ */
+String.prototype.to_s = 
+String.prototype._s = function(){
+	return this.toString();
+}
+
+/**
+ * 文字列を数値化
+ * @return {Float} 数値
+ */
+String.prototype.to_i = 
+String.prototype._i = 
+String.prototype.to_f = 
+String.prototype._f = function( fmt ){
+	return parseInt(this);
+}
+
+/**
+ * 文字列の末尾に、文字を継ぎ足します
+ * @param {String} s 継ぎ足しを行う文字列
+ * "abra".push(10);
+ */
+String.prototype.push = function( s ){
+	for( var i=0; i<arguments.length; i++ )
+		this += arguments[i].toString();
+	
+	return this;
+}
+
+/**
+ * 文字列の末尾文字を削除します
+ * このメソッドは破壊的メソッドです
+ * @param {Number} [n] popする文字数
+ * @return {String} 末尾の文字
+ */
+String.prototype.pop = function( n ){
+	if( undefined==n || 'number'!=typeof n ) n=1;
+	var s = this;
+	this = this.substring( 0, this.length-1 );
+	return s.substring( 1, this.length );
+}
+
+/**
+ * 文字列の先頭に、文字を継ぎ足します
+ * @param {String} s 継ぎ足しを行う文字列
+ * @return {String} 継ぎ足し後の文字列
+ */
+String.prototype.shift = function( s ){
+	for( var i=0; i<arguments.length; i++ )
+		this = arguments[i].toString()+this;
+	return this;
+}
+
+/**
+ * 文字列の先頭文字を削除します
+ * このメソッドは破壊的メソッドです
+ * @param {Number} [n] 取り出す先頭文字数
+ * @return {String} 先頭の文字列
+ */
+String.prototype.unshift = function( n ){
+	if( undefined==n || 'number'!=typeof n ) n=1;
+	var s = this;
+	this = this.substring( 1, this.length );
+	return s.substring( 0, 1 );
+}
+
+/**
+ * Array.prototype.joinのエイリアス
+ * 引数を指定しない場合、改行で連結します
+ * @param {String} [glue="\n"] 連結文字列
+ * @return {String} 連結文字列
+ */
+Array.prototype.j = function( glue ){
+	var arr=[];
+	for( var i=0; i<arguments.length; i++ )
+		arr.push(arguments[i]);
+	if( !arr.length ) arr[0]='\n';
+	return this.join.apply( this, arr );
+}
+
+/**
+ * 配列要素それぞれに適応をかける。このメソッドは破壊的メソッドである。
+ * @param {Function} fn 処理を記述した関数
+ * @param {Boolean} force 破壊的メソッドであればtrueとする、そうでない場合は不要
+ * @return {Array} 処理を施した結果の配列
+ */
+Array.prototype.each = 
+Array.prototype.collect = 
+Array.prototype.e = 
+function( fn, force ){
+	var arr=[];
+	for( var i=0; i<arguments.length; i++ )
+		arr.push(arguments[i]);
+	return this.map.apply( this, arr );
+}
+
+/**
+ * 配列要素それぞれに適応をかけて、出来た結果の配列を返す。
+ * @param {Function|String} fn 処理を記述した関数。文字列を渡された場合は、evalでパースしてみて出来るだけ処理できる形に変換します
+ * @return {Array} 処理を施した結果の配列
+ */
+Array.prototype.map=function( fn ){
+	if( 'string'==typeof fn ) 
+		try{ fn=eval('(function(){ return function(s,i){'+fn+'}; })()'); }catch(e){ return this; }
+	
+	if( 'function'!=typeof fn ) return this;
+	var o = this;
+	for( var i=0; i<o.length; i++ ) o[i]=fn( this[i], i );
+	if( 1<arguments.length && true===arguments[1] )	this=o;
+	return o;
+}
+
+/**
+ * 配列内部に、引数で渡したものと同じオブジェクトがあるか探す。
+ * 同じものが見つかった場合は、trueを返す
+ * 引数で関数オブジェクトを渡した場合は、実行結果がtrueになるかを調べる
+ * @param {Array} o 探索する配列要素
+ * @return {Boolean} 合致するものがあればtrue
+ */
+Array.prototype.find=function( o ){
+	var arg=arguments;
+	for( var i=0; i<this.length; i++ )
+		for( var j=0; j<arg.length; j++ ){
+			var o=arg[j];
+			if( 'function'==typeof o && o.call(this[i]) ) return true;	//関数なら実行して検査
+			if( o===this[i] ) return true;	// そうでないなら型付検査
+		}
+	
+	return false;
+}
+
+/**
+ * 配列の中から重複する要素を取り除いたものを返します
+ * @return {Array} 取り除いた結果の配列
+ */
+Array.prototype.uniq=function(){
+	var a = this;
+	if( !a.length ) return [];
+	var b = [];
+	for( var i=0; i<a.length; i++ )
+		if( !b.find(a[i]) ) b.push(a[i]);
+	
+	return b;
+}
+
+/**
+ * sortの拡張。引数に関数以外を指定しても色々ソート
+ * @param {Function} fn ソートの規則を表す、種類か関数
+ * @param {boolean} op 昇順に並べるか、降順に並べるか。デフォルトは降順
+ * @return {Array} ソート後の配列
+ * @example
+ * ['a','c','b','d'].ssort('a'); // abc順に並べ替え。['a','b','c','d']となる
+ */
+Array.prototype.ssort = function(fn, op){
+	// 文字列で指定された関数を呼び出し
+	if( 'string'==typeof fn ){
+		fn = ({
+			// 数値比較
+			'number':(op ? 
+				function( a,b ){ return parseFloat(a) - parseFloat(b); }:
+				function( b,a ){ return parseFloat(a) - parseFloat(b); }),
+			'n':(op ? 
+				function( a,b ){ return parseFloat(a) - parseFloat(b); }:
+				function( b,a ){ return parseFloat(a) - parseFloat(b); }),
+			'float':(op ? 
+				function( a,b ){ return parseFloat(a) - parseFloat(b); }:
+				function( b,a ){ return parseFloat(a) - parseFloat(b); }),
+			// 数値比較
+			'int':( op ?
+				function( a,b ){ return parseInt(a) - parseIntat(b); }:
+				function( b,a ){ return parseInt(a) - parseIntat(b); }),
+			'i':( op ?
+				function( a,b ){ return parseInt(a) - parseIntat(b); }:
+				function( b,a ){ return parseInt(a) - parseIntat(b); }),
+			// 文字列長比較
+			'length':( op ?
+				function( a,b ){ return a.length - b.length; }:
+				function( b,a ){ return a.length - b.length; }),
+			'len':( op ?
+				function( a,b ){ return a.length - b.length; }:
+				function( b,a ){ return a.length - b.length; }),
+			'l':( op ?
+				function( a,b ){ return a.length - b.length; }:
+				function( b,a ){ return a.length - b.length; }),
+			// 文字比較
+			'ascii':( op ?
+				function( a,b ){ return a.localeCompare(b); }:
+				function( b,a ){ return a.localeCompare(b); }),
+			'a':( op ?
+				function( a,b ){ return a.localeCompare(b); }:
+				function( b,a ){ return a.localeCompare(b); }),
+			'string':( op ?
+				function( a,b ){ return a.localeCompare(b); }:
+				function( b,a ){ return a.localeCompare(b); }),
+			's':( op ?
+				function( a,b ){ return a.localeCompare(b); }:
+				function( b,a ){ return a.localeCompare(b); })
+		})[fn];
+	}
+	var arr=[];
+	for( var i=0; i<arguments.length; i++ )
+		arr.push(arguments[i]);
+	arr[0]=fn;
+	this.sort.apply( this, arr );
+	return this;
+}
+
+/**
+ * 配列の内容を逆順に並べる
+ * @return {Array} 逆順の配列
+ */
+Array.prototype.reverse = 
+Array.prototype.rev = function(){
+	var a = this, ra=[];
+	for( var i in this )
+		if( this.hasOwnProperty(i) )
+			ra.unshift( this[i] );
+	return ra;
+}
+
+/**
+ * toStringのエイリアス
+ * @return {String} 文字列化したもの
+ */
+Array.prototype.to_s = 
+Array.prototype._s = function(){
+	var arr=[];
+	for( var i=0; i<arguments.length; i++ )
+		arr.push(arguments[i]);
+	return this.toString.apply( this, arr );
+}
+
+
+/**
+ * null,undefined,空白文字列「''」を削除した配列を返す
+ * 関数が引き渡された場合は、評価した値が真にならないものを削除する
+ * @param {Function} [fn] 評価の関数、真を返さないものを削除
+ * @return {Array} 縮小された配列
+ */
+Array.prototype.compact = function( fn ){
+	var a=this, ra=[];
+	for( var i in a )
+		if( a.hasOwnProperty(i) )
+			if(
+				( undefined == fn && '' != a[i] && null != a[i] && undefined != a[i] ) || 	// 引数の指定が無いとき
+				( 'function' == typeof fn && fn(a[i]) )	// 引数の指定があるとき
+			) ra.push(a[i]);
+	
+	return ra;
+}
+
+/**
+ * 配列から、引数で引き渡された要素を探し出して消去します
+ * @return {Array} 消去済みの配列
+ */
+Array.prototype.del = function(){
+	var a=this, ra=[];
+	self_object:
+	for( var i in a )
+		if( a.hasOwnProperty(i) ){
+			// 引数の要素のどれかにマッチすれば追記をしない
+			for( var j=0; j<arguments.length; j++ )
+				if( a[i]===arguments[j] ) continue self_object;
+			
+			ra[i] = a[i];
+		}
+	
+	return ra;
+}
+
+/**
+ * concat.applyと等しい
+ */
+Array.prototype.aconcat = function(){
+	return this.concat.apply( this, arguments );
+}
+
+/**
+ * 配列を指定した詰め物で埋めて、長さをあわせます
+ * @param {Number} max 詰め込む場合の配列の長さ
+ * @param {String} [fill=''] 詰め込みをする文字列。デフォルトでは空文字列
+ * @return {Array} 詰め込み後の配列
+ */
+Array.prototype.pad = function( max, fill ){
+	// 悩んだけど、文字列処理のライブラリなのでデフォルトは空文字列
+	if( undefined == fill ) fill = '';
+	var a = this, i=0;
+	for( ; i<a.length; i++ );	// 現在のデータはパス
+	for( ; i<max; i++ ) a[i]=fill;	// 詰め物領域
+	return a;
+}
+
+/**
+ * ジャグ配列を、2次元配列として正規化します。
+ * つまり
+ * [
+ *   [ 1, 2, 3 ],
+ *   [ 4, 5 ],
+ *   [ 6, 7, 8, 9 ],
+ * ]
+ *  ↓
+ * [
+ *   [ 1, 2, 3, '' ],
+ *   [ 4, 5,'', '' ],
+ *   [ 6, 7, 8, 9  ],
+ * ]
+ * の様な形に整えます
+ * @param {String} [fill] 長さが足りない部分に、詰め込みをする文字。デフォルトでは空文字列
+ * @return {Array} 整形後の配列
+ */
+Array.prototype.normalize = function( fill ){
+	var a = this;
+	if( undefined == fill ) fill = '';
+	var max = 0;	// 最長の配列の長さ
+	for( var i=0; i<a.length; i++ ){
+		if( !(a[i] instanceof Array) ) a[i] = [ a[i] ];	// 全ての行を配列化
+		max = Math.max( a[i].length, max );
+	}
+	
+	for( var i=0; i<a.length; i++ )
+		a[i] = a[i].pad( max, fill );	// 長さが足りないときは埋め合わせを行う
+	
+	return a;
+}
+
+/**
+ * 転置行列を返す
+ * @param {String} [fill] 不規則配列だった場合に正規化で詰める詰め物
+ * @return {Array} 転置行列
+ */
+Array.prototype.transpose = function( fill ){
+	if( undefined == fill ) fill = '';
+	var ra=[];
+	var a = this.normalize( fill );	// まず配列の長さを整える
+	// ここで入れ替え
+	for( var i=0; i<a[0].length; i++ ){
+		ra[i]=[];
+		for( var j=0; j<a.length; j++ )
+			ra[i][j] = a[j][i];
+	}
+	return ra;
+}
+

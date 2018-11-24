@@ -1,0 +1,84 @@
+#tips .item KBD,
+#tipstable .item KBD {
+			font-weight: normal;
+			color: #000000;
+			background-color: #fff0c0;
+			padding: 0 0.3em 0 0.3em;
+			border-width: 1px;
+			border-style: solid;
+			border-color: #9090e0;
+			text-decoration: none;
+			font-size: 80%;
+			}
+
+#tips .item CODE,
+#tipstable .item CODE {
+			color: #000088;
+			font-style: normal;
+			font-size: 90%;
+			}
+
+#tips .item .form,
+#tips .item .example {
+			color: #000000;
+			background-color: #fff0c0;
+			font-size: 80%;
+			line-height: 130%;
+			letter-spacing: 0;
+			border-width: 2pt 2pt 2pt 10pt;
+ 			border-style: double double double solid;
+			border-color: #ddddff;
+			margin: 0 0 0.5em 2em;
+			}
+
+#tips .item .form PRE,
+#tips .item .example PRE {
+			padding: 0em 0.5em;
+			margin: 0.2em 0;
+			}
+
+#tips .item .form EM.title,
+#tips .item .example EM.title {
+			display: block;
+			color: #000000;
+			font-weight: bold;
+			font-size: 120%;
+			padding: 0.2em 1em;
+			}
+
+#tips .item .form EM.title {
+			background-color: #fdf4f4;
+			}
+
+#tips .item .example EM.title {
+			background-color: #ffc0ff;
+			}
+
+
+#tipstable .item TH {
+			text-align: left;
+			}
+
+#tipstable .item TABLE,
+#tipstable .item DL {
+			margin-left: 1em;
+			margin-right: 0em;
+			}
+
+#tipstable .item TD TABLE {
+			margin-left: 0em;
+			}
+
+#tipstable .item .caption {
+			background-color: #ffccff;
+			}
+
+#tipstable .item DT {
+			font-weight: normal;
+			}
+
+#tipstable .item DL,
+#tipstable .item DT,
+#tipstable .item DD {
+			line-height: 130%;
+			}

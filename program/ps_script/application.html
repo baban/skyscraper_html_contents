@@ -1,0 +1,210 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+		 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+
+	<meta name="author" content="babanba-n" />
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="PhotoShopで使うJavaScript解説" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rev="made" href="mailto:baban@nergal.clubbbq.com" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/document.css" type="text/css" />
+	
+	<title>PhotoShopで使う!JavaScript要約解説</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>PhotoShopで使う!JavaScript要約解説</h1>
+
+<div class="section">
+		<h2>Application</h2>
+		<div class="section">
+			<h3>プロパティ</h3>
+			<dl class="explain">
+				<dt class="define">activeDocument</dt>
+				<dd>
+					型:Document
+					現在アクティブになっている画像を参照します、非常によく使うので必須
+				</dd>
+				<dd>
+					
+				</dd>
+				<dt class="define">arguments</dt>
+				<dd>
+					型:Array of Objects
+					どうやら配列を実装するために用意されているだけで、それ以上の特殊な機能はない様子…
+				</dd>
+				<dt class="define">colorSettings</dt>
+				<dd>
+					型:Object
+				</dd>
+				<dt class="define">documents</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">displayDialogs</dt>
+				<dd>
+					型:DialogMedes
+					
+				</dd>
+				<dt class="define">documents</dt>
+				<dd>
+					型:Documents
+				</dd>
+				<dt class="define">foregroundColor</dt>
+				<dd>
+					型:SolidColor
+					ペンの色を返しますが、型がSolidColorなのが曲者。ちょっとややこしそうなので後まわし
+				</dd>
+				<dt class="define">freeMemory</dt>
+				<dd>
+					型:long
+					PhotoShopが利用可能な残りメモリの量を返します、単位はbyteみたいです
+				</dd>
+				<dt class="define">name</dt>
+				<dd>
+					型:String
+					このアプリケーションの名前、つまり"Abode PhotoShop"の文字列を取得します
+				</dd>
+				<dt class="define">parent</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">path</dt>
+				<dd>
+					型:File
+					PhotoShopの実行ファイルの情報をFile型で返しているご様子…
+				</dd>
+				<dt class="define">preference</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">scriptingVersion</dt>
+				<dd>
+					スクリプトのバージョンを文字列で返します、自分環境では、1.0.2が返ってきました
+				</dd>
+				<dt class="define">serialNumber</dt>
+				<dd>
+					<p>製品のシリアルナンバーを返します</p>
+				</dd>
+				<dt class="define">typename</dt>
+				<dd>
+					型:String
+					型の情報を文字列で取得します、この場合は"Application"ですね
+				</dd>
+				<dt class="define">version</dt>
+				<dd>
+					Win版PhotoShop7環境では、7.0か、アップデートしていれば7.0.1が返ってくる様です
+				</dd>
+			</dl>
+			<h3>メソッド</h3>
+			<dl class="explain">
+				<dt class="define">alert( String Text )</dt>
+				<dd>
+					<p>アラートダイアログを表示します</p>
+				</dd>
+				<dt class="define">beep( CharID String )</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">confirm( String Text )</dt>
+				<dd>
+					返り値:boolean
+					<p>Yes、Noの選択ダイアログを表示して結果の値を返します</p>
+				</dd>
+				<dt class="define">doAction( String Action, String From )</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">executeAction( long EventID [, ActionDescripter Descripter, DialogModes DisplayDialog ] )</dt>
+				<dd>
+					返り値:ActionDescripter
+				</dd>
+				<dt class="define">open( File Document[, Object As ] )</dt>
+				<dd>
+					返り値:Document
+				</dd>
+				<dt class="define">purge( PurgeTarget Target )</dt>
+				<dd>
+					<p>メモリにあるアンドゥ情報などを消去するようです</p>
+					<p>引数には次のいずれかを指定します</p>
+					<ul>
+						<li>PurgeTarget.ALLCACHES</li>
+						<li>PurgeTarget.CLIPBOARDCACHE</li>
+						<li>PurgeTarget.HISTORYCACHES</li>
+						<li>PurgeTarget.UNDOCACHES</li>
+					</ul>
+				</dd>
+				<dt class="define">toString()</dt>
+				<dd>
+					
+				</dd>
+				<dt class="define">typeIDtoCharID( long TypeID )</dt>
+				<dd>
+					
+				</dd>
+			</dl>
+</div>
+
+<div id="CC_Licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img alt="クリエイティブ・コモンズ・ライセンス" src="http://creativecommons.org/images/public/somerights2.gif" />
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+	<!-- /クリエイティブ・コモンズ・ライセンス -->
+	
+	<!--
+	
+	<rdf:RDF
+		xmlns="http://web.resource.org/cc/"
+		xmlns:dc="http://purl.org/dc/elements/1.1/"
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	>
+	<Work rdf:about="">
+		<dc:title>我流:スタイルシートの設計技法</dc:title>
+		<dc:date>２００４</dc:date>
+		<dc:creator>
+			<Agent>
+				<dc:title>ばばんばーん</dc:title>
+			</Agent>
+		</dc:creator>
+		<dc:rights>
+			<Agent>
+				<dc:title>ばばんばーん</dc:title>
+			</Agent>
+		</dc:rights>
+		<dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+		<license rdf:resource="http://creativecommons.org/licenses/sa/2.0/jp/" />
+	</Work>
+	
+	<License rdf:about="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+		<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+		<requires rdf:resource="http://web.resource.org/cc/Notice" />
+		<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+		<requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+	</License>
+	
+	</rdf:RDF>
+	
+	-->
+</div>
+
+</body>
+</html>

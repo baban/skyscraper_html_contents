@@ -1,0 +1,361 @@
+/* === navigator/navigator.css ============================================= */
+
+/* 戻る・進むボタンと履歴ボタンの間隔 */
+/* 上 右 下 左　の順 */
+
+#back-button > .toolbarbutton-menubutton-stack
+    > .toolbarbutton-menubutton-dropmarker,
+#forward-button > .toolbarbutton-menubutton-stack
+    > .toolbarbutton-menubutton-dropmarker {}
+
+/* アイコンの文字 */
+/* s-modernとは表現が違うので注意。「stack」がなくなっている。
+*/
+.toolbarbutton-1 > .toolbarbutton-menubutton-button
+    > .toolbarbutton-text,
+.toolbarbutton-1 > .toolbarbutton-text {}
+
+/* ツールバーの背景 */
+#nav-bar > .toolbar-primary-holder {}
+
+/* URLバー（外枠） */
+#urlbar {}
+
+/* URLバーの外側 */
+#nav-bar-inner {}
+
+/* ユーザ設定ツールバー */
+#PersonalToolbar {}
+
+/* URLバーオートコンプリート時に出てくる、アドレスの説明（タイトル） */
+.autocomplete-treebody:-moz-tree-cell-text(comment) {}
+
+/* URLバーに入力時、...をGoogleで検索、とか出てくる部分 */
+.autocomplete-search-box {}
+
+/* ↑で、マッチするものがないとき */
+.autocomplete-result-popup[nomatch] > .autocomplete-search-box {}
+
+/* ページ表示部分（URLバーの下～ステータスバーの上、タブバーは含む） */
+#content {}
+
+
+/* === navigator/navigatorNS.css =========================================== */
+
+/* キーワードリスト */
+/* height: を削るとアイコンと同サイズになる（つまり小さい枠になってしまう） */
+ubhist-keyword-popup {}
+#ubhist-keyword-popup > .toolbarbutton-menu-dropmarker {}
+#ubhist-keyword-popup:hover {}
+#ubhist-keyword-popup[open="true"] {}
+
+
+/* === global/autocomplete.css ============================================= */
+
+/* urlバーの履歴リスト */
+.autocomplete-history-popup,
+.autocomplete-result-popup {}
+
+/* urlバーのドロップダウンボタン（▼） */
+.autocomplete-history-dropmarker {}
+
+
+/* === global/browser.css ================================================== */
+
+/* タブについて。
+   タブバーは、pin-ballのnaivgator.cssからsmall-modernのnavigator.cssに
+   貼り付けるだけで細くなった。classicの場合は、browser.cssの中のtab-newbutton
+   を「アイコンだけを使う形」にする必要がある。基本的にpin-ballからのコピー
+   （アイコンもコピーすること）でOK。
+*/
+
+/* ブラウザの表示部分（タブバーの下）あるいはタブバーの下辺 */
+.tabbrowser-strip {} 
+
+/* タブのアイコン */
+.tab-icon {}
+
+/* タブバーの背景部分 */
+.tabbrowser-tabs {} 
+
+/* タブバーのクローズボタン */
+.tabs-closebutton {} 
+
+/* 非アクティブのタブ 
+tab {}
+
+/* アクティブのタブ */
+tab[selected="true"],
+tab:hover:active[selected="true"] {}
+
+/* 選択中のタブ */
+tab:hover:active {}
+
+/* 読み込み中のタブ（アクティブならそっちが優先） */
+tab[busy] {}
+
+/* === global/global.css =================================================== */
+
+/* 各種窓（設定ダイアログとか） */
+window, 
+page,
+dialog,
+wizard {}
+
+/* ステータスバー関係。ここもおおむねclassicから流用できる */
+statusbar {}
+
+/* === global/menu.css ===================================================== */
+
+/* hover（on cursor）状態のメニュー */
+menubar > menu[_moz-menuactive="true"] {}
+
+/* アクティブ状態のメニュー */
+menubar > menu[_moz-menuactive="true"][open="true"] {}
+
+/* メニューの文字 */
+menu, 
+menuitem {}
+
+/* 使用不可のメニュー */
+menu[disabled="true"], menuitem[disabled="true"],
+menu[_moz-menuactive="true"][disabled="true"],
+menuitem[_moz-menuactive="true"][disabled="true"] {
+
+/* 反転状態のメニュー */
+menupopup > menu[_moz-menuactive="true"],
+menupopup > menuitem[_moz-menuactive="true"],
+popup > menu[_moz-menuactive="true"],
+popup > menuitem[_moz-menuactive="true"] {}
+
+/* メニューの区切り線 */
+menuseparator {}
+
+/* === global/menulist.css ================================================= */
+
+/* ドロップダウンリスト（Prefbarのユーザエージェントとか） */
+.menulist-label-box {}
+
+/* ドロップダウンのボタン */
+.menulist-dropmarker {}
+
+
+/* === global/toolbar.css ================================================== */
+
+/* 各ツールバー（背景とかも） */
+toolbox {}
+
+/* ツールバーの左のツマミ */
+.toolbar-prefix {]
+
+/* ツールバーの枠 */
+.toolbar-holder {}
+
+/* メニューの右側部分 */
+menubar {}
+
+/* メニューの左側の、「閉じる」ボタン */
+menubar > toolbargrippy {}
+
+/* ツールバーの基本 */
+toolbar {}
+
+/* ツールバーのセパレータ */
+toolbarseparator {}
+
+
+/* === global/toolbarbutton.css ============================================ */
+
+/* ドロップダウンボタン（戻る・進むの履歴など） */
+/* ここも反転が難しいので、classicのからコピーするのがよい
+   （そのまま流用できる）
+    ただし履歴ボタンの反転を分ける方法は見つからず。xulファイルを他から
+    流用するだけでは不可だった。 */
+.toolbarbutton-menubutton-dropmarker
+
+/* アイコンのテキスト */
+.toolbarbutton-text {}
+
+/* アイコン */
+.toolbarbutton-1,
+.toolbarbutton-1 > .toolbarbutton-menubutton-button,
+.toolbarbutton-1[disabled="true"]:hover:active
+
+/* アクティブになっている（押されている）アイコン */
+.toolbarbutton-1:hover:active,
+.toolbarbutton-1[open="true"],
+.toolbarbutton-1[buttondown="true"] > .toolbarbutton-menubutton-button {
+
+/* ホバー状態のアイコン */
+toolbarbutton:hover,
+toolbarbutton[buttonover="true"] {}
+
+/* アクティブ状態のアイコン */
+toolbarbutton:hover:active,
+toolbarbutton[open="true"] {}
+
+
+/* === global/popup.css ==================================================== */
+
+/* 開いたメニュー（右クリックメニュー含む。要するにメニューリスト） */
+menupopup,
+popup {}
+
+/* ツールチップ（アイコンにカーソルをおいたときに出てくるもの） */
+tooltip {}
+
+/* === global/popup.css ==================================================== */
+
+/* ステータスバー */
+statusbar {}
+
+
+/* === global/checkbox.css ================================================= */
+
+/* チェックボックスを持つアイテムでフォーカスがあるもの */
+checkbox:focus {}
+
+/* チェックボックスのイメージ */
+.checkbox-check
+checkbox:hover:active > .checkbox-check
+.checkbox-check[disabled="true"]
+
+
+/* === global/tree.css ==================================================== */
+/* エクスプローラの「詳細」表示みたいな感じで。ブックマーク窓含む。 */
+
+/* カラムリスト */
+treecol,
+treecolpicker {}
+
+/* アイテム（ブックマークのアイテム部分） */
+tree {}
+
+/* 非アクティブ状態で、選択状態のアイテム */
+treechildren:-moz-tree-row(selected) {}
+
+/* アクティブ状態で、選択状態のアイテム */
+treechildren:-moz-tree-row(selected, focus) {}
+
+/* これも↑と同じ（？） */
+treechildren:-moz-tree-row(current, focus) {}
+
+/* 非アクティブ・選択状態のテキスト */
+treechildren:-moz-tree-cell-text(selected) {}
+
+/* アクティブ・選択状態のテキスト */
+treechildren:-moz-tree-cell-text(selected, focus) {}
+
+/* ツリーの枝部分 */
+treechildren:-moz-tree-line {}
+
+/* セパレータ */
+treechildren:-moz-tree-separator {}
+
+
+/* === global/groupbox.css ================================================= */
+
+/* ダイアログの中の区切り線 */
+groupbox {}
+
+/* ダイアログのキャプション（「標準のブラウザ」とか） */
+caption {}
+
+
+/* === global/dialog.css =================================================== */
+
+/* ダイアログの見出し（「表示」とか「Navigator」とか） */
+dialogheader {}
+
+
+/* === global/tabbox.css =================================================== */
+
+/* タブのパネル（パスワードマネージャなど）
+   立体化はややこしいので例によってclassicからコピー。ここもおおむね流用可。
+   特に「選択中のタブ」の表現はややこしい。tab[selected="true"]とか。 */
+tabpanels {}
+
+/* タブバーの下辺。ダイアログのタブも含む。 */
+.tabs-left,
+.tabs-right {}
+
+/* 非アクティブタブの、「タブ」部分（ダイアログの方だけ） */
+/* 例によって、後ろに何かついたら選択状態とか */
+tab {}
+
+
+/* === global/scrollbars.css =============================================== */
+/* このファイルは基本的にclassicを流用 */
+
+/* スクロールバーの背景部分 */
+scrollbarbutton {}
+
+/* スクロールバーの真ん中の（画像っぽい）部分 */
+thumb {}
+
+
+/* === global/textbox.css ================================================== */
+
+/* テキストボックス（URLバーも含む） */
+textbox {}
+
+
+/* === global/listbox.css ================================================== */
+
+/* 設定画面の言語リストやサイドバーの検索エンジンリストなど */
+listbox {}
+
+/* その中のアイテム */
+listbox:focus > listitem[selected="true"][current="true"] {}
+
+/* リストアイテム群のヘッダ */
+/* サイドバーの「検索」の中の「検索エンジン」など。クリックしてソート
+   できるもの */
+listheader {}
+
+/* リストのチェックボックス */
+.listcell-check {}
+
+
+/* === global/progressmeter.css ============================================ */
+
+/* 読み込み進捗メータ */
+progressmeter {}
+
+
+/* === communicator/button.css ============================================= */
+
+/* OKボタンなど */
+button {}
+
+/* 文字を消す */
+.toolbarbutton-1 > .toolbarbutton-menubutton-button
+	> .toolbarbutton-text,
+.toolbarbutton-1 > .toolbarbutton-text {
+  display: none;
+}
+
+
+/* === communicator/sidebar/sidebar.css ==================================== */
+
+/* サイドバー全体（「サイドバーを」読み込み中などにここが表示される） */
+#sidebar-box {}
+
+/* サイドバーのヘッダ（「Sidebar」の部分） */
+.sidebarheader-main {}
+
+/* サイドバーの中身の「全体」（サイドバー内部で読み込み中の背景など） */
+.sidebar-iframe-no-panels,
+.loadarea {}
+
+/* 同じく、読み込み中（？） */
+.iframe-panel {}
+
+/* サイドバー各タブのヘッダ */
+.box-texttab {}
+
+
+/* === communicator/brand.css ============================================== */
+
+/* アドレスバー右のMozillaアイコン */
+#navigator-throbber {}

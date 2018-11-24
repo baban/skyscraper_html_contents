@@ -1,0 +1,75 @@
+@charset "Shift_JIS";
+
+/*
+	各地に分散しがちな、基本配色設定を書き出しておきます
+	適応範囲:サイト全体
+*/
+
+body {
+	color:#000;
+	background-color:#fcfbff;
+}
+
+abbr, acronym, del, em, ins, q, span, strong, ruby {
+	border-color:#000;
+}
+
+a {
+	color:#017d84;
+	border-color:#017d84;
+}
+
+a:visited {
+	color:#017d84;
+}
+
+a:hover {
+	color:#017d84;
+	background-color:#a8eac5;
+}
+
+a img {
+	border-color:#bceeca;
+}
+
+kbd {
+	background-color:#fcfbf5;
+	border-color:#fcfbf5;
+}
+
+/* block attoribute */
+div, p, address,
+table, td, tr, th, ol, ul,
+textarea, form, input, button,
+dl, dt, dd,
+input, button {
+	border-color:#81d1ae;
+}
+
+h1, h2, h3, h4, h5, h6 {
+ 	border-color:#0c947d;
+}
+
+blockquote {
+	border-color:#bceeca;
+	background-color:#fcfbf5;
+}
+
+ins {
+	border-color:#81d1ae;
+}
+
+table {
+	background-color:#fcfbf5;
+}
+
+textarea, form, input, button {
+	background-color:#fff;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	background-color:#adb;
+}

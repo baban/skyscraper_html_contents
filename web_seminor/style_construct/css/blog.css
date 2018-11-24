@@ -1,0 +1,8 @@
+div.blogRoot {
+	border-style:solid;
+}
+
+div.blog h2 {
+	border-style:none none solid solid;
+	padding:0.2em;
+}

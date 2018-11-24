@@ -1,0 +1,64 @@
+@charset "Shift_JIS";
+
+/* base */
+h2 {
+	background-color:#90d6b8;
+}
+
+h3:before{
+ 	color:#0c947d;
+	content:"¥";
+}
+
+h2 {
+	border:outset 0.05em;
+	margin-bottom:0.2em;
+	padding-left:0.2em;
+}
+
+h2:before {
+	content:"£";
+}
+
+h3 {
+	border-style:solid none solid solid;
+	padding-left:0.4em;
+}
+
+h3:before{
+ 	margin-right:0.2em;
+}
+
+blockquote {
+	border-style:solid;
+}
+
+/* table,list */
+table {
+	border-style:solid;
+	border-width:0.3em;
+	margin:0.5em 1em;
+}
+
+th {
+	font-style:normal;
+}
+
+ul {
+	border-style:none;
+	margin-left:0.4em;
+}
+
+ul > li:before {
+	content:"";
+	padding:0.2em;
+}
+
+dl {
+	border-style:none none none solid;
+	border-width:0.3em;
+}
+
+dt {
+	border-style:solid none;
+}

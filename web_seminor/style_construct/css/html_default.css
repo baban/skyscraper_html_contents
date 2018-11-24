@@ -1,0 +1,235 @@
+@charset "Shift_JIS";
+
+/*
+ブラウザ間の表示差を埋めるための、デフォルトスタイルシート。ちょっと設定しすぎ…
+xhtml1.0, 1.1あたりでDeprecatedのタグ入れない方向で作成
+適用範囲:サイト全体
+CSS1限定設定
+*/
+
+/*==========
+all elements
+==========*/
+a, abbr, acronym, del, em, ins, q, span, strong, kbd,
+ruby, rp, rtc, rbc,
+h1, h2, h3, h4, h5, h6,
+div, p, blockquote,
+pre, code, samp, var, 
+object, map, img,
+caption, 
+table, tbody,
+tr, th, td,
+ul, ol, li,
+dl, dt, dd,
+textarea, form, input, iframe, button
+{
+	text-decoration:none;
+	border:none 1px #000;
+	margin:0;
+	padding:0;
+}
+
+/* ============================
+root elements
+============================ */
+body {
+	font:normal normal 400 1.0em "ＭＳ ゴシック", Osaka, sans-serif;
+	line-height:1.2;
+	background-color:#fff;
+	color:#000;
+	border:none 1px #aaa;
+	cursor:auto;
+	padding:0.6em 1em;
+	margin:0;
+}
+
+/* ===========================
+inline attribute
+=========================== */
+a, abbr, acronym, del, em, ins, q, span, strong, ruby, code {
+	text-decoration:none;
+}
+
+a {
+	text-decoration:underline;
+	color:#00f;
+}
+
+a:visited,
+a:hover,
+a:active {
+	color:#f00;
+}
+
+a img {
+	margin:0 0.1em;
+}
+
+abbr, acronym {
+	border-style:none none dotted none;
+	cursor:help;
+}
+
+del {
+	font-family:italic;
+	text-decoration:line-through;
+}
+
+em {
+	font-style:normal;
+	font-size:1.1em;
+	font-weight:bold;
+}
+
+strong {
+	font-size:1.6em;
+	font-weight:900;
+}
+
+rt {
+	font-size:0.7em;
+}
+
+ins {
+	border-style:solid;
+}
+
+kbd {
+	border-style:outset;
+	padding:0.1em;
+	margin:0 0.15em;
+	background-color:#ccc;
+	border-color:#ccc;
+}
+
+code {
+	padding:0 0.2em;
+}
+
+/* ===================================
+block attribute
+=================================== */
+
+/* h1～h6 */
+h1, h2, h3, h4, h5, h6 {
+	margin:0.5em 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight:bold;
+}
+
+h1 {
+	font-size:1.4em;
+}
+
+h2 {
+	font-size:1.3em;
+}
+
+h3 {
+	font-size:1.2em;
+}
+
+h4, h5, h6 {
+	font-size:1.0em;
+}
+
+/* block attoribute */
+h1, h2, h3, h4, h5, h6,
+div, p, blockquote, pre,
+object, map,
+ul, ol, dl, dt, dd,
+textarea, form, iframe, code {
+	clear:both;
+}
+
+div, p, dd, blockquote, address, pre, samp,
+table,
+ul, ol, dl, pre {
+	margin:0.2em 0.3em;
+	padding:0.2em;
+}
+
+p {
+	line-height:1.2;
+}
+
+blockquote {
+	padding:0.6em;
+}
+
+blockquote > p {
+	margin:0;
+	padding:0;
+}
+
+/* table,list */
+
+table, td {
+	border-style:solid;
+}
+
+table {
+	border-width:4px;
+	margin:0.3em;
+}
+
+th, td {
+	padding:0.3em;
+}
+
+th {
+	font-style:italic;
+	font-weight:bold;
+}
+
+ul {
+	list-style-type:none;
+	padding-left:1em;
+}
+
+ol {
+	list-style-type:decimal;
+	padding-left:2em;
+}
+
+li {
+	list-style-position:outside;
+}
+
+dt, dd {
+	margin-left:1em;
+}
+
+dd {
+	padding:0.3em;
+}
+
+/* image applet ... */
+img {
+	margin:0.2em 0.5em;
+}
+
+a img {
+	border:solid thin #00f;
+}
+
+/* 汎用テキスト要素 */
+
+br {
+	letter-spacing:0;
+}
+
+textarea, form, input {
+	border-style:solid;
+}
+
+textarea, form {
+	margin:0.2em;
+}
+
+input {
+	margin:0.1em;
+	padding:0.1em;
+}

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+
+	<meta name="author" content="babanba-n" />
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="position:fixed;を利用した疑似フレーム" />
+	
+
+	<style type="text/css">
+		body {
+			padding:0;
+			margin:6.5em 0 3.5em 0;
+		}
+		iframe {
+			border-style:none;
+		}
+		#menu,
+		#counter {
+			position:fixed;
+			width:100%;
+			margin:0;
+			left:0;
+			padding:0;
+			overflow:hidden;
+		}
+		#menu {
+			background-color:#000;
+			top:0;
+			height:5.5em;
+		}
+		#counter {
+			bottom:0;
+			height:2.5em;
+		}
+		div#contents {
+			border:solid 2px #f88;
+			margin:2.5em;
+			padding:0.5em;
+		}
+		br.clear {
+			clear:both;
+		}
+	</style>
+	<title>position:fixed;を利用した疑似フレーム</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<object id="menu" data="fake_frame_menu.html" type="text/html" >
+	<a href="fake_frame_menu.html">メニューへ</a>
+</object>
+
+<object id="counter" data="fake_frame_counter.html" type="text/html">
+<!-- カウンターは無理して表示される必要ないので無かったことに… -->
+</object>
+
+<div id="contents">
+	<p><code>position:fixed;</code>を利用した、疑似フレームページ。</p>
+	<p>長文が、書いてあるスクロール出来ますか？</p>
+	<p>「え〜、毎回ページ書き込むの面倒くさいしさ〜」という方は外部にフレームの様にページを読み込むために<code>&lt;object data="ファイル名.html" type="text/html"&gt;</code>と書き込んでやれば外部のページを読み込んでくれますね</p>
+	<p>本当は「IEではobject動かないからiframe使いましょうね〜」とか書くつもりだったのですが、IEのposition:fixed;周りの馬鹿仕様のおかげで、さっぱり動かない状況に持って行かれまして…、結局Opera,Mozilla系列専門に…</p>
+	<p>ポイントはここらへん</p>
+<pre>
+<code>
+body {
+	margin:5.5em 0 3em 0;
+}
+object#menu,
+object#counter {
+	position:fixed;
+	width:100%;
+	margin:0;
+	left:0;
+	padding:0;
+}
+object#menu {
+	background-color:#000;
+	top:0;
+	height:4.5em;
+}
+object#counter {
+	bottom:0;
+	height:2em;
+}
+</code>
+</pre>
+	<p>objectタグで外部のhtmlファイルを読み込んで、画面の一番上と、一番下に移動させていますね</p>
+	<p>さらにbodyタグで上と下にあるフレーム領域分だけマージンを作って、文章が全て表示されるように調整しています</p>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+</div>
+
+</body>
+</html>

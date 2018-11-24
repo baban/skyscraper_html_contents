@@ -1,0 +1,716 @@
+@charset "UTF-8";
+/*
+ブラウザ間の表示差を埋めるための、デフォルトスタイルシート。ちょっと設定しすぎ…
+xhtml1.0, 1.1あたりでDeprecatedのタグ入れない方向で作成
+適用範囲:サイト全体
+CSS1限定設定
+*/
+/* ============================
+root elements
+============================ */
+body {
+  font: normal normal 400 1.3em/1.2 sans-serif;
+  font-family: "MS UI Gothic", Osaka, sans-serif;
+  background-color: #fff;
+  color: #000;
+  border: none 1px #000;
+  cursor: auto;
+  margin: 0;
+  padding: 0.6em 1em; }
+
+/* ===========================
+inline elements
+=========================== */
+a, abbr, acronym, dfn, em, q, span, strong, ruby, code, cite,
+del, ins {
+  font-style: normal;
+  text-decoration: none;
+  border: none 1px #aaa; }
+
+a {
+  text-decoration: underline;
+  color: #00f; }
+
+a:visited,
+a:hover,
+a:active {
+  color: #f00; }
+
+a img {
+  margin: 0 0.1em; }
+
+abbr, acronym {
+  border-style: none none dotted none;
+  cursor: help; }
+
+del {
+  font-family: italic;
+  text-decoration: line-through; }
+
+cite {
+  margin: 0 0.3em; }
+
+/* 強調の強さは em ,strong, strong.stronger, strong.very-strong の順に強くなる */
+em {
+  font-style: normal;
+  font-weight: bold; }
+
+strong {
+  font-size: 1.2em;
+  font-weight: 900; }
+
+strong.stronger {
+  font-size: 1.4em;
+  font-weight: 900; }
+
+strong.very-strong {
+  font-size: 2.0em;
+  font-weight: 900; }
+
+rt {
+  font-size: 0.7em; }
+
+ins {
+  border-style: solid;
+  display: block;
+  padding: 0.2em; }
+
+ins[datetime]:after {
+  content: attr(datetime);
+  border: solid 1px #aaa;
+  display: block;
+  text-align: right;
+  padding: 0.1em;
+  margin-top: 0.2em; }
+
+kbd {
+  border-style: outset;
+  border-width: 0.15em;
+  padding: 0.1em;
+  margin: 0 0.15em;
+  background-color: #ccc;
+  border-color: #ccc; }
+
+code {
+  padding: 0 0.2em; }
+
+/* ===================================
+block elements
+=================================== */
+/* h1～h6 */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0.5em 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold; }
+
+h1 {
+  font-size: 1.4em; }
+
+h2 {
+  font-size: 1.3em; }
+
+h3 {
+  font-size: 1.2em; }
+
+h4, h5, h6 {
+  font-size: 1.0em; }
+
+/* block attoribute */
+h1, h2, h3, h4, h5, h6,
+div, p, blockquote, pre, code,
+object, map,
+ul, ol, dl, dt, dd, li,
+textarea, form, iframe, select {
+  border: none 1px #000;
+  clear: both; }
+
+dd, blockquote, address, pre, samp,
+table,
+ul, ol, dl,
+form {
+  margin: 0.2em 0.3em;
+  padding: 0.2em; }
+
+div {
+  margin: 0;
+  padding: 0; }
+
+p {
+  padding: 0;
+  margin: 0;
+  line-height: 1.2; }
+
+blockquote {
+  padding: 0.6em; }
+
+address {
+  font-style: normal; }
+
+/* table,list */
+table, th, td {
+  text-decoration: none;
+  border: none 1px #000;
+  margin: 0;
+  padding: 0; }
+
+table, td, th {
+  border-style: solid; }
+
+table {
+  border-width: 4px;
+  margin: 0.3em; }
+
+th, td {
+  padding: 0.3em 0.6em; }
+
+th {
+  font-weight: bold; }
+
+ul {
+  list-style-type: none;
+  padding-left: 1em; }
+
+ol {
+  list-style-type: decimal;
+  padding-left: 2em; }
+
+li {
+  list-style-position: outside;
+  margin: 0;
+  line-height: 1.0; }
+
+dt, dd {
+  margin: 0 0 0 1em; }
+
+dd {
+  padding: 0.3em; }
+
+/* image applet ... */
+img {
+  margin: 0.2em 0.5em; }
+
+a img {
+  border: solid thin #00f; }
+
+/* 汎用テキスト要素 */
+br {
+  letter-spacing: 0; }
+
+/*
+用途が特殊です
+画像等にfloatを適用した場合、親要素のボックスから画像がはみ出ないために使用するbrタグにコレを利用します
+(現在)div:after{ content:" "; display:block; }に置き換え中
+*/
+br.clear {
+  clear: both; }
+
+textarea, form {
+  border-style: solid; }
+
+textarea, form {
+  margin: 0.2em;
+  padding: 0.3em; }
+
+input, button {
+  margin: 0.1em;
+  padding: 0.2em;
+  font-size: 1.0em; }
+
+select {
+  margin: 0.1em;
+  border-style: inset;
+  font-size: 1.0em; }
+
+a, abbr, acronym, dfn, em, q, span, strong, ruby, code, cite,
+ins, del {
+  outline: none 1px #aaa; }
+
+/* ============================
+block elements
+============================ */
+h1, h2, h3, h4, h5, h6,
+div, p, blockquote, pre, code,
+object, map,
+ul, ol, dl, dt, dd, li,
+textarea, form, iframe, select {
+  outline: none 1px #000; }
+
+div.section:after {
+  content: " ";
+  display: block;
+  clear: both; }
+
+q:before {
+  content: open-quote; }
+
+q:after {
+  content: close-quote; }
+
+h1:before, h1:after,
+h2:before, h2:after,
+h3:before, h3:after,
+h4:before, h4:after,
+h5:before, h5:after,
+h6:before, h6:after {
+  margin: 0.2em; }
+
+pre > code {
+  display: block;
+  border-style: dotted;
+  overflow: auto; }
+
+code.block {
+  white-space: pre; }
+
+blockquote > p {
+  margin: 0;
+  padding: 0; }
+
+ol {
+  list-style-type: decimal; }
+
+li {
+  list-style-position: outside; }
+
+li:before,
+dt:before {
+  margin-right: 0.2em; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 1px; }
+
+div.table {
+  display: table; }
+
+div.tr {
+  display: table-row;
+  border: 3px solid red; }
+
+div.td {
+  display: table-cell; }
+
+input[type="checkbox"],
+input[type="radio"] {
+  border-style: none; }
+
+input[type="text"],
+input[type="file"] {
+  padding: 0.2em;
+  font-size: 1.0em; }
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="file"] {
+  border-style: outset;
+  border-width: 0.15em;
+  padding: 0 0.2em; }
+
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+  border-style: inset; }
+
+label:after,
+button:after,
+textarea:after,
+input[type="button"]:after,
+input[type="reset"]:after,
+input[type="submit"]:after {
+  content: attr(accesskey); }
+
+/*
+ * based upon
+ *  http://www.akatsukinishisu.net/itazuragaki/2001_10.html#ruby_for_Mozilla_3
+ */
+ruby {
+  display: inline-table;
+  text-align: center;
+  white-space: nowrap;
+  text-indent: 0;
+  text-align: center;
+  margin: 0;
+  vertical-align: bottom; }
+
+ruby > rbc + rtc + rtc {
+  display: table-footer-group;
+  font-size: 70%;
+  line-height: 30%;
+  letter-spacing: 0;
+  text-align: center; }
+
+rbc > rb,
+rtc > rt {
+  display: table-cell;
+  letter-spacing: 0;
+  text-align: center; }
+
+rtc > rt[rbspan] {
+  display: table-caption;
+  text-align: center; }
+
+rp {
+  display: none; }
+
+/*
+	各地に分散しがちな、基本配色設定を書き出しておきます
+	適応範囲:サイト全体
+*/
+body {
+  color: #000;
+  background-color: #ffffff;
+  /* IE Only */
+  /*scrollbar-base-color:#34025B;
+	scrollbar-arrow-color:#fff;*/ }
+
+abbr, acronym, del, em, ins, q, span, strong, ruby {
+  border-color: #000; }
+
+a,
+a:hover,
+a:active {
+  color: #436CAA;
+  border-color: #436CAA; }
+
+a:visited {
+  color: #503F88; }
+
+a:hover {
+  border-color: #503F88;
+  text-decoration: underline; }
+
+kbd {
+  background-color: #fcf5fc;
+  border-color: #fcf5fc; }
+
+/* block attoribute */
+div, p, address,
+table, td, tr, th, ol, ul, nl
+textarea, form, input, button, select,
+dl, dt, dd,
+iframe {
+  border-color: #C7C7C7; }
+
+h {
+  border-color: #C7C7C7; }
+
+blockquote, blockcode {
+  border-color: #e9dcba;
+  background-color: #e9dcba; }
+
+ins {
+  border-color: #530292; }
+
+table {
+  background-color: transparent;
+  border-width: 15px; }
+
+textarea, form {
+  background-color: #fff; }
+
+input[type="text"],
+input[type="file"] {
+  background-color: #fff;
+  border-style: inset; }
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  color: #000;
+  font-style: normal;
+  font-weight: bold;
+  border-style: solid;
+  border-width: 1px 4px 4px 1px;
+  border-color: #000;
+  background-color: #fff; }
+
+@namespace "http://www.w3.org/1999/xhtml/";
+/* 基本構成の定義 */
+/* 適用範囲:サイト全体 */
+h1, h2, h3, h5, h6 {
+  font-family: "Times New Roman", "New York", "ＤＦ平成明朝体W3", "細明朝体" , "ＭＳ 明朝", serif; }
+
+p {
+  padding: 0;
+  margin: 0;
+  line-height: 1.2; }
+
+img {
+  font-size: 1.0em;
+  font-family: "Impact", "Chicago", fantasy; }
+
+body {
+  padding: 0.6em 1em;
+  margin: 0; }
+
+div#licence {
+  border-style: dotted;
+  border-width: 2px;
+  margin: 0.4em;
+  padding: 0.5em; }
+
+div#debug-message {
+  min-width: 10em;
+  min-height: 6em;
+  border-style: solid; }
+
+body {
+  padding: 0 0 1em 0; }
+
+head + body {
+  margin: 0;
+  padding: 0; }
+
+h1 {
+  margin: 0;
+  font-size: 2.0em;
+  background-color: #000;
+  color: #fff;
+  padding: 0.5em; }
+
+body > h1:first-child {
+  background-color: #000;
+  background-repeat: no-repeat;
+  font-size: 1.8em; }
+
+h1:first-child + div {
+  margin: 0.6em 2.5em;
+  padding: 0.7em 1.5em; }
+
+h1:first-child:before {
+  font-size: 1.6em; }
+
+/** ドキュメント装飾のためのCSS、セミナー用文書と通常文書の２つで共有なので分離 */
+/* h1+divと#contentの２重記述はie対策 */
+h1 + div {
+  background-color: #fff;
+  margin: 0 6em;
+  padding: 1em; }
+
+#content {
+  background-color: #fff;
+  margin: 0 4em;
+  padding: 1em; }
+
+@media screen and (max-width: 720px) {
+  #content {
+    margin: 0 1.5em; } }
+
+h2 {
+  background-color: #fff;
+  font-size: 1.6em;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  border-left-width: 0.5em;
+  border-style: solid;
+  padding-left: 0.6em; }
+
+h2 + div.section,
+h2 + section {
+  padding: 0 2em; }
+
+h2:before {
+  content: ""; }
+
+h3 {
+  border-color: #393869;
+  border-width: 0.1em;
+  border-style: none none solid none;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  padding-left: 0.5em; }
+
+h4 {
+  border-style: none none dashed none;
+  padding-left: 0.7em; }
+
+h3:before {
+  content: ""; }
+
+h3:before {
+  margin-right: 0.2em; }
+
+h2 + div.section,
+h2 + section {
+  border-width: 0.2em;
+  margin: 0 0 0.4em 0;
+  padding: 0.5em; }
+
+blockquote {
+  border-style: solid;
+  background-image: url("img/note-back.png");
+  background-repeat: no-repeat;
+  background-position: 80% 60%; }
+
+/* table,list */
+table {
+  border-style: solid;
+  border-width: 0.7em;
+  margin: 0.5em 1em;
+  border-spacing: 4px; }
+
+th {
+  font-style: normal; }
+
+ul {
+  border-style: none;
+  margin-left: 0.4em; }
+
+dl.explain {
+  border-style: none none none solid;
+  border-width: 0.3em; }
+
+dl.explain > dt.define {
+  border-style: solid none;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.2em; }
+
+div.para {
+  padding: 0.2em;
+  margin: 0.2em; }
+
+*.wa {
+  font-size: 1.3em;
+  font-weight: 700; }
+
+dl.history dt,
+dl.stalk dt {
+  font-size: 1.2em;
+  font-weight: bold;
+  border-style: none none solid; }
+
+/* 外部へのリンクのときに使用する */
+a.external:before {
+  content: "*";
+  font-size: 0.8em; }
+
+body {
+  background-color: #EFE3D2; }
+
+dl.toc > dt {
+  font-size: 1.1em; }
+  dl.toc > dt:before {
+    content: "◇"; }
+
+dl.toc > dd {
+  margin-left: 2em; }
+
+ol.toc li, ul.toc li {
+  font-weight: bold;
+  line-height: 1.5; }
+  ol.toc li a, ul.toc li a {
+    text-decoration: none; }
+    ol.toc li a:hover, ul.toc li a:hover {
+      text-decoration: underline; }
+
+ul.data {
+  list-style-type: disc; }
+
+ol.data {
+  list-style-type: disc; }
+
+ul.data li, ol.data li {
+  line-height: 1.3; }
+
+dl.data {
+  padding: 0; }
+  dl.data dt {
+    border-style: solid none double none;
+    border-width: 1px 0 3px 0;
+    padding: 0.2em 0.3em; }
+  dl.data dd {
+    margin-bottom: 0.4em; }
+
+span.refact {
+  color: #a66;
+  font-weight: bold; }
+
+div.refact {
+  color: #a66;
+  font-weight: bold;
+  border-style: solid;
+  background-color: #fff; }
+
+pre > code {
+  background-color: #FADFC2;
+  border-style: solid;
+  padding: 0.5em;
+  font-size: 1.0em; }
+
+pre code[type] {
+  position: relative; }
+  pre code[type]:before {
+    content: attr(title);
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #aaa;
+    background-color: #ddd;
+    color: #aaa;
+    padding: 1px 4px; }
+
+pre code[type="text/javascript"]:before {
+  content: "javascript"; }
+
+pre code[type="text/css"]:before {
+  content: "css"; }
+
+pre code[type="text/html"]:before {
+  content: "html"; }
+
+div.figure {
+  margin: 0.4em;
+  border-style: solid;
+  padding: 0.4em; }
+
+blockquote > pre > code {
+  border-style: none;
+  overflow: auto; }
+
+dfn {
+  font-weight: bold;
+  font-style: normal; }
+
+span.i-comment {
+  color: #800080; }
+
+span.literal {
+  color: #1a0c9a; }
+
+span.b-comment, span.comment {
+  color: #ae3596; }
+
+div.figure {
+  border-style: solid; }
+
+ul.data {
+  padding-left: 2em; }
+
+ul.related {
+  list-style-image: url("img/doc-list-icon.png"); }
+
+div.figure > h2.preview-title {
+  font-size: 1.2em; }
+
+ul#sample_div_1 {
+  position: relative;
+  border-style: solid;
+  width: 80%; }
+  ul#sample_div_1 li {
+    border-style: dotted;
+    display: block;
+    width: 20%; }
+
+div.preview-image-box {
+  border-style: solid;
+  width: 17em;
+  min-width: 200px; }
+
+span.refact {
+  font-weight: bold; }

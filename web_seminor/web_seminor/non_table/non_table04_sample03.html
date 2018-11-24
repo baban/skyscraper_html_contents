@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+
+	<meta name="author" content="babanba-n" />
+	<meta name="Targeted Geographic Area" content="Japan" /> 
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="テーブルデザイン不要論" />
+	
+
+	
+	<title>position:relative;使用のサンプル</title>
+	<style type="text/css"><!--
+		/* 基準位置の変更 */
+		div#box1 {
+			position:relative;
+		}
+		
+		/* Window左上の位置にボックスを移動 */
+		div#box2 {
+			position:absolute;
+			top:15px;
+			left:15px;
+		}
+		
+		body {
+			/* マージンいじりすぎ？ */
+			margin:100px;
+		}
+		/* ボックスが見えるようにスタイルを追加 */
+		div#box1 {
+			border:solid 2px #aaa;
+			width:250px;
+			height:200px;
+			padding:0.5em;
+		}
+		div#box2 {
+			border:solid 2px #aaa;
+			width:150px;
+			height:100px;
+		}
+	--></style>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<div id="box1">
+	<div id="box2">
+	</div>
+</div>
+
+</body>
+</html>

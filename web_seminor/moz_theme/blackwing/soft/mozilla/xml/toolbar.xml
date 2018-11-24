@@ -1,0 +1,127 @@
+<!-- ***** ツールバー ************************************************** -->
+    <toolbar class="toolbar-primary chromeclass-toolbar" id="nav-bar" persist="collapsed" 
+             grippytooltiptext="&navigationToolbar.tooltip;"
+             tbalign="stretch" fullscreentoolbar="true">
+      <hbox id="nav-bar-buttons">
+	<!-- ***** 戻るボタン ***** -->
+        <toolbarbutton id="back-button" type="menu-button" class="toolbarbutton-1"
+                       label="&backButton.label;"
+                       oncommand="if (event.target==this) BrowserBack(); else gotoHistoryIndex(event);"
+                       observes="canGoBack" context="backMenu"
+                       tooltiptext="&backButton.tooltip;">
+          <menupopup context="" onpopupshowing="BrowserBackMenu(event);"/>
+        </toolbarbutton>
+        
+	<!-- ***** 進むボタン ***** -->
+        <toolbarbutton id="forward-button" type="menu-button" class="toolbarbutton-1"
+                       label="&forwardButton.label;"
+                       oncommand="if (event.target==this) BrowserForward(); else gotoHistoryIndex(event);"
+                       observes="canGoForward" context="forwardMenu"
+                       tooltiptext="&forwardButton.tooltip;">
+          <menupopup context="" onpopupshowing="BrowserForwardMenu(event);"/>
+        </toolbarbutton>
+        
+	<!-- ***** 再読込ボタン ***** -->
+        <toolbarbutton id="reload-button" class="toolbarbutton-1"
+                       label="&reloadButton.label;"
+                       oncommand="if (event.shiftKey) BrowserReloadSkipCache(); else BrowserReload();"  
+                       tooltiptext="&reloadButton.tooltip;"/>
+                       
+	<!-- ***** 停止ボタン ***** -->
+        <toolbarbutton id="stop-button" class="toolbarbutton-1"
+                       label="&stopButton.label;"
+                       oncommand="BrowserStop();" observes="canStop"  
+                       tooltiptext="&stopButton.tooltip;"/>
+      </hbox>
+ 
+	<!-- ***** アドレスバー ***** -->
+      <hbox id="nav-bar-inner" flex="1">
+		<!-- ***** アドレスバー入力ボックス ***** -->
+        <textbox id="urlbar" class="chromeclass-location" flex="1"
+                 type="autocomplete" searchSessions="history" 
+                 timeout="50" maxrows="6" alwaysopenpopup="true"
+                 disablehistory="false"
+                 defaultSearchEngine="true" tabScrolling="true"
+                 showCommentColumn="true"
+                 inputtooltiptext="&locationBar.tooltip;"
+                 oninput="window.XULBrowserWindow.userTyped.value=true;"
+                 ondragdrop="window.XULBrowserWindow.userTyped.value=true;alert('foo');"
+                 ontextcommand="return handleURLBarCommand(eventParam, domEvent);"
+                 ontextrevert="return handleURLBarRevert();"
+                 onfocus="URLBarFocusHandler(event);"
+                 onblur="URLBarBlurHandler(event);">
+          <deck id="page-proxy-deck">
+            <image id="page-proxy-button"
+                   onclick="BookmarksUtils.addBookmarkForBrowser(getBrowser().webNavigation, true);"
+                   ondraggesture="PageProxyDragGesture(event);"
+                   tooltiptext="&proxyIcon.tooltip;"/>
+            <image id="page-proxy-favicon" validate="never"
+                   onclick="BookmarksUtils.addBookmarkForBrowser(getBrowser().webNavigation, true);"
+                   ondraggesture="PageProxyDragGesture(event);"
+                   onload="this.parentNode.selectedIndex = 1;
+                           event.stopPropagation();
+                           event.preventBubble();
+                           HandleBookmarkIcon(this.src, true);"
+                   onerror="gBrowser.addToMissedIconCache(this.src); HandleBookmarkIcon(this.src, false);"
+                   tooltiptext="&proxyIcon.tooltip;"/>
+          </deck>
+
+          <menupopup id="ubhist-popup" class="autocomplete-history-popup"
+                     popupalign="topleft" popupanchor="bottomleft"
+                     onpopupshowing="createUBHistoryMenu(event.target);" 
+                     oncommand="executeUrlBarHistoryCommand(event.target);"/>
+        </textbox>
+		<!-- ***************************************************** -->
+
+		<!-- ***** アドレスバーGoボタン ***** -->
+        <button id="go-button" class="button-toolbar chromeclass-location"
+                label="&goButton.label;" hidden="true" persist="hidden"
+                oncommand="addToUrlbarHistory(); BrowserLoadURL();"
+                ondragover="nsDragAndDrop.dragOver(event, goButtonObserver);"
+                ondragdrop="nsDragAndDrop.drop(event, goButtonObserver);"
+                ondragexit="nsDragAndDrop.dragExit(event, goButtonObserver);"
+                tooltiptext="&goButton.tooltip;"/> 
+
+		<!-- ***** アドレスバー検索ボタン ***** -->
+        <button id="search-button" class="button-toolbar chromeclass-location"
+                label="&searchButton.label;" persist="hidden"
+                oncommand="OpenSearch('internet',false, QualifySearchTerm());" 
+                ondragover="nsDragAndDrop.dragOver(event, searchButtonObserver);"
+                ondragdrop="nsDragAndDrop.drop(event, searchButtonObserver);"
+                ondragexit="nsDragAndDrop.dragExit(event, searchButtonObserver);"
+                tooltiptext="&searchButton.tooltip;"/> 
+      </hbox>
+	<!-- ***** アドレスバーここまで ********************************** -->
+
+	<!-- ***** 印刷ボタン ***** -->
+      <toolbarbutton id="print-button" type="menu-button" class="toolbarbutton-1"
+                     label="&printButton.label;" persist="hidden"
+                     oncommand="if (event.target==this) BrowserPrint();"
+                     tooltiptext="&printButton.tooltip;">  
+        <menupopup id="printMenu">
+          <menuitem id="printMenuItemToolbar" label="&printCmd.label;" accesskey="&printCmd.accesskey;"
+                    default="true" oncommand="BrowserPrint()"/>
+          <menuitem label="&printPreviewCmd.label;" accesskey="&printPreviewCmd.accesskey;"
+                    oncommand="setTimeout(BrowserPrintPreview, 0);"/>
+        </menupopup>
+      </toolbarbutton>
+
+	<!-- ***** Mozillaアイコン ***** -->
+      <hbox id="throbber-box" align="center">
+        <button id="navigator-throbber" oncommand="goClickThrobber('browser.throbber.url')"
+                tooltiptext="&throbber.tooltip;"/>
+      </hbox>
+      
+	<!-- ***** 最小化ボタンとか ***** -->
+      <hbox id="window-controls" hidden="true" fullscreencontrol="true">
+        <toolbarbutton id="minimize-button" class="toolbarbutton-1"
+                       oncommand="window.minimize();"/>
+
+        <toolbarbutton id="restore-button" class="toolbarbutton-1"
+                       oncommand="BrowserFullScreen();"/>
+
+        <toolbarbutton id="close-button" class="toolbarbutton-1"
+                       oncommand="window.close();"/>
+      </hbox>
+    </toolbar>
+<!-- ******************************************************************* -->

@@ -1,0 +1,138 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<meta name="author" content="babanba-n" />
+	<meta name="Targeted Geographic Area" content="Japan" /> 
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="PhotoShopのフィルタ製作法" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" >
+	<link rel="stylesheet" href="/css/document.css" type="text/css" />
+	
+	<title>サルでも出来る、PhotoShopフィルタ製作法:設定ダイアログの調整</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>設定ダイアログの調整</h1>
+
+<div class="section">
+	<h2>概要</h2>
+	
+	<div class="section">
+		<p>実際の画像処理に関しては、先ほどの項である程度解説できましたが、他にもダイアログの変更が必要です。今回はコレについて解説を行います。</p>
+		<p>しかし、その前にこのフィルタに関してもう少し詳しい話をしてみましょう。</p>
+		<p>これまではDoFilterRect関数のみを弄っていたので気にしないですんできましたが、これ以外の関数を触るとなると他のファイルがどうなっているか分かっている必要があります。</p>
+		<table class="toc">
+			<tr><td>DissolveWith.c</td><td>画像処理に必要な関数があります</td></tr>
+			<tr><td>DissolveWithScripting.c</td><td>AppleScriptの処理のためにありますが、触る必要はありません</td></tr>
+			<tr><td>DissolveWithUIWin.c</td><td>設定ダイアログ内部の処理を中心に記述されています</td></tr>
+			<tr><td>PIUtilities.c</td><td>細かい処理を行うためにユーティリティ関数を書いてあります</td></tr>
+			<tr><td>WinDialogUtils.c</td><td>設定ダイアログの処理で使うユーティリティ関数を書いてあります</td></tr>
+			<tr><td>WinUtilities.c</td><td>ウィンドウズ対応のための関数を記述してあります</td></tr>
+		</table>
+		<p>基本的にユーティリティ関数は触ることはないので、触ることになるのはDoFilterRect関数などがある「DissolveWith.c」か、設定ダイアログを触るための「DissolveWithUIWin.c」だけになります。他はあまり触りません。使える道具がないか探す必要はありますが、書き換えはないと思ってください。</p>
+	</div>
+	
+	<h2>ダイアログの消去</h2>
+	<div class="section">
+		<p>ここで出すべきか悩みましたが、単純で解説しやすいので載せてしまいます。</p>
+		<p>単純なフィルタの場合には、設定ダイアログの表示が必要ない場合があります。こういうときにダイアログを非表示にしたい場合には「DissolveWithUIWin.c」のDoUI関数を弄ります。というかすべてコメントアウトしてしまいます。</p>
+		<p>つまりは</p>
+<pre><code>
+Boolean DoUI(GPtr globals){
+	int nResult;
+	PlatformData *platform;
+	platform = ((FilterRecordPtr) gStuff)->platformData;
+	nResult = DialogBoxParam(hDllInstance,(LPSTR)DIALOGTITLE,(HWND)platform->hwnd,(FARPROC)DissolveProc,(LPARAM)globals);
+	return (nResult == ok);
+}	
+</code></pre>
+		<p>上のコードを次の様に変更します</p>
+<pre><code>
+Boolean DoUI(GPtr globals){
+	return true;
+}	
+</code></pre>
+		<p>これでダイアログが非表示になります</p>
+	</div>
+	
+	<h2>実際の設定変更に関して</h2>
+	
+	<div class="section">
+		<p>さて、まず最初に言っておかないと行けないことは、ダイアログなどの操作を行う場合は、Windowsの用意したGUI関連の操作のプログラミングの知識、つまりは	ここから先はWindowsプログラミングの知識が必要になります。</p>
+		<p>ここからがまた結構難しいことが多いです。ですが、できるだけ噛み砕いて足りないものは全て解説させていただきますので付いてきてください。</p>
+	</div>
+	
+	<h2>ダイアログの編集</h2>
+	
+	<div class="section">
+	</div>
+	
+フィルタの設定の変更箇所
+</div>
+
+<div id="licence">
+
+<!-- クリエイティブ・コモンズ・ライセンス -->
+<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+	<img alt="クリエイティブ・コモンズ・ライセンス" src="http://creativecommons.org/images/public/somerights2.gif" />
+</a>
+<br />
+	<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+<!-- /クリエイティブ・コモンズ・ライセンス -->
+
+<!--
+
+<rdf:RDF
+	xmlns="http://web.resource.org/cc/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+<Work rdf:about="">
+	<dc:title>PhotoShopフィルタ製作のメモ</dc:title>
+	<dc:date>２００４</dc:date>
+	<dc:creator>
+		<Agent>
+			<dc:title>ばばんばーん</dc:title>
+		</Agent>
+	</dc:creator>
+	<dc:rights>
+		<Agent>
+			<dc:title>ばばんばーん</dc:title>
+		</Agent>
+	</dc:rights>
+	<dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+	<license rdf:resource="http://creativecommons.org/licenses/sa/2.0/jp/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/sa/2.0/jp/">
+	<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+	<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+	<requires rdf:resource="http://web.resource.org/cc/Notice" />
+	<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+	<requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+</div>
+
+</body>
+</html>

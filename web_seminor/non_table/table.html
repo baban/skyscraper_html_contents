@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='ja' xml:lang='ja' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='テーブルデザイン不要論:完全相互変換、tableデザインとfloat' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>テーブルデザイン不要論:完全相互変換、tableデザインとfloat</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>テーブルデザイン不要論:完全相互変換、tableデザインとfloat</h1>
+
+<div class='section' id='content'>
+	
+	<h2 id="abstruct">まずはtableデザインを行ってみよう</h2>
+	
+	<div class="section">
+		<p>まずは完全なテーブルデザイン</p>
+		<div class="figure">
+			<a href="table_sample/sample01.html"><img src="perfect_trans_prev01.png" alt="デザインプレビュー" /></a>
+		</div>
+		<p>完成目標はこんな感じ、まずはHTMLからコレをおこしてみましょう</p>
+		<p>まず、コンテンツはこのように仕切られていることを理解してください</p>
+		<div class="figure">
+			<img src="perfect_trans_separate01.png" alt="デザインプレビュー" />
+		</div>
+		<p>これのコンテンツを、縦横に区切っていって見ると</p>
+		<div class="figure">
+			<img src="perfect_trans_separate02.png" alt="コンテンツの縦横分割" />
+		</div>
+		<p>４行２列のテーブルになっていることが理解出来ますね</p>
+		<p>ソースに直すとこんな感じ</p>
+<pre　class="code"><code>
+&lt;table&gt;
+	&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+		<div class="figure">
+			<img src="perfect_trans_separate03.png" alt="２つのセルを利用している箇所" />
+		</div>
+		<p>そして、複数のセルを利用している所を探し出して横断している所を探し出して、colspan、rowspanを付けて、その後に、邪魔なセルを消してしまいます</p>
+<pre　class="code"><code>
+&lt;table&gt;
+	&lt;tr&gt;<span class="refact">&lt;td colspan="2"&gt;&lt;/td&gt;</span><del>&lt;td&gt;&lt;/td&gt;</del>&lt;/tr&gt;
+	&lt;tr&gt;<span class="refact">&lt;td rowspan="2"&gt;&lt;/td&gt;</span>&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;<del>&lt;td&gt;&lt;/td&gt;</del>&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;<span class="refact">&lt;td colspan="2"&gt;&lt;/td&gt;</span><del>&lt;td&gt;&lt;/td&gt;</del>&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+		<p>これで完成、あとは各コンテンツを流し込みます</p>
+<pre　class="code"><code>
+&lt;table&gt;
+	&lt;tr&gt;&lt;td colspan="2"&gt;ページタイトル(header)&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td rowspan="2"&gt;top絵&lt;/td&gt;&lt;td&gt;メニュー&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;説明文&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td colspan="2"&gt;下イメージ&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+		<p>これがテーブルデザインの基本です、正直、テキストでコレを理解しながらやるのは有る程度の<em class="kwd">慣れ</em>が必要です</p>
+		<p>オーサリングツールが結構対応しているので、頻繁に使われるテーブルデザインですが、テーブルは本来デザインのためのツールではないと言うことで、毛嫌いされています</p>
+		<p>当然使わない事に越したことはないのですが、誰も教えないのでここで解説してしまいました、テーブルデザイン不要論ってタイトルなのにね…</p>
+		<p>個人的には、世の中で言われるほどテーブルデザインっていうのが悪い物では無いと思うんですけどね、大事なのはコンテンツとは何かを意識できて、分割方法を間違えない事ですし</p>
+		<p>使うと迷わす携帯電話での表示が死んだりしますけど</p>
+	</div>
+	
+	<h2 id="abstruct">float周りを変換開始</h2>
+	
+	<div class="section">
+		<h3>Abstruct</h3>
+		<div class="section">
+			<p>私が、CSSでデザインしてきて、テーブルデザインに対してどうしても勝てないところは次の２点です</p>
+			<ol>
+				<li>縦方向の高さが合わせられない</li>
+				<li>横幅を自動で判別してくれない</li>
+			</ol>
+			<p>まぁ、逆を言えば、この２点以外に関しては、CSSの方がデザインツールとして優れていると思うんですけどね</p>
+			<p>これを理解した上で、テーブルデザインをCSSで再現していきましょう</p>
+		</div>
+		
+		<h3>CSSデザインは横方向が非常に楽です</h3>
+		
+		<div class="section">
+			<p>CSSはテーブルデザインと違って横方向の設定が非常に楽です、それは何故かというとはテーブルデザインで使う<code>colspan</code>を使用する可能性が全然無いんですね。勝手にブラウザ側が、出来る限り最大の幅を設定してくれます。</p>
+			<p>というわけで、CSSでデザインを行う場合は、まずはデザインを横方向に分割することが必要になります</p>
+			<div class="figure">
+				<img src="perfect_trans_separate04.png" alt="横方向分割図" />
+			</div>
+			<p>まぁ、ここまでは簡単なんです。問題は次、横方向への分割です</p>
+			<div class="figure">
+				<img src="perfect_trans_separate05.png" alt="top絵と、フッターの分割" />
+			</div>
+			<p>先ほども言いましたが、現在のCSSは、コンテンツの横幅を自動で計算してはくれません、というわけで、コレを理解した上で迷わず<code>width</code>で横幅を指定してしまいます</p>
+			<p>そして、<code>float</code>でコンテンツを流し込んでしまいます</p>
+			<p>完成図はこんな感じ、ほぼテーブルでのデザインを再現出来てしまいました</p>
+			<div class="figure">
+				<a href="table_sample/sample02.html"><img src="perfect_trans_separate06.png" alt="完成図" /></a>
+			</div>
+		</div>
+		
+		<h3>実際にマークアップ</h3>
+		
+		<div class="section">
+			<p>概要を説明しましたので、それでは、これから、今の説明に従って、CSSデザインを再現していきましょう</p>
+			<p>先ほどのページは次の７つのコンテンツに分かれています</p>
+			<ul class='data'>
+				<li>ページのタイトル</li>
+				<li>top絵</li>
+				<li>メニュー</li>
+				<li>推奨環境</li>
+				<li>リンクポリシー</li>
+				<li>協賛サイトへのリンク</li>
+				<li>著作権関連</li>
+			</ul>
+			<p>まずはコレを<a href="table_sample/sample03.html">マークアップ</a></p>
+<pre class="code"><code>
+&lt;div id="header"&gt;ページのタイトル&lt;/div&gt;
+&lt;div id="top-image"&gt;top絵&lt;/div&gt;
+&lt;div id="nav"&gt;メニュー&lt;/div&gt;
+&lt;div id="enviroment"&gt;推奨環境&lt;/div&gt;
+&lt;div id="policy"&gt;リンクポリシー&lt;/div&gt;
+&lt;div id="alliance"&gt;協賛サイトへのリンク&lt;/div&gt;
+&lt;div id="licence"&gt;著作権関連&lt;/div&gt;
+</code></pre>
+			<p>次にこれを横方向に<a href="table_sample/sample04.html">３分割</a>します</p>
+<pre class="code"><code>
+&lt;div id="content"&gt;
+	<span class="refact">&lt;div id="header"&gt;</span>ページのタイトル<span class="refact">&lt;/div&gt;</span>
+	<span class="refact">&lt;div id="conteiner"&gt;</span>
+		&lt;div id="top-image"&gt;top絵&lt;/div&gt;
+		&lt;div id="nav"&gt;メニュー&lt;/div&gt;
+		&lt;div id="enviroment"&gt;推奨環境&lt;/div&gt;
+		&lt;div id="policy"&gt;リンクポリシー&lt;/div&gt;
+	<span class="refact">&lt;/div&gt;</span>
+	<span class="refact">&lt;div id="conteiner2"&gt;</span>
+		&lt;div id="alliance"&gt;協賛サイトへのリンク&lt;/div&gt;
+		&lt;div id="licence"&gt;著作権関連&lt;/div&gt;
+	<span class="refact">&lt;/div&gt;</span>
+&lt;/div&gt;
+</code></pre>
+			<p>さらに縦方向に<a href="table_sample/sample05.html">２分割</a>して</p>
+			<p>最後にfloat周りを調整します。float周りを上手く使いこなすのは、慣れと経験が必要ですけどね、何処で分割すべきなのか、一応のロジックはあるので頑張ってください</p>
+<pre class="code"><code>
+&lt;div id="content"&gt;
+	&lt;div id="header"&gt;ページのタイトル&lt;/div&gt;
+	&lt;div id="conteiner"&gt;
+		<span class="refact">&lt;div id="top-image"&gt;</span>top絵<span class="refact">&lt;/div&gt;</span>
+		<span class="refact">&lt;div id="footer"&gt;</span>
+			&lt;div id="nav"&gt;メニュー&lt;/div&gt;
+			&lt;div id="enviroment"&gt;推奨環境&lt;/div&gt;
+			&lt;div id="policy"&gt;リンクポリシー&lt;/div&gt;
+		<span class="refact">&lt;/div&gt;</span>
+	&lt;/div&gt;
+	&lt;div id="conteiner2"&gt;
+		&lt;div id="alliance"&gt;協賛サイトへのリンク&lt;/div&gt;
+		&lt;div id="licence"&gt;著作権関連&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+		</div>
+		<p>ココまで来ればもう微調整を残すだけ、適当に合わせて<a href="table_sample/sample02.html">完成</a>させてください</p>
+	</div>
+</div>
+
+</body>
+</html>

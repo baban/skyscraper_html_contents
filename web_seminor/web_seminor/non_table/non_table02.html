@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='テーブルデザイン不要論' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>テーブルデザイン不要論:第２回</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>第２回:position:absolute;</h1>
+
+<div class="section" id="content">
+	<h2 id='abstruct'>Abstruct</h2>
+	
+	<div class="section">
+		<p>正直、よく使われる割に簡単なので、教えるにも楽そうだと言うことで、まずはこれから初めさせて頂きます</p>
+		<p><code>position:absolute;</code>と<code>top</code>,<code>left</code>を混ぜ込んだ、自由レイアウトです</p>
+	</div>
+	
+	<h2 id='h2-1'>blogスタイル</h2>
+	
+	<div class="section">
+		<p>まずは、基本的ですが、ニュースサイトでよく使われる。</p>
+		<img src="img/non_table02_blogstyle.gif" alt="blogサイトの基本デザイン" />
+		<p>こんな感じのデザインの方法から</p>
+		<p>まずは<a href="non_table02_sample01.html">完成目標</a>をご覧下さい</p>
+		<div class="figure" id="site-preview1">
+			<h3>完成目標</h3>
+			<a href="non_table02_sample01.html"><img src="img/table02_site_preview01.png" alt="完成目標のプレビュー" /></a>
+		</div>
+		<p>このサイトのおおよそのタグの構成は次のようになっています</p>
+<pre>
+<code>
+&lt;h1&gt;タイトル&lt;/h1&gt;
+
+&lt;div id="content"&gt;
+	&lt;h2&gt;日付&lt;/h2&gt;
+	&lt;div class="diary-space" id="任意のid"&gt;
+		文章
+	&lt;/div&gt;
+	&lt;h2&gt;日付&lt;/h2&gt;
+	&lt;div class="diary-space" id="任意のid"&gt;
+		文章
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="footer"&gt;
+	&lt;h2&gt;巡回先リンク&lt;/h2&gt;
+	&lt;ul&gt;
+		&lt;li&gt;&lt;a href="アドレス"&gt;サイト名&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="アドレス"&gt;サイト名&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="アドレス"&gt;サイト名&lt;/a&gt;&lt;/li&gt;
+		……
+	&lt;/ul&gt;
+&lt;/div&gt;
+</code>
+</pre>
+		<p>このページ、スタイルシートを何も当てていないと、<a href="non_table02_sample02.html">サンプル２</a>の様に表示されるのですが、これにスタイルを当てていって、完成を目指します</p>
+		<div class="figure" id="site-preview2">
+			<h3>サンプル２</h3>
+			<a href="non_table02_sample02.html"><img src="img/table02_site_preview02.png" alt="白背景の地味なサイト" /></a>
+		</div>
+		<p>まずはこれに、次の様に色の設定などを追加していきましょう</p>
+<pre>
+<code>
+/* 基本色設定 */
+body {
+    background-color:#769;
+    color:#dde;
+}
+/* リンクの色設定 */
+a {
+    color:#d6d;
+}
+</code>
+</pre>
+		<p>出来は<a href="non_table02_sample03.html">サンプル３</a>の様に表示されます</p>
+		<p>背景と文字の色を設定するだけでずいぶんと変わりますが、これにさらにボーダーの設定などを追加して<a href="non_table02_sample04.html">サンプル４</a>の様に変更してして行きます</p>
+<pre>
+<code>
+/* ニュース部分、巡回先のボーダーの設定 */
+div#footer,
+div#content {
+    border-style:solid;
+    border-width:2px;
+    border-color:#fff;
+    padding:0.2em;
+    margin:0.2em;
+}
+/* 巡回先リストの先頭についている白丸を消します */
+ul{
+    list-style-type:none;
+}
+</code>
+</pre>
+		<p>さらにこれの<a href="non_table02_sample05.html">細部を詰めていきます</a></p>
+<pre>
+<code>
+/* ニュースを書く部分 */
+div#footer ul {
+    list-style-type:none;
+    padding:0.2em;
+    margin:0.2em;
+}
+div.diary-space {
+    border-style:none none dashed none ;
+    margin-bottom:2em;
+}
+em {
+    font-size:1.2em;
+    font-weight:bold;
+}
+
+/* 巡回先リストのタイトル */
+div#footer h2 {
+    font-size:1.0em;
+    padding:0.2em;
+    margin:0.2em;
+}
+</code>
+</pre>
+		<p>ココまで来れば、だいたい配色やフォントの設定は完了しますので、最後にポイントである巡回先リンクの流し込みを行います。</p>
+		<p>この場合でのポイントは、ここらへん</p>
+<pre>
+<code>
+/* 画面左にリンク集を入れる隙間を入れます */
+body {
+    margin-left:13em;
+}
+
+div#footer {
+    /* リンクバーを画面左に流し込みます */
+    position:absolute;
+    top:0.2em;
+    left:0.2em;
+    width:10em;
+}
+</code>
+</pre>
+		<p><a href="non_table02_sample01.html">これで完成</a>です</p>
+		<div class="figure" id="site-preview3">
+			<h3>完成形</h3>
+			<a href="non_table02_sample01.html"><img src="img/table02_site_preview01.png" alt="完成目標のプレビュー" /></a>
+		</div>
+		<p>同じデザインするにも、書き方は色々とあるのですが、この書き方だと長文の部分にサイズを指定しないので、解像度が変わっても比較的まともに映りやすかったりするので、自分はこの方法で書いています。</p>
+		<p>巡回先リンクを画面左に密着から、画面右に密着に変更したい場合は</p>
+<pre>
+<code>
+body {
+    <span class="refact">margin-right</span>:13em;
+}
+div#footer {
+    position:absolute;
+    top:0.2em;
+    <span class="refact">right</span>:0.2em;
+    width:10em;
+}
+</code>
+</pre>
+		<p>と変更すれば、良かったりします。<a href="non_table02_sample06.html">変更後はこんなかんじですね</a></p>
+		<div class="figure" id="sample4">
+			<h3>変更後</h3>
+			<a href="non_table02_sample06.html"><img src="img/table02_site_preview03.png" alt="変更後のプレビュー" /></a>
+		</div>
+	</div>
+	
+	<h2 id='h2-2'>最後に</h2>
+	
+	<div class="section">
+		<p>テーブルタグ仕様でデザインしたときは、HTMLを切り張りして、移動させることになりますが、スタイルシートを使うと２行だけ書き換えれば、それで作業が終わってしまうんですね</p>
+		<p>スタイルシートでのデザインは、慣れてくると非常に楽にやりたいことが出来る様になりますから</p>
+		<p><em class="keyword">デザインはスタイルシートで追加する</em>ことに慣れてもらえればいいなぁ…、と思います</p>
+	</div>
+</div>
+
+</body>
+</html>

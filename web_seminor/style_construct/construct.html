@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='スタイルシートの設計法:構造化' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>スタイルシートの設計技法:構造化</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>サイトを構造化しよう</h1>
+
+<div class="section" id="content">
+
+	<h2 id='h2-1'>Introduction</h2>
+	
+	<div class="section">
+		<p>さて、第１回でデフォルトスタイルシートの大切さを解かせていただきましたが、次はこれを前提にした発展編</p>
+		<p>正直、スタイルシートをしっかり理解している人相手の話なので、やる必要は無いかもしれないと思いましたが、話の都合上、ここに埋め込んでしまいました</p>
+	</div>
+	
+	<h2 id='h2-2'>前説</h2>
+	
+	<div class="section">
+		<p>さて、ここを読んでる貴方、スタイルシートと密接している事で、サイトをデザインする時に気を付けておくことが一つあります</p>
+		<p>「さて何ですか？」と聞くことも出来ますが、答えをパッと言ってしまいましょう、サイトっていうのはいつか書き換えることがあると言うことです</p>
+		<p>特にデザイン、もしサイトをリニューアルする事があったとして、「あー、この文書デザインあわないし、いい機会だから消しちゃおう」なんて事があったら…</p>
+		<p>はっきり言ってとんでもない！ 馬鹿みたいじゃないですか！</p>
+		<p>そんな理由で世界から、大事なリソースを奪うのは管理人の傲慢と知ってください、今から少しづつ伝えることは、そういう馬鹿な事をしないでも、たとえ何百というファイルがリニューアル時の対象になろうとも、デザイナーの苦労が増えないようにしてみせる方法です</p>
+		<p>実際、自分も驚いたくらいに、ファイルが増えても全く、全然困りません</p>
+	</div>
+	
+	<h2 id='h2-3'>スタイルシートの特性</h2>
+	
+	<div class="section">
+		<p>ここを読んでいる人には既に必要無いお話になっているのですが、スタイルシートは<code>@import</code>で文書を読み込む事が出来るようになっています</p>
+		<p>では、ここで質問なのですが、<code>@import</code>で設定を読み出すということは、文書的には一体どういう理由で読み込まれるのでしょうか？</p>
+		<p>実用的には、良く使う設定をあらかじめ書き出して保存しておくことがその理由になりますが、<span class="kwd">よく使われる設定</span>とは？ 何か共通点はありませんか？</p>
+		<p>場合は幾つかありますが、ここで何か一例を挙げましょう、当たり前の物になりますが、ページの基本設定です。次の図のように、ページの基本設定を読み出して利用することが一番シンプルでよく使う設定になります</p>
+		<img src="construct_const.gif" alt="スタイルシートの構造" />
+		<p>さて、これを少し発展させましょう。デフォルト設定を読み込んでいる各スタイルシートが次の様に使用されているとします</p>
+		<img src="construct_const02.gif" alt="スタイルシートの構造２" />
+		<p>比較的良くある、サイト構成にしたつもりですが、ここでの注目すべき所は最初に出した３つ、つまり日記用CSS、CG講座用CSS、SSページ用CSSです</p>
+		<p>この３つのコンテンツにはある共通点があります、説明せずとも自明かもしれませんが、どれも長文を必要とするコンテンツですね</p>
+		<p>当然、どのコンテンツも文章が読みやすいようなデザインを行うわけで、それぞれのスタイルシートには、似たような設定が多く見受けられることになります</p>
+		<p>ということは同じ事を何度も書くのは時間の無駄、同時に回線の無駄使いでもありますので、ここで楽をするために次のように工夫をします</p>
+		<img src="style_construct03.gif" alt="必要設定を集めたスタイルシート構造" />
+		<p>それぞれのスタイルシートで設定が似通う部分を、まとめこんで違うスタイルシートにしてしまいました。当然ですが、みなデフォルトのスタイルシートを読み込んでいるのも共通なので、上の図のような矢印で繋がれた関係になります</p>
+		図の上のデフォルトCSSから、日記用CSSまで、矢印を逆に辿っていくと、それぞれのCSSは、あらゆる文書で共通の設定→長文に適した設定→日記に適した設定、と次第に内容が具体的になっていきます
+		<p>実際やってみれば分かりますが、設定というのはコンテンツの内容が似ていると、半分以上ダブります。わざわざ同じ物を書き直さないでも、こうすればもっと楽が出来ますね</p>
+		<p>さらに、一度読んだスタイルシートは、以降はブラウザのキャッシュへ残りますので、全体的には回線効率を上げることにもなります</p>
+		<p>とまぁ、ここまでお話ししましたが、設定のまとめ込みを行う事での利点は実は、別の所にあります</p>
+		<p>用途によって出てくる、同じような設定をまとめ込んでしまうということは、逆の言い方をすれば、まとめ込めるような設定をその場から追い出してしまうと言うことです</p>
+		<p>まとめ込めるような設定と言うのは往々にして<em class="kwd">当たり前な設定</em>な訳ですから、そういう設定を追い出してしまえば後に残るのは、<em class="kwd">自分が今、本当に設定しておきたいようなもの</em>と言うことになりますね</p>
+		<p>つまりは、自分が今何をしたいのか、読みやすく、考えやすく、短い時間で実現することを同時に可能にする利点があるのです</p>
+		<ins class="append">
+			<p><code>@import</code>文を使うのは一向に構わないのですが、IEには<a href="http://members.at.infoseek.co.jp/cssbug/detail/winie/b117.html">@importのネストを3階層より深くできない</a>という仕様があります(自分としては不便でしょうがありませんが、仕様であってバグではありません)。</p>
+			<p>上の図では、すでに３階層で、いっぱいいっぱいの状況になっていますので、それを気を付けた上でお使い下さい</p>
+		</ins>
+	</div>
+	
+</div>
+
+<div title='CreativeCommonsJapan' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

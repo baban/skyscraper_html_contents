@@ -1,0 +1,27 @@
+a[title="Google"]:before {
+	content:"";
+	vertical-align:top;
+}
+
+a[title="Wikipedia"]:before {
+	content:url("img/wiki_ico.gif");
+	vertical-align:top;
+}
+
+a[type="application/pdf"]:before {
+	content:"PDF:";
+	border-style:solid;
+}
+
+a[type="application/x-shockwave-flash"]:before {
+	content:"Flash:";
+	border-style:solid;
+}
+
+a[type="video/quicktime"],
+a[type="video/mpeg"] {
+}
+
+a[type="application/zip"]:after{
+	content:"(zip)";
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='スタイルシートの設計法:らくちん管理の秘訣、ロール分割法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>スタイルシートの設計技法:らくちん管理の秘訣、ロール分割法</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>らくちん管理の秘訣、ロール分割法</h1>
+
+<div id="content" class="section">
+	<h2 id='h2-1'>文書の種類は限られる</h2>
+	<div class="section">
+		<p>さて、今回は<a href="construct.html">構造化を目標に…</a>の発展編、講座の中で、@import文を図を使ってデザインを階層化する方法を解説いたしましたが、CSSファイルを、書くときに、どうやって、ページごとの設定を具体化していけば良いのでしょうか？</p>
+		<p>実は詳しい所は、今でもこれは悩み途中なのですが、ネットをいつもの様に巡回中に、ある事に気づきました。<em class="kwd">ネット全部を探し回っても、コンテンツの種類は以外に少ない！</em></p>
+		<p>逆を言えば、人間が書く文章の種類なんてたかがしれている、これを上手く利用した方法が自分が言いたい事だったりします</p>
+		<p>自分なりに、良くあるコンテンツを上げてみましたが</p>
+		<ol>
+			<li>topページ</li>
+			<li>メニュー</li>
+			<li>サイトマップ</li>
+			<li>小説、ＳＳ</li>
+			<li>講座、解説</li>
+			<li>日記、ブログ</li>
+			<li>孫ニュースサイト</li>
+			<li>ギャラリー</li>
+			<li>リンク</li>
+			<li>BBS</li>
+		</ol>
+		<p>ほぼ同じといえるスタイルを求められるものを除くと、僅かに10個、コンテンツの数って意外に少ないですね…</p>
+		<p>さらに、貴方のサイトでこれをすべて持っている方はどれだけいらっしゃるでしょうか？ ブログなページと孫ニュースサイトを平行運営している人はまずいないのでは？</p>
+		<p>つまりは上に挙げたコンテンツの一覧から、自分のサイトで扱っているコンテンツの(topページは必ずあるよね)スタイルシートを作って、それを場所場所に当てていけば、安定してメンテナンスが可能なスタイルシートを用意することが出来るのです</p>
+		<p>ちなみにテーブルタグを封印して、タグの持つ意味を重要視すると、不思議とタグの構成も似かよりますので、基準をそこに置いて分類しました</p>
+		<p>少しわかりにくかったかな…、分かりやすく言い直すと、何かの講座を作るとき、あらかじめ、講座ページ用のseminor.cssというのをデフォルトの設定として用意しておきます</p>
+		<p>そして次に、seminor.cssを読み込んだスタイルシートを作り、○○の講座を作るときの○○に当たる、さらに具体的な設定を書いた文書を作成していきます</p>
+		<p>こういう、広い範囲に応用の利くスタイルシートは、後々にサイトを作り直すときに、ほとんど手入れしないでもきれいに動いてくれる、貴重な財産になります</p>
+	</div>
+	
+</div>
+
+<div title='CreativeCommonsJapan' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

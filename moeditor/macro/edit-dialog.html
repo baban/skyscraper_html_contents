@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+	<meta http-equiv="Content-Style-Type" content="text/css"/>
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8"/>
+	<meta http-equiv="Content-Language" content="ja"/>
+	<meta name="author" content="baban"/>
+	<meta name="generator" content="MOEditor"/>
+	<meta name="Copyright" content="baban"/>
+	<meta name="description" content="エディットダイアログの作成"/>
+	<link rel="home" href="/index.html" type="text/css"/>
+	<link href="" title="" rel="copyright" id="meta-licence"/>
+	<link rel="help" href="/texts/readme.html" type="text/css"/>
+	<link rev="Reply-to" href=""/>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png"/>
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css"/>
+	<title>エディットダイアログの作成</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">エディットダイアログの作成</h1>
+
+<div id="content" class="section">
+	<p>というわけで、続いて<a href="http://www.vector.co.jp/soft/win95/prog/se177026.html">SeraphyScriptTools</a>でのサンプルコード</p>
+	<p>ファイルやフォルダの選択といった型の決まった処理ならともかく、複数の入力を同時に欲しいときがあると、どうしても自分でWindowを自作しないといけないときもあるかも知れませんね</p>
+	<p>そういうときに強力に役に立つのが、このツールの凄いところ</p>
+	<p>今回は、コードを出来るだけ簡単にするために、余分なモノは一切無しで１行入力ボックスを作成しましたが、このほかにもボタンやラベルボックスや等の基本的なGUI部品は一通り使えるように出来ていますよ</p>
+<pre><code>
+<span class='i-comment'>// %desc ダイアログの作成、呼び出しを行います(要:Seraphy Script Tools</span>
+<span class='i-comment'>// %menu Open Dialog</span>
+
+<dfn>var</dfn> ctx <em>=</em> App.Caret.BeginUpdate<em>(</em><em>)</em>;
+<dfn>try</dfn> <em>{</em>
+  App.Caret.BeginOperateGroup<em>(</em><span class='literal'>'マクロ:ダイアログからの入力を受け取り'</span><em>)</em>;
+  <dfn>try</dfn> <em>{</em>
+    <dfn>var</dfn> sw <em>=</em> <dfn>new</dfn> ActiveXObject<em>(</em><span class='literal'>"SeraphyScriptTools.OverlappedWindow"</span><em>)</em>;  <span class='i-comment'>// とりあえずSraphyScriptToolsの呼び出し</span>
+    <dfn>var</dfn> f1 <em>=</em> sw.form.Edit<em>(</em> <span class='literal'>"Hello,Script!"</span> <em>)</em>;  <span class='i-comment'>//入力ボックスの作成</span>
+    sw.open<em>(</em><em>)</em>;  <span class='i-comment'>// ウィンドウを作成</span>
+    <dfn>var</dfn> mes <em>=</em> f1.Text;  <span class='i-comment'>// エディットボックスのテキストを取得</span>
+    sw.DoModal<em>(</em><em>)</em>;  <span class='i-comment'>// Quitメッセージがあるまで、ウィンドウを維持する</span>
+    App.Alert<em>(</em> f1.Text <em>)</em>;
+  <em>}</em>
+  <dfn>finally</dfn> <em>{</em> App.Caret.EndOperateGroup<em>(</em><em>)</em>; <em>}</em>
+<em>}</em>
+<dfn>finally</dfn>
+</code></pre>
+
+</div>
+
+</body>
+</html>

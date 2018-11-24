@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+		 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+
+	<meta name="author" content="babanba-n" />
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="タイル画像をボーダーに指定する" />
+	
+
+
+	
+	<title>タイル画像をボーダーに指定する</title>
+	<style type="text/css">
+		div.outbox {
+			background:#a88 url("border_tiling_img/outbox_back.gif") repeat;
+			padding:14px;
+			width:60%;
+			margin:auto;
+			text-align:center;
+			position:relative;
+		}
+		
+		div.inbox {
+			width:100%;
+			background-color:#fff;
+		}
+		
+		div.inbox p {
+			margin:0;
+		}
+		
+		div.decoration {
+			font-size:16px;
+			position:absolute;
+			margin:0;
+			padding:0;
+			line-height:1.0;
+			color:#A61B00;
+		}
+		div#dire1 {
+			top:0;
+			left:0;
+		}
+		div#dire2 {
+			top:0;
+			right:0;
+		}
+		div#dire3 {
+			bottom:0;
+			left:0;
+		}
+		div#dire4 {
+			bottom:0;
+			right:0;
+		}
+		
+	</style>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<div class="outbox">
+
+	<div class="decoration" id="dire1" title="">◆</div>
+	<div class="decoration" id="dire2" title="">◆</div>
+	<div class="decoration" id="dire3" title="">◆</div>
+	<div class="decoration" id="dire4" title="">◆</div>
+	
+	<div class="inbox">
+		<p>とある素材系サイトで見かけて「しまった！この手があったかぁ」と思った手段</p>
+		<p>div.outboxの方に背景画像を入れて、div.inboxの方の背景色を白にしてしまうことで実現しました</p>
+		<p>div.outboxの方のpaddingでボーダーの幅を調整しておくのがミソですね</p>
+		<p>上下左右にダイヤのマークがありますが結局divタグで埋め込んだオブジェクトを動かして使うハメに…、まぁtitle=""トカやっておけば、いいだろうと開き直ってしまいました</p>
+		<p>一応、これを応用すれば縁の丸い吹き出しなんかをテーブルタグや-moz-order-radius等を使わないで実現できるかなぁ…</p>
+	</div>
+</div>
+
+</body>
+</html>

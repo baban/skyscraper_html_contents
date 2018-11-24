@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" nav="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" nav="text/css" />
+	<meta http-equiv="Content-Script-Type" nav="text/javascript;charset=UTF-8" />
+	
+	<meta name="robots" nav="none" />
+	<meta name="author" nav="babanba-n" />
+	<meta name="Targeted Geographic Area" nav="Japan" /> 
+	<meta name="generator" nav="TeraPad" />
+	<meta name="Copyright" nav="babanba-n" />
+	<meta name="description" nav="テーブルデザイン不要論" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" >
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	
+	<title>テーブルデザイン不要論:第３回</title>
+	<script src="/src/seminor.js" type="text/javascript"> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>第３回:floatで横流し</h1>
+
+<div class="section">
+
+	<h2 id='abstruct'>Abstruct</h2>
+	
+	<div class="section">
+		<p>という訳で、配置方法その２。</p>
+		<p>正直、これは、複数の要素に使い始めると、とたんに直感的でなくなるので、要素の順番と処理を、頭の中でイメージしながら使えるようにならないといけません</p>
+		<p>うまく使えば、結構これだけでも色々作れます。例えば、2chでお知恵を借りたのですが<a href="sample/float_chat.html">対話型のテキストサイト</a>のサンプルソースです</p>
+		<p>出しておいて何ですが、これの解説は後回しにさせて頂いて、今回の目標であるCGサイトデザインの作成法です</p>
+		<p>今回主のお世話になるfloatですが、結局は</p>
+		<img src="img/float_sample.png" alt="横に移動" />
+		<p>という感じに、ボックスの横に、モノを表示させるためのもので、画像なんかの横に説明文を表示させるために使用するのが普通の使い方だと思うのですが、その他で使用できる方法を紹介させていただきます</p>
+	</div>
+	
+	<h2 id='h-1'>フロートで作るメニュー</h2>
+	
+	<div class="section">
+		<p>とりあえず<a href="non_table03_sample02.html">完成目標</a>を出させて頂きますが、出来はそんな感じで、サイトのメニューが書かれた横方向のリストを作る方法です。</p>
+		<div class="figure">
+			<h3 id='h-3'>完成目標</h3>
+			<a href="non_table03_sample02.html"><img src="img/table03_site_preview_01.png" alt="完成目標イメージ" /></a>
+		</div>
+		<p>ソースはこんな感じ</p>
+<pre>
+<code>
+&lt;ul id="nav"&gt;
+    &lt;li&gt;TOP&lt;/li&gt;
+    &lt;li&gt;Gallaly&lt;/li&gt;
+    &lt;li&gt;Update&lt;/li&gt;
+    &lt;li&gt;CircleInfo&lt;/li&gt;
+    &lt;li&gt;Link&lt;/li&gt;
+&lt;/ul&gt;
+</code>
+</pre>
+	<p>tableでは無くて、横方向のリストですね。何も設定していないときは、<a href="non_table03_sample03.html">サンプル３</a>の様に表示されますが、メニューのリストは"リスト"なんですから、こちらで書く方が正しかったりします。</p>
+	<div class="figure" id="sample3">
+		<h3 id='h-4'>サンプル３</h3>
+		<a href="non_table03_sample03.html"><img src="img/table03_site_preview_02.png" alt="サンプル３のプレビュー" /></a>
+	</div>
+	<p>これを順番に書き換えていきますが、まずは</p>
+<pre>
+<code>
+ul#nav {
+    <span class="refact">list-style-type:none;</span>    /* 邪魔な黒丸を消します */
+}
+ul#nav li{
+    /* 表示したいサイズに幅を調整します */
+    margin:0.2em;
+    padding:0.1em 0.2em;
+}
+</code>
+</pre>
+	<p>と書いて、<a href="non_table03_sample04.html">無駄な物を消します</a></p>
+	<div class="figure" id="sample4">
+		<h3 id='h-5'>サンプル４</h3>
+		<a href="non_table03_sample04.html"><img src="img/table03_site_preview_03.png" alt="サンプル４のイメージ" /></a>
+	</div>
+	<p>これにさらに</p>
+<pre>
+<code>
+ul#nav li{
+    /* 表示したいサイズに幅を調整します */
+    margin:0.2em;
+    padding:0.1em 0.2em;
+    /* デザインの調整 */
+    <span class="refact">width:8em;</span>
+    <span class="refact">border-style:outset;</span>
+    <span class="refact">border-width:2px;</span>
+    <span class="refact">background-color:#ded;</span>
+    <span class="refact">border-color:#ded;</span>
+}
+</code>
+</pre>
+	<p>と継ぎ足、デザインを微調整して、<a href="non_table03_sample05.html">サンプル５</a>の様にします</p>
+	<div class="figure">
+		<h3 id='h-6'>サンプル５</h3>
+		<a href="non_table03_sample05.html"><img src="img/table03_site_preview_04.png" alt="サンプル５のプレビュー" /></a>
+	</div>
+	<p>最後にリストを横に並べるためにfloatを追加して</p>
+<pre>
+<code>
+ul#nav li{
+    /* 表示したいサイズに幅を調整します */
+    margin:0.2em;
+    padding:0.1em 0.2em;
+    /* デザインの調整 */
+    width:8em;
+    border-style:outset;
+    border-width:2px;
+    background-color:#ded;
+    border-color:#ded;
+    /* リストを横方向に調整する */
+    <span class="refact">float:left;</span>
+}
+</code>
+</pre>
+		<p>とすると、<a href="non_table03_sample02.html">目的通りに</a>作られます</p>
+		<div class="figure">
+			<h3 id='h-7'>完成形</h3>
+			<a href="non_table03_sample02.html"><img src="img/table03_site_preview_01.png" alt="完成形イメージ" /></a>
+		</div>
+	</div>
+	
+	<h2 id='h-2'>左にCG、右に説明文のスタイル</h2>
+	
+	<div class="section">
+		<p>今回はCGサイト等で良く使われている、左にTOP絵、右に説明文等を書いているデザインです<a href="non_table03_sample06.html">完成目標</a>はこんな感じでしょうか…。</p>
+		<p>スタイルを何も指定しないと<a href="non_table03_sample07.html">サンプル７</a>の様に表示がされますが、これを順次変更していきます</p>
+		<p>まずはTOP絵のサイズを固定して、後々の面倒ごとを回避します</p>
+<pre>
+<code>
+div#top-image {
+    width:330px;
+}
+div#top-image img{
+    /* top絵の大きさを決めておきます */
+    width:320px;    
+    height:420px;
+}
+</code>
+</pre>
+	<p>で、お約束のfloatを使って、テキストを右側に移動させます</p>
+<pre>
+<code>
+div#top-image {
+    width:330px;
+    <span class="refact">float:left;</span>    /* 日記の空間を右に移動させます */
+}
+div#top-image img{
+    /* top絵の大きさを決めておきます */
+    width:320px;    
+    height:420px;
+}
+</code>
+</pre>
+		<p>出来たのが<a href="non_table03_sample08.html">サンプル８</a>になります。右側に移動しているのが分かって頂けるでしょうか？</p>
+		<p>最後に、色の設定を行います。下の様にボーダーの太さや、色の設定のスタイルシートを追加します</p>
+<pre>
+<code>
+div#content,
+#diary {
+    border-color:#ea9;
+}
+div#content {
+    width:70%;
+    border-width:medium;
+    border-style:solid;
+    padding:0.4em;
+}
+div#diary {
+    border-style:solid;
+}
+</code>
+</pre>
+		<p>できたのが<a href="non_table03_sample09.html">サンプル９</a>、あれ？でも表示が少し変じゃありませんか？</p>
+		<p>プレビューを作ると</p>
+		<table class="data">
+			<tr><td>IE</td><td>Mozilla</td></tr>
+			<tr><td><img src="img/table3_preview_ie.png" alt="IE表示" /></td><td><img src="img/table3_preview_moz.png" alt="Mozilla表示" /></td></tr>
+		</table>
+		<p>なーんか、Mozillaだと画像がボックスからはみ出していますね(Operaでもこうなりますが)。規格的には実はコレで正しかったりするので、これを意図通りに表示できるようにHTMLの方をいじります。</p>
+		<p>スタイルシートに以下の様に設定を追加して</p>
+<pre>
+<code>
+br.clear {
+    clear:both;
+}
+</code>
+</pre>
+		<p>divタグの最後の所に以下の様にタグを追加します</p>
+<pre>
+<code>
+&lt;div id="content"&gt;
+    &lt;div id="top-image"&gt;
+        &lt;img src="img/top_img.jpg" alt="top絵" /&gt;
+    &lt;/div&gt;
+    
+    &lt;div id="diary"&gt;
+        &lt;p&gt;友人から、許可を貰って使わせて頂きました。感謝感謝…。&lt;/p&gt;
+        &lt;p&gt;ついでなので&lt;a href="http://www1.ocn.ne.jp/~miko3/"&gt;宣伝&lt;/a&gt;。&lt;/p&gt;
+        &lt;p&gt;えっと、巫女です。強敵と書いてともと呼ばせるくらい巫女です。&lt;/p&gt;
+        &lt;p&gt;歴浅いですし、まだまだなのですが。よしなに扱っていただけるとありがたいです…。&lt;/p&gt;
+    &lt;/div&gt;
+    <span class="refact">&lt;br class="clear" /&gt;</span>
+&lt;/div&gt;
+</code>
+</pre>
+		<p>これで、top絵がボーダーの中に表示されます</p>
+		<p>最後に右側の紹介文のボーダーが画像に引っかかっているので</p>
+<pre>
+<code>
+div#diary {
+    margin-left:330px;
+}
+</code>
+</pre>
+		<p>を追加して<a href="non_table03_sample06.html">完成</a>です。</p>
+	</div>
+	
+	<h2 id='h-3'>まとめ:CG系サイトのデザイン</h2>
+	
+	<div class="section">
+		<p>とまぁ、長い解説を終えましたが、話の本題です。CG系サイトにあるtop絵とメニューを組み合わせたデザイン。もう気づいていると思われますが、<em>さっき作った２つを組み合わせます</em>。</p>
+		<p>ちなみに作ってみると<a href="non_table03_sample10.html">サンプル１０</a>の様になるのですが、これ…、出来れば画面の中心に映るようにしたいですよね。</p>
+		<p>そこで以下の様にスタイルシートを追加します。</p>
+<pre>
+<code>
+#content {
+    margin:auto;
+}
+</code>
+</pre>
+		<p>出来たのが<a href="non_table03_sample11.html">サンプル１１</a>、ここちょっとブラウザごとに表示の違いが出ますので表示</p>
+		<table class="data">
+			<tr><td>IE</td><td>Mozilla</td></tr>
+			<tr><td><img src="img/table3_preview_ie2.png" alt="IE表示" /></td><td><img src="img/table3_preview_moz2.png" alt="Mozilla表示" /></td></tr>
+		</table>
+		<p>Mozilla、Operaではこれでセンタリングされるのですが、IEではできません(CSS2で定められている方法で、規格的に比較的新しいので文句は言いませんが)。そこで、回避手段として下のように追記します。</p>
+<pre>
+<code>
+body {
+    <span class="refact">text-align:center;</span>    /* ボックスをセンタリング */
+}
+#content {
+    margin:auto;
+    <span class="refact">text-align:left;</span>    /* 下の要素までセンタリングされないように、設定を元に戻す */
+}
+</code>
+</pre>
+		<p>これで<a href="non_table03_sample12.html">完成</a>です。</p>
+	</div>
+</div>
+
+</body>
+</html>

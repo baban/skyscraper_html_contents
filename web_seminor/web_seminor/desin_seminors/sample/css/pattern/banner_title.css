@@ -1,0 +1,32 @@
+@charset "Shift_JIS";
+
+body {
+	padding:0 0 1em 0;
+}
+
+head + body {
+	/* Opera‚ÌA“ä•s‹ï‡‰ñ”ð—p(šjŒÄ‹­ˆø) */
+	margin:0;
+	padding:0;
+}
+
+body > h1:first-child {
+	background-image:url("img/banner_title_h1_back.gif");
+	background-color:#1c3428;
+	color:#fff;
+	border-width:0.2em;
+	border-style:none;
+	font-size:1.6em;
+	margin:0 0 0.8em 0;
+	padding:0.1em 0.3em 0.4em;
+}
+
+h1:first-child + div {
+	margin:0.6em 1em;
+}
+
+h1:first-child:before {
+	content:"\25c8";
+	font-size:1.6em;
+	vertical-align:middle;
+}

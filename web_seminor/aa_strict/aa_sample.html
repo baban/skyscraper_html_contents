@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='SHIFT_JIS'?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html lang='ja' xml:lang='ja' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content='text/html;charset=UTF-8' http-equiv='Content-Type'/>
+	<meta content='text/css' http-equiv='Content-Style-Type'/>
+	<meta content='text/javascript' http-equiv='Content-Script-Type'/>
+	<link href='mailto:baban@nergal.clubbbq.com' rev='made'/>
+	<link href='index.html' rel='home' type='text/css'/>
+	
+	<meta name='author' content='babanba-n'/>
+	<meta name='description' content='アスキーアート使用のガイドライン'/>
+	
+	<link href='http://creativecommons.org/licenses/by/2.0/jp/' title='Creative Commons' rel='copyright' id='meta-licence'/>
+	<link href='/licence.rdf' rel='meta' type='text/xml+rdf'/>
+	<link href='/css/seminor.css' rel='stylesheet' type='text/css'/>
+	
+	<title>アスキーアート使用のガイドラインの捕捉</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>アスキーアート使用のガイドラインの捕捉</h1>
+
+<div class='section' id="content">
+
+	<p>このページは、<a href='http://www6.vc-net.ne.jp/~ainosato/title.html'>H-man AND NOW</a>のコンテンツ、<a href='http://www6.vc-net.ne.jp/~ainosato/scsp0005.html'>アスキーアートガイドライン</a>の捕捉となっております。</p>
+
+	<h2 id='h2-1'>objectタグの利用法</h2>
+	
+	<div class='section'>
+
+		<p>注意事項その１ですが、ドキュメントの途中にある、<em>プレーンテキストとして公開する</em>の項ですが、これを使用する場合には、ブラウザの実装の関係で、type属性に、下の様にcharset宣言を必要とします。</p>
+		<p>メールしようとしたのですが、メールアドレスが死んでいるのか送信できませんでしたので、一応ココで捕捉。</p>
+		<p>つまり、文字コード指定を追加して</p>
+
+<pre>
+<code>
+&lt;object data="hung.txt" type="text/plain;charset=UTF-8"&gt;
+&lt;a href="hung.txt"&gt;吊って来まーす&lt;/a&gt;
+&lt;/object&gt;
+</code>
+</pre>
+
+		<p>こうすると、objectタグ内で指定したテキストデータを処理できないと判断して</p>
+
+		<div>
+			<object type='text/plain;charset=UTF-8' data='hung.txt'>
+				<a href='hung.txt'>吊って来まーす</a>
+			</object>
+		</div>
+
+		<p>と、変わりに<acronym title='アスキーアート'>ＡＡ</acronym>へのリンクが表示されます。そもそも目的の<acronym title='アスキーアート'>ＡＡ</acronym>自体が表示されないので、現在の所は使い物にならないのですが…。</p>
+	</div>
+
+	<h2 id='h2-2'>preタグでの利用法</h2>
+	
+	<div class='section'>
+
+		<p>次にpreタグですが</p>
+
+<pre class='AA' title='吊ってきまーす'>
+　　 ||
+　∧||∧
+（ / ⌒ヽ
+　| | 　　|
+　∪ / ノ
+　 | ｜|
+　 ∪∪
+　　　；
+　-━━-
+　吊って来まーす
+</pre>
+
+		<p>図の様に、2ch中心に、アスキーアートは等幅フォントを基本に作るられているので、preタグのフォントも等幅フォントを指定します。</p>
+		<p>Windowsでお勧めはMS UI Gothic。Mac環境を探して見ると、<a href='http://www.youart.co.jp/dtp/toku/jiten/font02.html'>プロポーショナルフォントと等幅フォント</a>を見る限り、全部等幅フォントで表示するのは厳しいようですので、これは<acronym title='アスキーアート'>ＡＡ</acronym>を製作する段階で全て２バイト文字で作るように、注意して頂くしか無いようですね。</p>
+		<p>ちなみにWindows環境でのline-heightは1.2で指定されているようなので、これも考えてpreタグにスタイルシートを指定するときは</p>
+<pre>
+<code>
+pre {
+	font-family:"MS UI Gothic","Osaka",monospace;
+	line-height:1.2;
+}
+</code>
+</pre>
+
+		<p>としておくのが良いと思われます(表示がWindowsに近くなるので)。最後にmonospaceを付けているのは、指定したフォントがどれも存在しない場合、最後にユーサーエージェントが持っているフォントから、等幅の物を選んでもらうためで、良く付け忘れられていますが、必ず指定しなければなりません。</p>
+		<p>Linux界隈では、どのフォントがよく使われているのか良く知らないので、今回は、フォント名の指定をしないでおきました。</p>
+	</div>
+		
+	<h2 id='h2-3'>なんでこんな事書いたかというと</h2>
+	
+	<div class='section'>
+		<p>なんでこんな物書いているかというと、ニュースサイトさん等で、サイトによっては盛んに<acronym title='アスキーアート'>ＡＡ</acronym>を使用されているのですが、大きめの物を張ったりすると、場合によっては<acronym title='アスキーアート'>ＡＡ</acronym>が改行してしまって</p>
+		
+		<table class="data">
+			<tr><td><img src='aa_sample_before.png' alt='改行が起こる前'/></td><td><img src='aa_sample_after.png' alt='起こった後'/></td></tr>
+		</table>
+		
+		<p>と表示がおかしくなるので…、自分の所以外では不具合が起こっていることを分かって欲しいな〜と。出来ればエディター更新の人には使って欲しいな〜、と。以上です。</p>
+
+		<p>最後に、<acronym title='アスキーアート'>ＡＡ</acronym>は<a href='http://akasaka.cool.ne.jp/poonya13/index2.html'>ぷーにゃ's MUSEUM</a>から拝借しました。</p>
+	</div>
+</div>
+
+<div title='CreativeCommonsJapan' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

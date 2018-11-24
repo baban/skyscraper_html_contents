@@ -1,0 +1,11 @@
+@charset "Shift_JIS";
+
+/*
+	imgタグに関するクラス集
+*/
+
+img {
+	font-size:1.3em;
+	font-family:"Impact", "Chicago", fantasy;
+}
+

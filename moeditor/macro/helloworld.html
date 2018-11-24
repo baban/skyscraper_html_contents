@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	<meta http-equiv="Content-Language" content="ja" />
+	
+	<meta name="author" content="" />
+	<meta name="generator" content="" />
+	<meta name="Copyright" content="" />
+	<meta name="description" content="" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link href='' title='' rel='copyright' id='meta-licence' />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	
+	<title>とりあえずHelloWorld!</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">とりあえずHello,World!</h1>
+
+<div id="content" class="section">
+	<p>プログラムの勉強をしているときには、とりあえず画面に文字を表示させる「Hello,World!」が定石、ということで簡単に作ってみました</p>
+	<br />
+<pre><code type="text/javascript">
+<span class='i-comment'>// %desc  Hello,World!　と言う文字列をエディタに送ります</span>
+<span class='i-comment'>// %menu  Hello,World!</span>
+
+<span class='i-comment'>// 再描画を抑制します</span>
+<dfn>var</dfn> ctx<em>=</em> App.Caret.BeginUpdate<em>(</em><em>)</em>;
+<dfn>try</dfn> <em>{</em>
+  <span class='i-comment'>// 操作グループを開始します</span>
+  App.Caret.BeginOperateGroup<em>(</em><span class='literal'>'マクロ：Hello,World!の入力'</span><em>)</em>;
+  <dfn>try</dfn> <em>{</em>
+    <span class='i-comment'>// ここでエディタへの操作を行います</span>
+    App.Caret.Send<em>(</em><span class='literal'>"HelloWorld"</span><em>)</em>;  <span class='i-comment'>//  エディタに"Hello,World!"の文字列を送ります</span>
+  <em>}</em>
+  <dfn>finally</dfn> <em>{</em>
+    <span class='i-comment'>// 操作グループを終了します</span>
+    App.Caret.EndOperateGroup<em>(</em><em>)</em>;
+  <em>}</em>
+<em>}</em>
+<dfn>finally</dfn> <em>{</em>
+  <span class='i-comment'>// 再描画を許可します</span>
+  App.Caret.EndUpdate<em>(</em>ctx<em>)</em>;
+<em>}</em>
+</code></pre>
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href='http://www.gnu.org/copyleft/fdl.html' rel='license'>GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

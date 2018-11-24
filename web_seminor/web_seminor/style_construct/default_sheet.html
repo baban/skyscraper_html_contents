@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='スタイルシートの設計法:デフォルトシートの作成' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>スタイルシートの設計技法:デフォルトシートの作成</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>デフォルトシート設定をしっかり作ろう</h1>
+
+<div class="section" id="content">
+
+	<h2 id='h2-1'>デフォルトのスタイルシートを作成する</h2>
+	
+	<div class="section">
+		<p>「スタイルシートを弄りながら、IEで表示確認しながらページを作成しました」そうして、完成したのでネスケ、Operaの各ブラウザで表示の確認をしてみたけれど…、あれ？ なんだか表示が違う?」</p>
+		<p>スタイルシートを弄って、サイトをデザインする場合に、必ず一度は遭遇する問題です</p>
+		<p>まずはこの問題の解決法から</p>
+		<p>こういうときに、ブラウザごとに表示の違いが発生する原因はおもに３つに分けられます、次によく起こる順番で原因を上げていくと</p>
+		<ol>
+			<li>ブラウザごとのデフォルトのスタイルシートの違い</li>
+			<li>各ブラウザのバグ</li>
+			<li>各ブラウザの仕様</li>
+		</ol>
+		<p>と言うふうになっています。そのうち<em>おおよそ８割から９割は、ブラウザが持っている、デフォルトのスタイルシートの違いになっています</em></p>
+		<p>実際に悩んでみれば分かりますが、毎回毎回、直せる設定の違いに出会うたびに、その場で穴を潰すようにスタイルシートを書き換えてしまうのは面倒くさいですし、対応としても小手先で、決して褒められたモノではありません</p>
+		<p>こういう、無駄な２度手間を避けるのはどうすればいいのか？　解決法は簡単です。ブラウザごとのデフォルトの設定をすべて上書きして、自分の基本設定をサイト全体に適応してしまえばよいのです。</p>
+		<p>主要なブラウザでの設定の違いは、<a href="http://is.vis.ne.jp/start.xhtml">CSS laboratory</a>の<a href="http://is.vis.ne.jp/lab/ua_default_css/index.xhtml">ブラウザのデフォルトスタイルの違い</a>なんかに書いてありますのでご参照あれ。一応、コレに従うなら<a href="minimum.css">この程度のスタイルシート</a>を書いておけば良いのでしょうが、せっかく作るのですから、今現在、最低限の表示を確保するよりも、後のことを考えて出来るだけ<a href="http://members.jcom.home.ne.jp/pctips/www/cssintro.html">完全なスタイルシートを用意</a>した方が良かったりします</p>
+		<p>ちなみに、今自分が使っているのは<a href="default_style/html_default_css1.css">CSS1対応ブラウザ用</a>と<a href="default_style/html_default_css2.css">CSS2対応ブラウザ用</a>の二つ。いろんなブラウザのバグなんかと格闘しながら、紆余曲折を経て現在の形になっていますので。長ったらしい部分もあるかもしれませんね。と言っても、サイズにして１〜２kbyte程度のファイルにしかなっていませんが</p>
+		<p>一応、著作権云々のややこしいことを主張する気は全くありませんので、商用含めてご自由に流用下さい</p>
+		<p>表示確認するにも自分の使えるOS、バージョン、ブラウザなんかは限られていますから、その他のブラウザでの表示の壊れは怖いですし、それ以上に、今後、違うブラウザが登場したときに「嗚呼、また違うブラウザが…、普通に表示崩れおこしているし…」というのは悲しすぎます。転ばぬ先の杖と思って、出来るだけしっかりしたデフォルト設定を書いておきましょう。</p>
+		<p>ブラウザのバグさえなければ、理論上、ほぼ完全に同じ表示が得られます</p>
+		<p>まぁ、そもそもの原因は、<abbr title="World Wide Web Consocium">W3C</abbr>がデフォルトのスタイルシートを決めていないことが原因だったりするのですが…。(screenメディアだけでもいいから決めて下さい、お願いします)</p>
+	</div>
+	
+	<h2 id='h2-2'>使い方</h2>
+	
+	<div class="section">
+		<p>デフォルトのスタイルシートを作成したら、これの使い方は簡単。ページの基本設定を行っているスタイルシートの最初の行に<code>@import</code>文でデフォルトのスタイルを読み込ませましょう</p>
+<pre>
+<code>
+@charset "Shift_JIS";
+
+/* ここで、デフォルトのスタイルシートを読み込みます */
+@import url("default.css");
+
+body {
+	(以下省略)
+}
+</code>
+</pre>
+		<p>先ほど紹介した自分のデフォルトスタイルシートである、<a href="default_style/html_default_css1.css">html_default_css1.css</a>と<a href="default_style/html_default_css2.css">html_default_css2.css</a>を読み込みます</p>
+<pre>
+<code>
+@charset "Shift_JIS";
+
+/* ここで、デフォルトのスタイルシートを読み込みます */
+@import url("html_default_css1.css");
+@import "html_default_css2.css";
+/* ↑前の行と文法が違うのは、CSS2で新しく決められた書き方だから。
+CSS1しか対応していないブラウザは、これで読み込めません */
+
+body {
+	(以下省略)
+}
+</code>
+</pre>
+	<p>こうすることで、まずブラウザごとにおこる表示の差を消し去ってしまいます。後々の作業のしやすさが全然違いますので</p>
+</div>
+	
+<div title='CreativeCommonsJapan' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

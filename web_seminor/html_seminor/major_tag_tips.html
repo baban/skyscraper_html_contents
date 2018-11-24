@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='ja' xml:lang='ja' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content='text/html;charset=UTF-8' http-equiv='Content-Type'/>
+	<meta content='text/css' http-equiv='Content-Style-Type'/>
+	<meta content='text/javascript;charset=UTF-8' http-equiv='Content-Script-Type'/>
+	<meta content='ja' http-equiv='Content-Language'/>
+	
+	<meta name='author' content='babanba-n'/>
+	<meta name='generator' content='Alcadia'/>
+	<meta name='Copyright' content='Creative Commons Japan'/>
+	<meta name='description' content='初心者に送るHTML講座'/>
+	
+	<link href='/index.html' rel='home' type='text/css'/>
+	<link href='http://creativecommons.org/licenses/by-sa/2.0/jp/' title='Creative Commons Japan' rel='copyright' id='meta-licence'/>
+	<link href='/texts/readme.html' rel='help' type='text/css'/>
+	<link href='mailto:baban@nergal.clubbbq.com' rev='Reply-to'/>
+	<link href='/img/favicon.ico' rel='shortcut icon' type='image/png'/>
+	<link href='/css/seminor.css' rel='stylesheet' type='text/css'/>
+	
+	<title>正しく始めるHTML:知っておくべき基本タグ一覧</title>
+	<script src="/src/seminor.js" type="text/javascript"> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>正しく始めるHTML:知っておくべき基本タグ一覧</h1>
+
+<div class='section' id='content'>
+	
+	<h2 id='h2-1'>aタグについて</h2>
+	
+	<div class="section">
+		
+		<h3>リンク先の内容は分かるように書こう</h3>
+		
+		<div class="section" >
+			<p>サイト内で、リンクを張る場合に</p>
+<pre>
+<code>
+&lt;p&gt;頂いた画像は&lt;a href="presents.html"&gt;ココ&lt;/a&gt;に置いておきました&lt;/p&gt;
+</code>
+</pre>
+			<p>等のように、<em class="kwd">ココ</em>、<em class="kwd">あちら</em>等の、リンク先の内容が分からないような張り方がありますがお勧めしません、特に必要な場合には</p>
+<pre>
+<code>
+&lt;p&gt;頂いた画像は&lt;a href="presents.html" title="<span class="refact">axwさんの猫壁紙</span>"&gt;ココ&lt;/a&gt;に置いておきました&lt;/p&gt;
+</code>
+</pre>
+			<p>のように、title属性を付けておくことをお勧めいたします</p>
+		</div>
+		
+		<h3>掲示板のURLには気を付けよう</h3>
+		
+		<div class="section">
+			<p>広いWebには非常に多くのサイトがあります、その中には掲示板やカウンター等を貸し出しているサイトなどがありますが、この様サイトから借りたサービスのURLを見ると</p>
+			<p><cite>http://cntounter.benri.net/count.cgi?color=000000<span class="refact">&amp;</span>size=8<span class="refact">&amp;</span>column=6</cite></p>
+			<p>等、アドレスに「<em class="kwd">&amp;</em>:アンパサンド」記号を使う場合があります</p>
+			<p>このようなアドレスはXHTMLではアウト、使ってはいけない文字になっています。どうしてもコレを使いたい場合は</p>
+			<p><cite>http://cntounter.benri.net/count.cgi?color=000000<span class="refact">&amp;amp;</span>size=8<span class="refact">&amp;amp;</span>column=6</cite></p>
+			<p>という風に書いてください「<em class="kwd">&amp;amp;</em>」の文字列を読み込んだときに変換して、普通に使えるようにしてくれます</p>
+		</div>
+	</div>
+</div>
+
+<div title='Creative Commons Japan by' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/by-sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/by-sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+	<p>Author:<span class='rights'>babanba-n</span>, Licence:<span class='cc-licence'>by-sa</span></p>
+</div>
+
+</body>
+</html>

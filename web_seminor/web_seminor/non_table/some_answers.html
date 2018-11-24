@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='Shift_JIS' standalone='yes'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='ja' xml:lang='ja' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='テーブルデザイン不要論' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>テーブルデザイン不要論:複数改案、メリット、デメリット</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>テーブルデザイン不要論:複数改案、メリット、デメリット</h1>
+
+<div class='section' id='content'>
+	
+	<h2 id="abstruct">Abstruct</h2>
+	
+	<div class="section">
+		<p>さて、先ほどはfloatを使ってテーブルデザインを再現しましたが今回はちょっと趣旨を変えて他の方法で同じデザインを再現してみましょう</p>
+	</div>
+	
+	<h2 id='h2-1'>position:absolute;</h2>
+	
+	<div class="section">
+		<p>というわけで、次は比較的分かりやすいと思われる方法、<code>position:absolute;</code>を利用した方法</p>
+		<div class="figure">
+			<a href="table_sample/sample06.html"><img src="some_answers_prev01.png" alt="サンプル１" /></a>
+		</div>
+		<p><code>position</code>というのは、とにかく分かりやすいので、初心者に多用されがちなのですが、大事なことを一つ言っておきます</p>
+		<p>基本的に<em>この方法はあまりメリットがありません</em>。</p>
+		<p><code>position</code>要素というのは、ブロックを自由な位置に配置出来る代わりに、<em>幅や高さが、他のブロックと別計算になります</em>、このとき横幅を設定したりするのが面度になりますし、何より、<code>position</code>要素を使うと、気を付けないと、<em>他のブロックと容易に重なる</em>と言う欠点を抱えます</p>
+		<p>ただ、<code>position</code>要素が便利な世界がないわけではありません、ちょっと実例を出してみましょうか</p>
+		<p>通常、Webデザインというのは、ブラウザの制約から、ブロックが右上に寄せられます、でもどうしても、このブロックは、左下に合わせたいという場合にコレが役に立ちます</p>
+		<div class="figure">
+			<img src="some_answers_sample01.png" alt="子ブロックを右下に持っていく" />
+		</div>
+		<p>方法は第４回で説明した、<code>position:relative;</code>と<code>position:absolute;</code>の合わせ技です、さっきのサンプルもコレ使っていますけど</p>
+		<p><a href="table_sample/sample08.html">サンプル</a></p>
+		<p>２つ目がピクセルとの混在使用です</p>
+		<p>ページの作成時というのは、多数のディスプレイ環境を想定して文字の大きさをem、ブロックのサイズはemかパーセントで指定するのが一般的です</p>
+		<p>ただ、良く知られているかも知れませんが、こういうサイズの指定というのは、<em>ピクセルとの相性が非常に悪いです</em></p>
+		<p>でもWebデザインをする際には、写真素材やCGなど、ピクセルを使わなければならない場面が多数存在します。この問題を解決する手法の一つが<code>position:abosolute;</code>です</p>
+		<p>方法は単純、まずはピクセルで画像を入れる幅の分だけ隙間を作って</p>
+		<div class="figure">
+			<img src="some_answers_sample02.png" alt="横幅作成" />
+		</div>
+		<p>その隙間に、画像を埋め込んでしまいます</p>
+		<div class="figure">
+			<img src="some_answers_sample03.png" alt="画像埋め込み" />
+		</div>
+		<p>自分は、この方法を<em class="kwd">逃げmargin</em>って勝手に読んでいますけどね</p>
+	</div>
+	
+	<h2 id='h2-2'>display:table;</h2>
+	
+	<div class="section">
+		<p>今回の記事を書くきっかけになったプロパティ、勧告はCSS2でされていたんだけど、最近ようやく実装が追いついてきました</p>
+		<p>CSSでテーブルタグと全く同じ事が出来てしまいます、スバラシイ！</p>
+		<p>使うともれなく<strong class="very-strong">IEで表示が壊れますけどね</strong></p>
+		<p><a href="table_sample/sample07.html">サンプル</a></p>
+		<p>このプロパティを使う事のメリットは、<em>CSSでテーブルデザインと同じ事が出来る</em>の１点に着きます</p>
+		<p>逆を突けば、<em class="kwd">テーブルタグは内容が全部読み込まれてからでないと表示されない</em>等のテーブルタグならではの欠点も同時に受けついでいることになります</p>
+	</div>
+	
+</div>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozillaのテーマの作成法</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>MozillaFirefoxのテーマの作り方</h1>
+
+<div class="section" id="content">
+	<h2 id='h2-1'>基礎知識の復習</h2>
+	<div class="section">
+	<dl>
+		<dd>@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");</dd>
+		<dd>
+			<p>CSS3で策定中の<a href="http://www.w3.org/TR/2006/WD-css3-namespace-20060828/">名前空間ルール</a>の先行実行です。</p>
+			<p>元々XUL文書に、一部htmlでの表示をサポートしているので、先行実装自体は妥当といえるでしょう。ラストコールが迫っていますし</p>
+		</dd>
+	</dl>
+	http://is.vis.ne.jp/notes/xul/index.xhtml
+  -moz-padding-start: 8px;
+  -moz-padding-end: 10px;
+	<p>それぞれpadding-left、padding-rightに同じ様です</p>
+  
+  -moz-margin-start
+  -moz-margin-end
+	<p>それぞれmargin-left、margin-rightに同じ様です</p>
+  
+  -moz-border-top-colors: ThreeDShadow ThreeDDarkShadow;
+  -moz-border-right-colors: ThreeDHighlight ThreeDDarkShadow;
+  -moz-border-bottom-colors: ThreeDHighlight ThreeDDarkShadow;
+  -moz-border-left-colors: ThreeDShadow ThreeDDarkShadow;
+  
+  -moz-border-radius-topright: 0;
+  
+	-moz-tree-cell-text(user)
+	-moz-tree-cell-text(locked)
+  -moz-tree-twisty(open)
+	-moz-tree-indentation
+	-moz-tree-image(Name)
+	
+  -moz-appearance: checkbox-container;
+	-moz-appearance: textfield;
+	
+  textfield
+  none
+  
+  -moz-user-focus: normal !important;
+  -moz-box-orient:horizontal !important;
+  -moz-box-align: center;
+  -moz-box-pack: center;
+  http://firefox.geckodev.org/index.php?CSS%2FXUL%E7%94%A8%E7%8B%AC%E8%87%AA%E6%8B%A1%E5%BC%B5CSS
+  outline: 1px dotted -moz-DialogText;
+  background-color: -moz-Dialog;
+  
+  arrowscrollbox
+  autorepeatbutton
+  box
+  bulletinboard
+  button
+  caption
+  checkbox
+  colorpicker
+  column
+  columns
+  deck 
+  description
+  dialog
+  dialogheader
+  download
+  dropmarker
+  extension
+  grid 
+  gripper
+  grippy
+  groupbox
+  hbox
+  image
+  installitem
+  label
+  license
+  link
+  listbox
+  listheader
+  listheaditem
+  listitem
+  menu
+  menubar
+  menuitem
+  menulist
+  menupopup
+  menuseparator
+  page
+  popup
+  popupset
+  prefpane
+  prefwindow 
+  progressmeter
+  radio 
+  radiogroup
+  resizer
+  richlistbox
+  richlistitem
+  row
+  rows
+  scrollbar
+  scrollbarbutton
+  scrollcorner
+  separator
+  sidebarheader
+  sidebars-separator
+  spacer
+  splitter
+  stack
+  statusbar
+  statusbarpanel
+  tab
+	tabbox
+  tabbrowser
+  tabpanel
+  tabpanels
+  tabs
+  textbox
+  thumb
+  toolbar
+  toolbarbutton
+  toolbargrippy
+  toolbarpaletteitem
+  toolbarseparator
+  toolbarspacer
+  toolbox
+  tooltip
+  tree
+  treecell
+  treechildren
+  treecol
+  treecolgroup
+  treecolpicker
+  treehead
+  treeitem
+  treerow
+  update
+  updateitem
+  vbox
+  view
+  window
+  wizard
+  
+  http://www.xulplanet.com/
+  http://www.xulplanet.com/references/elemref/
+  </div>
+</div>
+
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

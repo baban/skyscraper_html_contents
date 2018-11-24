@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozillaのテーマの作成法</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>MozillaFirefoxのテーマの作り方</h1>
+
+<div class="section" id="content">
+	<h2 id='h2-1'>テーマは作りすぎるな！</h2>
+	<div class="section">
+		<p>これは長い間テーマを作り続けての経験論なのですが、テーマを作りすぎるのはやめましょう！</p>
+		<p>Firefoxは現在でも日々進化を行っていますですから当然<em class="kwd">途中で仕様が変わります</em></p>
+		<p>私の経験でも今まで</p>
+		<ul class="data">
+			<li>Firebird0.6</li>
+			<li>Firebird0.7</li>
+			<li>Firefox0.8</li>
+			<li>Firefox0.9</li>
+			<li>Firefox1.0</li>
+			<li>Firefox1.5</li>
+			<li>Firefox2.0</li>
+			<li>Firefox3.0</li>
+			<li>Firefox4.0</li>
+		</ul>
+		<p>とバージョンが上がる度に毎度テーマに不具合が出るという経験をしています。正直な話、テーマを作成する以上はこれに付き合う事をある程度覚悟しないといけません</p>
+		<p>作って入って見れば分かりますが、膨大な行数のcssの解読やアイコンなどの画像の作成等、テーマの作成は結構労力のいる作業です。ですからその内気力が続かなくなります。</p>
+		<p>とはいえ、Firefox1.5以降あたりからは、開発者側も良心が出てきたのかバージョンが0.1上がるだけで互換性が無くなるなんて言う事態も無くなってきました</p>
+		<p>2.0以降では、変更箇所の一覧を文書として公開する様になりましたし(<a href="http://developer.mozilla.org/ja/docs/Theme_changes_in_Firefox_2" class="external">2.0の変更箇所</a>、<a href="http://developer.mozilla.org/ja/docs/Theme_changes_in_Firefox_3" class="external">3.0の変更箇所</a> <a href="https://developer.mozilla.org/en/Theme_changes_in_Firefox_4" class="external">4の変更箇所</a>)、が大体メジャーアップデート以外では仕様を変更しないのが慣習として定着してきたようです</p>
+	</div>
+	
+	<h2 id='h2-2'>新バージョンへの対応法</h2>
+	<div class="section">
+		<p>これは我流で見つけた自分なりの方法なのですが、firefoxのバージョンが上がって、自分のテーマに不具合が出たときの対処法です</p>
+		<ol class="data">
+			<li>まず検索エンジンを頼りに「新バージョンに対応しているテーマ」を探し出します</li>
+			<li>それを解凍して、自分のテーマのglobalフォルダのcssファイルを少しづつ上書きしていきます</li>
+			<li>上書きとインストールして表示を繰り返して、不具合の箇所を特定して、そこを修正してしまいましょう</li>
+		</ol>
+		<p>性質の悪い方法ですが開発に携わっていない外側の人間からは、何処をどう変更されたのか分からないのが本音で、それをもれなく探索するというのは実質不可能だったりします。なのでXULの場合firefoxのバージョンがあがって、新しいXULタグが追加されたなんて場合には、開発の外側の人間からは何がなんだか分からないのですから、動く物を持って来て、それを書き換えて利用するのが一番安全だと悟りました（マテ</p>
+	</div>
+	
+	<h2 id='h2-3'>画像の変更</h2>
+	<div class="section">
+		<p>何処のどれが対応しているのかは、画像ですから、見れば分かると思います。分からない場合はファイル名をコピーして、テキストを全文検索してください。読み込んでいるスタイルシートが出てくると思われます。</p>
+		<p>あまり解説する必要がありませんね…（汗</p>
+	</div>
+	
+	<h2 id='h2-4'>テーマの扱われ方</h2>
+	
+	<div class="section">
+		<p>これもバージョンが変わるごとに少しづつ保管場所が変わっていっています。Firefox2.0以降では</p>
+		<dl class="data">
+			<dt>Windows Vista</dt>
+			<dd>C:\Users\[ログイン名]\AppData\Roaming\Mozilla\Extensions\[テーマと同じGUID]\</dd>
+			<dt>Windows 2000/XP</dt>
+			<dd>C:\Documents and Settings\[ログイン名]\Application Data\Mozilla\Profiles\[ランダムな文字列].default\extensions\[テーマと同じGUID]\</dd>
+		</dl>
+		<p>のフォルダに入っています。ちなみにFIrefox3.0も同じ設定です。同じフォルダにFirefoxのエクステンションも入っており、テーマとエクステンションは内部的には同じように扱われていることが分かります。</p>
+		<p>フォルダ名がランダムな文字列で驚くでしょうが、GUIDなので、install.rdfで設定しているGUIDと同じフォルダ名のところを探しましょう</p>
+		<br />
+		<p>過去のデータ保管箇所ですが。Firefox2.0以降では</p>
+		<dl class="data">
+			<dt>Windows 2000/XP</dt>
+			<dd>C:\Documents and Settings\[ログイン名]\Application Data\Mozilla\Profiles\[ランダムな文字列].default\extensions\[テーマと同じGUID]\</dd>
+		</dl>
+		<p>Firefox0.8までは</p>
+		<dl class="data">
+			<dt>Windows 2000/XP</dt>
+			<dd>C:\Documents and Settings\[ログイン名]\Application Data\Mozilla\Profiles\[ランダムな文字列].slt\chrome</dd>
+		</dl>
+		<p>また、Firefox0.9～Firefox2.0では</p>
+		<dl class="data">
+			<dt>Windows 2000/XP</dt>
+			<dd>C:\Documents and Settings\[ユーザー名]\Application Data\Mozilla\Firefox\Profiles\default.ouh\chrome</dd>
+		</dl>
+		<p>となっています</p>
+	</div>
+	
+	<h2>拡張へのスタイルの当て方</h2>
+	
+	<div class="section">
+		<p>拡張へのスタイルの当て方には大きく２つの方法があって</p>
+		<ol class="data">
+			<li>拡張の該当箇所のidを特定して、スタイルフォルダで上書きする</li>
+			<li>テーマ内部に、拡張のスタイルフォルダを作成して、そこで設定する</li>
+		</ol>
+		<p>の方法がありますが、基本的には、２の方が最初に考えるべきやり方だと思います</p>
+		
+		<p>やり方は</p>
+		<ol class="data">
+			<li>デザインを変えたい拡張(拡張子はxpi)をzipで解凍する</li>
+			<li>その中の「skin」フォルダの中身(拡張の内部名と同じフォルダがある)を、テーマのあるフォルダに移動させる</li>
+			<li>これのデザインを変更する</li>
+			<li>content.rdfにそのフォルダの情報を追加する</li>
+		</ol>
+		<p>とやっていけばデザインの変更がかかります</p>
+		<p>たくさんの拡張に対応すればするほど、ファイルサイズが拡大する欠点がありますね</p>
+	</div>
+	
+	<h2 id='h2-5'>テーマのパッケージ化の楽な方法</h2>
+	
+	<div class="section">
+		<p>テーマ作成のとき結構面倒くさいと感じてしまうのが、複数フォルダをzip圧縮して、jarファイルにしてインストールまでの手順。</p>
+		<p>自分コレどうにか楽が出来ないかと試した結論の一つで、zip圧縮をコマンドなどから行う手段が案外少ない(tar結合とかなら結構多くの言語でライブラリがあるんだけど)</p>
+		<p>それで色々と探してみたところ、<a href='http://nadesi.com/'>なでしこ</a>がコレに対応しておりまして、今はこれを使って圧縮をやっています（習得に1時間かからなかった…）</p>
+<pre><code>
+# 複数フォルダをzipに一括圧縮します。ファイル名をz_crome.nakoにしてね
+クロムは「browser
+global
+help
+mozapps
+contents.rdf
+icon.png
+install.rdf
+preview.png
+」
+クロムを「z.zip」へ圧縮。
+終了する。
+</code></pre>
+		<p>あとは、リネーム等はコマンドを書き連ねてbatファイルにしてしまえば、楽に…</p>
+<pre><code># 面倒くさいテーマのパッケージ化をクリックだけで解決。これをテキストに貼り付けて拡張子を.batにしてね
+z_chrome.nako
+del z.jar
+ren "z.zip" "z.jar"
+# copy "z.jar" "skinのインストールされているパス" # skinインストールパスを設定できれば行最初の"#"を外してください
+</code></pre>
+		<p>これで、テーマのパッケージ化からインストールまでをクリック1回でできます。最後にFirefoxを再起動しないと表示確認できないのが辛いところですが…</p>
+		<p>（install.rdfやcontents.rdfを書き換えた場合も、この方法で上書きしてしまえばよいです）</p>
+	</div>
+	
+	<h2 id='h2-6'>参考リンク</h2>
+	
+	<div class="section">
+		<ul class='data'>
+			<li><a href="http://developer.mozilla.org/ja/docs/Themes">Mozilla Firefox：テーマ開発者へのドキュメント</a></li>
+			<li><a href="http://www.okhotska.net/docs/packaging_themes.html">Tatsuo's Works:Firefox/Thunderbird 用テーマのパッケージングについて</a></li>
+			<li><a href="http://www.mozilla-japan.org/projects/firefox/extensions/packaging/themes.html">Mozilla Japan:Firefox/Thunderbird 用テーマのパッケージングについて</a></li>
+			<li><a href="http://www.xulplanet.com/tutorials/xultu/">XULチュートリアル</a></li>
+			<li><a href="http://xul-app.hp.infoseek.co.jp/xultu-janit/">XUL チュートリアル(和訳)</a></li>
+			<li><a lang="en" href="http://www.knology.net/~mcdavis941/ui_visual_index/theming.html" class="external">Writing Themes(英語)</a></li>
+			<li><a lang="en" href="http://forums.mozillazine.org/viewforum.php?f=18 " class="external">MozillaZine Forums - Theme Development</a></li>
+			<li><a href="http://developer.mozilla.org/ja/docs/XUL_Reference " class="external">XULリファレンス</a></li>
+			<li><a href="http://www.xulplanet.jp/">XULPlanet 日本語版</a></li>
+			<li><a href="http://www.xulplanet.jp/xultu/">XUL チュートリアル(和訳) XUL Planetミラー</a></li>
+			<li><a href="http://www.xulplanet.jp/xultu/">XUL リファレンス(英語)</a></li>
+			<li><a href="http://yellow.ribbon.to/~repy/exes/free/foxskin.html">Repy's side：Firefoxのテーマ作成</a></li>
+			<li><a href="http://pc5.2ch.net/test/read.cgi/software/1026897525/l50">5.2ch:おいお前ら、ネスケのテーマを作りませんか？</a></li>
+			<li><a href="http://pc2.2ch.net/test/read.cgi/software/1026897525/l50">2ch:おいお前ら、ネスケのテーマを作りませんか？</a></li>
+			<li><a href="http://game.gr.jp/xul/book/200103skin/#6">ブラウザ改造 : Netscape6.1/Mozillaのリロードボタンを好きな画像に変えてみる</a></li>
+			<li><a href="http://saitamaskin.at.infoseek.co.jp/easy.html">さいたま皮:Netscape/Mozilla用 簡易テーマ</a></li>
+			<li><a href="http://www.eightlines.com/neil/mozskin/">Creating a Skin for Mozilla</a></li>
+			<li><a href="http://snow.prohosting.com/magicink/">"small_modern"をこっそり配布してみる試み-Trial to distribute small_modern for mozilla-</a></li>
+			<li><a href="http://jt.mozilla.gr.jp/unix/customizing.html">Mozilla.org:Mozilla のカスタマイズ</a></li>
+			<li><a href="http://www.alib.jp/mozilla/">Ancient library:about Mozilla</a></li>
+			<li><a href="http://jt.mozilla.gr.jp/releases/mozilla1.4/installation.html">Mozilla.prg:Mozilla 1.4 のインストール方法</a></li>
+			<li><del><a href="http://www.geocities.co.jp/AnimeComic-Pen/1997/narrowmoz.html">Narrow Classic</a></del></li>
+			<li><del><a href="http://snow.prohosting.com/magicink/modern.html">"modern"のツールバーボタンを小さくしてみる試み-Trial to make small modern-</a></del></li>
+			<li><del><a href="http://software.s48.xrea.com/mozilla/index.php">Firefoxまとめサイト</a></del></li>
+			<li><del><a href="http://fls.moo.jp/moz/mozillaskin.html">WEB ARCHIVES:Mozilla1.0 のテーマ作成</a></del></li>
+		</ul>
+	</div>
+</div>
+	
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

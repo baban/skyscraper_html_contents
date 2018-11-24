@@ -1,0 +1,401 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+		 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+
+	<meta name="author" content="babanba-n" />
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="PhotoShopで使うJavaScript解説" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rev="made" href="mailto:baban@nergal.clubbbq.com" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/document.css" type="text/css" />
+	
+	<title>PhotoShopで使う!JavaScript要約解説</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>PhotoShopで使う!JavaScript要約解説</h1>
+
+<div class="section">
+	<h2>フィルタ実行メソッド</h2>
+	
+	<div class="section">
+		<h3>シャープ</h3>
+		
+		<dl class="explain">
+			<dt class="define">applyUnSharpMask( double Amount, double Radius, long Threshold )</dt>
+			<dd>
+				<p>「アンシャープマスク」フィルタを実行します</p>
+				<p>第１引数では変化の量を指定します</p>
+				<p>第２引数では半径をピクセルでしていします</p>
+				<p>第３引数ではしきい値を指定します</p>
+			</dd>
+			<dt class="define">applySharpen()</dt>
+			<dd>
+				<p>「シャープ」フィルタを実行します</p>
+			</dd>
+			<dt class="define">applySharpenEdges()</dt>
+			<dd>
+				<p>「シャープ(輪郭のみ)」フィルタを実行します</p>
+			</dd>
+			<dt class="define">applySharpenMore()</dt>
+			<dd>
+				<p>「シャープ(強)」フィルタを実行します</p>
+			</dd>
+		</dl>
+		
+		<h3>ノイズ</h3>
+		<dl class="explain">
+			<dt class="define">applyDustAndScratches( long Radius, long Threshold )</dt>
+			<dd>
+				<p>「ダスト＆スクラッチ」のフィルタを実行します</p>
+				<p>第１引数は半径をピクセルで指定します</p>
+				<p>第２引数はしきい値を指定します(通常0〜255)</p>
+			</dd>
+			<dt class="define">applyAddNoise( double Amount, NoiseDistribution Distribution, Boolean Monocromatic )</dt>
+			<dd>
+				「ノイズを加える」フィルタを実行します
+				<p>第１引数は、ノイズの量を指定します。通常操作では0〜400までしか指定できませんが、こちらでは負の数も400以上の数も有効に動きます</p>
+				<p>第２引数は次のいずれかを指定してノイズの分布方法を設定します</p>
+				<ul>
+					<li>NoiseDistribution.GAUSSIAN</li>
+					<li>NoiseDistribution.UNIFORM</li>
+				</ul>
+				<p>第３引数はグレースケールノイズにするかどうかを指定します、trueでグレースケールノイズになります</p>
+			</dd>
+			<dt class="define">applyDespeckle()</dt>
+			<dd>
+				<p>「輪郭以外をぼかす」フィルタを実行します</p>
+			</dd>
+			<dt class="define">applyMedianNoise( double Radius )</dt>
+			<dd>
+				<p>「明るさの中間値」フィルタを実行します</p>
+				<p>引数には半径をピクセルで指定します</p>
+			</dd>
+		</dl>
+		
+		<h3>ビデオ</h3>
+		<dl class="explain">
+			<dt class="define">applyDeinterlace( EliminateFields EliminateFields, CreateFields CreateFields )</dt>
+			<dd>
+				<p>「インターレース解除」のフィルタを実行します</p>
+				<p>第１引数には次のいずれかを指定します</p>
+				<ul>
+					<li>EliminateFields.EVENFIELDS</li>
+					<li>EliminateFields.ODDFIELDS</li>
+				</ul>
+				<p>第２引数には次のいずれかを指定します</p>
+				<ul>
+					<li>CreateFields.DUPLICATION</li>
+					<li>CreateFields.INTERPOLATION</li>
+				</ul>
+			</dd>
+		</dl>
+		
+		<h3>ぼかし</h3>
+		
+		<dl class="explain">
+			<dt class="define">applyGaussianBlur( double Radius )</dt>
+			<dd>
+				<p>「ぼかし(ガウス)」のフィルタを実行します</p>
+				<p>第１引数には半径をピクセルで指定します</p>
+			</dd>
+			<dt class="define">applyBlur()</dt>
+			<dd>
+				<p>「ぼかし」フィルタを実行します</p>
+			</dd>
+			<dt class="define">applyBlurMore()</dt>
+			<dd>
+				<p>「ぼかし(強)」フィルタを実行します</p>
+			</dd>
+			<dt class="define">applyMotionBlur( long Angle, double Radius )</dt>
+			<dd>
+				<p>「ぼかし(移動)」フィルタを実行します</p>
+				<p>第1引数には角度を度数で指定します</p>
+				<p>第2引数にはぼかしの距離をピクセルで指定します</p>
+			</dd>
+			<dt class="define">applySmartBlur( double Radius, double Threshold, SmartBlurQuality BlurQuality, SmartBlurMode Mode )</dt>
+			<dd>
+				「ぼかし(詳細)」フィルタを実行します
+				<p>第１引数では半径を指定します(通常0.1〜100)</p>
+				<p>第２引数ではしきい値を指定します(通常0.1〜100)</p>
+				<p>第３引数では、次のいずれかで画質を指定します</p>
+				<ul>
+					<li>SmartBlurQuality.HIGH</li>
+					<li>SmartBlurQuality.LOW</li>
+					<li>SmartBlurQuality.MEDIUM</li>
+				</ul>
+				<p>第４引数では、次のいずれかでモードを指定します</p>
+				<ul>
+					<li>SmartBlurMode.EDGEONLY</li>
+					<li>SmartBlurMode.NORMAL</li>
+					<li>SmartBlurMode.OVERLAYEDGE</li>
+				</ul>
+			</dd>
+			<dt class="define">applyRadianBlur( long Amount, RadialBlurMethod BlurMethod, RadialBlurQuality BlurQuality )</dt>
+			<dd>
+				<p>「ぼかし(放射状)」を実行します</p>
+				<p>第1引数ではぼかしの量を指定します</p>
+				<p>第2引数では、次のいずれかでぼかしの方法を指定します</p>
+				<ul>
+					<li>RadialBlurMethod.SPIN</li>
+					<li>RadialBlurMethod.ZOOM</li>
+				</ul>
+				<p>第３引数では、次のいずれかでぼかしの質を指定します</p>
+				<ul>
+					<li>RadialBlurQuality.BEST</li>
+					<li>RadialBlurQuality.DRAFT</li>
+					<li>RadialBlurQuality.GOOD</li>
+				</ul>
+			</dd>
+			<dt class="define">applyRipple( long Amount, RippleSize Size )</dt>
+			<dd>
+				<p>「波紋」フィルタを実行します</p>
+				<p>第１引数で波の量を指定します</p>
+				<p>第２引数では、次のいずれかで波の強さを指定します</p>
+				<ul>
+					<li>RippleSize.LARGE</li>
+					<li>RippleSize.MEDIUM</li>
+					<li>RippleSize.SMALL</li>
+				</ul>
+			</dd>
+		</dl>
+		
+		<h3>変形</h3>
+		<dl class="explain">
+			<dt class="define">applyGlassEffect( long Distortion, long Smoothness, long Scaling, Boolean Invert, TextureType Texture[, File TextureFile ] )</dt>
+			<dd>
+				<p>「ガラス」のフィルタを実行します</p>
+				<p>第４引数には次のいずれかを指定します</p>
+				<ul>
+					<li>TextureType.BLOCKS</li>
+					<li>TextureType.CANVAS</li>
+					<li>TextureType.FILE</li>
+					<li>TextureType.FROSTED</li>
+					<li>TextureType.TINYLENS</li>
+				</ul>
+			</dd>
+			<dt class="define">applyDiffuseGlow( long Graininess, long GrouwAmount, long ClearAmount )</dt>
+			<dd>
+				<p>「光彩拡散」フィルタを実行します</p>
+				<p>第１引数はきめの度合いを指定します(通常0〜10)</p>
+				<p>第２引数は光彩度を指定します(通常0〜20)</p>
+				<p>第３引数は透明度を指定します(通常0〜20)</p>
+			</dd>
+			<dt class="define">applyDisplace( long HorizontalScale, long VerticalScale, DisplacementMapType DisplacementType, UndefinedAreas UndefinedAreas, File DisplacementMapFile )</dt>
+			<dd>
+				<p>第３引数には次のいずれかを指定します</p>
+				<ul>
+					<li>DisplacementMapType.STRETCHTOFIT</li>
+					<li>DisplacementMapType.TILE</li>
+				</ul>
+				<p>第４引数には次のいずれかを指定します</p>
+				<ul>
+					<li>UndefinedAreas.REPERTEDGEPIXELS</li>
+					<li>UndefinedAreas.WRAPAROUND</li>
+				</ul>
+			</dd>
+			<dt class="define">applyOceanRipple( long Size, long Magnitude )</dt>
+			<dd>
+				<p>「海の波紋」フィルタを実行します</p>
+				<p>第１引数では波紋の振幅数を指定します(通常1〜15)</p>
+				<p>第２引数では波紋の大きさを指定します(通常1〜15)</p>
+			</dd>
+			<dt class="define">applyPinch( long Amount )</dt>
+			<dd>
+				<p>「つまむ」フィルタを実行します</p>
+				<p>引数でつまむ量を調整します(通常-100〜100)</p>
+			</dd>
+			<dt class="define">applyPolarCoordinates( PolarConversionType Conversion )</dt>
+			<dd>
+				<p>「極座標」フィルタを実行します</p>
+				<p>引数には次のいずれかを指定して、変形の型を指定します</p>
+				<ul>
+					<li>PolarConversionType.POLARTORECTANGULAR</li>
+					<li>PolarConversionType.RECTANGULARTOPOLAR</li>
+				</ul>
+			</dd>
+			<dt class="define">applySpherize( long Amount, SpherizeMode Mode )</dt>
+			<dd>
+				<p>「球面」フィルタを実行します</p>
+				<p>第１引数では変形の量を指定します</p>
+				<p>第２引数では、次のいずれかで変形の方法を指定します</p>
+				<ul>
+					<li>SpherizeMode.HOIZONTAL</li>
+					<li>SpherizeMode.NORMAL</li>
+					<li>SpherizeMode.VERTICAL</li>
+				</ul>
+			</dd>
+			<dt class="define">applyWave( long GeneratorNumber, long MinimunWavelength, long MaximumWavelength, long MinimunAmplitude, long MaximumAmplitude, long HorizontalScale, long VerticalScale, WaveType WaveType, UndefinedAreas UndefinedAreas, long RandomSeed )</dt>
+			<dd>
+				<p>「波形」フィルタを実行します</p>
+				<ul>
+					<li>WaveType.SINE</li>
+					<li>WaveType.SQUARE</li>
+					<li>WaveType.TRIANGULAR</li>
+				</ul>
+				
+				<ul>
+					<li>UndefinedAreas.REPEATEDGEPIXELS</li>
+					<li>UndefinedAreas.WRAPAROUND</li>
+				</ul>
+			</dd>
+			<dt class="define">applyZigZag( long Amount, long Ridges, ZigZagType Style )</dt>
+			<dd>
+				<p>「ジグザグ」フィルタを実行します</p>
+				<p>第１引数では変形の量を指定します</p>
+				<p>第２引数では折り返しの数を指定します</p>
+				<p>第３引数では次のいずれかで、変形の方向を指定します</p>
+				<ul>
+					<li> ZigZagType.AROUNDCENTER</li>
+					<li> ZigZagType.OUTFROMCENTER</li>
+					<li> ZigZagType.PONDRIPPLES</li>
+				</ul>
+			</dd>
+			<dt class="define">applyTwirl( long Angle )</dt>
+			<dd>
+				<p>「渦巻き」フィルタを実行します</p>
+				<p>引数では渦巻きの角度を指定します</p>
+			</dd>
+		</dl>
+		
+		<h3>描画</h3>
+		
+		<dl class="explain">
+			<dt class="define">applyClouds()</dt>
+			<dd>
+				<p>「雲模様1」のフィルタを実行します</p>
+			</dd>
+			<dt class="define">applyDifferenceClouds()</dt>
+			<dd>
+				<p>「雲模様２」のフィルタを実行します</p>
+			</dd>
+			<dt class="define">applyLensFlare( long Brightness, double FlareCenter, LensType )</dt>
+			<dd>
+				<p>「逆行」フィルタを実行します</p>
+				<p>第１引数には明るさをパーセントで指定します(通常0〜300%)</p>
+				<p>第２引数には中心位置を[ x, y ]の配列で指定します</p>
+				<p>第３引数にはレンズの種類として、次のいずれかを指定します</p>
+				<ul>
+					<li>LensType.PRIME105</li>
+					<li>LensType.PRIME35</li>
+					<li>LensType.ZOOMLENS</li>
+				</ul>
+			</dd>
+		</dl>
+		
+		<h3>その他</h3>
+		
+		<dl class="explain">
+			<dt class="define">applyMaximum( double Radius )</dt>
+			<dd>
+				<p>「明るさの最大値」フィルタを実行します</p>
+				<p>引数には半径をピクセルで指定します</p>
+			</dd>
+			<dt class="define">applyMinimum( double Radius )</dt>
+			<dd>
+				<p>「明るさの最小値」フィルタを実行します</p>
+				<p>引数には半径をピクセルで指定します</p>
+			</dd>
+			<dt class="define">applyHighPass( double Radius )</dt>
+			<dd>
+				<p>「ハイパス」フィルタを実行します</p>
+				<p>引数には半径をピクセルで指定します</p>
+			</dd>
+		</dl>
+		
+		<h3>研究中</h3>
+		
+		<dl class="explain">
+			<dt class="define">applOffset( double Horizontal, double Vertical, OffsetUndefinedAreas UndefinedAreas )</dt>
+			<dd>
+				<ul>
+					<li>OffsetUndefinedAreas.REPEATEDGEPIXELS</li>
+					<li>OffsetUndefinedAreas.SETTOBACKGROUND</li>
+					<li>OffsetUndefinedAreas.WRAPARROUND</li>
+				</ul>
+			</dd>
+			<dt class="define">applyStyle( String StyleName )</dt>
+			<dd>
+				「スタイル」を実行します
+			</dd>
+			<dt class="define">applyTextureFill( File TextureFile )</dt>
+			<dd>
+				
+			</dd>
+			<dt class="define">applyCustomFilter( long Charatetistics, long Scale, long Offset )</dt>
+			<dd>
+				
+			</dd>
+			<dt class="define">applyShear( Object Curve, UndefinedAreas UndefinedAreas )</dt>
+			<dd>
+				<p>「シアー」フィルタを実行します</p>
+			</dd>
+		</dl>
+	</div>
+	
+</div>
+
+
+<div id="CC_Licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img alt="クリエイティブ・コモンズ・ライセンス" src="http://creativecommons.org/images/public/somerights2.gif" />
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+	<!-- /クリエイティブ・コモンズ・ライセンス -->
+	
+	<!--
+	
+	<rdf:RDF
+		xmlns="http://web.resource.org/cc/"
+		xmlns:dc="http://purl.org/dc/elements/1.1/"
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	>
+	<Work rdf:about="">
+		<dc:title>我流:スタイルシートの設計技法</dc:title>
+		<dc:date>２００４</dc:date>
+		<dc:creator>
+			<Agent>
+				<dc:title>ばばんばーん</dc:title>
+			</Agent>
+		</dc:creator>
+		<dc:rights>
+			<Agent>
+				<dc:title>ばばんばーん</dc:title>
+			</Agent>
+		</dc:rights>
+		<dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+		<license rdf:resource="http://creativecommons.org/licenses/sa/2.0/jp/" />
+	</Work>
+	
+	<License rdf:about="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+		<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+		<requires rdf:resource="http://web.resource.org/cc/Notice" />
+		<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+		<requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+	</License>
+	
+	</rdf:RDF>
+	
+	-->
+</div>
+
+</body>
+</html>

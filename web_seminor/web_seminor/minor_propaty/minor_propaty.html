@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<meta name="author" content="babanba-n" />
+	<meta name="Targeted Geographic Area" content="Japan" /> 
+	<meta name="generator" content="TeraPad" />
+	<meta name="description" content="知っておくと得するスタイルシートのマイナープロパティ" />
+	
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	<link href='http://creativecommons.org/licenses/sa/2.0/jp/' title='Creative Commons' rel='copyright' id='meta-licence'/>
+	<link rel="meta" href="cc_licence.rdf" type="text/xml+rdf" />
+	
+	<title>知っておくと得するスタイルシートのマイナープロパティ</title>
+	<script src="/src/seminor.js" type="text/javascript"> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>知っておくと得するスタイルシートのマイナープロパティ</h1>
+
+<div class="section">
+
+	<h2 id='abstruct'>Abstract</h2>
+	
+	<div class="section">
+		<p>ここでは、規格にはきちんと書いているんだけれども意外に気づいている人が少ない、スタイルシートのマイナープロパティを紹介したいと思います。</p>
+		<p>一応初心者時代に苦しんで、「しまった！ こんなのがあったのかぁ」と思った便利なものに絞っておきましたので、驚いていただけるとありがたいです。</p>
+	</div>
+	
+	<h2 id='h-1'>クラスの2重指定</h2>
+	
+	<div class="section">
+		<p>みなさん、いつか「あー、なんか要素に２つ以上クラス当てられたら楽なのになぁ…」とか思ったこと無いでしょうか？</p>
+		<p>私はあるのですが、悲しいことに使用上</p>
+<pre><code>
+&lt;div class="class1" class="class2"&gt;&lt;/div&gt;
+</code></pre>
+		<p>の様に２つ以上クラスを書くことは許されていません。</p>
+		<p>しかし、粋な仕様もあったもので、邦訳をあさるとこんな者があったりします</p>
+		<blockquote>
+		<dl>
+			<dt><samp class="adef">id</samp> = <em>name</em>[CS]</dt>
+			<dd>この属性で要素に名前を与えます。この名前はユニーク（唯一）なものでなければなりません。</dd>
+
+			<dt><samp class="adef">class</samp> = <em>cdata-list</em> [CS]</dt>
+			<dd>この属性で要素に、クラス名や一組のクラス名を割り当てます。幾つもの要素に同じクラス名を割り当てることができます。クラスを複数割り当てる場合は、ホワイトスペース文字で区切ります。</dd>
+		</dl>
+		</blockquote>
+		<p>気づいていただけたでしょうか？ 重要な一文は、<em><q>クラスを複数割り当てる場合は、ホワイトスペース文字で区切ります。</q></em>ですね。</p>
+		<p>ちょっと<a href="monor_sample03.html">サンプル</a>を作成してみました。</p>
+		<p>ソースは下のような感じ</p>
+<pre>
+<code>
+&lt;style&gt;
+	div.red{
+		color:red;
+	}
+	div.bgBlue {
+		background-color:blue;
+	}
+&lt;/style&gt;
+…（途中省略
+&lt;div class="red bgBlue"&gt;
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+&lt;/div&gt;
+</code>
+</pre>
+		
+		<p>クラスはデザインを追加以上に、意味を補助するという役目(emで強調するにも、強調というのは一種類だけではないでしょう)があるので、上のサンプルみたいに、クラスの名前を表示の感じで名付けて乱用するのは良くないと思うのですが、どうやれば併用して上手くやれるのかは今悩んでいます</p>
+		<p>一応、使用するときはそのことを頭に留めておいてください</p>
+	</div>
+	
+	<h2 id='h-2'>transparent</h2>
+	
+	<div class="section">
+		<p>なんですかコレ？ というのも無理はありませんが、一言でいましょう。<em>透明色</em>です。</p>
+		<p>divタグなんかに背景色与えちゃったんだけど、一時的に透明に戻したい時なんかに使えますね。</p>
+		<p>他には、自分が「こうすれば良かったんじゃないかなぁ…」と思う所では</p>
+<pre><code>
+a {
+	border:none 2px #dda;
+}
+a:hover {
+	border-bottom-style:dashed;
+}
+</code></pre>
+		<p>とか書いて、マウスが上に来ると下に点線を表示させるようにする人。書き換え版として</p>
+<pre><code>
+a {
+	border:dashed 2px transparent;	/* 透明なボーダーを作成 */
+}
+a:hover {
+	border-bottom-color:#dda;	/* マウスが来たら色を指定して表示 */
+}
+</code></pre>
+		<p>とかいう方法があったりします。</p>
+	</div>
+	
+	<h2 id='h-3'>inherit</h2>
+	
+	<div class="section">
+		<p>邦訳すると意味は<em>継承</em>、もうそのまんまですね。親要素から設定を受け継ぎます。</p>
+	</div>
+	
+</div>
+
+<div title='CreativeCommonsJapan' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

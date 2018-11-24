@@ -1,0 +1,121 @@
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<meta name="author" content="babanba-n" />
+	<meta name="Targeted Geographic Area" content="Japan" /> 
+	<meta name="generator" content="TeraPad" />
+	<meta name="Copyright" content="babanba-n" />
+	<meta name="description" content="PhotoShopのフィルタ製作法" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="mailto:baban@nergal.clubbbq.com" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" >
+	<link rel="stylesheet" href="/css/document.css" type="text/css" />
+	
+	<title>サルでも出来る、PhotoShopフィルタ製作法</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1>サルでも出来る、PhotoShopフィルタ製作法</h1>
+
+<div class="section">
+
+	<h2>概要</h2>
+	
+	<div class="section">
+		<p>このドキュメントはPhotoShopのフィルタを作成するまでの必要な作業などをドキュメントとしてまとめているものです。</p>
+		<p>PhotoShop自体は、それなりに歴史のあるソフトであるため、そのフィルタの仕組みは結構古めかしくて単純です。</p>
+		<p>開発環境はC言語であるため、実際にはC言語の知識がある程度必要です。ただ、難しく考える必要はなく、<em class="kwd">ポインタまで頑張ったけど何となく分からなくて蹴躓いた</em>と言うところまで行っていれば、それ以降の必要な知識はこのドキュメントでサポートートします。</p>
+		<p>なので、必要最低限な技術ラインはそこ、後は頑張ってチャレンジしてみてください！</p>
+	</div>
+	
+	<h2>開発環境について</h2>
+	
+	<div class="section">
+		まず最初に言っておきますが、このドキュメントは<a href="http://homepage1.nifty.com/nekora/soft/howto/ps55plgin.html" class="external">フォトショップフィルタープラグイン</a>の焼き直しです
+		<p>まずは開発環境の整備です。で、まぁ<em>コレが一番の問題だったりします</em>。</p>
+		<p>一応今回はVisualC++6.0を開発環境として使用します。ただVisualStudio環境でもコンパイルが通るはずです。(まだ試していませんが…)</p>
+		<p>そして、PhotoShopのフィルタを作成するには、PhotoShopFilter<acronym title="Softowere Development Kit">SDK</acronym>が必要なのですが、これが一般に現在配布されていない。</p>
+		<p>PhotoShop6.0の頃までは、PhotoShopのCDに同梱されていたのですが現在では入手するにはいろいろと手続きが必要になってしまいました。具体的には<a href="http://support.adobe.co.jp/faq/faq/qadoc.sv?3997+001" class="external">Photoshop SDKの入手手順について</a>を参照下さい</p>
+		<p><strong>何とか入手して下さい!</strong></p>
+	</div>
+	
+	<h2>Run出来るまで</h2>
+	
+	<div class="section">
+		<p>今回はフィルタのサンプルの中でもDissolve-with-AppleScriptをベースに開発を行います。理由は<acronym title="Softowere Development Kit">SDK</acronym>5.0でも5.5でも入っていて、他の人のやりたい画像処理系のフィルタのサンプルだからです。</p>
+		<p>サンプルのフィルタは、「SDKのインストールディレクトリ\\SampleCode\Filter\Dissolve-with-AppleScript」にあります。通常は(C:\Program Files\Adobe\Adobe Photoshop 5.0 SDK\SampleCode\Filter\Dissolve-with-AppleScript)です。</p>
+		<p>そのままコンパイルすると通らないと思いますので</p>
+<pre><code>
+#include &lt;Types.h&gt;				// Standard types.
+	↓
+#include &lt;sys/Types.h&gt;				// Standard types.
+</code></pre>
+		<p>と変更してください。</p>
+		<p>コンパイルされたフィルタは、「SDKのインストールディレクトリ\SampleCode\SDKPlugins\Debug」に出力されます。(SDK5.5の場合は「SDKのインストールディレクトリ\SampleCode\Output\Win\Release\」)に「DissolveWith.8bf」というファイル名で出力されます。</p>
+		<p>作成されたフィルタを、PhotoShopのフィルタディレクトリに移動させてからPhotoShopを起動してください。フィルタを選択するときに「AdobeSDK」というメニューが追加されて、そこに「dissolvewith example filter plug-in」という項目が追加されているはずです。</p>
+	</div>
+</div>
+
+<div id="licence">
+
+<!-- クリエイティブ・コモンズ・ライセンス -->
+<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+	<img alt="クリエイティブ・コモンズ・ライセンス" src="http://creativecommons.org/images/public/somerights2.gif" />
+</a>
+<br />
+	<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+<!-- /クリエイティブ・コモンズ・ライセンス -->
+
+<!--
+
+<rdf:RDF
+	xmlns="http://web.resource.org/cc/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+<Work rdf:about="">
+	<dc:title>PhotoShopフィルタ製作のメモ</dc:title>
+	<dc:date>２００４</dc:date>
+	<dc:creator>
+		<Agent>
+			<dc:title>ばばんばーん</dc:title>
+		</Agent>
+	</dc:creator>
+	<dc:rights>
+		<Agent>
+			<dc:title>ばばんばーん</dc:title>
+		</Agent>
+	</dc:rights>
+	<dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+	<license rdf:resource="http://creativecommons.org/licenses/sa/2.0/jp/" />
+</Work>
+
+<License rdf:about="http://creativecommons.org/licenses/sa/2.0/jp/">
+	<permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+	<permits rdf:resource="http://web.resource.org/cc/Distribution" />
+	<requires rdf:resource="http://web.resource.org/cc/Notice" />
+	<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+	<requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+</License>
+
+</rdf:RDF>
+
+-->
+</div>
+
+</body>
+</html>

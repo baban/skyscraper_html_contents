@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='Mozillaのテーマの作成法' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Skyscaper;Mozillaのテーマの作成法</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+	<h1 id='page-title'>MozillaFirefoxのテーマの作り方</h1>
+	<div class="section" id="content">
+	
+	<div id="abstract" class="section">
+			<p>これは面倒臭いことは全てリンクで解決してる、いいかげん&amp;我流なMozillaFirebirdのテーマ作成法です。</p>
+			<p>一応Firefox0.8を基準に作業していますが、おおかたのMozilla系で応用が利くと思います</p>
+	</div>
+		
+		<h2 id='h2-1'>作成前に</h2>
+		<div class="section">
+			<p>正直、テーマを一から作るのは結構な労力を要しますので、他人の作ったテーマを改造するのが現実的だと思います。</p>
+			<p>どのテーマを弄れば良いのかって聞かれたら…（汗。</p>
+			<p>多分自分のイメージと、一番近いテーマを奴いじれば良いのではじゃないのでしょうか？良く分かりませんが…。</p>
+			<p>一応作成にはホームページ作成などで使われているスタイルシートと、XML(読める程度でよいと思います)の知識が必要になります。</p>
+			<p>スタイルシートに関しては、mozillaの独自拡張や(-moz-で始まるのですぐ分かると思いますが)結構マニアックなセレクタなども出てくるので、本格的に書き換えるつもりなら、結構根性がいります。(最初からそんな気合い入れる必要はないと思いますが…)</p>
+			
+			<p>制作の作業自体は</p>
+			<ol>
+				<li>jarファイル(正体はzip圧縮)を解凍する</li>
+				<li>content.rdfを書き換える</li>
+				<li>global/global.cssを書き換える</li>
+				<li>globalフォルダのその他のcssファイルを書き換える</li>
+				<li>globalの下のフォルダの画像を作り替える</li>
+				<li>browzerフォルダの下のcssファイルを作り替える</li>
+				<li>browzerフォルダの下の画像を作り替える</li>
+			</ol>
+			<p>おおまかな流れはこんな感じになります。まずは、<a href="http://fls.moo.jp/index.html">WEB ARCHIVES</a>の<a href="http://fls.moo.jp/moz/mozillaskin.html">Mozilla1.0 のテーマ作成</a>を参照してください。</p>
+		</div>
+		
+		<h2 id='h2-2'>rdfわかんね…</h2>
+		<div class="section">
+			<p>content.rdfはRDFというXML形式のファイルです。<a href="http://www.kanzaki.com/docs/sw/rdf-model.html">日本語解説サイト</a>もあるのですが、テーマを作成する上では特に見る必要は無いと思います。</p>
+			<p>例として、fooという名前のテーマを作成する場合を考えてみましょう、その場合、書き換えるところは次の色違いの所になります</p>
+<pre>
+<code>
+&lt;?xml version="1.0"?&gt;
+
+&lt;RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		 xmlns:chrome="http://www.mozilla.org/rdf/chrome#"&gt;
+
+&lt;RDF:Seq about="urn:mozilla:skin:root"&gt;
+	&lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>"/&gt;
+&lt;/RDF:Seq&gt;
+
+&lt;RDF:Description about="urn:mozilla:skin:<span class="refact">foo</span>"
+		chrome:displayName="<span class="refact">テーマの表示名</span>"
+		chrome:author="<span class="refact">作成者の名前</span>"
+		chrome:authorURL="<span class="refact">テーマを公開しているWebページのURLを入れてください</span>"
+		chrome:accessKey="T"
+		chrome:description="<span class="refact">説明文部分、実際に表示されるので</span>"
+		chrome:name="<span class="refact">foo</span>"
+		chrome:image="preview.gif"&gt;
+	&lt;chrome:packages&gt;
+		&lt;RDF:Seq about="urn:mozilla:skin:<span class="refact">foo</span>:packages"&gt;
+			&lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>:communicator"/&gt;
+			&lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>:global"/&gt;
+			&lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>:navigator"/&gt;
+			&lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>:browser"/&gt;
+			&lt;RDF:li resource="urn:mozilla:skin:<span class="refact">foo</span>:mozapps"/&gt;
+		&lt;/RDF:Seq&gt;
+	&lt;/chrome:packages&gt;
+&lt;/RDF:Description&gt;
+
+&lt;RDF:Description chrome:skinVersion="1.5" about="urn:mozilla:skin:<span class="refact">foo</span>:communicator" /&gt;
+&lt;RDF:Description chrome:skinVersion="1.5" about="urn:mozilla:skin:<span class="refact">foo</span>:global" /&gt;
+&lt;RDF:Description chrome:skinVersion="1.5" about="urn:mozilla:skin:<span class="refact">foo</span>:navigator" /&gt;
+&lt;RDF:Description chrome:skinVersion="1.5" about="urn:mozilla:skin:<span class="refact">foo</span>:browser" /&gt;
+&lt;RDF:Description chrome:skinVersion="1.5" about="urn:mozilla:skin:<span class="refact">foo</span>:mozapps" /&gt;
+
+&lt;/RDF:RDF&gt;
+</code>
+</pre>
+			<p>ここまでの部分を書き換えたら、一度圧縮し直してから、インストールしてみてください。これでfooというテーマとして、ベースにしたテーマとMozilla内で別扱いになります。</p>
+			<p>あ、ちなみに、文字コード宣言を省いているので、XMLの仕様上、文字の保存形式はUTF-8か、UTF-16必須です、RDFの場合はUTF-8が推奨されているので、こちらで保存しておくことをお勧めいたします</p>
+			<p>他は後で興味でも出てくればどうぞ…。正直、これ以上詳しいことを知る必要は無い事を言いきっておきますが…</p>
+		</div>
+		
+		<h2 id='h2-3'>スタイルシートの書き換え</h2>
+		<div class="section">
+			<div class="section">
+				<p>結局、テーマの作り替えに大事なことは、<em>何処のフォルダの何のファイルで設定されているかを覚えること、そして知らないモノは探し出してしまう技能です</em>。</p>
+				<p>MozillaのXULに関しては、網羅的に紹介されている所が無い物ですから、資料の不十分な状態が改善されるまで努力は必要だと思います</p>
+				<p>詳しい事はこれから解説いたしますので、ちょいちょいと付いて来て下さい</p>
+			</div>
+			
+			<h3>基礎知識の復習</h3>
+			<div class="section">
+				<p>それでは、まずCSS関連の基礎知識から。知っている人には釈迦に説法ですが、幾つか馴染みのない部分を紹介しておきます</p>
+				
+				<h4>そもそもXULってなんですか？</h4>
+				<div class="section">
+					<p>ここを訪れると言うことはHTMLはご存じでしょう。HTMLでは、bodyとかdivとかのタグでWebサイトを書いていましたが、XULでは<em>windowsとかbuttonとかいうタグ名を並べることでインターフェイスを作成することが出来ます</em></p>
+					<p>Mozillaの作成時に、OSに依存しないで拡張プログラム等を使ってなおかつカスタマイズ性を上げておりmozillaの強力な武器の一つになっています</p>
+					<p>あ、ちなみに読みは<em class="keyword">ズール</em>と言います</p>
+				</div>
+				
+				<h4>Mozilla独自拡張関連</h4>
+				
+				<div class="section">
+					<p>先ほども紹介したように、Mozillaでは<code>-moz</code>で始まる独自拡張が存在します、W3Cの規格で計画段階だったり、XULを使うために、必要に駆られて独自拡張した物も存在しますが、作業を行うために最低限必要なのは次の二つですので覚えて置いてください</p>
+					<dl>
+						<dt><code>-moz-border-radius</code></dt>
+						<dd>
+							<p>少し有名なものですが、<code>-moz-border-radius:○px;</code>と書くことで、縁の部分を丸くします<a href="http://www5e.biglobe.ne.jp/~access_r/hp/css/css_moz_002.html">参考リンク</a></p>
+						</dd>
+						<dt><code>-moz-border-colors</code></dt>
+						<dd>
+							<p><code>-moz-border-top-colors:色1 色2 色3 …;</code></p>
+							<p>と書くことで、ボーダーに２色以上の色をグラデーションの様に付けることが出来ます。</p>
+						</dd>
+					</dl>
+					<p>その他に関しては、<a href="http://is.vis.ne.jp/start.xhtml">CSS研究所</a>の<a href="http://is.vis.ne.jp/notes/index.xhtml">独自拡張 XUL関連CSS</a>等を参照してください</p>
+				</div>
+				
+				<h4>CSS2関連</h4>
+				
+				<div class="section">
+					<p>CSSのセレクタですがCSS2で規定されているものに関しては知らない人もいると思うので紹介しておきましょう、見かけることになるのは次の二つです</p>
+					
+					<h5><code>treecol[insertafter="true"]</code></h5>
+					
+					<dl>
+						<dt>E[foo="warning"]</dt>
+						<dd>foo属性値が「warning」であるE要素にマッチする。</dd>
+					</dl>
+					
+					<h5><code>treechildren::-moz-tree-row(selected) </code></h5>
+					
+					<div class="section">
+						<p>これは基本的には次のセレクタの応用になりますね</p>
+						<dl>
+							<dt><code>E:lang(c)</code></dt>
+							<dd>内容がcという言語で書かれているE要素にマッチする。（言語情報の指定方法は構造化言語によって異なる。）</dd>
+						</dl>
+						<p>先頭に<code>-moz</code>が付いているように、Mozillaの独自拡張になります、意味は今理解する必要はないので、見つけたときは軽く無視しておきましょう</p>
+					</div>
+				</div>
+			</div>
+			
+			<h3>globalフォルダ</h3>
+			<div class="section">
+				<p>それではここから書き換えを始めます、まずは解凍したjarファイルのglobalフォルダに移動してください、ここのCSSファイルを書き換えることから作業が始まります</p>
+				<p>なんでこんなフォルダがあるのかって言うのは、Mozilla thunderbirdやComposer等の、他のMozilla系列のソフトウェアでも共通に設定するため、等の理由がありますが、<em>細かいこと言わずこれはルールですので</em>そう言うことでまずはフォルダを開いてみてください</p>
+				<img src="img/global_folder.png" alt="globalフォルダの中のファイル" />
+				<p>CSSファイルがたくさんありますが、冷静に見て着るとdialog.cssやtree.css等なんだか名前で何処に対応しているのか推測できるファイルがあるのが分かっていただけるでしょうか？</p>
+				<p>ここにあるCSSファイルの中身を書き換えればMozillaのテーマのデザインを変更していくことが出来ます</p>
+				<p>正直、当てずっぽうで書き換えてみると結構正解だったりしますから、書き換えたい部分をファイル名から推測をして開いていくのは良い手だと思います<</p>
+				<p>基本的に、タグの名前はwindowとかtoolbarとかmenuとか直感的に分かるような名前で出来ているので、騙されたと思って、スタイルシートファイルを開いてみれば、最低限の場所は理解できると思いますので勘でいじってみて、インストールしてください。</p>
+				<p>一応、最初はglobal.cssを書き換えるのが流儀になっていますので、慣れてくればそちらから順次書き換えていくようにしましょう</p>
+			</div>
+			<h3>タグの名前と対応表</h3>
+			<div class="section">
+				<p>対応場所が、いちいち実験していられないと言う方は、<a href="theme.txt">2chで拾った対応表</a>があります<a href="http://www.uranus.dti.ne.jp/~shiro-/index.html">黒い羽</a>の方で<a href="http://www.uranus.dti.ne.jp/~shiro-/soft/mozilla/chrome.html">HTML版</a>がありますのでこれをドウゾ…。</p>
+				<p>対応する場所が分からない場合の解析方法は、MozillaFirefoxの場合実行ファイルのあるフォルダの下。MozillaFirefoxd/chromeフォルダのbrowzer.jarファイルを解凍すると、デフォルトのテーマとxulファイルが出てきますので、これを参考に解析していってください。</p>
+				<p>若干古い資料らしいのですが<a href="http://xul-app.hp.infoseek.co.jp/xultu-janit/">XUL チュートリアル(和訳)</a>と対応させながら、タグの名前と、id名を調べることが出来ればあとは、スタイルシートファイルを書き足したりしていくだけです。</p>
+				<p>それで分からないと言う場合の解決策の一つですが</p>
+				<ol>
+					<li>変更したい場所に使われている画像が何処のフォルダに入っているか探す</li>
+					<li>画像のファイル名を取得してgrep系のツールで検索する</li>
+				</ol>
+				<p>と言う方法が結構役に立ちました。</p>
+			</div>
+		</div>
+		
+		<h2 id='h2-4'>画像の変更</h2>
+		<div class="section">
+			<p>何処のどれが対応しているのかは、画像ですから、見れば分かると思います。分からない場合はファイル名をコピーして、テキストを全文検索してください。読み込んでいるスタイルシートが出てくると思われます。</p>
+			<p>あまり解説する必要がありませんね…（汗</p>
+		</div>
+		
+		<h2 id='h2-5'>テーマの扱われ方</h2>
+		
+		<div class="section">
+			<p>インストールされたテーマは</p>
+			<dl>
+				<dt>Windows 95/98/ME</dt>
+					<dd>C:\Windows\Profiles\[ログイン名]\Application Data\Mozilla\Profiles\[ランダムな文字列].slt\chrome</dd>
+				<dt>Windows 2000/XP</dt>
+					<dd>C:\Documents and Settings\[ログイン名]\Application Data\Mozilla\Profiles\[ランダムな文字列].slt\chrome</dd>
+			</dl>
+			<p>に入っていますので、ミスがあったら適当に該当するファイルを消してください。</p>
+		</div>
+		
+		<h2 id='h2-6'>そもそもJARファイルって何？</h2>
+		<div class="section">
+			<p>はっきりとは言えませんがおそらくJAVA Archiveの略でJAVAプログラムをWEB上で配布するときにzip圧縮してまとめることで、回線の無駄を無くすための形式です。</p>
+			<p>おそらく便利なので流用したのでしょう、良くは知りませんが…</p>
+		</div>
+		
+		<h2 id='h2-7'>参考リンク</h2>
+		<div class="section">
+			<ul class='data'>
+				<li><a href="http://software.s48.xrea.com/mozilla/index.php">Firefoxまとめサイト</a></li>
+				<li><a href="http://fls.moo.jp/moz/mozillaskin.html">WEB ARCHIVES:Mozilla1.0 のテーマ作成</a></li>
+				<li><a href="http://pc5.2ch.net/test/read.cgi/software/1026897525/l50">5.2ch:おいお前ら、ネスケのテーマを作りませんか？</a></li>
+				<li><a href="http://pc2.2ch.net/test/read.cgi/software/1026897525/l50">2ch:おいお前ら、ネスケのテーマを作りませんか？</a></li>
+				<li><a href="http://www.xulplanet.com/tutorials/xultu/">XULチュートリアル</a></li>
+				<li><a href="http://xul-app.hp.infoseek.co.jp/xultu-janit/">XUL チュートリアル(和訳)</a></li>
+				<li><a href="http://game.gr.jp/xul/book/200103skin/#6">ブラウザ改造 : Netscape6.1/Mozillaのリロードボタンを好きな画像に変えてみる</a></li>
+				<li><a href="http://saitamaskin.at.infoseek.co.jp/easy.html">さいたま皮:Netscape/Mozilla用 簡易テーマ</a></li>
+				<li><a href="http://www.eightlines.com/neil/mozskin/">Creating a Skin for Mozilla</a></li>
+				<li><a href="http://snow.prohosting.com/magicink/">"small_modern"をこっそり配布してみる試み-Trial to distribute small_modern for mozilla-</a></li>
+				<li><a href="http://www.geocities.co.jp/AnimeComic-Pen/1997/narrowmoz.html">Narrow Classic</a></li>
+				<li><a href="http://snow.prohosting.com/magicink/modern.html">"modern"のツールバーボタンを小さくしてみる試み-Trial to make small modern-</a></li>
+				<li><a href="http://jt.mozilla.gr.jp/unix/customizing.html">Mozilla.org:Mozilla のカスタマイズ</a></li>
+				<li><a href="http://www.alib.jp/mozilla/">Ancient library:about Mozilla</a></li>
+				<li><a href="http://jt.mozilla.gr.jp/releases/mozilla1.4/installation.html">Mozilla.prg:Mozilla 1.4 のインストール方法</a></li>
+			</ul>
+		</div>
+	</div>
+	
+<div id="licence">
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br />
+		<p>このworkは、<a rel="license" href="http://creativecommons.org/licenses/sa/2.0/jp/">クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

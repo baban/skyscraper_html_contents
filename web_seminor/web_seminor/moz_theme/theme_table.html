@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='FirefoxのxulクラスとID対応表' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>Mozillatheme:主な対応箇所解説</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+<h1 id='page-title'>Mozillatheme:主な対応箇所解説</h1>
+
+<div class="section" id="content">
+	/* === navigator/navigator.css ============================================= */<br />
+	<br />
+	/* 戻る・進むボタンと履歴ボタンの間隔 */<br />
+	/* 上 右 下 左　の順 */<br />
+	<br />
+	#back-button > .toolbarbutton-menubutton-stack<br />
+	    > .toolbarbutton-menubutton-dropmarker,<br />
+	#forward-button > .toolbarbutton-menubutton-stack<br />
+	    > .toolbarbutton-menubutton-dropmarker {}<br />
+	<br />
+	/* アイコンの文字 */<br />
+	/* s-modernとは表現が違うので注意。「stack」がなくなっている。<br />
+	*/<br />
+	.toolbarbutton-1 > .toolbarbutton-menubutton-button<br />
+	    > .toolbarbutton-text,<br />
+	.toolbarbutton-1 > .toolbarbutton-text {}<br />
+	<br />
+	/* ツールバーの背景 */<br />
+	#nav-bar > .toolbar-primary-holder {}<br />
+	<br />
+	/* URLバー（外枠） */<br />
+	#urlbar {}<br />
+	<br />
+	/* URLバーの外側 */<br />
+	#nav-bar-inner {}<br />
+	<br />
+	/* ユーザ設定ツールバー */<br />
+	#PersonalToolbar {}<br />
+	<br />
+	/* URLバーオートコンプリート時に出てくる、アドレスの説明（タイトル） */<br />
+	.autocomplete-treebody:-moz-tree-cell-text(comment) {}<br />
+	<br />
+	/* URLバーに入力時、...をGoogleで検索、とか出てくる部分 */<br />
+	.autocomplete-search-box {}<br />
+	<br />
+	/* ↑で、マッチするものがないとき */<br />
+	.autocomplete-result-popup[nomatch] > .autocomplete-search-box {}<br />
+	<br />
+	/* ページ表示部分（URLバーの下〜ステータスバーの上、タブバーは含む） */<br />
+	#content {}<br />
+	<br />
+	<br />
+	/* === navigator/navigatorNS.css =========================================== */<br />
+	<br />
+	/* キーワードリスト */<br />
+	/* height: を削るとアイコンと同サイズになる（つまり小さい枠になってしまう） */<br />
+	ubhist-keyword-popup {}<br />
+	#ubhist-keyword-popup > .toolbarbutton-menu-dropmarker {}<br />
+	#ubhist-keyword-popup:hover {}<br />
+	#ubhist-keyword-popup[open="true"] {}<br />
+	<br />
+	<br />
+	/* === global/autocomplete.css ============================================= */<br />
+	<br />
+	/* urlバーの履歴リスト */<br />
+	.autocomplete-history-popup,<br />
+	.autocomplete-result-popup {}<br />
+	<br />
+	/* urlバーのドロップダウンボタン（▼） */<br />
+	.autocomplete-history-dropmarker {}<br />
+	<br />
+	<br />
+	/* === global/browser.css ================================================== */<br />
+	<br />
+	/* タブについて。<br />
+	   タブバーは、pin-ballのnaivgator.cssからsmall-modernのnavigator.cssに<br />
+	   貼り付けるだけで細くなった。classicの場合は、browser.cssの中のtab-newbutton<br />
+	   を「アイコンだけを使う形」にする必要がある。基本的にpin-ballからのコピー<br />
+	   （アイコンもコピーすること）でOK。<br />
+	*/<br />
+	<br />
+	/* ブラウザの表示部分（タブバーの下）あるいはタブバーの下辺 */<br />
+	.tabbrowser-strip {} <br />
+	<br />
+	/* タブのアイコン */<br />
+	.tab-icon {}<br />
+	<br />
+	/* タブバーの背景部分 */<br />
+	.tabbrowser-tabs {} <br />
+	<br />
+	/* タブバーのクローズボタン */<br />
+	.tabs-closebutton {} <br />
+	<br />
+	/* 非アクティブのタブ <br />
+	tab {}<br />
+	<br />
+	/* アクティブのタブ */<br />
+	tab[selected="true"],<br />
+	tab:hover:active[selected="true"] {}<br />
+	<br />
+	/* 選択中のタブ */<br />
+	tab:hover:active {}<br />
+	<br />
+	/* 読み込み中のタブ（アクティブならそっちが優先） */<br />
+	tab[busy] {}<br />
+	<br />
+	/* === global/global.css =================================================== */<br />
+	<br />
+	/* 各種窓（設定ダイアログとか） */<br />
+	window, <br />
+	page,<br />
+	dialog,<br />
+	wizard {}<br />
+	<br />
+	/* ステータスバー関係。ここもおおむねclassicから流用できる */<br />
+	statusbar {}<br />
+	<br />
+	/* === global/menu.css ===================================================== */<br />
+	<br />
+	/* hover（on cursor）状態のメニュー */<br />
+	menubar > menu[_moz-menuactive="true"] {}<br />
+	<br />
+	/* アクティブ状態のメニュー */<br />
+	menubar > menu[_moz-menuactive="true"][open="true"] {}<br />
+	<br />
+	/* メニューの文字 */<br />
+	menu, <br />
+	menuitem {}<br />
+	<br />
+	/* 使用不可のメニュー */<br />
+	menu[disabled="true"], menuitem[disabled="true"],<br />
+	menu[_moz-menuactive="true"][disabled="true"],<br />
+	menuitem[_moz-menuactive="true"][disabled="true"] {<br />
+	<br />
+	/* 反転状態のメニュー */<br />
+	menupopup > menu[_moz-menuactive="true"],<br />
+	menupopup > menuitem[_moz-menuactive="true"],<br />
+	popup > menu[_moz-menuactive="true"],<br />
+	popup > menuitem[_moz-menuactive="true"] {}<br />
+	<br />
+	/* メニューの区切り線 */<br />
+	menuseparator {}<br />
+	<br />
+	/* === global/menulist.css ================================================= */<br />
+	<br />
+	/* ドロップダウンリスト（Prefbarのユーザエージェントとか） */<br />
+	.menulist-label-box {}<br />
+	<br />
+	/* ドロップダウンのボタン */<br />
+	.menulist-dropmarker {}<br />
+	<br />
+	<br />
+	/* === global/toolbar.css ================================================== */<br />
+	<br />
+	/* 各ツールバー（背景とかも） */<br />
+	toolbox {}<br />
+	<br />
+	/* ツールバーの左のツマミ */<br />
+	.toolbar-prefix {]<br />
+	<br />
+	/* ツールバーの枠 */<br />
+	.toolbar-holder {}<br />
+	<br />
+	/* メニューの右側部分 */<br />
+	menubar {}<br />
+	<br />
+	/* メニューの左側の、「閉じる」ボタン */<br />
+	menubar > toolbargrippy {}<br />
+	<br />
+	/* ツールバーの基本 */<br />
+	toolbar {}<br />
+	<br />
+	/* ツールバーのセパレータ */<br />
+	toolbarseparator {}<br />
+	<br />
+	<br />
+	/* === global/toolbarbutton.css ============================================ */<br />
+	<br />
+	/* ドロップダウンボタン（戻る・進むの履歴など） */<br />
+	/* ここも反転が難しいので、classicのからコピーするのがよい<br />
+	   （そのまま流用できる）<br />
+	    ただし履歴ボタンの反転を分ける方法は見つからず。xulファイルを他から<br />
+	    流用するだけでは不可だった。 */<br />
+	.toolbarbutton-menubutton-dropmarker<br />
+	<br />
+	/* アイコンのテキスト */<br />
+	.toolbarbutton-text {}<br />
+	<br />
+	/* アイコン */<br />
+	.toolbarbutton-1,<br />
+	.toolbarbutton-1 > .toolbarbutton-menubutton-button,<br />
+	.toolbarbutton-1[disabled="true"]:hover:active<br />
+	<br />
+	/* アクティブになっている（押されている）アイコン */<br />
+	.toolbarbutton-1:hover:active,<br />
+	.toolbarbutton-1[open="true"],<br />
+	.toolbarbutton-1[buttondown="true"] > .toolbarbutton-menubutton-button {<br />
+	<br />
+	/* ホバー状態のアイコン */<br />
+	toolbarbutton:hover,<br />
+	toolbarbutton[buttonover="true"] {}<br />
+	<br />
+	/* アクティブ状態のアイコン */<br />
+	toolbarbutton:hover:active,<br />
+	toolbarbutton[open="true"] {}<br />
+	<br />
+	<br />
+	/* === global/popup.css ==================================================== */<br />
+	<br />
+	/* 開いたメニュー（右クリックメニュー含む。要するにメニューリスト） */<br />
+	menupopup,<br />
+	popup {}<br />
+	<br />
+	/* ツールチップ（アイコンにカーソルをおいたときに出てくるもの） */<br />
+	tooltip {}<br />
+	<br />
+	/* === global/popup.css ==================================================== */<br />
+	<br />
+	/* ステータスバー */<br />
+	statusbar {}<br />
+	<br />
+	<br />
+	/* === global/checkbox.css ================================================= */<br />
+	<br />
+	/* チェックボックスを持つアイテムでフォーカスがあるもの */<br />
+	checkbox:focus {}<br />
+	<br />
+	/* チェックボックスのイメージ */<br />
+	.checkbox-check<br />
+	checkbox:hover:active > .checkbox-check<br />
+	.checkbox-check[disabled="true"]<br />
+	<br />
+	<br />
+	/* === global/tree.css ==================================================== */<br />
+	/* エクスプローラの「詳細」表示みたいな感じで。ブックマーク窓含む。 */<br />
+	<br />
+	/* カラムリスト */<br />
+	treecol,<br />
+	treecolpicker {}<br />
+	<br />
+	/* アイテム（ブックマークのアイテム部分） */<br />
+	tree {}<br />
+	<br />
+	/* 非アクティブ状態で、選択状態のアイテム */<br />
+	treechildren:-moz-tree-row(selected) {}<br />
+	<br />
+	/* アクティブ状態で、選択状態のアイテム */<br />
+	treechildren:-moz-tree-row(selected, focus) {}<br />
+	<br />
+	/* これも↑と同じ（？） */<br />
+	treechildren:-moz-tree-row(current, focus) {}<br />
+	<br />
+	/* 非アクティブ・選択状態のテキスト */<br />
+	treechildren:-moz-tree-cell-text(selected) {}<br />
+	<br />
+	/* アクティブ・選択状態のテキスト */<br />
+	treechildren:-moz-tree-cell-text(selected, focus) {}<br />
+	<br />
+	/* ツリーの枝部分 */<br />
+	treechildren:-moz-tree-line {}<br />
+	<br />
+	/* セパレータ */<br />
+	treechildren:-moz-tree-separator {}<br />
+	<br />
+	<br />
+	/* === global/groupbox.css ================================================= */<br />
+	<br />
+	/* ダイアログの中の区切り線 */<br />
+	groupbox {}<br />
+	<br />
+	/* ダイアログのキャプション（「標準のブラウザ」とか） */<br />
+	caption {}<br />
+	<br />
+	<br />
+	/* === global/dialog.css =================================================== */<br />
+	<br />
+	/* ダイアログの見出し（「表示」とか「Navigator」とか） */<br />
+	dialogheader {}<br />
+	<br />
+	<br />
+	/* === global/tabbox.css =================================================== */<br />
+	<br />
+	/* タブのパネル（パスワードマネージャなど）<br />
+	   立体化はややこしいので例によってclassicからコピー。ここもおおむね流用可。<br />
+	   特に「選択中のタブ」の表現はややこしい。tab[selected="true"]とか。 */<br />
+	tabpanels {}<br />
+	<br />
+	/* タブバーの下辺。ダイアログのタブも含む。 */<br />
+	.tabs-left,<br />
+	.tabs-right {}<br />
+	<br />
+	/* 非アクティブタブの、「タブ」部分（ダイアログの方だけ） */<br />
+	/* 例によって、後ろに何かついたら選択状態とか */<br />
+	tab {}<br />
+	<br />
+	<br />
+	/* === global/scrollbars.css =============================================== */<br />
+	/* このファイルは基本的にclassicを流用 */<br />
+	<br />
+	/* スクロールバーの背景部分 */<br />
+	scrollbarbutton {}<br />
+	<br />
+	/* スクロールバーの真ん中の（画像っぽい）部分 */<br />
+	thumb {}<br />
+	<br />
+	<br />
+	/* === global/textbox.css ================================================== */<br />
+	<br />
+	/* テキストボックス（URLバーも含む） */<br />
+	textbox {}<br />
+	<br />
+	<br />
+	/* === global/listbox.css ================================================== */<br />
+	<br />
+	/* 設定画面の言語リストやサイドバーの検索エンジンリストなど */<br />
+	listbox {}<br />
+	<br />
+	/* その中のアイテム */<br />
+	listbox:focus > listitem[selected="true"][current="true"] {}<br />
+	<br />
+	/* リストアイテム群のヘッダ */<br />
+	/* サイドバーの「検索」の中の「検索エンジン」など。クリックしてソート<br />
+	   できるもの */<br />
+	listheader {}<br />
+	<br />
+	/* リストのチェックボックス */<br />
+	.listcell-check {}<br />
+	<br />
+	<br />
+	/* === global/progressmeter.css ============================================ */<br />
+	<br />
+	/* 読み込み進捗メータ */<br />
+	progressmeter {}<br />
+	<br />
+	<br />
+	/* === communicator/button.css ============================================= */<br />
+	<br />
+	/* OKボタンなど */<br />
+	button {}<br />
+	<br />
+	/* 文字を消す */<br />
+	.toolbarbutton-1 > .toolbarbutton-menubutton-button<br />
+		> .toolbarbutton-text,<br />
+	.toolbarbutton-1 > .toolbarbutton-text {<br />
+	  display: none;<br />
+	}<br />
+	<br />
+	<br />
+	/* === communicator/sidebar/sidebar.css ==================================== */<br />
+	<br />
+	/* サイドバー全体（「サイドバーを」読み込み中などにここが表示される） */<br />
+	#sidebar-box {}<br />
+	<br />
+	/* サイドバーのヘッダ（「Sidebar」の部分） */<br />
+	.sidebarheader-main {}<br />
+	<br />
+	/* サイドバーの中身の「全体」（サイドバー内部で読み込み中の背景など） */<br />
+	.sidebar-iframe-no-panels,<br />
+	.loadarea {}<br />
+	<br />
+	/* 同じく、読み込み中（？） */<br />
+	.iframe-panel {}<br />
+	<br />
+	/* サイドバー各タブのヘッダ */<br />
+	.box-texttab {}<br />
+	<br />
+	<br />
+	/* === communicator/brand.css ============================================== */<br />
+	<br />
+	/* アドレスバー右のMozillaアイコン */<br />
+	#navigator-throbber {}<br />
+</div>
+
+</body>
+</html>

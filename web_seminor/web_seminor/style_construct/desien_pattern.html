@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='スタイルシートの設計法:スタイルシートのデザインパターン' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>スタイルシートの設計技法:スタイルシートのデザインパターン</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>汎用デザインテンプレート</h1>
+
+<div class="section" id="content">
+
+	<h2 id='h2-1'>テンプレート化</h2>
+	
+	<div class="section">
+		<p>正直、ＨＰは統一したデザインになりがちです（それは良いことなのですが）。その場合、<em>色以外にも同じ様なシートを書いている場所が多い</em>事にある日気づきました。</p>
+		<p>これを上手く利用できないかと思った時に、自分なりの解決方法は、<em>小さなテンプレートのシートを部品化しておく</em>方法でした。</p>
+		<p>そして必要なときに、@import文でデフォルトのスタイルシートをオーバーライドして、デザインの微調整を行います。@import文を一行加えるだけでデザインが完了しますから、完成が非常に早いです。</p>
+	</div>
+	
+	<h2 id='h2-2'>例</h2>
+	
+	<div class="section">
+		<p>例えばです、思い出してみてください。サイト全体の案内を行うメニューですが、実は一部の例外を除くと、縦方向のリストか横方向のリストでしか作成されていません。</p>
+		<p>例えばですよ、サイトのタイトルを表示する時って、サイトの上にぴっちりにくっつけて背景色指定するか、画像を使ってタイトルにしてしまうかで、ほとんど決まっていたりします。</p>
+		<p>正直、洗い出したら幾つ出てくるのか分かりませんが(人によって違うと思います)、何故かみな、部分的に同じ様なデザインをする所があったりします。テンプレートとして作っておくべきなのは、そういう物だったりします。</p>
+		<p>ちなみにテンプレートを作るときは、CSSのセレクタを有効利用すれば、クラスの名前でデザインの位置を指定することは、かなり避けられます(かなりであって全てではありません。IEがここらへん弱いので、今は現実的な方法ではないのですが…)</p>
+	</div>
+	
+	<h2 id='h2-3'>テンプレート一覧</h2>
+	<div class="section">
+		<p>自分が、これはテンプレートになるだろうと思って作り貯めている物をタグとセットにして一覧にしておきます。</p>
+		<p>正直、経験値足りないので、テンプレ化出来る物も多くは見つけられていませんし、CSSの実装がもっと進めば増えても来るでしょうから、時期を見て増やしていきます。</p>
+		<p>あと、ここのサンプルはセレクタを有効活用する必要があるので、IEでは正常に表示されません。MozillaかOperaの出来るだけ最新版をご用意下さい</p>
+		<p>確認環境は</p>
+		<ul class='data'>
+			<li>MozillaFireird0.6</li>
+			<li>Opera7.23</li>
+		</ul>
+		<p>となっております</p>
+	<ul class='data'>
+		<li><a href="pattern/float_list.html">float型横リスト</a></li>
+		<li><a href="pattern/lnline_list.html">inline型横リスト</a></li>
+		<li><a href="pattern/link_bar.html">縦方向link bar</a></li>
+		<li><a href="pattern/banner_title.html">banner tite型</a></li>
+		<li><a href="pattern/section.html">section型</a></li>
+	</ul>
+	</div>
+</div>
+
+<div title='CreativeCommonsJapan' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

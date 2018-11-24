@@ -1,0 +1,12 @@
+@charset "Shift_JIS";
+
+@import url("../css/html_default.css");
+@import url("../css/html_color_base.css");
+
+body {
+	background-image:url("../css/img/background_nor.png");
+}
+
+h1 , h2, h3, h5, h6 {
+	font-family:"Times New Roman", "New York", "‚c‚e•½¬–¾’©‘ÌW3", "×–¾’©‘Ì" , "‚l‚r –¾’©", serif;
+}

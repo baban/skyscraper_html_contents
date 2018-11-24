@@ -1,0 +1,32 @@
+/* ========== 目次(各ページ) =============================================== */
+#contents	{
+			width: 9.5em;
+			position: absolute;
+				top: 8em; left: 1em;
+			}
+
+#contents H2 {
+			font-size: 90%;
+			font-style: normal;
+			font-weight: normal;
+			}
+
+#contents UL {
+			font-size: 90%;
+			margin: 0 0 0 1.5em;
+			}
+
+#contents LI.now,
+#contents H2.now,
+#contents SPAN.now {
+			font-weight: bold;
+			}
+
+#contents UL UL {
+			font-size: 100%;
+			margin: 0 0 0 1.2em;
+			}
+
+#contents LI.now UL {
+			font-weight: normal;
+			}

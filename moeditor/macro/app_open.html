@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	<meta http-equiv="Content-Language" content="ja" />
+	
+	<meta name="author" content="" />
+	<meta name="generator" content="" />
+	<meta name="Copyright" content="" />
+	<meta name="description" content="" />
+	
+	<link rel="home" href="/index.html" type="text/css" />
+	<link href='' title='' rel='copyright' id='meta-licence' />
+	<link rel="help" href="/texts/readme.html" type="text/css" />
+	<link rev="Reply-to" href="" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	<link rel="stylesheet" href="/css/seminor.css" type="text/css" />
+	
+	<title>HelloWorld!</title>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">アプリケーションの起動</h1>
+
+<div id="content" class="section">
+<pre><code type="text/javascript">
+<span class='i-comment'>// %desc  Windows標準のメモ帳を呼び出します</span>
+<span class='i-comment'>// %menu  メモ帳を呼び出し</span>
+
+<dfn>var</dfn> shell<em>=</em> <dfn>new</dfn> ActiveXObject<em>(</em><span class='literal'>"WScript.Shell"</span><em>)</em>;  <span class='i-comment'>// ActiveXを使って、シェルへの操作を出来るようにします</span>
+shell.Run<em>(</em><span class='literal'>"notepad.exe"</span>, 1, <dfn>true</dfn><em>)</em>;  <span class='i-comment'>//代表例として、ノートパッドを呼び出す</span>
+</code></pre>
+	<br />
+	<p>萌ディタは基幹部分に、マイクロソフトのJScriptを使っているという事は、ActiveXを使って、Windows内部の数々のプログラム部品を扱うことができますよ、という一例</p>
+	<p><a href="http://www.microsoft.com/japan/msdn/scripting/default.asp">WidnowsScriptingHost</a>の方を覗けば、他にも色々とライブラリがあるので活用してみて下さい</p>
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href='http://www.gnu.org/copyleft/fdl.html' rel='license'>GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

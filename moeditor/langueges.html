@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='萌ディタのヘルプ:入り口' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>多言語への対応</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id="page-title">多言語への対応方法</h1>
+
+<div id="content" class="section">
+	<h2 id='h2-1'>フォントの設定</h2>
+	
+	<div class="section">
+		<p>萌ディタは基本的にUTF-16の対応している範囲でなら大概の言語を入力できます。正直、UTF-16の範囲でも、世界中の実生活で使われている言語はほぼカバー出来ている状況なので、「ヒエログロフ（神聖文字）使いたいんだけど…。」とかいう何処の学者さんか
+		知らない人以外は、まず困ることはありません。</p>
+		<p>最近のWindowsでは結構Unicodeフォントは充実しているので、WindowsXPとかなら、何処かから探してこないでもフォントの設定さえしてやれば大概の言語は表示可能になります</p>
+		<p>まずは、<span class="menu">メニュー＞書式＞難しい設定</span>を選択します</p>
+		<img src="langueges_config.png" alt="言語設定ダイアログ" />
+		<p>出てきたダイアログの、右側ツリーメニューから適当に選択して（デフォルト設定が欲しいわけだから、textfileがお勧め）次に、上のメニューから<span class="menu">フォント</span>を選択。</p>
+		<p>あとは、自分の使いたい言語に対して、適切なフォントを設定してあげてください。今回は<span>NSimSum</span>を設定してあげていますね。</p>
+		<p>中国語を表示したいのに、ＭＳゴシックとか、日本語の文字しか収録していないセットを設定したら笑われますよ</p>
+	</div>
+	
+	<h2 id='h2-2'>文字の入力</h2>
+	
+	<div class="section">
+		<p>ココに関しては、解説いたしません。</p>
+		<p>基本的には、Windows環境なら、Microsoftの配布しているglobalIMEが一番現実的、あとはAtokの文字パレットからUnicodeを呼び出すとかもありますね。</p>
+		<h3>関連リンク</h3>
+		<ul class="data">
+			<li><a href="http://www.littera.waseda.ac.jp/mongol/input.html">中国語の入力方法</a></li>
+			<li><a href="http://www.hmt.toyama-u.ac.jp/Deutsch/tokushumoji/tokushumoji.html">ドイツ語文書の作成（Windowsパソコンの場合）</a></li>
+		</ul>
+	</div>
+	
+	<h2 id='h2-3'>フォント一覧</h2>
+	
+	<div class="section">
+		<p>一応、参考までに、設定すべきフォントなどを…。</p>
+		<table class="data">
+			<tr><td>ルーン文字</td><td></td><td>Windowsでは標準では搭載されていません、適当に配布元を探して下さい</td></tr>
+			<tr><td>朝鮮語</td><td>Courier New</td><td>WindowsXPなら標準で搭載</td></tr>
+			<tr><td>中国語（北京語）</td><td>NSimSum</td><td>WindowsXPなら標準でインストールのハズ…</td></tr>
+		</table>
+	</div>
+	
+</div>
+
+<div id="licence" title="GFDL">
+	<p>This document licenced by <a href='http://www.gnu.org/copyleft/fdl.html' rel='license'>GFDL</a></p>
+	<p>Author:<span class="rights">ばばんばーん</span></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+@charset "Shift_JIS";
+
+@import "/css/document.css";
+
+h2:before {
+	content:"ÅE";
+}
+
+h2 {
+	border-style:none none solid solid;
+	padding: 0.1em 0.3em;
+}
+
+div.explain {
+	border-style:solid;
+}
+
+table td,
+table tr {
+	border-style:none;
+	padding:0.2em;
+}
+
+table {
+	border-width:0.5em;
+	margin:0.5em 1.5em;
+}
+

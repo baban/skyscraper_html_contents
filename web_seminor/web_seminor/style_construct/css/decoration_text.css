@@ -1,0 +1,100 @@
+@charset "Shift_JIS";
+
+/* 文字装飾用のクラス集 */
+/* 適用範囲:勝手にして（ぉ */
+
+.NY { font-family:"Times New Roman","New York","ＭＳ 明朝",serif; }
+.JP { font-family:"ＤＦ平成明朝体W3", "ＭＳ 明朝", "細明朝体", serif; }
+.miyabi { font-family:"ＤＦ行書体",cursive; }
+
+.bakuzen { letter-spacing:0.5em; }
+
+em.point{
+	font-weight:normal;
+}
+em.point:before,
+em.point:after {
+	content:'"';
+}
+
+em.keyword {
+	font-weight:normal;
+}
+em.keyword:before,
+em.keyword:after {
+	content:'"';
+}
+
+span.voice_fadeout {
+	font-size:0.5em;
+}
+
+*.uri{	color:#42d; }
+
+em.comment:before,
+q.comment:before {
+	content:"「";
+}
+em.comment:after,
+q.comment:after {
+	content:"」";
+}
+
+/* ins */
+ins.exposition,
+ins.append,
+ins.annotation {
+	display:block;
+	margin:0.1em;
+	padding:0.1em 0.3em;
+}
+
+/* 文書の分からない言葉に最後に解説を加えるときに使用します。 */
+ins.exposition:before {
+	content:"解説:";
+}
+
+/* 訂正などを追記する場合に使用 */
+ins.append:before {
+	content:"追記:";
+}
+
+/* 注釈を加える場合 */
+ins.annotation {
+	content:"※";
+}
+
+/* メールの内容を紹介する場合 */
+blockquote.mail {
+}
+
+/* 用語解説等に付けます */
+dl.word_explanation {
+	border-width:thin;
+	border-style:solid;
+}
+dl.word_explanation > dt,
+dl.word_explanation > dd {
+	border-style:none;
+	margin:0.2em;
+}
+dl.word_explanation > dt:before {
+	content:"解説:";
+}
+dl.word_explanation > dt:after {
+	content:":";
+}
+
+/* アスキーアート表示用の設定 */
+pre.AA {
+	font-family:"MS UI Gothic", "Osaka", monospace;
+	font-size:1.2em;
+	line-height:1.2;
+}
+
+/* 顔文字表示用の設定 */
+span.face_mark
+em.face_mark
+strong.face_mark {
+	font:inherit;
+}

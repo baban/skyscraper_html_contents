@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='Shift_JIS' standalone='yes'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='ja' xml:lang='ja' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content='text/html;charset=UTF-8' http-equiv='Content-Type'/>
+	<meta content='text/css' http-equiv='Content-Style-Type'/>
+	<meta content='text/javascript;charset=UTF-8' http-equiv='Content-Script-Type'/>
+	<meta content='ja' http-equiv='Content-Language'/>
+	
+	<meta name='author' content='babanba-n'/>
+	<meta name='Copyright' content='Creative Commons Japan'/>
+	<meta name='description' content='初心者に送るHTML講座'/>
+	
+	<link href='/index.html' rel='home' type='text/css'/>
+	<link href='/texts/readme.html' rel='help' type='text/css'/>
+	<link href='mailto:baban@nergal.clubbbq.com' rev='Reply-to'/>
+	<link href='/img/favicon.ico' rel='shortcut icon' type='image/png'/>
+	<link href='/css/seminor.css' rel='stylesheet' type='text/css'/>
+	
+	<title>正しく始めるHTML:HTML詳細、マークアップ言語の本質</title>
+	<script src="/src/seminor.js" type="text/javascript"> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>正しく始めるHTML:HTML詳細、マークアップ言語の本質</h1>
+
+<div class='section' id='content'>
+	
+	<h2 id='h2-1'>Abstruct</h2>
+	
+	<div class="section">
+		<p>一応、文書を書くために最低限必要な事は説明したつもりですが、今回は発展編。便利なタグや、デザインの綺麗なまとめ方を解説しましょう</p>
+	</div>
+	
+	<h2 id='h2-2'>マークアップという本質</h2>
+	
+	<div class="section">
+		<div class="para">
+			<p>さて、ここまで幾つかのタグを教えてきましたが、ちょっと思い出していただきたい物があります</p>
+			<p>タグの名前というのは、大抵はなんらかの英単語を縮めた物を名前として採用しています。例えば、段落:paragraphを表すpタグ、強調:emphasisを表すemタグ等です</p>
+			<p>でも、ちょっと考えてください？ 何故、このような名前の当て方をしているのでしょうか？ 強調の意味を表したいときには、文字を多きくするbigタグや文字を太くするboldタグ等を作って、それを利用した方が分かりやすいのではないでしょうか？</p>
+			<p>そうならなかったのには、それなりの理由があります。</p>
+		</div>
+		
+		<div class="para">
+			<p>そのために、ちょっとばかりHTML誕生の歴史を振り返らせていただきましょう</p>
+			<p>事の起こりは、1960年代です、第２次大戦が生み出したコンピュータは情報の管理能力を飛躍的に上げてくれました、それを上手く利用して、図書館業務を機械化出来ないかという可能性が検討されました</p>
+			<p>そのとき、利用するフォーマットには次のような条件が必要とされました</p>
+			<ol>
+				<li>誰もが簡単に利用できるシステムであること</li>
+				<li>どのような受信環境でも情報を得ることができること</li>
+				<li>誰もが簡単に情報を発信できること</li>
+			</ol>
+			<p>研究の結果、こういう、条件を満たすシステムを考えると、テキストデータをマークアップする方法が一番だろうという結論に達して、現在の<code>&lt;-&gt;〜&lt;/-&gt;</code>で文字を囲い込む方法と、SGMLが誕生しました</p>
+			<p>そしてSGMLの学術論文用フォーマットとして1991年にHTMLが誕生しました</p>
+			<p>そして、その同じ年、世界中にインターネットが解禁され、HTMLはその時代の流れに載って急速に普及し、現在に至ります</p>
+		</div>
+		
+		<div class="para">
+			<p>長々とお話をしましたが、これでHTMLのタグの名前の由来が分かって頂けたでしょうか？</p>
+			<p>HTMLというのは、その親のSGMLと同じく、どのような受信環境でも、情報を利用出来る用に設計されています</p>
+			<p>もし、白から黒の16色しか使えないコンピューターに、colorなんてタグを当てたらどうなるでしょう？　さらに、盲目の人のために、文章を読み上げるソフトを使った場合はどうなるでしょう？</p>
+			<p>こういうときに、今読んでいる部分が文章の中では<em class="kwd">どういう意味を持つのか</em>、プログラムが理解出来るようにすれば、場合によって柔軟に対処出来るのです</p>
+			<p>実際に、HTMLのこの性質は役に立っていて、現在の携帯電話でも、XHTML1.0から機能を削ったXHTML Basicという規格が利用されていて、それで作られたページは、あの狭い画面に、情報を上手く入れ直してくれています(ちなみに、今教えているXHTML1.0でページを作ると、携帯電話からも自分のページが読めます)</p>
+		</div>
+	</div>
+	
+	<h2 id='h2-3'>復習編</h2>
+	
+	<div class="section">
+		<p>ここまでで解説したタグを思い返してみましょう</p>
+		<table class="data">
+			<tr><td>a</td><td>リンクを張る</td></tr>
+			<tr><td>img</td><td>画像を張る</td></tr>
+			<tr><td>p</td><td>段落の指定</td></tr>
+			<tr><td>span</td><td>言葉の範囲指定(狭い範囲)</td></tr>
+			<tr><td>div</td><td>文章の範囲指定(広い範囲)</td></tr>
+			<tr><td>h1〜h6</td><td>文書のタイトルを指定</td></tr>
+			<tr><td>em</td><td>文書の強調</td></tr>
+			<tr><td>ul</td><td>番号無しリスト</td></tr>
+			<tr><td>ol</td><td>番号付きリスト</td></tr>
+			<tr><td>dl</td><td>言葉の定義と説明</td></tr>
+			<tr><td>table</td><td>表作成</td></tr>
+			<tr><td>br</td><td>デザイン用途のための特殊なタグ</td></tr>
+		</table>
+		<p>とまぁ、ここまでで12種類のタグを解説しましたが、私の経験論上、大体何するにも、この12種類とスタイルシートがあればなんとかなります</p>
+		<p>今回は、タグはココまでにしておきますので、まずはここまでを使いこなせるようになってから、順次使えるタグを増やしていきましょう</p>
+	</div>
+	
+	<h2 id='h2-4'>styleタグ</h2>
+	
+	<div class="section">
+		<div class="para">
+			<p>さて、先ほどまでがタグのお話なら、次はスタイルシートです</p>
+			<p>前々回の講座で教えたstyle要素、そろそろ慣れてきましたか？</p>
+			<p>style要素、確かに色々デザイン出来る良いアイテムです。でも、コレを使っている人、すぐに感じて頂けたでしょう。正直、書く量多くて面倒くさくありませんか？　というか面倒くさいですよね、よね？</p>
+			<p>というわけで今回は、手抜きに色々やるための、スタイルシートの便利な使い方を紹介</p>
+			<p>ここから先で解説することは、すべてスタイルシートの有効活用法ですが、先に正体だけ明かしておくと、デザインを<em class="kwd">まとめて指定する方法</em>です</p>
+		</div>
+		styleタグ、使い方は分かって頂けたでしょうか？
+		<p>まずは、同じ名前のタグにすべて共通の設定を行わせる方法</p>
+
+<div class="example">
+<pre class="code"><code>
+&lt;head&gt;
+	&lt;style type="text/css"&gt;
+		em {
+			font-weight:bold;
+			font-size:1.2em;
+			color:red;
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+</code></pre>
+
+<pre class="code"><code>
+&lt;p&gt;本当は借金を肩代わりしてくれる&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;美少女&lt;/em&gt;なんて現れなかった&lt;/p&gt;
+&lt;p&gt;という&lt;em&gt;夢オチエンド&hearts;&lt;/em&gt;&lt;/p&gt;
+</code></pre>
+</div>
+
+		<table class="data">
+			<tr><th>適応前</th><th>適応後</th></tr>
+			<tr><td><a href="app_tags_samp01.html"><img src="app_tags_samp01.png" alt="スタイル適応前" /></a></td><td><a href="app_tags_samp02.html"><img src="app_tags_samp02.png" alt="スタイル適応後" /></a></td></tr>
+		</table>
+		<p>こうすると、style要素で一個ずつ指定しなくても、ページで使っているemタグ全てに同じ表示を設定することが出来ます</p>
+	</div>
+	
+	<h2 id='h2-5'>class属性</h2>
+	
+	<div class="section">
+		<p>今度は、先ほどの方法の改良系です。クラスという考え方をお教えしましょう</p>
+		<p>まずはスタイルシートの方に、次の方に書き入れます</p>
+<pre>
+<code>
+em.angry {
+	color:red;
+}
+</code>
+</pre>
+		<p>次に文書の方は次のように書きます</p>
+<pre>
+<code>
+ギター侍は出演し過ぎでネタが尽きて、今年いっぱいだ。&lt;em class="angry"&gt;間違いない&lt;/em&gt;
+</code>
+</pre>
+		<p>こうすると、angryというクラスを付けたemタグ部分を赤く表示することが出来ます</p>
+	</div>
+</div>
+
+<div title='Creative Commons Japan by' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/by-sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/by-sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+	<p>Author:<span class='rights'>babanba-n</span>, Licence:<span class='cc-licence'>by-sa</span></p>
+</div>
+
+</body>
+</html>

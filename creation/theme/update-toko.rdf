@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$rSbRE1"
+                   em:version="1.4.4">
+    <em:targetApplication RDF:resource="rdf:#$uSbRE1"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$uSbRE1"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="4.0"
+                   em:maxVersion="4.9.*"
+                   em:updateLink="http://baban.0ch.biz/creation/theme/jar/suzuri_40.xpi"
+                   em:updateHash="sha1:1a32dddb255966a6d70aa422e9fe58c87ed4eabc" />
+  <RDF:Seq RDF:about="rdf:#$qSbRE1">
+    <RDF:li RDF:resource="rdf:#$rSbRE1"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="rdf:#$fSbRE1"
+                   em:version="1.5.0">
+    <em:targetApplication RDF:resource="rdf:#$iSbRE1"/>
+  </RDF:Description>
+  <RDF:Description RDF:about="rdf:#$iSbRE1"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="5.0"
+                   em:maxVersion="11.9.*"
+                   em:updateLink="http://baban.0ch.biz/creation/theme/jar/toko_50.xpi"
+                   em:updateHash="sha1:c535fec29a37499ad04cb2748823c9ac" />
+  <RDF:Seq RDF:about="rdf:#$eSbRE1">
+    <RDF:li RDF:resource="rdf:#$fSbRE1"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="urn:mozilla:theme:{A21C8787-1E8A-4FC0-B82E-54BD13465E29}"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBADKsQg1N//qoD2DoZZSlWRoZ79EGzUCIOcmWNEGUNQpIZwufhe9pogAnKZ/zPoVy3llHIy1qmSt4IyHWBt9NbcjZLsYWRp/NDb74c2WQT6/BOHT6xSkoeEi5AZkW0ymmg70cjhs+i9/eN/3SCqNE5a4x6ef5LmHHVPu472l1R+f3">
+    <em:updates RDF:resource="rdf:#$eSbRE1"/>
+    <em:updates RDF:resource="rdf:#$qSbRE1"/>
+  </RDF:Description>
+</RDF:RDF>

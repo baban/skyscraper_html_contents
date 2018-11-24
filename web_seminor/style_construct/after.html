@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='スタイルシートの設計法:余談' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>スタイルシートの設計法:余談</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>余談</h1>
+
+<div class="section" id="content">
+
+	<h2 id='h2-1'>気をつけること</h2>
+	
+	<div class="section">
+		<p>スタイルシートには一括設定が出来る、簡略化プロパティがあります(fontとかbackgroundとかborderとか)これを利用する事はまったく問題ないのですが。これを利用するときに気をつけることは</p>
+		<p><em>関連のプロパティは総て初期値にリセットされ、それから指定された値を割り当てなおされます。</em></p>
+		<p>つまり</p>
+		<p><code>border:solid 2px;</code></p>
+		<p>みたいに色の設定を抜かして書くと、実際には</p>
+		<p><code>border:solid 2px #(デフォルトのボーダー色);</code></p>
+		<p>と書いた事と同じ事になって、ボーダーの色がデフォルトの色(黒色が多い)が呼び出されます</p>
+		<p>標準ではそうなっているのですが、(何故か)実際の処理は、ブラウザごとに違っていたりするので最初は気づかない場合も多いのですが、多くのブラウザで意図した通りに表示させるためには</p>
+		<p><code>border-style:solid; /* 縁の種類<em class="kwd">だけ</em>上書き */</code></p>
+		<p><code>border-width:2px; /* 縁の太さ<em class="kwd">だけ</em>上書き */</code></p>
+		<p>と書いて設定を正しく上書きする必要があります。(面倒臭いという方もおられると思われますが)</p>
+	</div>
+	
+	<h2 id='h2-2'>CSSとレベル</h2>
+	
+	<div class="section">
+		<p>CSSは最初のCSS level1から始まって、CSS2、まだ策定されたばかりで、ほとんど実装されていませんがCSS3と各種類が存在します。</p>
+		<p>各CSSは下のレベルとほぼ完全な下位互換をもっているので、css2対応ブラウザは、CSS1で書かれたスタイルシートを完全に処理しますが、逆はそうはいきません</p>
+		<p>しかし、悲しいかな、スタイルシートには<em>バージョンを明らかにする方法</em>がなかったりします。</p>
+		<p>だからといって、完全分離が出来ないわけではありません。スタイルシートは完全な形で実装するように決められていますから、CSS1完全対応ブラウザ用、CSS2完全対応ブラウザ用にデフォルトのシートを作って</p>
+		<ul class='data'>
+			<li><code>@import url("default_css1.css"); /* css1用デフォルトスタイル */</code></li>
+			<li><code>@import "default_css2.css"; /* css2用デフォルトスタイル */</code></li>
+		</ul>
+		<p>と書いて読み込ませれば、<code>@import "default_css2.css";</code>という書き方は、CSS2の規格なので、CSS1しか扱えないブラウザはコレを読み込まないので、CSS1での表示のページに、CSS2対応ブラウザはCSS1の設定を完全に上書きして表示します…。理想論では…。</p>
+		<p>一応、メディア規則を書き足して</p>
+		<p><code>@import url("css1設定のシート") all; /* IE6でも処理できないで無視されます */</code></p>
+		<p>とすれば、現在のIEは読み込みませんし、ブラウザのバグ等を有効利用すれば、底々「読ませる」、「読ませない」の差別化は出来ますが…。</p>
+		<p>世の中のブラウザが、スタイルシートを中途半端に実装するのなんて当たり前なので、結局は諦めて、対応ブラウザを決めたら、それに合わせてスタイルシートを書いていくしかないと思っています。</p>
+		<p><a href="http://members.jcom.home.ne.jp/jintrick/Personal/index.html">Personnel</a>の<a href="http://members.jcom.home.ne.jp/jintrick/Personal/css_fault.html#implement">実装レベル判別手段の欠如</a>で同じ様なことが書いてあったりします。</p>
+	</div>
+	
+	<h2 id='h2-3'>主なサイトの変更箇所</h2>
+	
+	<div class="section">
+		<p>さて、みなさんページをリニューアルするときって、スタイルシートの何処を弄りまわしますか？</p>
+		<p>自分なりの経験論なのですが、リニューアルの時には、スタイルシートを良く書き換える所があります</p>
+		<p>上から順に挙げると</p>
+		<ol>
+			<li>背景色、ボーダー色等の色の設定</li>
+			<li>背景画像</li>
+			<li>装飾用の画像</li>
+		</ol>
+		<p>結局は、色か画像に関する設定なんですよね…</p>
+		<p>これを利用して、楽が出来ないかと思って、自分なりに工夫したのが、色や、画像の設定を一カ所に集める事でした</p>
+		<p>これが、試してみて結構面白いくらいに上手くいきました、結構簡単に出来る割に効果のあるお勧めの方法ですので、できるだけ実行してみてください</p>
+	</div>
+	
+	<h2 id='h2-4'>階層の圧縮法</h2>
+	
+	<div class="section">
+		<p>と今まで設計の方法を長々と解説してまいりましたが、先ほども説明した通り、IEには３階層以上のスタイルシートを読み込まないと言う仕様がありまして、あまり階層を高く積むわけには行きません</p>
+		<p>実際に階層を高くすると、上の階層のスタイルシートほど、基本設定なのに、読み込みが最後の方になると言う弊害もあります(よって完全表示までに時間がかかる)</p>
+		<p>これを圧縮する方法は２つあるのですが、一つ目は、設定の共通部分を上手くまとめて<code>@import</code>文を並べること</p>
+		<p>２つ目は、表記法です</p>
+		<p><code>@import url("/css/document.css");</code></p>
+		<p>の様に、URLの最初に<em class="kwd">/</em>を入れると、絶対パスとなって、rootのディレクトリを参照しますので、ファイルの読み込みをしやすくなります</p>
+		<p>同時に、絶対パスになっている分、いくらファイルを移動しても、同じ所を参照してくれますので２重にお得です</p>
+		<p>ただ、最大の欠点として、ローカルで使用すると、rootのパスがドライブの一番下の階層になってしまいますから、当然読み込みは行ってくれません</p>
+		<p>つまりはサーバーにupするまで表示確認できないんですよね‥</p>
+		<p>OSにApacheなり、なんらかのサーバー環境があるなら話は別なんですけどね</p>
+	</div>
+	
+</div>
+
+<div title='CreativeCommonsJapan' id='licence'>
+	<!-- クリエイティブ・コモンズ・ライセンス -->
+	<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>
+		<img src='http://creativecommons.org/images/public/somerights20.gif' alt='クリエイティブ・コモンズ・ライセンス'/>
+	</a>
+	<br/>
+	<p>このworkは、<a href='http://creativecommons.org/licenses/sa/2.0/jp/' rel='license'>クリエイティブ・コモンズ・ライセンス</a>の下でライセンスされています。</p>
+</div>
+
+</body>
+</html>

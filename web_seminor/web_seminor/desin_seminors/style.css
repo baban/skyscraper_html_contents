@@ -1,0 +1,7 @@
+@charset "Shift_JIS";
+
+div.preview-image-box {
+	border-style:solid;
+	width:17em;
+	min-width:200px;
+}

@@ -1,0 +1,58 @@
+/* ========== ã§í ê›íË ===================================================== */
+BODY		{
+			color: #000000;
+			background-color: #fdf4f4;
+			font-size: 100%;
+			line-height: 150%;
+			letter-spacing: 1.1px;
+			padding: 0.5em;
+			}
+
+A:LINK, A:VISITED {
+			color: #354045; /* slategray */
+			text-decoration: none;
+			}
+
+A:HOVER, A:ACTIVE, A:FOCUS {
+			border-style: none none dotted none;
+			border-width: 1px;
+			background-color: #f0f8ff;
+			}
+
+HR, .nocss	{ display: none; }
+
+H1, H2, H3, H4,
+P, DL, DT, DD,
+TABLE, TH, TD,
+UL, OL, LI,
+ADDRESS,
+BLOCKQUOTE	{
+			margin: 0;
+			padding: 0;
+			font-size: 100%;
+			font-weight: normal;
+			font-style: normal;
+			line-height: 150%;
+			}
+
+TABLE		{
+			margin-bottom: 0.5em;
+			}
+
+
+/* ========== É^ÉCÉgÉã ===================================================== */
+#title H1	{
+			font-size: 200%;
+			font-weight: bold;
+			letter-spacing: 10px;
+			border-bottom: 1px solid #333333;
+			padding: 0 0.5em 0.2em 0;
+			}
+
+#title H2	{
+			font-size: 120%;
+			text-align: right;
+			font-weight: bold;
+			font-style: italic;
+			margin-bottom: 0.5em;
+			}

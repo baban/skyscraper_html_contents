@@ -1,0 +1,91 @@
+@charset "Shift_JIS";
+
+div#meta-menu {
+	position:fixed;
+	top:0.5em;
+	right:0.5em;
+	z-index:+10;
+	min-width:10em;
+	min-height:17px;
+	border-style:solid;
+	background-image:url("background.png");
+	margin:0;
+	padding:0;
+}
+
+button#title-menu-close-button {
+	font-weight:bold;
+	position:absolute;
+	width:17px;
+	height:17px;
+	background-image:url('menu-close-button.png');
+	background-repeat:no-repeat;
+	background-position:center center;
+	top:0;
+	right:0;
+	opacity:0.6;
+}
+
+button#title-menu-close-button:hover {
+	opacity:1.0;
+}
+
+ul#meta-menu-list {
+	margin:0;
+	padding:0;
+}
+
+ul#meta-menu-list > li > a{
+	text-decoration:none;
+	font-weight:bold;
+	padding:0.2em;
+	background-color:transparent;
+}
+
+ul#meta-menu-list > li{
+	padding:0.2em;
+}
+ul#meta-menu-list > li:before{
+	content:url("none.png");
+	vertical-align:middle;
+}
+
+ul#meta-menu-list > li:hover{
+	background-color:#DFDCEA;
+	border-color:#503F88;
+}
+
+ul#meta-menu-list > li.help:before {
+	content:url("question.png");
+}
+
+ul#meta-menu-list > li.home:before {
+	content:url("home.png");
+}
+
+ul#meta-menu-list > li.next:before {
+	content:url("next.png");
+}
+
+ul#meta-menu-list > li.prev:before {
+	content:url("prev.png");
+}
+
+ul#meta-menu-list > li.index:before {
+	content:url("index.png");
+}
+
+ul#meta-menu-list > li.start:before {
+	content:url("start.png");
+}
+
+ul#meta-menu-list > li.alternate:before,
+ul#meta-menu-list > li.appendix:before,
+ul#meta-menu-list > li.bookmark:before,
+ul#meta-menu-list > li.contents:before,
+ul#meta-menu-list > li.chapter:before,
+ul#meta-menu-list > li.glossary:before,
+ul#meta-menu-list > li.section:before,
+ul#meta-menu-list > li.subsection:before{
+	content:url("index.png");
+}

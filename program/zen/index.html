@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8N" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8N" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript;charset=UTF-8" />
+	
+	<link rel="home" href="/index.html" type="text/html" />
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/png" />
+	
+	<link rel="stylesheet" href="/css/style.css" type="text/css" />
+	
+	<script type="text/javascript" src="yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>  
+	<script type="text/javascript" src="yui/build/logger/logger-min.js"></script>  
+	<script type="text/javascript" src="yui/build/yuitest/yuitest-min.js"></script>  
+	<script type="text/javascript" src="zen.js"></script>  
+	<title></title>
+	<script>
+
+window.onload=function(){
+	// Enterキー
+	document.getElementById('text-form').onkeydown=function( e ){
+		if( 13==e.keyCode )
+			document.getElementById('zen-result').value=document.getElementById('text-form').value.toZen();
+	}
+	// ボタンクリック
+	document.getElementById('text-button').onclick=function(){
+		document.getElementById('zen-result').value=document.getElementById('text-form').value.toZen();
+	}
+}
+	</script>
+	<style>
+	#text-form{
+		width:70%;
+	}
+	#zen-result{
+		width:80%;
+		height:15em;
+	}
+	</style>
+  <script src="/src/ga.js"></script>
+</head>
+<body id="main-page">
+
+<script>
+</script>
+
+<h1 id="site-title"></h1>
+
+<div id="content">
+	<input type="text" value="" id="text-form" />
+	<input type="button" value="Zen!" id="text-button"  />
+	<textarea id="zen-result"></textarea>
+</div><!-- div#content -->
+
+</body>
+</html>
+

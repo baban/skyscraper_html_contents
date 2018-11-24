@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$.XKNo1"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="4.0"
+                   em:maxVersion="11.9.*"
+                   em:updateLink="http://baban.0ch.biz/creation/theme/jar/suzuri_50.xpi"
+                   em:updateHash="sha1:cae7f73d5d7e4a53f71d4292200ab736" />
+  <RDF:Description RDF:about="rdf:#$XXKNo1"
+                   em:version="1.5.6">
+    <em:targetApplication RDF:resource="rdf:#$.XKNo1"/>
+  </RDF:Description>
+  <RDF:Seq RDF:about="rdf:#$WXKNo1">
+    <RDF:li RDF:resource="rdf:#$XXKNo1"/>
+  </RDF:Seq>
+  <RDF:Description RDF:about="urn:mozilla:theme:{C8F7CDD7-7B5A-4D7D-95DD-F4526067C61A}"
+                   em:signature="MIGTMA0GCSqGSIb3DQEBDQUAA4GBABxWKPs0zFpIi4FGLjWvJ19KtRVBSmtEzWtJ6CIPa2Pxfve98OIs6NMuKFXIduyzIk7M6sMja3tbJtJjB05JEj4kv8idq0cIJjNP8c9vLfTqQow6/qicbi2eYja6Eu2dPgM2OEbd8FRLSavhhOeSEpI16aMXyFiCz5FnOKm0s3Ma">
+    <em:updates RDF:resource="rdf:#$WXKNo1"/>
+  </RDF:Description>
+</RDF:RDF>

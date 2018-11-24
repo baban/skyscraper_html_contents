@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xml:lang="ja"
+	lang="ja"
+>
+<head>
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta http-equiv='Content-Type' content='text/html;charset=UTF-8' />
+	<meta http-equiv='Content-Style-Type' content='text/css' />
+	<meta http-equiv='Content-Script-Type' content='text/javascript;charset=UTF-8' />
+	
+	<meta name='description' content='テーブルデザイン不要論' />
+	
+	
+	
+	<link rel='shortcut icon' href='/img/favicon.ico' type='image/png' />
+	<link rel='stylesheet' href='/css/seminor.css' type='text/css' />
+	
+	<title>テーブルデザイン不要論:第４回</title>
+	<script src='/src/seminor.js' type='text/javascript'> </script>
+  <script src="/src/ga.js"></script>
+</head>
+<body>
+
+<h1 id='page-title'>第４回:ちょっと裏技、position:relative;</h1>
+
+<div class="section" id="content">
+
+	<h2 id='h2-1'>前知識</h2>
+	
+	<div class="section">
+		<p><code>position:relative;</code>自体は、文字を位置に移動させるのですが。これを<code>position:absolute;</code>と併用すると、色々とおいしい使い方が出来たりします。</p>
+		<p>これを使うためにはちょっと前知識が必要なので、CSS2の仕様書の和訳から、一つ二つ引用させて頂きます。</p>
+		<p>まずは包含ブロックという考え方から…。</p>
+		<blockquote>
+			<p>CSS2では、ボックスの位置やサイズの多くを、<a name="x3" title="containing block"><dfn>包含ブロック（containing block）</dfn></a>と呼ばれる矩形ボックスの四辺を参照することによって計算する。</p>
+			<p>一般に、ある要素が生成したボックスは、その子孫ボックスの包含ブロックとして機能する。</p>
+			<p>このことを、ボックスが子孫のために包含ブロックを「設定する」（"establishes"）と表現する。</p>
+			<p>「ボックスの包含ブロック」（"a box's containing block"）と表現した時、それは「そのボックスが含まれている包含ブロック」（"the containing block in which the box lives"）を指すのであり、「そのボックスが設定する包含ブロック」（"the one it generates"）を指すのではない。</p>
+		</blockquote>
+			<p>そして、position:relative;の説明では…。</p>
+		<blockquote>
+			<p>相対配置のボックスは、通常に流し込まれる子供要素と位置指定される子孫要素のために、新しく包含ブロックを設定する。 </p>
+		</blockquote>
+			<p>とあります。これで意味が通じたでしょうか？　ほとんどの人がこれだけでは通じていないと思われますので、これからサンプルを使いながら解説していきましょう。</p>
+	</div>
+	
+	<h2 id='h2-2'>実例</h2>
+	
+	<div class="section">
+		<p>まずは、この<a href="non_table04_sample01.html">サンプル</a>をご覧下さい。ボーダーと大きさを指定して、作例が見やすくしてありますが、基本的なタグは下の様になっています。</p>
+		<div class="figure">
+			<h3 class="preview-title">サンプル１</h3>
+			<a href="non_table04_sample01.html"><img src="img/table04_site_preview_01.png" alt="サンプル１のイメージ" /></a>
+		</div>
+<pre>
+<code>
+&lt;body&gt;
+    &lt;div id="box1"&gt;
+        &lt;div id="box2"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code>
+</pre>
+		<p>これに下の様にプロパティを追加します。</p>
+<pre>
+<code>
+/* Window左上の位置にボックスを移動 */
+div#box2 {
+    position:absolute;
+    top:15px;
+    left:15px;
+}
+</code>
+</pre>
+		<p>出来たのが<a href="non_table04_sample02.html">サンプル２</a></p>
+		<div class="figure">
+			<h3 class="preview-title">サンプル２</h3>
+			<a href="non_table04_sample02.html"><img src="img/table04_site_preview_02.png" alt="サンプル２プレビュー" /></a>
+		</div>
+		<p>Window左上の位置に、box2が移動しているのが分かりますか？</p>
+		<p>さてさて、ではここからは本題です。このサンプルにスタイルシートを下の様に追加すればどうなるのでしょう？</p>
+<pre>
+<code>
+/* 基準位置の変更 */
+div#box1 {
+    position:relative;
+}
+</code>
+</pre>
+		<p>これを書き足すと<a href="non_table04_sample03.html">サンプル３</a>の様に表示されます。box2がbox1の内側に戻ってきていますが、この仕掛けの意味が分かるでしょうか？　今回の話のポイントはここにあります。</p>
+		<div class="figure">
+			<h3 class="preview-title">サンプル３</h3>
+			<a href="non_table04_sample03.html"><img src="img/table04_site_preview_03.png" alt="サンプル３イメージ" /></a>
+		</div>
+		<p>ここではposition:relative;を追加することで、box1に包含ブロックが設定されて、子要素であるbox2の基準位置が変わっているんですね。</p>
+		<p>そんな言い方しても通じませんが、つまりは、今回起こったことを図に表すと</p>
+		
+		<table class="data">
+			<tr><th>position:relative;適用前</th><th>position:relative;適用後</th></tr>
+			<tr><td><img src="img/non_table04_preview01.png" alt="Windowの左上が基準" /></td><td><img src="img/non_table04_preview02.png" alt="box1の左上が基準" /></td></tr>
+		</table>
+		
+		<p>という風になっていたりします。</p>
+	</div>
+	
+	<h2 id="last">最後に</h2>
+	
+	<div class="section">
+		<p>上で紹介した<code>position:relative;</code>での基準位置変更ですが、<code>position</code>の値に、absoluteやfixedを入れても基準位置の変更はおこりますが、relativeだと、topやleftの値が0のままだと、<em>box1の表示位置の変更がおこらない</em>ので、色々と使い道が多かったりします。</p>
+		<p>え？　作例が欲しい？　え、えーと、追々考えます…。</p>
+	</div>
+</div>
+
+</body>
+</html>
