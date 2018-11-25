@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+/** ドキュメント装飾のためのCSS、セミナー用文書と通常文書の２つで共有なので分離 */
+#content {
+	background-color:#fff;
+	margin:0 4em;
+	padding:1em;
+}
+
+@media screen and (max-width: 720px) {
+	#content {
+		margin:0 1.5em;
+	}
+}
+
+h2 {
+	background-color:#fff;
+	font-size:1.6em;
+	background-repeat:no-repeat;
+	background-position:bottom right;
+	border-left-width:0.5em;
+	border-style:solid;
+	padding-left:0.6em;
+}
+
+h2 + div.section,
+h2 + section {
+	padding:0 2em;
+}
+
+h2:before {
+	content:"";
+}
+
+h3 {
+	border-color:#393869;
+	border-width:0.1em;
+	border-style:none none solid none;
+	background-position:bottom left;
+	background-repeat:no-repeat;
+	padding-left:0.5em;
+}
+
+h4 {
+	border-style:none none dashed none;
+	padding-left:0.7em;
+}
+
+h3:before {
+	content:"";
+ 	margin-right:0.2em;
+}
+
+h2 + div.section,
+h2 + section {
+	border-width:0.2em;
+	margin:0 0 0.4em 0;
+	padding:0.5em;
+}
+
+blockquote {
+	border-style:solid;
+	background-repeat:no-repeat;
+	background-position:80% 60%;
+}
+
+/* table,list */
+table {
+	border-style:solid;
+	border-width:0.7em;
+	margin:0.5em 1em;
+	border-spacing:4px;
+}
+
+th {
+	font-style:normal;
+}
+
+ul {
+	border-style:none;
+	margin-left:0.4em;
+}
+
+dl.explain {
+	border-style:none none none solid;
+	border-width:0.3em;
+	> dt.define {
+		border-style:solid none;
+		font-size:1.2em;
+		font-weight:bold;
+		padding:0.2em;
+	}
+}
+
+div.para {
+	padding:0.2em;
+	margin:0.2em;
+}
+
+*.wa {
+	font-size:1.3em;
+	font-weight:700;
+}
+
+dl.history dt,
+dl.stalk dt {
+	font-size:1.2em;
+	font-weight:bold;
+	border-style:none none solid;
+}
+
+/* 外部へのリンクのときに使用する */
+a.external:before {
+	content:"*";
+	font-size:0.8em;
+}
