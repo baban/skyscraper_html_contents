@@ -10,7 +10,7 @@ root elements
 ============================ */
 body {
   font: normal normal 400 1.3em/1.2 sans-serif;
-  font-family: "MS UI Gothic", Osaka, sans-serif;
+  font-family: "Meiryo", "MS UI Gothic", Osaka, sans-serif;
   background-color: #fff;
   color: #000;
   border: none 1px #000;
@@ -163,6 +163,10 @@ table {
 
 th, td {
   padding: 0.3em 0.6em; }
+
+@media screen and (max-width: 720px) {
+  th, td {
+    padding: 0.2em 0.3em; } }
 
 th {
   font-weight: bold; }
@@ -598,7 +602,7 @@ h1 {
 body > h1:first-child {
   background-color: #000;
   background-repeat: no-repeat;
-  font-size: 1.8em; }
+  font-size: 1.6em; }
 
 h1:first-child + div {
   margin: 0.6em 2.5em;

@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+  background-color: #EFE3D2;
+}
+
 /** ドキュメント装飾のためのCSS、セミナー用文書と通常文書の２つで共有なので分離 */
 #content {
 	background-color:#fff;
@@ -9,13 +13,14 @@
 
 @media screen and (max-width: 720px) {
 	#content {
-		margin:0 1.5em;
+		margin:0 0.7em;
+		padding:0.5em;
 	}
 }
 
 h2 {
 	background-color:#fff;
-	font-size:1.6em;
+	font-size:1.4em;
 	background-repeat:no-repeat;
 	background-position:bottom right;
 	border-left-width:0.5em;
@@ -67,13 +72,19 @@ blockquote {
 /* table,list */
 table {
 	border-style:solid;
-	border-width:0.7em;
+	border-width:0.5em;
 	margin:0.5em 1em;
 	border-spacing:4px;
 }
 
+@media screen and (max-width: 720px) {
+	table {
+		margin:0.3em 0.5em;
+	}
+}
+
 th {
-	font-style:normal;
+	font-style: normal;
 }
 
 ul {
