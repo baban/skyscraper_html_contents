@@ -1,7 +1,5 @@
 @charset "Shift_JIS";
 
-/** プログラム紹介のページのCSS */
-
 @import url("def/html-default-css1.css");
 @import "def/html-default-css2.css" all;
 @import url("def/html-color-base.css");
