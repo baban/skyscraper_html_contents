@@ -486,12 +486,6 @@ h1:first-child:before {
   font-size: 1.6em; }
 
 /** ドキュメント装飾のためのCSS、セミナー用文書と通常文書の２つで共有なので分離 */
-/* h1+divと#contentの２重記述はie対策 */
-h1 + div {
-  background-color: #fff;
-  margin: 0 6em;
-  padding: 1em; }
-
 #content {
   background-color: #fff;
   margin: 0 4em;
@@ -530,9 +524,7 @@ h4 {
   padding-left: 0.7em; }
 
 h3:before {
-  content: ""; }
-
-h3:before {
+  content: "";
   margin-right: 0.2em; }
 
 h2 + div.section,
@@ -543,7 +535,6 @@ h2 + section {
 
 blockquote {
   border-style: solid;
-  background-image: url("img/note-back.png");
   background-repeat: no-repeat;
   background-position: 80% 60%; }
 
@@ -564,12 +555,11 @@ ul {
 dl.explain {
   border-style: none none none solid;
   border-width: 0.3em; }
-
-dl.explain > dt.define {
-  border-style: solid none;
-  font-size: 1.2em;
-  font-weight: bold;
-  padding: 0.2em; }
+  dl.explain > dt.define {
+    border-style: solid none;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0.2em; }
 
 div.para {
   padding: 0.2em;

@@ -1,91 +1,672 @@
-@charset "Shift_JIS";
+@charset "UTF-8";
+/*
+ブラウザ間の表示差を埋めるための、デフォルトスタイルシート。ちょっと設定しすぎ…
+xhtml1.0, 1.1あたりでDeprecatedのタグ入れない方向で作成
+適用範囲:サイト全体
+CSS1限定設定
+*/
+/* ============================
+root elements
+============================ */
+body {
+  font: normal normal 400 1.3em/1.2 sans-serif;
+  font-family: "MS UI Gothic", Osaka, sans-serif;
+  background-color: #fff;
+  color: #000;
+  border: none 1px #000;
+  cursor: auto;
+  margin: 0;
+  padding: 0.6em 1em; }
 
-@import url("def/html-default-css1.css");
-@import "def/html-default-css2.css" all;
-@import url("def/html-color-base.css");
-@import url("decoration-text.css");
-@import url("base-style.css");
-@import url("pattern/banner-title.css");
+/* ===========================
+inline elements
+=========================== */
+a, abbr, acronym, dfn, em, q, span, strong, ruby, code, cite,
+del, ins {
+  font-style: normal;
+  text-decoration: none;
+  border: none 1px #aaa; }
 
-/* base */
+a {
+  text-decoration: underline;
+  color: #00f; }
+
+a:visited,
+a:hover,
+a:active {
+  color: #f00; }
+
+a img {
+  margin: 0 0.1em; }
+
+abbr, acronym {
+  border-style: none none dotted none;
+  cursor: help; }
+
+del {
+  font-family: italic;
+  text-decoration: line-through; }
+
+cite {
+  margin: 0 0.3em; }
+
+/* 強調の強さは em ,strong, strong.stronger, strong.very-strong の順に強くなる */
+em {
+  font-style: normal;
+  font-weight: bold; }
+
+strong {
+  font-size: 1.2em;
+  font-weight: 900; }
+
+strong.stronger {
+  font-size: 1.4em;
+  font-weight: 900; }
+
+strong.very-strong {
+  font-size: 2.0em;
+  font-weight: 900; }
+
+rt {
+  font-size: 0.7em; }
+
+ins {
+  border-style: solid;
+  display: block;
+  padding: 0.2em; }
+
+ins[datetime]:after {
+  content: attr(datetime);
+  border: solid 1px #aaa;
+  display: block;
+  text-align: right;
+  padding: 0.1em;
+  margin-top: 0.2em; }
+
+kbd {
+  border-style: outset;
+  border-width: 0.15em;
+  padding: 0.1em;
+  margin: 0 0.15em;
+  background-color: #ccc;
+  border-color: #ccc; }
+
+code {
+  padding: 0 0.2em; }
+
+/* ===================================
+block elements
+=================================== */
+/* h1～h6 */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0.5em 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold; }
+
+h1 {
+  font-size: 1.4em; }
 
 h2 {
-	border-color:#1c3428;
-	border-width:3px;
-	border-style:none none solid none;
-}
-
-h2 + div.section {
-	border-style:none solid;
-}
-
-h2:before {
-	content:"";
-}
+  font-size: 1.3em; }
 
 h3 {
-	border-color:#1c3428;
-	border-width:3px;
-	border-style:none none double none;
-}
+  font-size: 1.2em; }
 
-h4 {
-	border-style:none none dashed none;
-}
+h4, h5, h6 {
+  font-size: 1.0em; }
 
-h3:before{
-	content:"";
-}
+/* block attoribute */
+h1, h2, h3, h4, h5, h6,
+div, p, blockquote, pre, code,
+object, map,
+ul, ol, dl, dt, dd, li,
+textarea, form, iframe, select {
+  border: none 1px #000;
+  clear: both; }
 
-h3:before{
- 	margin-right:0.2em;
-}
+dd, blockquote, address, pre, samp,
+table,
+ul, ol, dl,
+form {
+  margin: 0.2em 0.3em;
+  padding: 0.2em; }
 
-h2 + div.section {
-	border-width:0.2em;
-	margin:0 0 0.4em 0;
-	padding:0.5em;
-}
+div {
+  margin: 0;
+  padding: 0; }
+
+p {
+  padding: 0;
+  margin: 0;
+  line-height: 1.2; }
 
 blockquote {
-	border-style:solid;
-}
+  padding: 0.6em; }
+
+address {
+  font-style: normal; }
+
+/* table,list */
+table, th, td {
+  text-decoration: none;
+  border: none 1px #000;
+  margin: 0;
+  padding: 0; }
+
+table, td, th {
+  border-style: solid; }
+
+table {
+  border-width: 4px;
+  margin: 0.3em; }
+
+th, td {
+  padding: 0.3em 0.6em; }
+
+th {
+  font-weight: bold; }
+
+ul {
+  list-style-type: none;
+  padding-left: 1em; }
+
+ol {
+  list-style-type: decimal;
+  padding-left: 2em; }
+
+li {
+  list-style-position: outside;
+  margin: 0;
+  line-height: 1.0; }
+
+dt, dd {
+  margin: 0 0 0 1em; }
+
+dd {
+  padding: 0.3em; }
+
+/* image applet ... */
+img {
+  margin: 0.2em 0.5em; }
+
+a img {
+  border: solid thin #00f; }
+
+/* 汎用テキスト要素 */
+br {
+  letter-spacing: 0; }
+
+/*
+用途が特殊です
+画像等にfloatを適用した場合、親要素のボックスから画像がはみ出ないために使用するbrタグにコレを利用します
+(現在)div:after{ content:" "; display:block; }に置き換え中
+*/
+br.clear {
+  clear: both; }
+
+textarea, form {
+  border-style: solid; }
+
+textarea, form {
+  margin: 0.2em;
+  padding: 0.3em; }
+
+input, button {
+  margin: 0.1em;
+  padding: 0.2em;
+  font-size: 1.0em; }
+
+select {
+  margin: 0.1em;
+  border-style: inset;
+  font-size: 1.0em; }
+
+a, abbr, acronym, dfn, em, q, span, strong, ruby, code, cite,
+ins, del {
+  outline: none 1px #aaa; }
+
+/* ============================
+block elements
+============================ */
+h1, h2, h3, h4, h5, h6,
+div, p, blockquote, pre, code,
+object, map,
+ul, ol, dl, dt, dd, li,
+textarea, form, iframe, select {
+  outline: none 1px #000; }
+
+div.section:after {
+  content: " ";
+  display: block;
+  clear: both; }
+
+q:before {
+  content: open-quote; }
+
+q:after {
+  content: close-quote; }
+
+h1:before, h1:after,
+h2:before, h2:after,
+h3:before, h3:after,
+h4:before, h4:after,
+h5:before, h5:after,
+h6:before, h6:after {
+  margin: 0.2em; }
+
+pre > code {
+  display: block;
+  border-style: dotted;
+  overflow: auto; }
+
+code.block {
+  white-space: pre; }
+
+blockquote > p {
+  margin: 0;
+  padding: 0; }
+
+ol {
+  list-style-type: decimal; }
+
+li {
+  list-style-position: outside; }
+
+li:before,
+dt:before {
+  margin-right: 0.2em; }
+
+table {
+  border-collapse: separate;
+  border-spacing: 1px; }
+
+div.table {
+  display: table; }
+
+div.tr {
+  display: table-row;
+  border: 3px solid red; }
+
+div.td {
+  display: table-cell; }
+
+input[type="checkbox"],
+input[type="radio"] {
+  border-style: none; }
+
+input[type="text"],
+input[type="file"] {
+  padding: 0.2em;
+  font-size: 1.0em; }
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="file"] {
+  border-style: outset;
+  border-width: 0.15em;
+  padding: 0 0.2em; }
+
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+  border-style: inset; }
+
+label:after,
+button:after,
+textarea:after,
+input[type="button"]:after,
+input[type="reset"]:after,
+input[type="submit"]:after {
+  content: attr(accesskey); }
+
+/*
+ * based upon
+ *  http://www.akatsukinishisu.net/itazuragaki/2001_10.html#ruby_for_Mozilla_3
+ */
+ruby {
+  display: inline-table;
+  text-align: center;
+  white-space: nowrap;
+  text-indent: 0;
+  text-align: center;
+  margin: 0;
+  vertical-align: bottom; }
+
+ruby > rbc + rtc + rtc {
+  display: table-footer-group;
+  font-size: 70%;
+  line-height: 30%;
+  letter-spacing: 0;
+  text-align: center; }
+
+rbc > rb,
+rtc > rt {
+  display: table-cell;
+  letter-spacing: 0;
+  text-align: center; }
+
+rtc > rt[rbspan] {
+  display: table-caption;
+  text-align: center; }
+
+rp {
+  display: none; }
+
+/*
+	各地に分散しがちな、基本配色設定を書き出しておきます
+	適応範囲:サイト全体
+*/
+body {
+  color: #000;
+  background-color: #ffffff;
+  /* IE Only */
+  /*scrollbar-base-color:#34025B;
+	scrollbar-arrow-color:#fff;*/ }
+
+abbr, acronym, del, em, ins, q, span, strong, ruby {
+  border-color: #000; }
+
+a,
+a:hover,
+a:active {
+  color: #436CAA;
+  border-color: #436CAA; }
+
+a:visited {
+  color: #503F88; }
+
+a:hover {
+  border-color: #503F88;
+  text-decoration: underline; }
+
+kbd {
+  background-color: #fcf5fc;
+  border-color: #fcf5fc; }
+
+/* block attoribute */
+div, p, address,
+table, td, tr, th, ol, ul, nl
+textarea, form, input, button, select,
+dl, dt, dd,
+iframe {
+  border-color: #C7C7C7; }
+
+h {
+  border-color: #C7C7C7; }
+
+blockquote, blockcode {
+  border-color: #e9dcba;
+  background-color: #e9dcba; }
+
+ins {
+  border-color: #530292; }
+
+table {
+  background-color: transparent;
+  border-width: 15px; }
+
+textarea, form {
+  background-color: #fff; }
+
+input[type="text"],
+input[type="file"] {
+  background-color: #fff;
+  border-style: inset; }
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  color: #000;
+  font-style: normal;
+  font-weight: bold;
+  border-style: solid;
+  border-width: 1px 4px 4px 1px;
+  border-color: #000;
+  background-color: #fff; }
+
+/* 文字装飾用のクラス集 */
+/* 適用範囲:勝手にして（ぉ */
+blockquote[cite]:after,
+blockquote[title]:after {
+  color: #82947a; }
+
+*.NY {
+  font-family: "Times New Roman","New York","ＭＳ 明朝",serif; }
+
+*.JP {
+  font-family: "ＤＦ平成明朝体W3", "ＭＳ 明朝", "細明朝体", serif; }
+
+*.miyabi {
+  font-family: "ＤＦ行書体",cursive; }
+
+*.bakuzen {
+  letter-spacing: 0.5em; }
+
+em.mark, em.kwd {
+  font-weight: normal; }
+
+em.mark:before, em.mark:after,
+em.kwd:before, em.kwd:after {
+  content: '"'; }
+
+em.more {
+  font-weight: bold;
+  font-size: 1.3em; }
+
+span.voice_fadeout {
+  font-size: 0.5em; }
+
+*.uri {
+  color: #42d; }
+
+em.comment:before,
+q.comment:before {
+  content: "「"; }
+
+em.comment:after,
+q.comment:after {
+  content: "」"; }
+
+/* ins */
+ins.exposition,
+ins.append,
+ins.annotation {
+  display: block;
+  margin: 0.1em;
+  padding: 0.1em 0.3em; }
+
+ins.exposition[datetime]:after,
+ins.append[datetime]:after,
+ins.annotation[datetime]:after {
+  content: attr(datetime);
+  display: block;
+  border-style: solid;
+  text-align: right; }
+
+/* 文書の分からない言葉に最後に解説を加えるときに使用します。 */
+ins.exposition:before {
+  content: "解説 : "; }
+
+a.exposition {
+  text-decoration: none; }
+
+a.exposition:before {
+  content: "*";
+  vertical-align: super; }
+
+/* 訂正などを追記する場合に使用 */
+ins.append:before {
+  display: block;
+  content: "<<<追記>>>";
+  padding: 0.2em;
+  color: #aaa; }
+
+/* メールの内容を紹介する場合 */
+blockquote[cite]:after,
+blockquote[title]:after {
+  content: attr(cite);
+  display: block;
+  text-align: right;
+  color: #999; }
+
+/* アスキーアート表示用の設定 */
+pre.AA {
+  font-family: "MS UI Gothic", "Osaka", monospace;
+  font-size: 1.0em;
+  line-height: 1.2; }
+
+/* 顔文字表示用の設定 */
+span.face_mark
+em.face_mark
+strong.face_mark {
+  font: inherit; }
+
+/* 会話を再現するために使います */
+dl.talk {
+  position: relative;
+  padding-left: 0; }
+
+dl.talk dt {
+  position: absolute;
+  left: 0;
+  width: 7em; }
+
+dl.talk dd {
+  margin-left: 9.0em; }
+
+/** ニコニコ動画やgooglemap等、外部コンテンツをWebページに貼り付けるために使います */
+object.ext-content,
+iframe.ext-content {
+  border: solid 1px #888; }
+
+/* ニコニコ動画向けのリンクの装飾 */
+object.nico {
+  border: solid 1px #888;
+  width: 312px;
+  height: 176px;
+  overflow: hidden; }
+
+@namespace "http://www.w3.org/1999/xhtml/";
+/* 基本構成の定義 */
+/* 適用範囲:サイト全体 */
+h1, h2, h3, h5, h6 {
+  font-family: "Times New Roman", "New York", "ＤＦ平成明朝体W3", "細明朝体" , "ＭＳ 明朝", serif; }
+
+p {
+  padding: 0;
+  margin: 0;
+  line-height: 1.2; }
+
+img {
+  font-size: 1.0em;
+  font-family: "Impact", "Chicago", fantasy; }
+
+body {
+  padding: 0.6em 1em;
+  margin: 0; }
+
+div#licence {
+  border-style: dotted;
+  border-width: 2px;
+  margin: 0.4em;
+  padding: 0.5em; }
+
+div#debug-message {
+  min-width: 10em;
+  min-height: 6em;
+  border-style: solid; }
+
+body {
+  padding: 0 0 1em 0; }
+
+head + body {
+  margin: 0;
+  padding: 0; }
+
+h1 {
+  margin: 0;
+  font-size: 2.0em;
+  background-color: #000;
+  color: #fff;
+  padding: 0.5em; }
+
+body > h1:first-child {
+  background-color: #000;
+  background-repeat: no-repeat;
+  font-size: 1.8em; }
+
+h1:first-child + div {
+  margin: 0.6em 2.5em;
+  padding: 0.7em 1.5em; }
+
+h1:first-child:before {
+  font-size: 1.6em; }
+
+h2 {
+  border-color: #1c3428;
+  border-width: 3px;
+  border-style: none none solid none; }
+
+h2 + div.section {
+  border-style: none solid; }
+
+h2:before {
+  content: ""; }
+
+h3 {
+  border-color: #1c3428;
+  border-width: 3px;
+  border-style: none none double none; }
+
+h4 {
+  border-style: none none dashed none; }
+
+h3:before {
+  content: ""; }
+
+h3:before {
+  margin-right: 0.2em; }
+
+h2 + div.section {
+  border-width: 0.2em;
+  margin: 0 0 0.4em 0;
+  padding: 0.5em; }
+
+blockquote {
+  border-style: solid; }
 
 /* table,list */
 table {
-	border-style:solid;
-	border-width:0.3em;
-	margin:0.5em 1em;
-}
+  border-style: solid;
+  border-width: 0.3em;
+  margin: 0.5em 1em; }
 
 th {
-	font-style:normal;
-}
+  font-style: normal; }
 
 ul {
-	border-style:none;
-	margin-left:0.4em;
-}
+  border-style: none;
+  margin-left: 0.4em; }
 
 ul > li:before {
-	content:"";
-	padding:0.2em;
-}
+  content: "";
+  padding: 0.2em; }
 
 dl.explain {
-	border-style:none none none solid;
-	border-width:0.3em;
-}
+  border-style: none none none solid;
+  border-width: 0.3em; }
 
 dl.explain > dt.define {
-	border-style:solid none;
-	font-size:1.2em;
-	font-weight:bold;
-	padding:0.2em;
-}
+  border-style: solid none;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.2em; }
 
 div.para {
-	padding:0.2em;
-	margin:0.2em;
-}
-
+  padding: 0.2em;
+  margin: 0.2em; }

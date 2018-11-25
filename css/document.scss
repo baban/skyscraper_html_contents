@@ -1,0 +1,63 @@
+/* 単純な文書関連の装飾を行います */
+@import "def/html-default-css1";
+@import "def/html-default-css2";
+@import "def/html-color-base";
+@import "base-style";
+@import "pattern/banner-title";
+@import "document-app";
+
+body {
+  background-color: #EFE3D2;
+}
+
+h2 {
+  border-style: none none double none;
+  border-width: 3px;
+}
+
+h3 {
+  border-style: none none dashed none;
+  border-width: 1px;
+}
+
+ul > li:before {
+  content: "◇";
+  padding: 0.2em;
+}
+
+/* tocは Table of content の略、コンテンツの目次に使用します */
+dl.toc > dt {
+  font-size: 1.1em;
+  font-weight: bold;
+  border-style: none none none solid;
+  border-width: 3px;
+  padding-left: 0.7em;
+  a {
+    text-decoration: none;
+  }
+  &:after {
+    margin-left: 1.2em;
+  }
+}
+
+table {
+  td, tr {
+    padding: 0.2em;
+  }
+  border-width: 0.5em;
+  margin: 0.5em 1.5em;
+	td img.preview {
+		width: 160px;
+		height: 120px;
+		margin: 1px;
+	}
+}
+
+ul.strong_menu {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+div.explain {
+  padding: 0.5em 0.7em;
+}

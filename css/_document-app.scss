@@ -84,13 +84,12 @@ ul {
 dl.explain {
 	border-style:none none none solid;
 	border-width:0.3em;
-}
-
-dl.explain > dt.define {
-	border-style:solid none;
-	font-size:1.2em;
-	font-weight:bold;
-	padding:0.2em;
+	> dt.define {
+		border-style:solid none;
+		font-size:1.2em;
+		font-weight:bold;
+		padding:0.2em;
+	}
 }
 
 div.para {
