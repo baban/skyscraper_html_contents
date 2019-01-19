@@ -4,6 +4,25 @@ body {
   background-color: #EFE3D2;
 }
 
+header {
+	background-color: black;
+	nav {
+		ul {
+			margin:0;
+			text-align:right;
+			li {
+				display: inline-block;
+				a {
+					color: rgb(12, 9, 9);
+					&:link, &:visited, &:hover, &:active {
+						color: white;
+					}
+				}
+			}
+		}
+	}
+}
+
 /** ドキュメント装飾のためのCSS、セミナー用文書と通常文書の２つで共有なので分離 */
 #content {
 	background-color:#fff;
