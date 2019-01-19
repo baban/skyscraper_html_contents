@@ -5,13 +5,14 @@ body {
 }
 
 header {
-	background-color: black;
+	background-color: #262626;
 	nav {
 		ul {
 			margin:0;
 			text-align:right;
 			li {
 				display: inline-block;
+				margin-left: 0.5em;
 				a {
 					color: rgb(12, 9, 9);
 					&:link, &:visited, &:hover, &:active {

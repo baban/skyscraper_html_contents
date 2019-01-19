@@ -493,12 +493,13 @@ body {
   background-color: #EFE3D2; }
 
 header {
-  background-color: black; }
+  background-color: #262626; }
   header nav ul {
     margin: 0;
     text-align: right; }
     header nav ul li {
-      display: inline-block; }
+      display: inline-block;
+      margin-left: 0.5em; }
       header nav ul li a {
         color: #0c0909; }
         header nav ul li a:link, header nav ul li a:visited, header nav ul li a:hover, header nav ul li a:active {

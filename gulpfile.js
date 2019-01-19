@@ -39,7 +39,7 @@ gulp.task('programs-css', function() {
 });
 
 gulp.task('default', function() {
-    gulp.watch(path.join(assetsPath, '*.scss'), gulp.series('document-css'));
-    gulp.watch(path.join(assetsPath, '*.scss'), gulp.series('programs-css'));
-    gulp.watch(path.join(assetsPath, '*.scss'), gulp.series('seminor-css'));
+    //gulp.watch(path.join(assetsPath, '*.scss'), gulp.series('document-css'));
+    //gulp.watch(path.join(assetsPath, '*.scss'), gulp.series('programs-css'));
+    gulp.watch(path.join(assetsPath, '*.scss'), gulp.parallel('seminor-css'));
 });
