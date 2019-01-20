@@ -15,7 +15,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var plumber = require('gulp-plumber');
 
 gulp.task('document-css', function() {
-    gulp.src(path.join(assetsPath, 'document.scss'))
+    return gulp.src(path.join(assetsPath, 'document.scss'))
         .pipe(plumber())
         .pipe(sass())
         .pipe(autoprefixer())
@@ -23,7 +23,7 @@ gulp.task('document-css', function() {
 });
 
 gulp.task('seminor-css', function() {
-    gulp.src(path.join(assetsPath, 'seminor.scss'))
+    return gulp.src(path.join(assetsPath, 'seminor.scss'))
         .pipe(plumber())
         .pipe(sass())
         .pipe(autoprefixer())
@@ -31,15 +31,15 @@ gulp.task('seminor-css', function() {
 });
 
 gulp.task('programs-css', function() {
-    gulp.src(path.join(assetsPath, 'programs.scss'))
+    return gulp.src(path.join(assetsPath, 'programs.scss'))
         .pipe(plumber())
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(gulp.dest(path.join(assetsPath, './')));
 });
 
-gulp.task('default', function() {
-    //gulp.watch(path.join(assetsPath, '*.scss'), gulp.series('document-css'));
-    //gulp.watch(path.join(assetsPath, '*.scss'), gulp.series('programs-css'));
+gulp.task('default', gulp.series(function() {
+    gulp.watch(path.join(assetsPath, '*.scss'), gulp.parallel('document-css'));
+    gulp.watch(path.join(assetsPath, '*.scss'), gulp.parallel('programs-css'));
     gulp.watch(path.join(assetsPath, '*.scss'), gulp.parallel('seminor-css'));
-});
+}));
