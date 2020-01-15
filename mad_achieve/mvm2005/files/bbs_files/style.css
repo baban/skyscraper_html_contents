@@ -1,0 +1,27 @@
+BODY {
+	FONT-SIZE: 12px; BACKGROUND-ATTACHMENT: fixed; MARGIN: 0px; COLOR: #666666; LINE-HEIGHT: 16px; BACKGROUND-REPEAT: repeat; FONT-FAMILY: Verdana, "‚l‚r ‚oƒSƒVƒbƒN", Osaka; LETTER-SPACING: 2px
+}
+BR {
+	LETTER-SPACING: normal
+}
+TD {
+	FONT-SIZE: 12px; LINE-HEIGHT: 16px; FONT-FAMILY: Verdana, "‚l‚r ‚oƒSƒVƒbƒN", Osaka; LETTER-SPACING: 2px
+}
+A:link {
+	COLOR: #666666; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #999999; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	LEFT: 1px; COLOR: #000000; POSITION: relative; TOP: 1px
+}
+.solid {
+	BORDER-RIGHT: #cfe3c8 1px dotted; BORDER-TOP: #cfe3c8 1px dotted; BORDER-LEFT: #cfe3c8 1px dotted; BORDER-BOTTOM: #cfe3c8 1px dotted
+}
+.solid2 {
+	BORDER-RIGHT: #009933 1px dotted; BORDER-TOP: #009933 1px dotted; BORDER-LEFT: #009933 1px dotted; BORDER-BOTTOM: #009933 1px dotted
+}
