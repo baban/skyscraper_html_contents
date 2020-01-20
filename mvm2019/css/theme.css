@@ -24,7 +24,7 @@ main > h2 {
 }
 
 main > section {
-  padding:0.4em;
+  padding:0 0.4em;
 }
 
 .strong-link { 
