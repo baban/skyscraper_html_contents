@@ -42,8 +42,13 @@ main > section {
   border:dashed 1px #ce8424;
 }
 
-footer > h3 {
-  margin:0.2rem 0.5rem;
+h3 {
+  font-size:1.1rem;
+  font-weight:normal;
+  margin:0 0.3rem;
+}
+h3:before {
+  content:"■";
 }
 
 ul.banners {
