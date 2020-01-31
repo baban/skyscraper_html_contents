@@ -42,6 +42,10 @@ main > section {
   border:dashed 1px #ce8424;
 }
 
+footer > h3 {
+  margin:0.2rem 0.5rem;
+}
+
 ul.banners {
   box-sizing: border-box;
   border-top:dashed 1px #aaa;
