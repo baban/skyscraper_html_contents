@@ -41,3 +41,13 @@ main > section {
   margin:0.5em auto;
   border:dashed 1px #ce8424;
 }
+
+ul.banners {
+  box-sizing: border-box;
+  border-top:dashed 1px #aaa;
+  padding:0.5em;
+}
+
+a.banner img {
+  border:solid 1px blue;
+}
