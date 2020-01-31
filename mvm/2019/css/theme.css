@@ -5,13 +5,13 @@ header > h1 {
 
 header > h1 > img {
   max-width:100%;
-  width: 40rem;
+  width: 50rem;
   height:auto;
 }
 
 main {
   margin: auto;
-  width: 40rem;
+  width: 50rem;
   max-width:100%;
   box-sizing: border-box;
   margin-bottom: 1.5rem;
