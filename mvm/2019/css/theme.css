@@ -60,3 +60,12 @@ ul.banners {
 a.banner img {
   border:solid 1px blue;
 }
+
+table.table {
+  border-style:solid;
+}
+
+table.table th,
+table.table td {
+  border:solid 1px black;
+}
