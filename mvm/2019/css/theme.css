@@ -11,8 +11,8 @@ header > h1 > img {
 
 main {
   margin: auto;
-  width: 50rem;
-  max-width:100%;
+  min-width: 50rem;
+  max-width:70%;
   box-sizing: border-box;
   margin-bottom: 1.5rem;
 }
@@ -63,9 +63,24 @@ a.banner img {
 
 table.table {
   border-style:solid;
+  border-collapse:collapse;
+  border-color: #000080;
 }
 
 table.table th,
 table.table td {
-  border:solid 1px black;
+  border:ridge 2px #6048EB;
+  padding:0.2rem;
+}
+
+table.table tr th {
+  background:#190595;
+  color:white;
+}
+
+table.table tr td {
+  background:#B9CBEB;
+}
+table.table tr:nth-child(odd) td {
+  background:#C5E8FF;
 }
