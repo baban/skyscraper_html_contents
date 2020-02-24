@@ -65,12 +65,18 @@ table.table {
   border-style:solid;
   border-collapse:collapse;
   border-color: #000080;
+  margin:1rem auto;
+  min-width:30rem;
 }
 
 table.table th,
 table.table td {
   border:ridge 2px #6048EB;
   padding:0.2rem;
+}
+
+table.table th a {
+  color:white;
 }
 
 table.table tr th {
