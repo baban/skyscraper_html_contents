@@ -11,8 +11,8 @@ header > h1 > img {
 
 main {
   margin: auto;
-  min-width: 50rem;
-  max-width:70%;
+  min-width: 20rem;
+  max-width: 70%;
   box-sizing: border-box;
   margin-bottom: 1.5rem;
 }
@@ -66,7 +66,8 @@ table.table {
   border-collapse:collapse;
   border-color: #000080;
   margin:1rem auto;
-  min-width:30rem;
+  min-width:20rem;
+  max-width:100%;
 }
 
 table.table th,
