@@ -1,3 +1,7 @@
+p {
+  line-height:1.0;
+}
+
 header > h1 {
   text-align:center;
   margin:auto;
@@ -73,7 +77,7 @@ table.table {
 table.table th,
 table.table td {
   border:ridge 2px #6048EB;
-  padding:0.2rem;
+  padding:0.4rem;
 }
 
 table.table th a {
@@ -86,8 +90,8 @@ table.table tr th {
 }
 
 table.table tr td {
-  background:#B9CBEB;
+  background:#d2e2fe;
 }
 table.table tr:nth-child(odd) td {
-  background:#C5E8FF;
+  background:#e1f3fb;
 }
