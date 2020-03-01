@@ -21,6 +21,12 @@ main {
   margin-bottom: 1.5rem;
 }
 
+@media (max-width: 720px) {
+  main {
+    min-width: 100%;
+  }
+}
+
 main > h2 {
   color:white;
   background-color:#190595;
