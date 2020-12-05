@@ -1,0 +1,118 @@
+p {
+  line-height:1.0;
+}
+
+header > h1 {
+  text-align:center;
+  margin:auto;
+}
+
+header > h1 > img {
+  max-width:100%;
+  width: 50rem;
+  height:auto;
+}
+
+main {
+  margin: auto;
+  min-width: 21.5rem;
+  max-width: 70%;
+  box-sizing: border-box;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 720px) {
+  main {
+    min-width: 100%;
+  }
+}
+
+main > h2 {
+  color:white;
+  background-color:#190595;
+  font-size:1.2rem;
+  padding:0.4rem;
+}
+
+main > section {
+  padding:0.4em;
+}
+
+.strong-link { 
+  font-size:1.5em;
+}
+
+#copyright {
+  margin:auto;
+  box-sizing: border-box;
+  width: 50em;
+  max-width: 100%;
+  padding: 0.5rem;
+  margin: 0.5em auto;
+  border:dashed 1px #ce8424;
+}
+
+h3 {
+  font-size:1.1rem;
+  font-weight:normal;
+  margin:0 0.3rem;
+}
+
+h3:before {
+  content:"■";
+}
+
+ul.banners {
+  box-sizing: border-box;
+  border-top:dashed 1px #aaa;
+  padding:0.5em;
+}
+
+a.banner img {
+  border:solid 1px blue;
+}
+
+table.table {
+  border-style:solid;
+  border-collapse:collapse;
+  border-color: #000080;
+  margin:1rem auto;
+  min-width:20rem;
+  max-width:100%;
+}
+
+table.table th,
+table.table td {
+  border:ridge 2px #6048EB;
+  padding:0.4rem;
+}
+
+table.table th a {
+  color:white;
+}
+
+table.table tr th {
+  background:#190595;
+  color:white;
+}
+
+table.table tr td {
+  background:#d2e2fe;
+}
+table.table tr:nth-child(odd) td {
+  background:#e1f3fb;
+}
+
+.freebirdAnalyticsViewAnalyticsHeaderContainer {
+  background-color: #e1f3fb;
+  margin:3rem 0 0 0;
+  padding:0.4rem;
+  border-radius: 0.4rem;
+}
+
+.freebirdCommonAnalyticsTextResponse {
+  background-color: #d2e2fe;
+  margin:0.3rem;
+  padding:0.4rem;
+  border-radius: 0.4rem;
+}
