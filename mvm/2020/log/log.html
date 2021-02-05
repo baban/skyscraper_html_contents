@@ -1,0 +1,1226 @@
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+
+<LINK REL="alternate" TYPE="application/rss+xml" TITLE="RSS" HREF="http://9209.teacup.com/mvm2020/bbs/rss15.xml">
+<LINK REL="canonical" HREF="http://9209.teacup.com/mvm2020/bbs">
+
+
+<TITLE>静止画M@D大賞2020投票掲示板</TITLE>
+
+<script type="text/javascript" src="//rbbs-img.teacup.com/static/bbs/js/jquery-1.7.1.min.js" ></script>
+
+
+
+
+<!-- CSS -->
+<link href="//rbbs-img.teacup.com/static/style/201509_regist.css?20151005" rel="stylesheet">
+<link href="//rbbs-img.teacup.com/static/style/font-awesome.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="//rbbs-img.teacup.com/static/style/201509_main.css?20151005" rel="stylesheet">
+
+<!-- Awesome-->
+<!-- link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" -->
+
+<!-- Fonts from Google Fonts -->
+<link href='//fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+<script type="text/javascript">
+<!--
+function formToggle() {
+  checkExpand('form_message');
+  checkExpand('form_open');
+  checkExpand('form_close');
+}
+
+function threadToggle() {
+  checkExpand('thread_list');
+  checkExpand('thread_open');
+  checkExpand('thread_close');
+}
+
+function checkExpand(ch) {
+  var obj=document.all && document.all(ch) || document.getElementById && document.getElementById(ch);
+  if(obj && obj.style) obj.style.display=
+    "none" == obj.style.display ? "" : "none"
+}
+
+function postFormChange() {
+  var frm = document.frmPost;
+  frm.M.value = 'CHANGE_INPUT_HELPER';
+  frm.BODA.value = frm.BODA.value == 1 ? 0 : 1;
+  frm.action = '/mvm2020/bbs/post?upload=1';
+  frm.submit();
+}
+
+function $get (id) {
+  return document.getElementById(id);
+}
+function chkUpload(frm) {
+  if ($get('file1').value !== '' ||
+      $get('file2').value !== '' ||
+      $get('file3').value !== '') {
+    if (frm.action.indexOf('?',0)>0) {
+      frm.action = frm.action + '&fupload=1';
+    } else {
+      frm.action = frm.action + '?fupload=1';
+    }
+  }
+}
+// -->
+</script>
+  <script>
+$(function(){
+  var get_information = function(num){
+    var url = '//www.teacup.com/information'
+    $.ajax({
+      url: url,
+      dataType: 'jsonp',
+      jsonp:"callback",
+      data:"type=jsonp&len=30&num=" + num,
+      cache: false,
+      success: function (data, status) {
+        $.each(data, function(i,item){
+          $('#information').append(makeInfoTag(item));
+        });
+      }
+    });
+
+    function makeInfoTag(item){
+      var dat = '<a href="' + url + '/view?id=' + item.id + '" target="_blank">';
+      dat += item.title + '(' + item.startat + ')</a>';
+      return dat;
+    }
+  };
+  get_information(1);
+});
+</script>
+
+  
+  <script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+  window.Adomik = window.Adomik || {};
+  Adomik.randomAdGroup = function() {
+    var rand = Math.random();
+    switch (false) {
+      case !(rand < 0.09): return "ad_ex" + (Math.floor(100 * rand));
+      case !(rand < 0.10): return "ad_bc";
+      default: return "ad_opt";
+    }
+  };
+
+  (function() {
+    var url = '//www.googletagservices.com/tag/js/gpt.js';
+    var wtads = document.createElement('script');
+    wtads.async = true;
+    wtads.type = 'text/javascript';
+    wtads.src = url;
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(wtads, node);
+  })();
+</script>
+
+  
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/47908983/teacup_pc_bbs_header728x90', [728, 90], 'div-gpt-ad-1531206632464-0').setTargeting('ad_h', (new Date).getUTCHours()).setTargeting('ad_group',Adomik.randomAdGroup()).addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+
+  
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/47908983/teacup_pc_bbs_left_rectangle', [[300, 250], [336, 280]], 'div-gpt-ad-1531206939030-0').setTargeting('ad_h', (new Date).getUTCHours()).setTargeting('ad_group',Adomik.randomAdGroup()).addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+
+  
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/47908983/teacup_pc_bbs_right_rectangle', [[300, 250], [336, 280]], 'div-gpt-ad-1531206846208-0').setTargeting('ad_h', (new Date).getUTCHours()).setTargeting('ad_group',Adomik.randomAdGroup()).addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+
+  <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/47908983/teacup_pc_bbs_5th_native', ['fluid'], 'div-gpt-ad-1542282757946-0').setTargeting('ad_h', (new Date).getUTCHours()).setTargeting('ad_group',Adomik.randomAdGroup()).addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+
+</head>
+<body>
+  <!-- Fixed navbar -->
+<div class="navbar navbar-default" role="navigation">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-1">
+        <span class="sr-only">ヘッダーメニュー</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="//www.teacup.com"><b>teacup.レンタル掲示板</b></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="nav-menu-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="//www.teacup.com/information" target="_blank">最新のお知らせ</a></li>
+        <li id="information"></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+    
+<div class="container">
+  <div class="row centered">
+    <div>
+
+<a href="/mvm2020/bbs"><h1>
+      <b>静止画M@D大賞2020投票掲示板</b>
+</h1></a>
+
+    </div>
+  </div>
+  <p></p>
+
+      
+    
+</div>
+
+
+<hr>
+
+      
+  
+  
+
+
+  
+
+
+<center>
+<!-- /47908983/teacup_pc_bbs_header728x90 -->
+<div id='div-gpt-ad-1531206632464-0' style='height:90px; width:728px;'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1531206632464-0'); });
+</script>
+</div>
+</center>
+
+
+<hr>
+
+<div class="container">
+  <p>カテゴリ：[ <A HREF="//www.teacup.com/list/PC%EF%BC%8F%E3%83%8D%E3%83%83%E3%83%88%EF%BC%8F%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB" TARGET="_blank">PC／ネット／モバイル</A> ] 
+</p>
+
+
+  <div class="col-lg-10 col-lg-offset-1">
+    <h4>
+    <div class="row">
+
+                  <div class="col-sm-4">
+        <span id="form_open">
+          <a HREF="javascript:void(0)" onclick="formToggle();" class="btn btn-info btn-block btn-lg">投稿フォームを開く</a>
+        </span>
+        <span id="form_close" style="display:none;">
+          <a HREF="javascript:void(0)" onclick="formToggle();" class="btn btn-info btn-block btn-lg">投稿フォームを閉じる</a>
+        </span>
+      </div>
+            
+      <div class="col-sm-4 col-sm-offset-4">
+        <span id="thread_open">
+          <a HREF="javascript:void(0)" onclick="threadToggle();" class="btn btn-info btn-block btn-lg">新着スレッド一覧</a>
+        </span>
+        <span id="thread_close" style="display:none;">
+          <a HREF="javascript:void(0)" onclick="threadToggle();" class="btn btn-info btn-block btn-lg">新着スレッド一覧を閉じる</a>
+        </span>
+      </div>
+
+    </h4>
+    </div>
+  </div>
+</div>
+<!-- /container --> 
+
+
+
+
+
+            <div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1" id="form_message" style="display:none;">
+
+      <FORM NAME="frmPost" METHOD="post" ACTION="/mvm2020/bbs/post/exec/?upload=1" ENCTYPE="multipart/form-data" onsubmit="javascript:chkUpload(this);">
+      
+        <INPUT TYPE="hidden" NAME="BODA" VALUE="">
+        <INPUT TYPE="hidden" NAME="tstamp" VALUE="1612541217">
+        <INPUT TYPE="hidden" NAME="CPTPS" VALUE="0vS8Ek5ugo">
+        <INPUT TYPE="hidden" NAME="M" VALUE="">
+        <span>
+＜思いやりのあるコミュニティ宣言＞<br />
+teacup.掲示板は、皆様の権利を守りながら、思いやり、温かみのあるコミュニティづくりを応援します。<br />
+いつもご協力いただきありがとうございます。<br />
+<br />
+        </span>
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 col-md-4 col-md-4">
+            <div class="form-group">
+              名前：<input type="text" name="NA" id="" class="form-control input-lg" placeholder="投稿者の名前：" VALUE=" 運営">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4 col-md-4">
+            <div class="form-group">
+              題名：<input type="text" name="SU" id="" class="form-control input-lg" placeholder="題名：">
+            </div>
+          </div>
+
+              </div>
+
+
+        <div class="form-group">
+      <span>
+
+&lt;IMG&gt;
+タグが利用可能です。<a href="//orange.ap.teacup.com/rbbs_faq/36.html" target="_blank">(詳細)</a>
+      </span>
+      <span class="pull-right">
+        <a id="postFormChange" HREF="javascript:postFormChange()">入力補助はここをクリック</a>
+      </span>
+  </div>
+
+
+        <div class="form-group">
+          <textarea class="form-control input-lg" placeholder="メッセージ：" NAME="CO"></textarea>
+        </div>
+
+              <div class="form-group">
+          URL：<input type="text" name="UR" class="form-control input-lg" placeholder="URL：" VALUE="http://">
+        </div>
+      
+        
+        <div class="form-group">
+
+        <span>
+        <a HREF="javascript:void(0)" onclick="checkExpand('file_additional');">画像・ファイルのアップロードはここをクリック</a>
+        </span>
+
+        </div>
+
+        <div class="form-group" id="file_additional" style="display:none;">
+          <input type="file" name="FI[]" id="file1" class="form-control input-lg">
+          <input type="file" name="FI[]" id="file2" class="form-control input-lg">
+          <input type="file" name="FI[]" id="file3" class="form-control input-lg">
+          <span class="help-block"><br />
+
+アップロード可能な形式(各4MB以内)：
+画像(gif,png,jpg,bmp) 
+音楽(mmf,mld) 
+動画(amc,3gp,3g2) 
+</span>
+        </div>
+        
+
+        <hr>
+        <div class="row">
+                <div class="col-xs-12 col-sm-6">
+          <input type="submit" value="投稿する" class="btn btn-info btn-block btn-lg" NAME="submit3"></div>
+                              <div class="col-xs-12 col-sm-6">
+          <input type="submit" value="確認する" class="btn btn-info btn-block btn-lg" NAME="PPF"></div>
+                      </div>
+            </form>
+    </div>
+  </div>
+</div>
+            
+
+
+
+<div class="container" id="thread_list" style="display:none;">
+  <hr>
+  <h4>スレッド一覧</h4>
+
+
+◇<a href="/mvm2020/bbs/t1/l50" title="20/12/26(土)22:40">足あと帳</a>(0)</li>
+
+<br />
+
+<a href="/mvm2020/bbs/index/all">スレッド一覧(全1)</a>
+<img src="//rbbs-img.teacup.com/img/bbs/thread/icon_search15x15.gif" width="15" height="15"><a href="//www.teacup.com/list/" target="_blank" rel="nofollow">他のスレッドを探す</a>
+
+
+<br>
+*掲示板をお持ちでない方へ、まずは掲示板を作成しましょう。<img src="//rbbs-img.teacup.com/img/bbs/thread/icon_memo15x15.gif"><a href="//my.teacup.com/regist/bbs" target="_blank">無料掲示板作成</a>
+
+
+
+</div>
+
+
+      <hr>
+
+<!-- pager -->
+<div class="container centered">
+  <div class="row">
+
+    <div class="bs-component">
+      <ul class="pagination">
+
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                        <li class="disabled"><a href="#">1</a></li>
+                        <li><a href="?page=2&">2</a></li>
+                        <li><a href="?page=3&">3</a></li>
+                        <li><a href="?page=4&">4</a></li>
+                        <li><a href="?page=5&">5</a></li>
+                        <li><a href="?page=6&">6</a></li>
+                        <li><a href="?page=7&">7</a></li>
+                        <li><a href="?page=8&">8</a></li>
+                        <li><a href="?page=9&">9</a></li>
+                        <li><a href="?page=10&">10</a></li>
+                        <li><a href="?page=2&">&raquo;</a></li>
+    
+      </ul>
+    </div>
+      <small>全<b>91</b>件の内、新着の記事から<b>10</b>件ずつ表示します。</small>
+    </div>
+</div>
+<!--/pager-->
+
+
+
+
+
+
+<div class="container">
+
+    
+  <div class="row">
+
+      
+    <div class="col-lg-10 col-lg-offset-1"> <br/>
+      <hr>
+              <h3>
+[94] <a name="94" href="/mvm2020/bbs/94">(無題)</a>
+</h3>
+<div class="clearfix">
+      <span class="glyphicon glyphicon-user"></span> 投稿者：
+  <b>ratto_</b><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 投稿日：2021年 1月30日(土)23時59分41秒&nbsp;fpa446e430.tkyc010.ap.nuro.jp&nbsp;<a href="https://my.teacup.com/inform?http%3A%2F%2F9209.teacup.com%2Fmvm2020%2Fbbs%2F94" target="_blank" rel="nofollow"><b class="label label-danger"> 通報 </b></a>&nbsp;<a href="/mvm2020/bbs/post/index/comm_id/94/" rel="nofollow"><b class="label label-success"> 返信・引用 </b></a></span>
+
+
+</div>
+
+
+  
+  
+  
+  
+  
+  
+      <p>2020年ベスト静止画M@D部門<BR>
+<BR>
+【静止画MAD】「私はあなたの、絶対なの」【デッドデッドデーモンズデデデデデストラクション】 / kyui full<BR>
+【AMV/MAD】　怪獣8号　【怪獣の花唄】 / Nanatsuki<BR>
+【MAD】春に近い場所そして君を想う【ささこい】 / Totori<BR>
+【静止画MAD】棺担ぎのクロ。～廻想旅話～ / てつ(XIAO)<BR>
+あの太陽が偽物だってどうして誰も気づかないんだろう / てへ<BR>
+【MAD】 ほほえみ 【恋の撮り方】 / てへ<BR>
+【MAD】 ガチャン⇔パタン 【ハッピーシュガーライフ】 / ゆっぴ<BR>
+[ MAD ] しゃかりきかわいい女子たち [ ゆるゆり ] / ゆっぴ<BR>
+【MAD】愛悩【僕の心のヤバイやつ】 / 明P<BR>
+【MAD】 AQ不変 【不死の猟犬・不死の稜線】 / 軍魔<BR>
+<BR>
+<BR>
+運営おつかれさまです。<BR>
+みなさんが投票されている作品も観つつ投票を考えました<BR>
+AQ不変とガチャン⇔パタンのリピート率が高かったです。<BR>
+歴代ベストは観れてない期間・作品が多すぎることもあり棄権します。<BR>
+</p>
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+
+        <hr>
+<div class="centered" style="display:inline-block;">
+  <div style="vertical-align:top;display:inline-block;">
+  <div style="vertical-align:top;display:inline-block;">
+  <!-- /47908983/teacup_pc_bbs_left_rectangle -->
+<div id='div-gpt-ad-1531206939030-0'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1531206939030-0'); });
+</script>
+</div>
+
+  </div>
+
+  </div>
+  <div style="vertical-align:top;display:inline-block;">
+<!-- /47908983/teacup_pc_bbs_right_rectangle -->
+<div id='div-gpt-ad-1531206846208-0'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1531206846208-0'); });
+</script>
+</div>
+
+
+  </div>
+</div>
+
+      
+    </div>
+  
+    <div class="col-lg-10 col-lg-offset-1"> <br/>
+      <hr>
+              <h3>
+[93] <a name="93" href="/mvm2020/bbs/93">(無題)</a>
+</h3>
+<div class="clearfix">
+      <span class="glyphicon glyphicon-user"></span> 投稿者：
+  <b>ai</b><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 投稿日：2021年 1月30日(土)23時59分11秒&nbsp;69.169.18.9&nbsp;<a href="https://my.teacup.com/inform?http%3A%2F%2F9209.teacup.com%2Fmvm2020%2Fbbs%2F93" target="_blank" rel="nofollow"><b class="label label-danger"> 通報 </b></a>&nbsp;<a href="/mvm2020/bbs/post/index/comm_id/93/" rel="nofollow"><b class="label label-success"> 返信・引用 </b></a></span>
+
+
+</div>
+
+
+  
+  
+  
+  
+  
+  
+      <p>●2020年ベスト静止画M@D部門<BR>
+【MAD】春に近い場所そして君を想う【ささこい】/Totori<BR>
+【MAD】 起点 【阿良々木暦】 / Totori<BR>
+【MAD】違和感のしっぽ【田舎に帰るとやけになついた褐色ポニテショタがいる】/テラバイト☆ゆういち<BR>
+【AMV/MAD】怪獣8号　【怪獣の花唄】/Nanatsuki<BR>
+【MAD】 ガチャン⇔パタン 【ハッピーシュガーライフ】/ゆっぴ<BR>
+あの太陽が偽物だってどうして誰も気づかないんだろう/ てへ<BR>
+【静止画MAD】「私はあなたの、絶対なの」/ kyui full<BR>
+【MAD】 愛悩【僕の心のヤバイやつ】 / 明P<BR>
+【MAD】 未来世紀とりしろじま 【Summer Pockets REFLECTION BLUE】 /軍魔<BR>
+【静止画MAD】その向こうへ【ピンポン】 / Kamro<BR>
+<BR>
+■歴代ベスト静止画M@D部門<BR>
+【MAD】 遠い空の向こうに―― 【そして明日の世界より――】/軍魔<BR>
+【MAD】 意識の繭 【素晴らしき日々】 / uwgsr<BR>
+【MAD】群青ノスタルジア、窓辺の世界にて。【牧之原翔子】/Totori<BR>
+【MAD】NEVEЯLAND【魔法少女まどか☆マギカ】　39+a<BR>
+【MAD】「終末思想の夜と幸福の向日葵畑」【素晴らしき日々】&nbsp;&nbsp;/ Pluvia<BR>
+【MAD】 Beginning of the Legend 【ウメハラ FIGHTING GAMERS!】鳩麦麦茶<BR>
+ウォーク ダンス ガール / 鳩麦麦茶<BR>
+ConcLude:Another Style Abyss-infinite rhyme ／ 乃怒亞女<BR>
+【彼岸に咲く】地獄楽【MAD】/しょー<BR>
+【MAD】めいあいへるぷゆー？【NEW GAME!】/ rar<BR>
+</p>
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+
+        
+    </div>
+  
+    <div class="col-lg-10 col-lg-offset-1"> <br/>
+      <hr>
+              <h3>
+[92] <a name="92" href="/mvm2020/bbs/92">(無題)</a>
+</h3>
+<div class="clearfix">
+      <span class="glyphicon glyphicon-user"></span> 投稿者：
+  <b>hrmk</b><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 投稿日：2021年 1月30日(土)23時59分8秒&nbsp;KD111239185126.au-net.ne.jp&nbsp;<a href="https://my.teacup.com/inform?http%3A%2F%2F9209.teacup.com%2Fmvm2020%2Fbbs%2F92" target="_blank" rel="nofollow"><b class="label label-danger"> 通報 </b></a>&nbsp;<a href="/mvm2020/bbs/post/index/comm_id/92/" rel="nofollow"><b class="label label-success"> 返信・引用 </b></a></span>
+
+
+</div>
+
+
+  
+  
+  
+  
+  
+  
+      <p>■歴代ベスト静止画M@D部門<BR>
+<BR>
+Niflheim～霧雨の国～/ひとみすいれん<BR>
+「which dreamed it?」/ひとみすいれん<BR>
+＊＊＊cide/ひとみすいれん<BR>
+砂糖菓子の弾丸は撃ちぬけない/ひとみすいれん<BR>
+<BR>
+ギリギリ間に合いました。よろしくお願いします。</p>
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+
+        
+    </div>
+  
+    <div class="col-lg-10 col-lg-offset-1"> <br/>
+      <hr>
+              <h3>
+[91] <a name="91" href="/mvm2020/bbs/91">(無題)</a>
+</h3>
+<div class="clearfix">
+      <span class="glyphicon glyphicon-user"></span> 投稿者：
+  <b>おにぎり</b><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 投稿日：2021年 1月30日(土)23時58分57秒&nbsp;KD175132069175.ppp-bb.dion.ne.jp&nbsp;<a href="https://my.teacup.com/inform?http%3A%2F%2F9209.teacup.com%2Fmvm2020%2Fbbs%2F91" target="_blank" rel="nofollow"><b class="label label-danger"> 通報 </b></a>&nbsp;<a href="/mvm2020/bbs/post/index/comm_id/91/" rel="nofollow"><b class="label label-success"> 返信・引用 </b></a></span>
+
+
+</div>
+
+
+  
+  
+  
+  
+  
+  
+      <p>■2020年ベスト静止画M@D部門<BR>
+【MAD】違和感のしっぽ【田舎に帰るとやけになついた褐色ポニテショタがいる】　/　テラバイト☆ゆういち<BR>
+【MAD】 PROLOGUE 【おさまけ】　/　Totori<BR>
+【MAD】静止した時間の中で（三峰結華）　/　大麦<BR>
+【青く心象】ブルーピリオド【MAD】　/　しょー<BR>
+【静止画MAD】線は、僕を描く　/　MOTA<BR>
+【MAD】死神代行 BLEACH　/　Yuukiザ<BR>
+MAD チェンソーマン　[救いようのない物語]　/　kyui full<BR>
+【AMV/MAD】　怪獣8号　【怪獣の花唄】　/　Nanatsuki<BR>
+【早坂愛にできること】かぐや様は告らせたい【MAD】　/　スンセア<BR>
+【MAD】 ガチャン⇔パタン 【ハッピーシュガーライフ】　/　ゆっぴ<BR>
+<BR>
+<BR>
+■歴代ベスト静止画M@D部門<BR>
+Pit Fall 2005　/　None<BR>
+【MAD】「まだ花は、」　/　藩田志信<BR>
+【MAD】「君より高く飛ぶ者達」【東のエデン】　/　合作<BR>
+【MAD】文学少女　ヨワイボクラハウタウ　/　鳩麦麦茶<BR>
+間桐桜は、ためらわない。　/　枝切司<BR>
+【MAD】Cherish【アイドルマスター】　/　HIROKI<BR>
+【MAD】 砂時計、最後の一粒 【Angel Beats!-1st beat-】　/　軍魔<BR>
+【MAD】恋×シンアイ彼女「星の音の世界」　/　朝奈<BR>
+【MAD】月曜日のアステリスク*（NEW GAME!）　/　大麦<BR>
+【MAD】NEVEЯLAND【魔法少女まどか☆マギカ】　/　39+a<BR>
+<BR>
+歴代は20あってもいいなと思うくらいに迷いました。<BR>
+タイトル&amp;作者名はニコニコから引用したので間違っていたらごめんなさい</p>
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+
+        
+    </div>
+  
+    <div class="col-lg-10 col-lg-offset-1"> <br/>
+      <hr>
+              <h3>
+[90] <a name="90" href="/mvm2020/bbs/90">(無題)</a>
+</h3>
+<div class="clearfix">
+      <span class="glyphicon glyphicon-user"></span> 投稿者：
+  <b>yomo</b><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 投稿日：2021年 1月30日(土)23時58分14秒&nbsp;i121-116-222-128.s41.a009.ap.plala.or.jp&nbsp;<a href="https://my.teacup.com/inform?http%3A%2F%2F9209.teacup.com%2Fmvm2020%2Fbbs%2F90" target="_blank" rel="nofollow"><b class="label label-danger"> 通報 </b></a>&nbsp;<a href="/mvm2020/bbs/post/index/comm_id/90/" rel="nofollow"><b class="label label-success"> 返信・引用 </b></a></span>
+
+
+</div>
+
+
+  
+  
+  
+  
+  
+  
+      <p>Twitter: @yomoGraph_<BR>
+<BR>
+■2020年ベスト静止画M@D部門<BR>
+<BR>
+[ MAD ] しゃかりきかわいい女子たち [ ゆるゆり ] / ゆっぴ<BR>
+【MAD】違和感のしっぽ【田舎に帰るとやけになついた褐色ポニテショタがいる】 / テラバイト☆ゆういち<BR>
+【MAD】 PROLOGUE 【おさまけ】 / Totori<BR>
+【AMV/MAD】　怪獣8号　【怪獣の花唄】 / Nanatsuki<BR>
+<BR>
+<BR>
+■歴代ベスト静止画M@D部門<BR>
+<BR>
+【MAD】 reparation 【少女前線】 / keari<BR>
+【MAD】 Cresc. 【Re:LieF~親愛なるあなたへ~】 / 朝奈<BR>
+【MAD】最果てからの祝福【メイドインアビス】 / ゆっぴ Totori<BR>
+【MAD】 Beginning of the Legend 【ウメハラ FIGHTING GAMERS!】 / 鳩麦麦茶</p>
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+
+        <hr>
+<!-- /47908983/teacup_pc_bbs_5th_native -->
+<div id='div-gpt-ad-1542282757946-0'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1542282757946-0'); });
+</script>
+</div>
+
+      
+    </div>
+  
+    <div class="col-lg-10 col-lg-offset-1"> <br/>
+      <hr>
+              <h3>
+[89] <a name="89" href="/mvm2020/bbs/89">(無題)</a>
+</h3>
+<div class="clearfix">
+      <span class="glyphicon glyphicon-user"></span> 投稿者：
+  <b>YAKUMO</b><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 投稿日：2021年 1月30日(土)23時52分57秒&nbsp;bai773fb715.bai.ne.jp&nbsp;<a href="https://my.teacup.com/inform?http%3A%2F%2F9209.teacup.com%2Fmvm2020%2Fbbs%2F89" target="_blank" rel="nofollow"><b class="label label-danger"> 通報 </b></a>&nbsp;<a href="/mvm2020/bbs/post/index/comm_id/89/" rel="nofollow"><b class="label label-success"> 返信・引用 </b></a></span>
+
+
+</div>
+
+
+  
+  
+  
+  
+  
+  
+      <p>■2020年ベスト静止画M@D部門(敬称略)<BR>
+「まだ花は、」/藩田志信<BR>
+終末思想の夜と幸福の向日葵畑 / Pluvia<BR>
+彼岸雨/一本杉<BR>
+Recollection/shine<BR>
+Go-ing My ↑～History Of Mine Goes On～/神月社<BR>
+不協の音色、不実の永遠/NNG<BR>
+君の膵臓をたべたい/Chiba_Awako<BR>
+終ノ空「ツイノソラDEAD-END」/アルル<BR>
+砂時計、最後の一粒 /軍魔<BR>
+天国の口、終りの楽園。/軍魔<BR>
+<BR>
+滑り込み失礼します。。。<BR>
+一日見てた実績のあるMAD<BR>
+正直軍魔さんの作品だけで10作品埋まります</p>
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+
+        
+    </div>
+  
+    <div class="col-lg-10 col-lg-offset-1"> <br/>
+      <hr>
+              <h3>
+[88] <a name="88" href="/mvm2020/bbs/88">(無題)</a>
+</h3>
+<div class="clearfix">
+      <span class="glyphicon glyphicon-user"></span> 投稿者：
+  <b> 運営</b><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 投稿日：2021年 1月30日(土)23時52分52秒&nbsp;softbank126094116159.bbtec.net&nbsp;<a href="https://my.teacup.com/inform?http%3A%2F%2F9209.teacup.com%2Fmvm2020%2Fbbs%2F88" target="_blank" rel="nofollow"><b class="label label-danger"> 通報 </b></a>&nbsp;<a href="/mvm2020/bbs/post/index/comm_id/88/" rel="nofollow"><b class="label label-success"> 返信・引用 </b></a></span>
+
+
+</div>
+
+
+  
+  
+  
+  
+  
+  
+      <p>&gt;&gt;&nbsp;&nbsp;ゼロ剪塵さん<BR>
+<BR>
+投票ありがとうございます。<BR>
+こちらの方の掲示板に不備がありましてすいません。<BR>
+システムの選択を間違えました。<BR>
+<BR>
+投票された作品のタイトルは、一通り確認して修正を行っておりますので問題ありません。<BR>
+こちらの不備ですのに、ご連絡感謝します。<BR>
+</p>
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+
+        
+    </div>
+  
+    <div class="col-lg-10 col-lg-offset-1"> <br/>
+      <hr>
+              <h3>
+[87] <a name="87" href="/mvm2020/bbs/87">(無題)</a>
+</h3>
+<div class="clearfix">
+      <span class="glyphicon glyphicon-user"></span> 投稿者：
+  <b>ゼロ剪塵</b><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 投稿日：2021年 1月30日(土)23時48分27秒&nbsp;149.129.35.187&nbsp;<a href="https://my.teacup.com/inform?http%3A%2F%2F9209.teacup.com%2Fmvm2020%2Fbbs%2F87" target="_blank" rel="nofollow"><b class="label label-danger"> 通報 </b></a>&nbsp;<a href="/mvm2020/bbs/post/index/comm_id/87/" rel="nofollow"><b class="label label-success"> 返信・引用 </b></a></span>
+
+
+</div>
+
+
+  
+  
+  
+  
+  
+  
+      <p>お邪魔しました。作者の名前の前に元々書いたのは「ーー」です。文字のフォーマットが間違っていたため、「??」になったようです。<BR>
+2020年の8は「斯芬克斯之謎与箱庭」です。9は「三日間的幸福」です。<BR>
+歴代の6は「灰色の青春物語」です。7は「『Catherine』諸漏皆苦」です。<BR>
+感想に、「やはり??止矣」ーー「やはり嘆観止矣」<BR>
+特にここで訂正します。申し訳ありません。</p>
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+
+        
+    </div>
+  
+    <div class="col-lg-10 col-lg-offset-1"> <br/>
+      <hr>
+              <h3>
+[86] <a name="86" href="/mvm2020/bbs/86">ベスト静止画M@Dと感想</a>
+</h3>
+<div class="clearfix">
+      <span class="glyphicon glyphicon-user"></span> 投稿者：
+  <b>ゼロ剪塵</b><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 投稿日：2021年 1月30日(土)23時32分17秒&nbsp;183.7.253.49&nbsp;<a href="https://my.teacup.com/inform?http%3A%2F%2F9209.teacup.com%2Fmvm2020%2Fbbs%2F86" target="_blank" rel="nofollow"><b class="label label-danger"> 通報 </b></a>&nbsp;<a href="/mvm2020/bbs/post/index/comm_id/86/" rel="nofollow"><b class="label label-success"> 返信・引用 </b></a></span>
+
+
+</div>
+
+
+  
+  
+  
+  
+  
+  
+      <p>TwitterID: @Zero_Senchiri<BR>
+<BR>
+■2020年ベスト静止画M@D部門(敬称略)<BR>
+1、棺担ぎのクロ。～廻想旅話～ ??てつ(XIAO) （sm37596733）<BR>
+2、 Liberation【ワンダンス】??明P （sm37588852）<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;（最初は周りの目が気になり、人前で踊る勇気がなかった、後のやっと自信を持って自分のダンスを踊ることができた。このような題材には共鳴しすぎます。ちなみに、この作者は進歩が早いです。）<BR>
+3、 アトリエ 【ブルーピリオド】??中野いち （sm38020810）<BR>
+4、あの太陽が偽物だってどうして誰も気づかないんだろう【猫町】??てへ （sm38018481）<BR>
+5、線は、僕を描く??MOTA （sm37511522）<BR>
+&nbsp;&nbsp; （そもそも、水墨画自体も留白の手法を多用しているね。このMADのスタイルもそうですw）<BR>
+6、きみのゆめをみせて（名取さな）??大麦 （sm36596077）<BR>
+7、終わりかけの世界、そこで君を想う【すかすか】??Kamro （sm37859241）<BR>
+8、斯芬克斯之?与箱庭??得小姨子者得天下 （BV1bK411T7Dz）<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;（このBGMは歴史的に素晴らしい作品に使われていますが、作者はまだ勇気を持って使って、作品をうまくコントロールしています。その中で作者自身の新しい考えも見ました。ありがたいことです。）<BR>
+9、三日?的幸福??Alfinever （BV1D54y127z3）<BR>
+10、青く心象【ブルーピリオド】??しょー （BV1Bz4y1C7UL?p=4）<BR>
+<BR>
+■歴代ベスト静止画M@D部門 (敬称略)<BR>
+1、意識の繭【素晴らしき日々】??uwgsr [2012]（sm19632817）<BR>
+2、「which dreamed it?」【魔法少女まどか☆マギカ】?? ひとみすいれん [2012]（sm19661523）<BR>
+3、遠い空の向こうに??【そして明日の世界より】??軍魔 [2008]（sm5217132）<BR>
+4、間桐桜は、ためらわない。??枝切司 [2014]（sm25316079）<BR>
+5、マドカラサクラ【サクラノ詩】??goldwing [MADMAX2016提出作品]<BR>
+6、灰色的青春物?【惡の華】??天然&nbsp;&nbsp;[2014や2013？またはもっと早く？]<BR>
+7、『Catherine』?漏皆苦??cnocoiate [2014]（BV18x411T7QH）<BR>
+8、華札?? Evanlet&nbsp;&nbsp;[年を知らない]<BR>
+9、少年は虹を渡る【ジサツのための101の方法】??軍魔 [2018]（sm32790950）<BR>
+10、monochrome filtre de vierge † menson ??natalie [2009]（sm6122735）<BR>
+<BR>
+※5、6、8 これらの作品はネットでリンクが見つからないので、MEGAにアップロードしました：<A HREF="/mvm2020/bbs?M=JU&amp;JUR=https%3A%2F%2Fmega.nz%2Ffolder%2FdupU1QQa%23sl1NnE4Zf13EfZpwDvbVNA" target="_blank" rel="nofollow">https://mega.nz/folder/dupU1QQa#sl1NnE4Zf13EfZpwDvbVNA</A><BR>
+<BR>
+■感想<BR>
+選択が難しいですね。いはさんが言ったように、「ここに入らなかった数多くの動画も、横一線であった」。多くの作品はMADの歴史の長い流れの中のきらきら輝く真珠である。自分の一番好きな作品と他の人が投票しないかもしれない作品を選びました。候補にノミネートされた作品が多過ぎて、削除せざるを得ませんでした。申し訳ありません。<BR>
+確かに、多くの古い動画は今日に置いて見ると、新しい動画とは比べ物にならないかもしれません。でも一つの作品を鑑賞するにもその時代背景において考察する必要があります。もちろん、まだいくつかの作品があって、今日において見ても、やはり??止矣。「こいつの頭はいったいどうやって成長しているのか……」と感慨を禁じ得ない。<BR>
+この一、二年の間に、いくつかの新しいスタイルが日増しに成熟していくのを見ました。視覚と技術の処理に大きな進歩があります。例えば、しょーさんとyuukiザさんなどを代表とする作者も、アクション系静止画を新たなレベルに押し上げ、アクション系静止画の発展を促しました。ひたすら奉古卑現（古い作品を推賞して、今流行の作品を貶める）のはいいことではないと思います。<BR>
+新しい年には、MADのもっと多くの可能性を見ることを期待します。もちろん、私も頑張ります。<BR>
+宜しく御願い致します。<BR>
+</p>
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+
+        
+    </div>
+  
+    <div class="col-lg-10 col-lg-offset-1"> <br/>
+      <hr>
+              <h3>
+[85] <a name="85" href="/mvm2020/bbs/85">(無題)</a>
+</h3>
+<div class="clearfix">
+      <span class="glyphicon glyphicon-user"></span> 投稿者：
+  <b>Flare</b><span class="pull-right"><span class="glyphicon glyphicon-time"></span> 投稿日：2021年 1月30日(土)23時28分13秒&nbsp;128.199.228.142&nbsp;<a href="https://my.teacup.com/inform?http%3A%2F%2F9209.teacup.com%2Fmvm2020%2Fbbs%2F85" target="_blank" rel="nofollow"><b class="label label-danger"> 通報 </b></a>&nbsp;<a href="/mvm2020/bbs/post/index/comm_id/85/" rel="nofollow"><b class="label label-success"> 返信・引用 </b></a></span>
+
+
+</div>
+
+
+  
+  
+  
+  
+  
+  
+      <p>●2020年ベスト静止画M@D部門<BR>
+【MAD】違和感のしっぽ【田舎に帰るとやけになついた褐色ポニテショタがいる】/TBU<BR>
+【AMV/MAD】怪獣8号　【怪獣の花唄】/Nanatsuki<BR>
+【MAD】 重力 【の、ような。】/てへ<BR>
+【MAD】 ガチャン⇔パタン 【ハッピーシュガーライフ】/ゆっぴ<BR>
+【MAD】春に近い場所そして君を想う【ささこい】/Totori<BR>
+【MAD】 PROLOGUE 【おさまけ】/ Totori<BR>
+【MAD】 未来世紀とりしろじま 【Summer Pockets REFLECTION BLUE】 /軍魔<BR>
+【静止系MAD/ATRI】After Tears Released Irrepressibly /時代の先駆者<BR>
+【SILHOUETTE】 Fate/帝都聖杯奇譚【MAD】/しょー<BR>
+爪爪爪 - 　チェンソーマン 【MAD】　宇治<BR>
+</p>
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+
+  
+  
+
+        
+    </div>
+  
+</div>
+<!--/row-->
+
+    
+
+</div>
+<!--/container-->
+
+
+      <hr>
+
+
+  <center>
+  <div style="margin: 10px 0px 10px 0px;">
+  <table border="0px;">
+  <tr>
+  <td valign="top" style="padding: 5px;">
+
+<!-- BEGIN CRITEO CDB -->
+<script async="async" type="text/javascript" src="//static.criteo.net/js/ld/publishertag.js"></script>
+<div id="criteo_slot_1371405"></div>
+<script>
+    !function(){
+        /* CONFIG CRITEO ZONE ID, SLOT DIV ID, PASSBACK */
+        var criteoZoneId = 1371405;
+        var criteoSlotId = "criteo_slot_1371405";
+        var passback = function () {
+            var width = "336", height = "280";
+            var div = document.getElementById(criteoSlotId);
+            if (div) { var ifr = document.createElement('iframe'); ifr.setAttribute("id", criteoSlotId+"_iframe"), ifr.setAttribute("frameborder","0"), ifr.setAttribute("allowtransparency","true"), ifr.setAttribute("hspace","0"), ifr.setAttribute("marginwidth","0"), ifr.setAttribute("marginheight","0"), ifr.setAttribute("scrolling","no"), ifr.setAttribute("vspace","0"), ifr.setAttribute("width", width), ifr.setAttribute("height", height);
+            div.appendChild(ifr);
+            var htmlcode = "<html><head></head><body><!--      fluct グループ名「レンタル掲示板：300x250（フッター左_AdSense以外用SSL）」      -->\n"+
+                "<script type=\"text/javascript\" src=\"https://cdn-fluct.sh.adingo.jp/f.js?G=1000092535\"></scr"+"ipt>\n"+
+                "<!--      fluct ユニット名「レンタル掲示板：300x250（フッター左_AdSense以外用SSL）」     -->\n"+
+                "<script type=\"text/javascript\">\n"+
+                "//<![CDATA[\n"+
+                "if(typeof(adingoFluct)!=\"undefined\") adingoFluct.showAd('1000138850');\n"+
+                "//]]>\n"+
+                "</scr"+"ipt>\n"+
+                "</body></html>";
+            var ifrd = ifr.contentWindow.document; ifrd.open(); ifrd.write(htmlcode); ifrd.close(); }
+        }
+ 
+        var CriteoAdUnits = { "placements": [{ "slotid": criteoSlotId, "zoneid": criteoZoneId }]};
+        window.Criteo = window.Criteo || {}; window.Criteo.events = window.Criteo.events || [];
+        var processCdbBid = function() {
+            var bids = Criteo.GetBidsForAdUnit(criteoSlotId);
+            if (bids.length > 0) {
+                var bidFound = bids[0]; Criteo.RenderAd({ bidId: bidFound.id, containerId: bidFound.impressionId });
+            } else { passback(); }
+        };
+        Criteo.events.push(function() { Criteo.RequestBids(CriteoAdUnits, processCdbBid, 2000);});
+    }();
+</script>
+<!-- END CRITEO CDB -->
+
+  </td>
+  <td style="padding: 5px; vertical-align: top;">
+<div style="width: 300px; height: 250px;"><a href="//www.teacup.com/fbbs" target="_blank"><img src="//adimg.teacup.com/teacup/img/ver09/regist_rbbs_b.jpg" alt="レンタル掲示板" border="0" width="300" height="250"></a></div>
+
+  </td>
+  </tr>
+  </table>
+</div>
+
+  </center>
+
+
+
+
+
+<!-- pager -->
+<div class="container centered">
+
+    <div class="bs-component">
+      <ul class="pagination">
+
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                        <li class="disabled"><a href="#">1</a></li>
+                        <li><a href="?page=2&">2</a></li>
+                        <li><a href="?page=3&">3</a></li>
+                        <li><a href="?page=4&">4</a></li>
+                        <li><a href="?page=5&">5</a></li>
+                        <li><a href="?page=6&">6</a></li>
+                        <li><a href="?page=7&">7</a></li>
+                        <li><a href="?page=8&">8</a></li>
+                        <li><a href="?page=9&">9</a></li>
+                        <li><a href="?page=10&">10</a></li>
+                        <li><a href="?page=2&">&raquo;</a></li>
+    
+      </ul>
+    </div>
+
+      <small>全<b>91</b>件の内、新着の記事から<b>10</b>件ずつ表示します。</small>
+  </div>
+<!--/pager-->
+
+
+
+      <hr>
+  
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-menu-2">
+        <span class="sr-only">フッターメニュー</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="nav-menu-2">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown">メニュー <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+
+            <li><a href="/mvm2020/bbs/urlmail" rel="nofollow">ケータイで使う</a></li>
+            <li><a href="#" ONCLICK="javascript:var sd='9209';var un='mvm2020';void(window.open('https://ticker.teacup.com/bbs/about/?sd='+ sd +'&un='+un,'_blank','width=870,height=550,resizable=1,scrollbars=1,status=1'))" rel="nofollow">BBSティッカー</a></li>
+
+            <li><a href="/mvm2020/bbs/announcemail" rel="nofollow">書き込み通知</a></li>
+
+                    <li><a href="/mvm2020/bbs/search" rel="nofollow">検索</a></li>
+        
+            <li><a href="/mvm2020/bbs/mailform/button" rel="nofollow">管理者へメール</a></li>
+            <li><a href="http://www.teacup.com/" TARGET="_top">ホームページへ</a></li>
+
+                <li class="divider"></li>
+            <li><a href="/mvm2020/bbs/mypost" rel="nofollow">自分の投稿の編集・削除</a></li>
+    
+            <li class="divider"></li>
+            <li><a href="/mvm2020/bbsadm/login" target="_top" rel="nofollow">管理者メニュー</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/mvm2020/bbs/rss15.xml">&nbsp;RSS</a></li>      </ul>
+
+            <p class="navbar-text navbar-right">管理者ログイン中です&nbsp;</p>
+      
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+  <div class="row centered">
+    <small>
+<a href="//www.teacup.com/information">お知らせ</a>　&middot;　<a href="//www.teacup.com/faq">よくある質問(FAQ)</a>　&middot;　<a href="//www.teacup.com/inquiry">お問合せ窓口</a>　&middot;　<a href="//www.teacup.com">teacup.レンタル掲示板</a></small>
+    <p><small>&copy; GMO Media, Inc.</small></p>
+  </div>
+  <!-- /row --> 
+</div>
+<!-- /container -->
+
+<!-- JavaScript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+<!-- script src="https://code.jquery.com/jquery-1.10.2.min.js"></script --> 
+<script src="//rbbs-img.teacup.com/static/bbs/js/201509.min.js"></script> 
+<!-- script src="http://rbbs-img.teacup.com/static/bbs/201509_assets/js/classie.js"></script -->
+
+<!--新google新-analytics開始-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37971288-6', 'auto');
+  ga('send', 'pageview');
+
+  ga('create', 'UA-37971288-3', 'auto', {'name': 'oldTracker'});
+  ga('oldTracker.set', 'dimension2', '7');
+  ga('oldTracker.set', 'dimension3', 'L0');
+  ga('oldTracker.set', 'dimension4', 'normal');
+    ga('oldTracker.set', 'dimension5', 'none');
+    ga('oldTracker.send', 'pageview');
+</script>
+<!--新google新-analytics終了-->
+
+
+
+</body>
+</html>
+
