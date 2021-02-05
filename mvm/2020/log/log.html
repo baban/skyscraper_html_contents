@@ -7,28 +7,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  
-  
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
-
-<LINK REL="alternate" TYPE="application/rss+xml" TITLE="RSS" HREF="http://9209.teacup.com/mvm2020/bbs/rss15.xml">
-<LINK REL="canonical" HREF="http://9209.teacup.com/mvm2020/bbs">
-
-
 <TITLE>静止画M@D大賞2020投票掲示板</TITLE>
-
-<script type="text/javascript" src="//rbbs-img.teacup.com/static/bbs/js/jquery-1.7.1.min.js" ></script>
-
-
-
-
 <!-- CSS -->
-<link href="//rbbs-img.teacup.com/static/style/201509_regist.css?20151005" rel="stylesheet">
-<link href="//rbbs-img.teacup.com/static/style/font-awesome.min.css" rel="stylesheet">
-
+<link href="201509_regist.css?20151005" rel="stylesheet">
+<link href="font-awesome.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="//rbbs-img.teacup.com/static/style/201509_main.css?20151005" rel="stylesheet">
+<link href="201509_main.css?20151005" rel="stylesheet">
 
 <!-- Awesome-->
 <!-- link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" -->
@@ -36,150 +21,6 @@
 <!-- Fonts from Google Fonts -->
 <link href='//fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-<script type="text/javascript">
-<!--
-function formToggle() {
-  checkExpand('form_message');
-  checkExpand('form_open');
-  checkExpand('form_close');
-}
-
-function threadToggle() {
-  checkExpand('thread_list');
-  checkExpand('thread_open');
-  checkExpand('thread_close');
-}
-
-function checkExpand(ch) {
-  var obj=document.all && document.all(ch) || document.getElementById && document.getElementById(ch);
-  if(obj && obj.style) obj.style.display=
-    "none" == obj.style.display ? "" : "none"
-}
-
-function postFormChange() {
-  var frm = document.frmPost;
-  frm.M.value = 'CHANGE_INPUT_HELPER';
-  frm.BODA.value = frm.BODA.value == 1 ? 0 : 1;
-  frm.action = '/mvm2020/bbs/post?upload=1';
-  frm.submit();
-}
-
-function $get (id) {
-  return document.getElementById(id);
-}
-function chkUpload(frm) {
-  if ($get('file1').value !== '' ||
-      $get('file2').value !== '' ||
-      $get('file3').value !== '') {
-    if (frm.action.indexOf('?',0)>0) {
-      frm.action = frm.action + '&fupload=1';
-    } else {
-      frm.action = frm.action + '?fupload=1';
-    }
-  }
-}
-// -->
-</script>
-  <script>
-$(function(){
-  var get_information = function(num){
-    var url = '//www.teacup.com/information'
-    $.ajax({
-      url: url,
-      dataType: 'jsonp',
-      jsonp:"callback",
-      data:"type=jsonp&len=30&num=" + num,
-      cache: false,
-      success: function (data, status) {
-        $.each(data, function(i,item){
-          $('#information').append(makeInfoTag(item));
-        });
-      }
-    });
-
-    function makeInfoTag(item){
-      var dat = '<a href="' + url + '/view?id=' + item.id + '" target="_blank">';
-      dat += item.title + '(' + item.startat + ')</a>';
-      return dat;
-    }
-  };
-  get_information(1);
-});
-</script>
-
-  
-  <script>
-  var googletag = googletag || {};
-  googletag.cmd = googletag.cmd || [];
-  window.Adomik = window.Adomik || {};
-  Adomik.randomAdGroup = function() {
-    var rand = Math.random();
-    switch (false) {
-      case !(rand < 0.09): return "ad_ex" + (Math.floor(100 * rand));
-      case !(rand < 0.10): return "ad_bc";
-      default: return "ad_opt";
-    }
-  };
-
-  (function() {
-    var url = '//www.googletagservices.com/tag/js/gpt.js';
-    var wtads = document.createElement('script');
-    wtads.async = true;
-    wtads.type = 'text/javascript';
-    wtads.src = url;
-    var node = document.getElementsByTagName('script')[0];
-    node.parentNode.insertBefore(wtads, node);
-  })();
-</script>
-
-  
-<script>
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/47908983/teacup_pc_bbs_header728x90', [728, 90], 'div-gpt-ad-1531206632464-0').setTargeting('ad_h', (new Date).getUTCHours()).setTargeting('ad_group',Adomik.randomAdGroup()).addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.enableServices();
-  });
-</script>
-
-  
-<script>
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/47908983/teacup_pc_bbs_left_rectangle', [[300, 250], [336, 280]], 'div-gpt-ad-1531206939030-0').setTargeting('ad_h', (new Date).getUTCHours()).setTargeting('ad_group',Adomik.randomAdGroup()).addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.enableServices();
-  });
-</script>
-
-  
-<script>
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/47908983/teacup_pc_bbs_right_rectangle', [[300, 250], [336, 280]], 'div-gpt-ad-1531206846208-0').setTargeting('ad_h', (new Date).getUTCHours()).setTargeting('ad_group',Adomik.randomAdGroup()).addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.enableServices();
-  });
-</script>
-
-  <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
-<script>
-  var googletag = googletag || {};
-  googletag.cmd = googletag.cmd || [];
-</script>
-
-<script>
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/47908983/teacup_pc_bbs_5th_native', ['fluid'], 'div-gpt-ad-1542282757946-0').setTargeting('ad_h', (new Date).getUTCHours()).setTargeting('ad_group',Adomik.randomAdGroup()).addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.enableServices();
-  });
-</script>
-
 </head>
 <body>
   <!-- Fixed navbar -->
@@ -236,14 +77,6 @@ $(function(){
   
 
 
-<center>
-<!-- /47908983/teacup_pc_bbs_header728x90 -->
-<div id='div-gpt-ad-1531206632464-0' style='height:90px; width:728px;'>
-<script>
-googletag.cmd.push(function() { googletag.display('div-gpt-ad-1531206632464-0'); });
-</script>
-</div>
-</center>
 
 
 <hr>
@@ -252,32 +85,6 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1531206632464-0');
   <p>カテゴリ：[ <A HREF="//www.teacup.com/list/PC%EF%BC%8F%E3%83%8D%E3%83%83%E3%83%88%EF%BC%8F%E3%83%A2%E3%83%90%E3%82%A4%E3%83%AB" TARGET="_blank">PC／ネット／モバイル</A> ] 
 </p>
 
-
-  <div class="col-lg-10 col-lg-offset-1">
-    <h4>
-    <div class="row">
-
-                  <div class="col-sm-4">
-        <span id="form_open">
-          <a HREF="javascript:void(0)" onclick="formToggle();" class="btn btn-info btn-block btn-lg">投稿フォームを開く</a>
-        </span>
-        <span id="form_close" style="display:none;">
-          <a HREF="javascript:void(0)" onclick="formToggle();" class="btn btn-info btn-block btn-lg">投稿フォームを閉じる</a>
-        </span>
-      </div>
-            
-      <div class="col-sm-4 col-sm-offset-4">
-        <span id="thread_open">
-          <a HREF="javascript:void(0)" onclick="threadToggle();" class="btn btn-info btn-block btn-lg">新着スレッド一覧</a>
-        </span>
-        <span id="thread_close" style="display:none;">
-          <a HREF="javascript:void(0)" onclick="threadToggle();" class="btn btn-info btn-block btn-lg">新着スレッド一覧を閉じる</a>
-        </span>
-      </div>
-
-    </h4>
-    </div>
-  </div>
 </div>
 <!-- /container --> 
 
@@ -399,28 +206,6 @@ teacup.掲示板は、皆様の権利を守りながら、思いやり、温か�
 
 <!-- pager -->
 <div class="container centered">
-  <div class="row">
-
-    <div class="bs-component">
-      <ul class="pagination">
-
-                    <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li class="disabled"><a href="#">1</a></li>
-                        <li><a href="?page=2&">2</a></li>
-                        <li><a href="?page=3&">3</a></li>
-                        <li><a href="?page=4&">4</a></li>
-                        <li><a href="?page=5&">5</a></li>
-                        <li><a href="?page=6&">6</a></li>
-                        <li><a href="?page=7&">7</a></li>
-                        <li><a href="?page=8&">8</a></li>
-                        <li><a href="?page=9&">9</a></li>
-                        <li><a href="?page=10&">10</a></li>
-                        <li><a href="?page=2&">&raquo;</a></li>
-    
-      </ul>
-    </div>
-      <small>全<b>91</b>件の内、新着の記事から<b>10</b>件ずつ表示します。</small>
-    </div>
 </div>
 <!--/pager-->
 
@@ -1103,31 +888,6 @@ Go-ing My ↑～History Of Mine Goes On～/神月社<BR>
 
 
 
-<!-- pager -->
-<div class="container centered">
-
-    <div class="bs-component">
-      <ul class="pagination">
-
-                    <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li class="disabled"><a href="#">1</a></li>
-                        <li><a href="?page=2&">2</a></li>
-                        <li><a href="?page=3&">3</a></li>
-                        <li><a href="?page=4&">4</a></li>
-                        <li><a href="?page=5&">5</a></li>
-                        <li><a href="?page=6&">6</a></li>
-                        <li><a href="?page=7&">7</a></li>
-                        <li><a href="?page=8&">8</a></li>
-                        <li><a href="?page=9&">9</a></li>
-                        <li><a href="?page=10&">10</a></li>
-                        <li><a href="?page=2&">&raquo;</a></li>
-    
-      </ul>
-    </div>
-
-      <small>全<b>91</b>件の内、新着の記事から<b>10</b>件ずつ表示します。</small>
-  </div>
-<!--/pager-->
 
 
 
@@ -1192,33 +952,6 @@ Go-ing My ↑～History Of Mine Goes On～/神月社<BR>
   <!-- /row --> 
 </div>
 <!-- /container -->
-
-<!-- JavaScript
-    ================================================== --> 
-<!-- Placed at the end of the document so the pages load faster --> 
-<!-- script src="https://code.jquery.com/jquery-1.10.2.min.js"></script --> 
-<script src="//rbbs-img.teacup.com/static/bbs/js/201509.min.js"></script> 
-<!-- script src="http://rbbs-img.teacup.com/static/bbs/201509_assets/js/classie.js"></script -->
-
-<!--新google新-analytics開始-->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-37971288-6', 'auto');
-  ga('send', 'pageview');
-
-  ga('create', 'UA-37971288-3', 'auto', {'name': 'oldTracker'});
-  ga('oldTracker.set', 'dimension2', '7');
-  ga('oldTracker.set', 'dimension3', 'L0');
-  ga('oldTracker.set', 'dimension4', 'normal');
-    ga('oldTracker.set', 'dimension5', 'none');
-    ga('oldTracker.send', 'pageview');
-</script>
-<!--新google新-analytics終了-->
-
 
 
 </body>
