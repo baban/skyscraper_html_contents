@@ -44,9 +44,6 @@ main > section {
 
 table.works {
   counter-reset: works;
-}
-
-table.works {
   vertical-align: baseline;
 }
 
@@ -56,7 +53,7 @@ td.num {
   content: counter(works);
 }
 
-.thumbnail {
+img.thumbnail {
   max-width: 128px;
   max-height: 72px;
 }
