@@ -42,6 +42,25 @@ main > section {
   padding:0.4em;
 }
 
+table.works {
+  counter-reset: works;
+}
+
+table.works {
+  vertical-align: baseline;
+}
+
+td.num {
+  min-height: 72px;
+  counter-increment: works;
+  content: counter(works);
+}
+
+.thumbnail {
+  max-width: 128px;
+  max-height: 72px;
+}
+
 .strong-link { 
   font-size:1.5em;
 }
