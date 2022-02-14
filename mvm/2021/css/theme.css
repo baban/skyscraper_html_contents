@@ -144,3 +144,14 @@ pre.example {
   border:solid 1px #aaa;
   padding: 0.5rem;
 }
+
+div.note {
+  border:solid 2px #432d8e;
+  background-color: #e9faff;
+  padding: 0.5rem;
+  margin: 0.4rem 3em;
+}
+
+div.note > p {
+  margin:0.5rem;
+}
