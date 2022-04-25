@@ -1,4 +1,9 @@
-﻿var _gaq = _gaq || [];
+﻿window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-3WMHD1KQEE');
+
+var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-39763471-1']);
 _gaq.push(['_trackPageview']);
 
