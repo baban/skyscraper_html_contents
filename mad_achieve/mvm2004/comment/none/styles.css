@@ -1,0 +1,51 @@
+/* CSS */
+
+body {
+	font-size: 80%;
+	background-color:#E2E7E3;
+	padding: 20px;
+	line-height: 140%;
+}
+
+p {
+}
+div.all {
+	width: 520px;
+	color: Åî000;
+}	
+
+div.borderA {
+	border-width : 1px;
+	border-color : #333 ;
+	border-style : solid;
+}
+
+div.borderB {
+	border : 1px #333 solid;
+	background-color : #fff;
+	padding : 10px;
+}
+
+div.border2A {
+	border-width : 1px;
+	border-color : #fff #999 #999 #fff;
+	border-style : solid;
+}
+
+div.border2B {
+	border-width : 1px;
+	border-color : #999 #fff #fff #999;
+	border-style : solid;
+}
+
+div.bg {
+	background-color : #d0d0d0;
+	padding : 1px;
+}
+	
+div.title {
+	padding : 3 3 4 3px;
+	text-align : center;
+	font-weight: bold;
+}
+
