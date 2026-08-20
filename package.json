@@ -21,17 +21,17 @@
   },
   "homepage": "https://github.com/baban/skyscraper_publify_theme#readme",
   "devDependencies": {
-    "css-loader": "^1.0.1",
-    "file-loader": "^2.0.0",
+    "css-loader": "^6.7.3",
+    "file-loader": "^6.2.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-plumber": "^1.2.0",
     "gulp-sass": "^4.0.2",
     "node-sass": "^4.5.1",
-    "sass-loader": "^6.0.3",
-    "style-loader": "^0.23.1",
-    "url-loader": "^1.1.2",
-    "webpack": "^2.3.2"
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "url-loader": "^4.1.1",
+    "webpack": "^2.7.0"
   },
   "dependencies": {},
   "keywords": []
